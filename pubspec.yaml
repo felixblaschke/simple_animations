@@ -1,7 +1,7 @@
 name: simple_animations
 description: Create awesome animations. Simplified.
 version: 0.0.1
-author: felix@felix-blaschke.de
+author: Felix Blaschke <felix@felix-blaschke.de>
 homepage: https://github.com/felixblaschke/simple_animations
 
 environment:
