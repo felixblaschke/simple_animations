@@ -2,25 +2,29 @@ import 'package:flutter/widgets.dart';
 
 /// A widget for performing easy custom animations.
 ///
-/// You need to specify a [duration], a [tween] and a [builder] function. The animation will start instantly.
-/// Optional you can [delay] the start of the animation or refine the shape of the tween's [curve].
+/// You need to specify a [duration], a [tween] and a [builder] function.
+/// The animation will start instantly. Optionally you can [delay] the start
+/// of the animation or refine the shape of the tween's [curve].
 ///
 /// The [duration] specifies the time of the animation excluding any [delay].
 ///
-/// The [tween] defines the values that are passed to the [builder] function. These values will automatically
-/// interpolated during the animation process based on the type of the tween. Common tweens types are
-/// [Tween], [ColorTween] or [TweenSequence]. You can finde more types of tween in
+/// The [tween] defines the values that are passed to the [builder] function.
+/// These values will automatically interpolated during the animation process
+/// based on the type of the tween. Common tweens types are [Tween],
+/// [ColorTween] or [TweenSequence]. You can finde more types of tween in
 /// [Flutter's animation library](https://api.flutter.dev//flutter/animation/animation-library.html).
 ///
-/// The [builder] creates your widgets that gets animated. The animation automatically calls the [builder] function
-/// every time the animation updates. The [builder] passes the [BuildContext] and the interpolated animation [value],
-/// and expects you to return a [Widget].
+/// The [builder] creates your widgets that gets animated. The animation
+/// automatically calls the [builder] function every time the animation updates.
+/// The [builder] passes the [BuildContext] and the interpolated animation
+/// [value], and expects you to return a [Widget].
 ///
-/// You can modify the start of the animation by setting a [delay]. This allows you to easily create staggered
-/// animation scenes by using multiple [InstantAnimation] widgets.
+/// You can modify the start of the animation by setting a [delay].
+/// This allows you to easily create staggered animation scenes by using
+/// multiple [InstantAnimation] widgets.
 ///
-/// Also you can apply easing effect to you [tween] by setting [curve] to one Flutter's [Curves] enum, for example
-/// [Curves.easeOut] or [Curves.easeIn].
+/// Also you can apply easing effect to you [tween] by setting [curve] to one
+/// Flutter's [Curves] enum, for example [Curves.easeOut] or [Curves.easeIn].
 class InstantAnimation<T> extends StatefulWidget {
   final Duration duration;
   final Duration delay;
@@ -62,7 +66,8 @@ class InstantAnimation<T> extends StatefulWidget {
   _InstantAnimationState<T> createState() => _InstantAnimationState();
 }
 
-class _InstantAnimationState<T> extends State<InstantAnimation> with SingleTickerProviderStateMixin {
+class _InstantAnimationState<T> extends State<InstantAnimation>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<T> _animation;
   bool _isDisposed = false;
@@ -73,7 +78,9 @@ class _InstantAnimationState<T> extends State<InstantAnimation> with SingleTicke
       ..addListener(() {
         setState(() {});
       });
-    _animation = widget.tween.chain(CurveTween(curve: widget.curve)).animate(_controller);
+    _animation = widget.tween
+        .chain(CurveTween(curve: widget.curve))
+        .animate(_controller);
 
     executeAnimationPhases();
     super.initState();

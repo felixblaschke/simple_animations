@@ -1,3 +1,3 @@
-## [0.0.1] - 2019/03/30
+## [0.0.x] - 2019/03/30
 
-* Initial release
+* Setting up project
