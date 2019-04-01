@@ -10,18 +10,15 @@ class ExampleApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Center(child: animatedContainer()),
+        body: Center(
+            child: ControlledAnimation(
+                duration: Duration(milliseconds: 800),
+                tween: Tween(begin: 0.0, end: 100.0),
+                builder: (context, width) {
+                  return Container(
+                      width: width, height: 50.0, color: Colors.red);
+                })),
       ),
-    );
-  }
-
-  Widget animatedContainer() {
-    return InstantAnimation(
-      duration: Duration(milliseconds: 1500),
-      tween: Tween(begin: 100.0, end: 300.0),
-      builder: (context, animatedValue) {
-        return Container(width: animatedValue, height: animatedValue, color: Colors.red);
-      },
     );
   }
 }

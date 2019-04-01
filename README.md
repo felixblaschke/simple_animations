@@ -1,3 +1,3 @@
 # simple_animations
 
-To be done.
+Documentation will be soon available.
