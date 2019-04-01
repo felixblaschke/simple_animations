@@ -1,3 +1,4 @@
 library simple_animations;
 
-export 'package:simple_animations/controlled_animation.dart';
+/// Create awesome animations. Simplified. Well documented. With many examples.
+export 'package:simple_animations/simple_animations/controlled_animation.dart';

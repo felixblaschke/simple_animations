@@ -36,22 +36,7 @@ enum Playback {
 /// [tween] (values to interpolate among the animation) and a [builder] function
 /// (defines the animated scene).
 ///
-/// {@tool sample}
-///
-/// This example shows a red [Container] that animtes it's width from 0 to
-/// 100 within 800ms:
-///
-/// ```dart
-/// ControlledAnimation(
-///   duration: Duration(milliseconds: 800),
-///   tween: Tween(begin: 0.0, end: 100.0),
-///   builder: (context, width) {
-///     return Container(width: width, height: 50.0, color: Colors.red);
-///   }
-/// )
-/// ```
-/// {@end-tool}
-/// {@tool sample}
+/// (TODO add example here)
 ///
 /// TODO complete documentation
 class ControlledAnimation<T> extends StatefulWidget {
