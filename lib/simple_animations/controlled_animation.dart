@@ -28,6 +28,8 @@ enum Playback {
 
 /// Widget to create custom animations in a very simple way.
 ///
+/// ---
+///
 /// An internal [AnimationController] will do everything you tell him by
 /// dynamically assigning the one [Playback] to [playback] property.
 /// By default the animation will start playing forward and stops at the end.
@@ -36,9 +38,25 @@ enum Playback {
 /// [tween] (values to interpolate among the animation) and a [builder] function
 /// (defines the animated scene).
 ///
-/// (TODO add example here)
+/// Instead of using [builder] as building function you can use for performance
+/// critical scenarios [builderWithChild] along with a prebuild [child].
 ///
-/// TODO complete documentation
+/// ---
+///
+/// The following properties are optional:
+///
+/// - You can apply a [delay] that forces the animation to pause a
+///   specified time before the animation will perform the defined [playback]
+///   instruction.
+///
+/// - You can specify a [curve] that modifies the [tween] by applying a
+///   non-linear animation function. You can find curves in [Curves], for
+///   example [Curves.easeOut] or [Curves.easeIn].
+///
+/// - You can track the animation by setting an [AnimationStatusListener] to
+///   the property [statusListener]. The internal [AnimationController] then
+///   will route out any events that occur.
+///
 class ControlledAnimation<T> extends StatefulWidget {
   final Playback playback;
   final Animatable<T> tween;
