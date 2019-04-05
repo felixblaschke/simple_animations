@@ -54,8 +54,10 @@ enum Playback {
 ///   example [Curves.easeOut] or [Curves.easeIn].
 ///
 /// - You can track the animation by setting an [AnimationStatusListener] to
-///   the property [statusListener]. The internal [AnimationController] then
-///   will route out any events that occur.
+///   the property [animationControllerStatusListener]. The internal [AnimationController] then
+///   will route out any events that occur. [ControlledAnimation] doesn't filter
+///   or modifies these events. These events are currently only reliable for the
+///   [playback]-types [Playback.PLAY_FORWARD] and [Playback.PLAY_REVERSE].
 ///
 class ControlledAnimation<T> extends StatefulWidget {
   final Playback playback;
@@ -67,7 +69,7 @@ class ControlledAnimation<T> extends StatefulWidget {
   final Widget Function(BuildContext, Widget child, T animatedValue)
       builderWithChild;
   final Widget child;
-  final AnimationStatusListener statusListener;
+  final AnimationStatusListener animationControllerStatusListener;
 
   ControlledAnimation(
       {this.playback = Playback.PLAY_FORWARD,
@@ -78,7 +80,7 @@ class ControlledAnimation<T> extends StatefulWidget {
       this.builder,
       this.builderWithChild,
       this.child,
-      this.statusListener,
+      this.animationControllerStatusListener,
       Key key})
       : assert(duration != null,
             "Please set property duration. Example: Duration(milliseconds: 500)"),
@@ -112,8 +114,8 @@ class _ControlledAnimationState<T> extends State<ControlledAnimation>
         .chain(CurveTween(curve: widget.curve))
         .animate(_controller);
 
-    if (widget.statusListener != null) {
-      _controller.addStatusListener(widget.statusListener);
+    if (widget.animationControllerStatusListener != null) {
+      _controller.addStatusListener(widget.animationControllerStatusListener);
     }
 
     initalize();

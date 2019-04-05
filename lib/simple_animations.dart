@@ -1,3 +1,4 @@
 library simple_animations;
 
-export 'package:simple_animations/simple_animations/controlled_animation.dart';
+export 'simple_animations/controlled_animation.dart';
+export 'simple_animations/multi-track-tween.dart';
