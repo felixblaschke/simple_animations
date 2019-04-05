@@ -2,6 +2,32 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 
+/// Animatable that tweens multiple parallel properties (called [Track]s).
+/// ---
+/// The constructor of [MultiTrackTween] expects a list of [Track] objects.
+/// You can fetch the specified total duration via [duration] getter.
+/// ---
+/// Example:
+///
+/// ```dart
+///   final tween = MultiTrackTween([
+///     Track("color")
+///       .add(Duration(seconds: 1), ColorTween(begin: Colors.red, end: Colors.blue))
+///       .add(Duration(seconds: 1), ColorTween(begin: Colors.blue, end: Colors.yellow)),
+///     Track("width")
+///       .add(Duration(milliseconds: 500), ConstantTween(200.0))
+///       .add(Duration(milliseconds: 1500), Tween(begin: 200.0, end: 400.0),
+///            curve: Curves.easeIn)
+///   ]);
+///
+///   return ControlledAnimation(
+///     duration: tween.duration,
+///     tween: tween,
+///     builder: (context, values) {
+///        ...
+///     }
+///   );
+/// ```
 class MultiTrackTween extends Animatable<Map<String, dynamic>> {
   final _tracksToTween = Map<String, _TweenData>();
   var _maxDuration = 0;
@@ -49,6 +75,24 @@ class MultiTrackTween extends Animatable<Map<String, dynamic>> {
     });
   }
 
+  /// Returns the highest duration specified by [Track]s.
+  /// ---
+  /// Use it to pass it into an [ControlledAnimation].
+  ///
+  /// You can also scale it by multiplying a double value.
+  ///
+  /// Example:
+  /// ```dart
+  ///   final tween = MultiTrackTween(listOfTracks);
+  ///
+  ///   return ControlledAnimation(
+  ///     duration: tween.duration * 1.25, // stretch animation by 25%
+  ///     tween: tween,
+  ///     builder: (context, values) {
+  ///        ...
+  ///     }
+  ///   );
+  /// ```
   Duration get duration {
     return Duration(milliseconds: _maxDuration);
   }
@@ -64,13 +108,22 @@ class MultiTrackTween extends Animatable<Map<String, dynamic>> {
   }
 }
 
+/// Single property to tween. Used by [MultiTrackTween].
 class Track<T> {
   final String name;
   final List<TrackItem> items = [];
 
   Track(this.name) : assert(name != null, "Track name must not be null.");
 
-  add(Duration duration, Animatable<T> tween, {Curve curve = Curves.linear}) {
+  /// Adds a "piece of animation" to a [Track].
+  ///
+  /// You need to pass a [duration] and a [tween]. It will return the track, so
+  /// you can specify a track in a builder's style.
+  ///
+  /// Optionally you can set a named parameter [curve] that applies an easing
+  /// curve to the tween.
+  Track<T> add(Duration duration, Animatable<T> tween,
+      {Curve curve = Curves.linear}) {
     items.add(TrackItem(duration, tween, curve));
     return this;
   }
