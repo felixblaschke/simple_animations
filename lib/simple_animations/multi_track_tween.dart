@@ -6,7 +6,11 @@ class MultiTrackTween extends Animatable<Map<String, dynamic>> {
   final _tracksToTween = Map<String, _TweenData>();
   var _maxDuration = 0;
 
-  MultiTrackTween(List<Track> tracks) {
+  MultiTrackTween(List<Track> tracks)
+      : assert(tracks != null && tracks.length > 0,
+            "Add a List<Track> to configure the tween."),
+        assert(tracks.where((track) => track.items.length == 0).length == 0,
+            "Each Track needs at least one added Tween by using the add()-method.") {
     _computeMaxDuration(tracks);
     _computeTrackTweens(tracks);
   }
@@ -64,7 +68,7 @@ class Track<T> {
   final String name;
   final List<TrackItem> items = [];
 
-  Track(this.name);
+  Track(this.name) : assert(name != null, "Track name must not be null.");
 
   add(Duration duration, Animatable<T> tween, {Curve curve = Curves.linear}) {
     items.add(TrackItem(duration, tween, curve));
@@ -77,7 +81,9 @@ class TrackItem<T> {
   final Animatable<T> tween;
   final Curve curve;
 
-  TrackItem(this.duration, this.tween, this.curve);
+  TrackItem(this.duration, this.tween, this.curve)
+      : assert(duration != null, "Please set a duration."),
+        assert(tween != null, "Please set a tween.");
 }
 
 class _TweenData<T> {

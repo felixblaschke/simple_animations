@@ -1,8 +1,31 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:test/test.dart';
 
 main() {
+  test('empty tracks => error', () {
+    expect(() => MultiTrackTween([]), throwsA(isAssertionError));
+  });
+
+  test('unconfigured track', () {
+    expect(() => MultiTrackTween([Track("test")]), throwsA(isAssertionError));
+  });
+
+  test('track name must not be null', () {
+    expect(() => MultiTrackTween([Track(null)]), throwsA(isAssertionError));
+  });
+
+  test('invalid parameter on track - duration', () {
+    expect(() => MultiTrackTween([Track("test").add(null, ConstantTween(1))]),
+        throwsA(isAssertionError));
+  });
+
+  test('invalid parameter on track - tween', () {
+    expect(
+        () => MultiTrackTween([Track("test").add(Duration(seconds: 1), null)]),
+        throwsA(isAssertionError));
+  });
+
   test('one track - one item', () {
     final tween = MultiTrackTween([
       Track("a").add(Duration(milliseconds: 1000), IntTween(begin: 0, end: 100))
