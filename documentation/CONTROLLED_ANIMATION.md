@@ -145,3 +145,29 @@ ControlledAnimation(
       );
     });
 ```
+
+
+
+### Listen to events
+
+`ControlledAnimation` routes all events of it's internal `AnimationController`
+to a specified `AnimationStatusListener` for the property `animationControllerStatusListener`.
+
+For example you can use it listen to the `AnimationStatus.completed` event 
+(*The animation is stopped at the beginning*) or the `AnimationStatus.dismissed`
+event (*The animation is stopped at the end*).
+
+#### Example
+```dart
+  ControlledAnimation(
+      duration: Duration(milliseconds: 1500),
+      tween: Tween(begin: 100, end: 300),
+      animationControllerStatusListener: (status) {
+        if (status == AnimationStatus.completed) {
+          // do something
+        }
+      },
+      builder: (context, value) {
+        // return ...
+      });
+```
