@@ -101,7 +101,7 @@ end of the animation duration.
 
 You can change the `playback` property anytime to control the animation.
 
-[**⇨ Learn more about `Playback`**](https://github.com/felixblaschke/simple_animations/blob/master/documentation/CONTROLLED_ANIMATION_PLAYBACK.md)
+[**⇨ Learn more about `Playback`**](CONTROLLED_ANIMATION_PLAYBACK.md)
 
 ### Using pre-build childs
 
