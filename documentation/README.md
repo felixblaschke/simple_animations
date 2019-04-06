@@ -7,14 +7,32 @@ classes to simplify the creation of beautiful custom animations.
 
 *Simple Animation enhances your development with*
 
-- [**ControlledAnimation**](https://github.com/felixblaschke/simple_animations/blob/master/documentation/CONTROLLED_ANIMATION.md),
+- [**ControlledAnimation**](CONTROLLED_ANIMATION.md),
   a widget that allows you to create a custom animation in very simple way.
 
-- [**MultiTrackTween**](https://github.com/felixblaschke/simple_animations/blob/master/documentation/MULTI_TRACK_TWEEN.md),
+- [**MultiTrackTween**](MULTI_TRACK_TWEEN.md),
   an Animateable that tweens multiple properties in one unified tween.
 
 ## Getting started
 
-You decided to start developing with **simple_animations**? Great!
+Setting up *simple_animation* is very easy:
 
-Let's do this together step-by-step in the [**Setup Tutorial**](https://github.com/felixblaschke/simple_animations/blob/master/documentation/TUTORIAL.md),
+- You just need to add a dependency to the latest version of `simple_animations`.
+You can find a detailed instructions on the [pub install page](https://pub.dartlang.org/packages/simple_animations#-installing-tab-).
+
+- Start using *simple_animations* by importing the `simple_animations.dart`:
+    ```dart
+    import 'package:simple_animations/simple_animations.dart';
+    ```
+
+- Write beautiful custom animations with ease!
+
+## Learn
+
+Extend your knowledge about Flutter animations with *simple_animations*:
+
+- Take a look at the [Simple Animations Example App](https://github.com/felixblaschke/simple_animations_example_app). 
+It contains a lot of animation demonstrations to learn from.
+ 
+
+
