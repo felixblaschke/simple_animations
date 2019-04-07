@@ -82,14 +82,14 @@ main() {
 
     expect(tween.duration, Duration(milliseconds: 3000));
     expect(tween.transform(0.0), {"a": 0});
-    expect(tween.transform(0.1), {"a": 30});
-    expect(tween.transform(0.2), {"a": 60});
+    expect(tween.transform(0.1), {"a": 13});
+    expect(tween.transform(0.2), {"a": 43});
     expect(tween.transform(1 / 3), {"a": 100});
     expect(tween.transform(0.4), {"a": 120});
     expect(tween.transform(0.6), {"a": 180});
     expect(tween.transform(2 / 3), {"a": 200});
-    expect(tween.transform(0.8), {"a": 240});
-    expect(tween.transform(0.9), {"a": 270});
+    expect(tween.transform(0.8), {"a": 257});
+    expect(tween.transform(0.9), {"a": 287});
     expect(tween.transform(1.0), {"a": 300});
   });
 }
