@@ -1,3 +1,12 @@
-## [0.0.x] - 2019/03/30
+## 1.0.0 
+- Initial release
 
-* Setting up project
+### New features
+
+- ControlledAnimation: Widget for simple tween-based custom animations
+- MultiTrackTween: Animatable for tweening multiple properties at once
+
+
+## 0.x
+
+- Setting up the project
