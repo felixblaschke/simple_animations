@@ -124,7 +124,7 @@ class Track<T> {
   /// curve to the tween.
   Track<T> add(Duration duration, Animatable<T> tween,
       {Curve curve = Curves.linear}) {
-    items.add(_TrackItem(duration, tween, curve));
+    items.add(_TrackItem(duration, tween.chain(CurveTween(curve: curve))));
     return this;
   }
 }
@@ -132,9 +132,8 @@ class Track<T> {
 class _TrackItem<T> {
   final Duration duration;
   final Animatable<T> tween;
-  final Curve curve;
 
-  _TrackItem(this.duration, this.tween, this.curve)
+  _TrackItem(this.duration, this.tween)
       : assert(duration != null, "Please set a duration."),
         assert(tween != null, "Please set a tween.");
 }
