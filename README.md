@@ -28,7 +28,7 @@ There are multiple ways to get started:
 - [Try the Example App of *simple_animations*](https://github.com/felixblaschke/simple_animations_example_app)
 - Read articles and tutorials about using *simple_animations* (coming soon)
 
-## Example
+## Examples
 
 ### Typewriter Box
 
