@@ -122,20 +122,25 @@ class Track<T> {
   ///
   /// Optionally you can set a named parameter [curve] that applies an easing
   /// curve to the tween.
-  Track<T> add(Duration duration, Animatable<T> tween,
-      {Curve curve = Curves.linear}) {
-    items.add(_TrackItem(duration, tween.chain(CurveTween(curve: curve))));
+  Track<T> add(Duration duration, Animatable<T> tween, {Curve curve}) {
+    items.add(_TrackItem(duration, tween, curve: curve));
     return this;
   }
 }
 
 class _TrackItem<T> {
   final Duration duration;
-  final Animatable<T> tween;
+  Animatable<T> tween;
 
-  _TrackItem(this.duration, this.tween)
+  _TrackItem(this.duration, Animatable<T> _tween, {Curve curve})
       : assert(duration != null, "Please set a duration."),
-        assert(tween != null, "Please set a tween.");
+        assert(_tween != null, "Please set a tween.") {
+    if (curve != null) {
+      tween = _tween.chain(CurveTween(curve: curve));
+    } else {
+      tween = _tween;
+    }
+  }
 }
 
 class _TweenData<T> {
