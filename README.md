@@ -1,7 +1,7 @@
 # Simple Animations
 
 [![Build status](https://dev.azure.com/felix0418/Simple%20Animations/_apis/build/status/CI%20Testing)](https://dev.azure.com/felix0418/Simple%20Animations/_build/latest?definitionId=1)
-[![Pub](https://img.shields.io/pub/v/simple_animations.png)](https://pub.dartlang.org/packages/simple_animations)
+[![Pub](https://img.shields.io/pub/v/simple_animations.svg)](https://pub.dartlang.org/packages/simple_animations)
 
 Simple Animations is a package for Flutter to boost your animation
 productivity by simplifying the way to create animations.
