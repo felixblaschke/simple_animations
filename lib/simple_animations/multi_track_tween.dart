@@ -111,7 +111,7 @@ class MultiTrackTween extends Animatable<Map<String, dynamic>> {
 /// Single property to tween. Used by [MultiTrackTween].
 class Track<T> {
   final String name;
-  final List<TrackItem> items = [];
+  final List<_TrackItem> items = [];
 
   Track(this.name) : assert(name != null, "Track name must not be null.");
 
@@ -124,17 +124,17 @@ class Track<T> {
   /// curve to the tween.
   Track<T> add(Duration duration, Animatable<T> tween,
       {Curve curve = Curves.linear}) {
-    items.add(TrackItem(duration, tween, curve));
+    items.add(_TrackItem(duration, tween, curve));
     return this;
   }
 }
 
-class TrackItem<T> {
+class _TrackItem<T> {
   final Duration duration;
   final Animatable<T> tween;
   final Curve curve;
 
-  TrackItem(this.duration, this.tween, this.curve)
+  _TrackItem(this.duration, this.tween, this.curve)
       : assert(duration != null, "Please set a duration."),
         assert(tween != null, "Please set a tween.");
 }
