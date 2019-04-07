@@ -28,7 +28,10 @@ There are multiple ways to get started:
 - [Try the Example App of *simple_animations*](https://github.com/felixblaschke/simple_animations_example_app)
 - Read articles and tutorials about using *simple_animations* (coming soon)
 
-## Example
+## Examples
+
+### Typewriter Box
+
 
 This custom animation seems simple but it's rather complex:
 
@@ -40,7 +43,7 @@ It's *combining* a **staggered animation sequence** with an **enduring animation
 - *While increasing the width* a typewriter-like **animated underscore** appears and persists.
 - *Shortly before the width reaches it's final size*, it starts to **type-write a text**.
 
-*With traditonal Flutter animation classes this will end in a huge 
+*With traditional Flutter animation classes this will end in a huge 
 StatefulWidget with multiple AnimationController, Tweens and all that 
 initState and onDispose overhead.*
 
@@ -50,3 +53,10 @@ some fancy **ControlledAnimation** widgets.
 The whole animation just takes about **60 lines of code** while 
 maintaining **readability**. *(You can find the [source code here](https://github.com/felixblaschke/simple_animations_example_app/blob/master/lib/examples/typewriter_box.dart). 
 I only counted the lines that are responsible for the animation.)*
+
+
+### Pub Example Tab
+
+This is the example from the [example page (pub.dartlang.org)](https://pub.dartlang.org/packages/simple_animations#-example-tab-):
+
+![pub-example-tab](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/examples/pub-example.gif)
