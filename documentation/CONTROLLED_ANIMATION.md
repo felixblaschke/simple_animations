@@ -3,19 +3,21 @@
 The widget `ControlledAnimation` builds custom animations in very 
 simple way.
 
-## Usage
+## Use cases
 
-You can use `ControlledAnimation` everywhere you build widgets.
+The typical scenario for using `ControlledAnimation` is to create
+animations based on tweens.
 
-Use the following imports:
+Because of it's widget nature, you can use it everywhere you build widgets.
+
+## Import
+
+Use the following import to use `ControlledAnimation`:
 ```dart
-import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 ```
 
-
-
-### Simple custom animation
+## Simple custom animation
 
 The most simple form uses
 
@@ -44,7 +46,7 @@ the rectangle will increase it's width until it reaches a **width of 300**.
 
 
 
-### Using non-linear tweens
+## Using non-linear tweens
 
 If you want your animation to appear accelerated / easing you can set
 the property `curve` to any `Curve` you like. You can find common curves
@@ -63,7 +65,7 @@ ControlledAnimation(
 
 
 
-### Delay animation execution
+## Delay animation execution
 
 You can delay the start of the animation by specifying the property
 `delay` to a `Duration`. `ControlledAnimation` will ignore any animation 
@@ -91,7 +93,7 @@ This animation will wait for **0.5 seconds** until it animates for 1.5 seconds.
 
 
 
-### Controlling the animation
+## Controlling the animation
 
 You can control the animation with the `playback` property. 
 
@@ -103,7 +105,11 @@ You can change the `playback` property anytime to control the animation.
 
 [**⇨ Learn more about `Playback`**](CONTROLLED_ANIMATION_PLAYBACK.md)
 
-### Using pre-build childs
+
+
+
+
+## Using pre-build childs
 
 If the animated scene is quite large you can use a **pre-build child**
 to **reduce widget-rebuilds** that are not really effected by animation
@@ -148,7 +154,7 @@ ControlledAnimation(
 
 
 
-### Listen to events
+## Listen to events
 
 `ControlledAnimation` routes all events of it's internal `AnimationController`
 to a specified `AnimationStatusListener` for the property `animationControllerStatusListener`.
