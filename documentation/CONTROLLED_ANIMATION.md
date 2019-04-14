@@ -95,6 +95,8 @@ This animation will wait for **0.5 seconds** until it animates for 1.5 seconds.
 
 ## Controlling the animation
 
+### Playback
+
 You can control the animation with the `playback` property. 
 
 By default it's set to `Playback.PLAY_FORWARD` that will start the animation
@@ -102,6 +104,13 @@ immediately *(considering you have no `delay` applied)* and stop at the
 end of the animation duration.
 
 You can change the `playback` property anytime to control the animation.
+
+### Start position
+
+You can specify an initial start position of the animation with the
+`startPosition` property. It accepts any values between `0.0` and `1.0`.
+
+Note: Changing it outside the first initialization has no effect.
 
 [**⇨ Learn more about `Playback`**](CONTROLLED_ANIMATION_PLAYBACK.md)
 

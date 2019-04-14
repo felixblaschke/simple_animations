@@ -26,7 +26,7 @@ There are multiple ways to get started:
 
 - [Dive into the documentation](https://github.com/felixblaschke/simple_animations/blob/master/documentation/README.md)
 - [Try the Example App of *simple_animations*](https://github.com/felixblaschke/simple_animations_example_app)
-- Read articles and tutorials about using *simple_animations* (coming soon)
+- [Read articles and tutorials about using *simple_animations*](https://github.com/felixblaschke/simple_animations/blob/master/documentation/ARTICLES.md)
 
 ## Examples
 
