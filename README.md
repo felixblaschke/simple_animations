@@ -62,7 +62,9 @@ This is the example from the [example page (pub.dartlang.org)](https://pub.dartl
 ![pub-example-tab](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/examples/pub-example.gif)
 
 
-### Other examples
+### Example App
+
+You find these and other examples in [Example App](https://github.com/felixblaschke/simple_animations_example_app).
 
 ![fancy-background](https://cdn-images-1.medium.com/max/1040/1*5H-XkZeZ1LW7nqH1leDshg.gif)
 
