@@ -60,3 +60,10 @@ I only counted the lines that are responsible for the animation.)*
 This is the example from the [example page (pub.dartlang.org)](https://pub.dartlang.org/packages/simple_animations#-example-tab-):
 
 ![pub-example-tab](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/examples/pub-example.gif)
+
+
+### Other examples
+
+![fancy-background](https://cdn-images-1.medium.com/max/1040/1*5H-XkZeZ1LW7nqH1leDshg.gif)
+
+![fade-in](https://cdn-images-1.medium.com/max/1040/1*f9_TgZaAe24EalcD0qERwA.gif)
