@@ -26,7 +26,7 @@ enum Playback {
   MIRROR
 }
 
-/// Widget to create custom animations in a very simple way.
+/// Widget to create custom, managed, tween-based animations in a very simple way.
 ///
 /// ---
 ///
@@ -59,6 +59,10 @@ enum Playback {
 ///   or modifies these events. These events are currently only reliable for the
 ///   [playback]-types [Playback.PLAY_FORWARD] and [Playback.PLAY_REVERSE].
 ///
+/// - You can set the start position of animation by specifying [startPosition]
+///   with a value between *0.0* and *1.0*. The [startPosition] is only
+///   evaluated once during the initialization of the widget.
+///
 class ControlledAnimation<T> extends StatefulWidget {
   final Playback playback;
   final Animatable<T> tween;
@@ -70,6 +74,7 @@ class ControlledAnimation<T> extends StatefulWidget {
       builderWithChild;
   final Widget child;
   final AnimationStatusListener animationControllerStatusListener;
+  final double startPosition;
 
   ControlledAnimation(
       {this.playback = Playback.PLAY_FORWARD,
@@ -81,6 +86,7 @@ class ControlledAnimation<T> extends StatefulWidget {
       this.builderWithChild,
       this.child,
       this.animationControllerStatusListener,
+      this.startPosition = 0.0,
       Key key})
       : assert(duration != null,
             "Please set property duration. Example: Duration(milliseconds: 500)"),
@@ -91,6 +97,10 @@ class ControlledAnimation<T> extends StatefulWidget {
                 (builder != null && builderWithChild == null && child == null),
             "Either use just builder and keep buildWithChild and child null. "
             "Or keep builder null and set a builderWithChild and a child."),
+        assert(
+            startPosition >= 0 && startPosition <= 1,
+            "The property startPosition "
+            "must have a value between 0.0 and 1.0."),
         super(key: key);
 
   @override
@@ -109,7 +119,9 @@ class _ControlledAnimationState<T> extends State<ControlledAnimation>
     _controller = AnimationController(vsync: this, duration: widget.duration)
       ..addListener(() {
         setState(() {});
-      });
+      })
+      ..value = widget.startPosition;
+
     _animation = widget.tween
         .chain(CurveTween(curve: widget.curve))
         .animate(_controller);
@@ -118,11 +130,11 @@ class _ControlledAnimationState<T> extends State<ControlledAnimation>
       _controller.addStatusListener(widget.animationControllerStatusListener);
     }
 
-    initalize();
+    initialize();
     super.initState();
   }
 
-  void initalize() async {
+  void initialize() async {
     if (widget.delay != null) {
       await Future.delayed(widget.delay);
     }
@@ -132,8 +144,8 @@ class _ControlledAnimationState<T> extends State<ControlledAnimation>
 
   @override
   void didUpdateWidget(ControlledAnimation oldWidget) {
-    executeInstruction();
     _controller.duration = widget.duration;
+    executeInstruction();
     super.didUpdateWidget(oldWidget);
   }
 
