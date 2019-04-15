@@ -128,6 +128,65 @@ void main() {
     await tester.pump(Duration(seconds: 10));
     expect(contentOf(text), '0'); // same result
   });
+
+  testWidgets("startPosition end & reverse", (WidgetTester tester) async {
+    Text text;
+
+    var animation = ControlledAnimation(
+      playback: Playback.PLAY_REVERSE,
+      duration: Duration(seconds: 100),
+      tween: IntTween(begin: 0, end: 100),
+      startPosition: 1.0,
+      builder: (context, value) {
+        text = Text(value.toString());
+
+        return MaterialApp(home: text);
+      },
+    );
+
+    await tester.pumpWidget(animation);
+    await tester.pump(Duration(milliseconds: 100));
+
+    // start of animation
+    expect(contentOf(text), '100');
+
+    // half time
+    await tester.pump(Duration(seconds: 50));
+    expect(contentOf(text), '50');
+
+    // end of animation
+    await tester.pump(Duration(seconds: 50));
+    expect(contentOf(text), '0');
+
+    // after animation
+    await tester.pump(Duration(seconds: 10));
+    expect(contentOf(text), '0');
+  });
+
+  testWidgets("startPosition middle & paused", (WidgetTester tester) async {
+    Text text;
+
+    var animation = ControlledAnimation(
+      playback: Playback.PAUSE,
+      duration: Duration(seconds: 100),
+      tween: IntTween(begin: 0, end: 100),
+      startPosition: 0.5,
+      builder: (context, value) {
+        text = Text(value.toString());
+
+        return MaterialApp(home: text);
+      },
+    );
+
+    await tester.pumpWidget(animation);
+    await tester.pump(Duration(milliseconds: 100));
+
+    // start of animation
+    expect(contentOf(text), '50');
+
+    await tester.pump(Duration(seconds: 50));
+    expect(contentOf(text), '50');
+  });
 }
 
 contentOf(Text text) {

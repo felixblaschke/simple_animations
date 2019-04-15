@@ -26,7 +26,7 @@ There are multiple ways to get started:
 
 - [Dive into the documentation](https://github.com/felixblaschke/simple_animations/blob/master/documentation/README.md)
 - [Try the Example App of *simple_animations*](https://github.com/felixblaschke/simple_animations_example_app)
-- Read articles and tutorials about using *simple_animations* (coming soon)
+- [Read articles and tutorials about using *simple_animations*](https://github.com/felixblaschke/simple_animations/blob/master/documentation/ARTICLES.md)
 
 ## Examples
 
@@ -60,3 +60,12 @@ I only counted the lines that are responsible for the animation.)*
 This is the example from the [example page (pub.dartlang.org)](https://pub.dartlang.org/packages/simple_animations#-example-tab-):
 
 ![pub-example-tab](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/examples/pub-example.gif)
+
+
+### Example App
+
+You find these and other examples in [Example App](https://github.com/felixblaschke/simple_animations_example_app).
+
+![fancy-background](https://cdn-images-1.medium.com/max/1040/1*5H-XkZeZ1LW7nqH1leDshg.gif)
+
+![fade-in](https://cdn-images-1.medium.com/max/1040/1*f9_TgZaAe24EalcD0qERwA.gif)
