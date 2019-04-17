@@ -9,3 +9,5 @@ This is a curated list of articles targeting the use of **Simple Animations**:
 - [Fade in your UIs in Flutter](https://medium.com/@felixblaschke/fade-in-your-uis-in-flutter-c81b1c345f70)
 
 - [Fancy background animations in Flutter](https://medium.com/@felixblaschke/fancy-background-animations-in-flutter-4163d50f5c37)
+
+- [Custom animated control elements with Flutter](https://medium.com/@felixblaschke/custom-animated-control-elements-with-flutter-8c0d352d7136)
