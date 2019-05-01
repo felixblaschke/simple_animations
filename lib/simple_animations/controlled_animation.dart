@@ -113,6 +113,7 @@ class _ControlledAnimationState<T> extends State<ControlledAnimation>
   Animation<T> _animation;
   bool _isDisposed = false;
   bool _waitForDelay = true;
+  bool _isCurrentlyMirroring = false;
 
   @override
   void initState() {
@@ -172,8 +173,13 @@ class _ControlledAnimationState<T> extends State<ControlledAnimation>
     if (widget.playback == Playback.LOOP) {
       _controller.repeat();
     }
-    if (widget.playback == Playback.MIRROR) {
+    if (widget.playback == Playback.MIRROR && !_isCurrentlyMirroring) {
+      _isCurrentlyMirroring = true;
       _controller.repeat(reverse: true);
+    }
+
+    if (widget.playback != Playback.MIRROR) {
+      _isCurrentlyMirroring = false;
     }
   }
 

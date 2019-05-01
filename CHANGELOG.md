@@ -1,3 +1,8 @@
+## 1.1.1
+
+- Fixed strange effect when rebuilding a `ControlledAnimation` with `playback` set to 
+  `Playback.MIRROR`
+
 ## 1.1.0
 
 ### New features
