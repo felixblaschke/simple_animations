@@ -13,6 +13,9 @@ classes to simplify the creation of beautiful custom animations.
 - [**MultiTrackTween**](MULTI_TRACK_TWEEN.md),
   an Animateable that tweens multiple properties in one unified tween.
 
+- [**Rendering**](RENDERING.md), a widget for creating continuous
+  animations.
+
 ## Getting started
 
 Setting up *simple_animation* is very easy:
