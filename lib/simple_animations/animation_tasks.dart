@@ -56,6 +56,7 @@ class FromToAnimationTask extends AnimationTask {
   bool recomputeDurationBasedOnProgress;
   double from;
   double to;
+  // TODO add curve parameter
 
   FromToAnimationTask({
     @required this.duration,
@@ -107,6 +108,7 @@ class LoopAnimationTask extends AnimationTask {
   bool startWithCurrentPosition;
   bool mirrorIterations;
   AnimationTaskCallback onIterationCompleted;
+  // TODO add curve parameter
 
   LoopAnimationTask({
     @required this.iterationDuration,
