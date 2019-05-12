@@ -30,12 +30,24 @@ class AnimationControllerX extends Animation<double>
     }
 
     if (_currentTask == null) {
-      _currentTask = _tasks.removeAt(0);
-      _currentTask.started(time, _value);
-      if (onStatusChange != null)
-        onStatusChange(AnimationControllerXStatus.startTask, _currentTask);
+      _createNewTask(time);
     }
 
+    _computeValue(time);
+
+    if (_currentTask.isCompleted()) {
+      completeCurrentTask();
+    }
+  }
+
+  void _createNewTask(Duration time) {
+    _currentTask = _tasks.removeAt(0);
+    _currentTask.started(time, _value);
+    if (onStatusChange != null)
+      onStatusChange(AnimationControllerXStatus.startTask, _currentTask);
+  }
+
+  void _computeValue(Duration time) {
     final newValue = _currentTask.computeValue(time);
     assert(newValue != null,
         "Value passed from 'computeValue' method must be non null.");
@@ -44,14 +56,14 @@ class AnimationControllerX extends Animation<double>
       _value = newValue;
       notifyListeners();
     }
+  }
 
-    if (_currentTask.isCompleted()) {
-      _updateStatusOnTaskComplete();
-      if (onStatusChange != null)
-        onStatusChange(AnimationControllerXStatus.completeTask, _currentTask);
-      _currentTask.dispose();
-      _currentTask = null;
-    }
+  void completeCurrentTask() {
+    _updateStatusOnTaskComplete();
+    if (onStatusChange != null)
+      onStatusChange(AnimationControllerXStatus.completeTask, _currentTask);
+    _currentTask.dispose();
+    _currentTask = null;
   }
 
   dispose() {
