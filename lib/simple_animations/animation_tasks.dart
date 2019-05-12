@@ -30,10 +30,11 @@ class SleepAnimationTask extends AnimationTask {
   Duration duration;
 
   SleepAnimationTask({
-    this.duration,
+    @required this.duration,
     AnimationTaskCallback onStart,
     AnimationTaskCallback onComplete,
-  }) : super(onStart: onStart, onComplete: onComplete);
+  })  : assert(duration != null, "Please provide a sleeping duration."),
+        super(onStart: onStart, onComplete: onComplete);
 
   @override
   computeValue(Duration time) {
@@ -178,10 +179,11 @@ class SetValueAnimationTask extends AnimationTask {
   final double value;
 
   SetValueAnimationTask({
-    this.value,
+    @required this.value,
     AnimationTaskCallback onStart,
     AnimationTaskCallback onComplete,
-  }) : super(onStart: onStart, onComplete: onComplete);
+  })  : assert(value != null, "Please provide a value"),
+        super(onStart: onStart, onComplete: onComplete);
 
   @override
   computeValue(Duration time) {

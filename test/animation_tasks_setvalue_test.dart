@@ -1,0 +1,36 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:simple_animations/simple_animations.dart';
+
+main() {
+  test("SetValueAnimationTask - no value", () {
+    // ignore: missing_required_param
+    expect(() => SetValueAnimationTask(), throwsA(isAssertionError));
+  });
+
+  test("SetValueAnimationTask - value", () {
+    final task = SetValueAnimationTask(value: 0.5);
+    task.started(Duration.zero, 0.0);
+    expect(task.isCompleted(), false);
+    expect(task.computeValue(Duration.zero), 0.5);
+    expect(task.isCompleted(), true);
+  });
+
+  test("SetValueAnimationTask - callbacks", () {
+    var started = false;
+    var completed = false;
+    final task = SetValueAnimationTask(
+        value: 0.5,
+        onStart: () => started = true,
+        onComplete: () => completed = true);
+    task.started(Duration.zero, 0.0);
+    expect(started, true);
+    task.computeValue(Duration.zero);
+    expect(completed, true);
+  });
+
+  test("SetValueAnimationTask - toString", () {
+    final task = SetValueAnimationTask(value: 0.5);
+    expect(task.toString(),
+        "SetValueAnimationTask(value: 0.5)(startedTime: null, startedValue: null)");
+  });
+}
