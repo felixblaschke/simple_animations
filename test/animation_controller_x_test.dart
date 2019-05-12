@@ -67,8 +67,11 @@ main() {
     await tester.pumpWidget(widget);
     await tester.pump(Duration(milliseconds: 100));
 
-    Iterable.generate(3).forEach((_) => controller.addTask(LoopAnimationTask(
-        iterationDuration: Duration(seconds: 1), from: 0.0, to: 1.0)));
+    final tasks = Iterable.generate(3)
+        .map((_) => LoopAnimationTask(
+            iterationDuration: Duration(seconds: 1), from: 0.0, to: 1.0))
+        .toList();
+    controller.addTasks(tasks);
     await tester.pump(Duration(milliseconds: 100));
 
     await tester.pump(Duration(seconds: 100));
