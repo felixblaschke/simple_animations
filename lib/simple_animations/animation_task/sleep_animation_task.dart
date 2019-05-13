@@ -13,7 +13,7 @@ class SleepAnimationTask extends AnimationTask {
         super(onStart: onStart, onComplete: onComplete);
 
   @override
-  computeValue(Duration time) {
+  double computeValue(Duration time) {
     final timePassed = time - startedTime;
     if (timePassed.inMilliseconds >= duration.inMilliseconds) {
       taskCompleted();

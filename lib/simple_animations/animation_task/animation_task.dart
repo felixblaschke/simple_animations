@@ -16,7 +16,7 @@ abstract class AnimationTask {
     if (onStart != null) onStart();
   }
 
-  computeValue(Duration time);
+  double computeValue(Duration time);
 
   taskCompleted() {
     _isCompleted = true;

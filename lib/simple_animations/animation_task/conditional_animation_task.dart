@@ -13,7 +13,7 @@ class ConditionalAnimationTask extends AnimationTask {
         super(onStart: onStart, onComplete: onComplete);
 
   @override
-  computeValue(Duration time) {
+  double computeValue(Duration time) {
     if (predicate()) {
       taskCompleted();
     }

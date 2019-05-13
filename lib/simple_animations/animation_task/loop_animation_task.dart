@@ -28,7 +28,7 @@ class LoopAnimationTask extends AnimationTask {
   var _iterationsPassed = 0;
 
   @override
-  computeValue(Duration time) {
+  double computeValue(Duration time) {
     if (_currentIterationTask == null) {
       _createAnimationTaskForCurrentIteration(time);
     }

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/animation.dart';
 import 'package:meta/meta.dart';
 
 import 'animation_task.dart';
@@ -9,21 +10,22 @@ class FromToAnimationTask extends AnimationTask {
   bool recomputeDurationBasedOnProgress;
   double from;
   double to;
-  // TODO add curve parameter
+  Curve curve;
 
   FromToAnimationTask({
     @required this.duration,
     @required this.to,
     this.recomputeDurationBasedOnProgress = true,
     this.from,
+    this.curve = Curves.linear,
     AnimationTaskCallback onStart,
     AnimationTaskCallback onComplete,
-  })  : assert(to != null,
-            "Missing paramter 'to'. You need to specify a value to animate to."),
+  })  : assert(to != null, "Please provide a 'to' value to animate to."),
+        assert(duration != null, "Please provide a 'duration'."),
         super(onStart: onStart, onComplete: onComplete);
 
   @override
-  computeValue(Duration time) {
+  double computeValue(Duration time) {
     final fromValue = (from == null ? startedValue : from).clamp(0.0, 1.0);
     final toValue = to.clamp(0.0, 1.0);
     final delta = (toValue - fromValue).abs();
@@ -38,8 +40,9 @@ class FromToAnimationTask extends AnimationTask {
     } else {
       final timePassed = time - startedTime;
       final progress = timePassed.inMilliseconds / durationMillis;
-      value = (fromValue * (1 - progress) + progress * toValue)
+      final linearValue = (fromValue * (1 - progress) + progress * toValue)
           .clamp(min(fromValue, toValue), max(fromValue, toValue));
+      value = curve.transform(linearValue);
     }
 
     if (value == toValue) taskCompleted();
@@ -49,6 +52,6 @@ class FromToAnimationTask extends AnimationTask {
 
   @override
   String toString() {
-    return "FromToAnimationTask(from: $from, to: $to, duration: $duration)${super.toString()}";
+    return "FromToAnimationTask(from: $from, to: $to, duration: $duration, curve: $curve)${super.toString()}";
   }
 }
