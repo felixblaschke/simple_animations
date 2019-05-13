@@ -9,7 +9,8 @@ class ConditionalAnimationTask extends AnimationTask {
     @required this.predicate,
     AnimationTaskCallback onStart,
     AnimationTaskCallback onComplete,
-  }) : super(onStart: onStart, onComplete: onComplete);
+  })  : assert(predicate != null, "Please provide a predicate."),
+        super(onStart: onStart, onComplete: onComplete);
 
   @override
   computeValue(Duration time) {
