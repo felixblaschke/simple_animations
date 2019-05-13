@@ -1,3 +1,4 @@
+import 'package:flutter/animation.dart';
 import 'package:meta/meta.dart';
 import 'animation_task.dart';
 import 'from_to_animation_task.dart';
@@ -5,24 +6,28 @@ import 'from_to_animation_task.dart';
 class LoopAnimationTask extends AnimationTask {
   double from;
   double to;
-  Duration iterationDuration;
+  Duration duration;
   int iterations;
-  bool startWithCurrentPosition;
-  bool mirrorIterations;
+  bool startOnCurrentPosition;
+  bool mirror;
   AnimationTaskCallback onIterationCompleted;
-  // TODO add curve parameter
+  Curve curve;
 
   LoopAnimationTask({
-    @required this.iterationDuration,
-    this.from,
+    @required this.duration,
+    @required this.from,
     @required this.to,
     this.iterations,
-    this.startWithCurrentPosition = true,
-    this.mirrorIterations = false,
+    this.startOnCurrentPosition = true,
+    this.mirror = false,
     this.onIterationCompleted,
+    this.curve = Curves.linear,
     AnimationTaskCallback onStart,
     AnimationTaskCallback onComplete,
-  }) : super(onStart: onStart, onComplete: onComplete);
+  })  : assert(duration != null, "Please provide a 'duration'."),
+        assert(from != null, "Please provide a 'from' value."),
+        assert(to != null, "Please provide a 'to' value."),
+        super(onStart: onStart, onComplete: onComplete);
 
   FromToAnimationTask _currentIterationTask;
   var _iterationsPassed = 0;
@@ -46,19 +51,23 @@ class LoopAnimationTask extends AnimationTask {
     var fromValue = from;
     var toValue = to;
 
-    if (startWithCurrentPosition && _iterationsPassed == 0) {
+    if (startOnCurrentPosition && _iterationsPassed == 0) {
       fromValue = startedValue;
     }
 
-    if (mirrorIterations && _iterationsPassed % 2 == 1) {
+    if (mirror && _iterationsPassed % 2 == 1) {
       final swapValue = toValue;
       toValue = fromValue;
       fromValue = swapValue;
     }
 
+    final newStartTime = Duration(
+        milliseconds: startedTime.inMilliseconds +
+            _iterationsPassed * duration.inMilliseconds);
+
     _currentIterationTask = FromToAnimationTask(
-        duration: iterationDuration, from: fromValue, to: toValue);
-    _currentIterationTask.started(time, startedValue);
+        duration: duration, from: fromValue, to: toValue, curve: curve);
+    _currentIterationTask.started(newStartTime, fromValue);
   }
 
   void finishIteration() {
@@ -75,6 +84,6 @@ class LoopAnimationTask extends AnimationTask {
 
   @override
   String toString() {
-    return "LoopAnimationTask(from: $from, to: $to, iterationDuration: $iterationDuration, iterations: $iterations, mirror: $mirrorIterations)${super.toString()}";
+    return "LoopAnimationTask(from: $from, to: $to, iterationDuration: $duration, iterations: $iterations, mirror: $mirror, curve: $curve)${super.toString()}";
   }
 }
