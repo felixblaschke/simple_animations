@@ -15,6 +15,10 @@ main() {
         // ignore: missing_required_param
         () => LoopAnimationTask(from: 0.0, to: 1.0),
         throwsA(isAssertionError));
+    expect(
+        // ignore: missing_required_param
+        () => LoopAnimationTask(duration: Duration(seconds: 1), from: 1.0),
+        throwsA(isAssertionError));
   });
 
   test("unlimited from 0.0 to 1.0", () {
