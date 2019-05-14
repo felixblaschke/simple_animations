@@ -2,12 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 main() {
-  test("ConditionalAnimationTask - no value", () {
+  test("asserts", () {
     // ignore: missing_required_param
     expect(() => ConditionalAnimationTask(), throwsA(isAssertionError));
   });
 
-  test("ConditionalAnimationTask - predicate", () {
+  test("predicate", () {
     var predicateResult = false;
     final task = ConditionalAnimationTask(predicate: () => predicateResult);
     task.started(Duration.zero, 0.0);
@@ -21,7 +21,7 @@ main() {
     expect(task.isCompleted(), true);
   });
 
-  test("ConditionalAnimationTask - callbacks", () {
+  test("callbacks", () {
     var started = false;
     var completed = false;
     final task = ConditionalAnimationTask(
@@ -34,7 +34,7 @@ main() {
     expect(completed, true);
   });
 
-  test("ConditionalAnimationTask - toString", () {
+  test("toString", () {
     final task = ConditionalAnimationTask(predicate: () => true);
     expect(task.toString(),
         "ConditionalAnimationTask()(startedTime: null, startedValue: null)");

@@ -2,12 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 main() {
-  test("SetValueAnimationTask - no value", () {
+  test("asserts", () {
     // ignore: missing_required_param
     expect(() => SetValueAnimationTask(), throwsA(isAssertionError));
   });
 
-  test("SetValueAnimationTask - value", () {
+  test("value", () {
     final task = SetValueAnimationTask(value: 0.5);
     task.started(Duration.zero, 0.0);
     expect(task.isCompleted(), false);
@@ -15,7 +15,7 @@ main() {
     expect(task.isCompleted(), true);
   });
 
-  test("SetValueAnimationTask - callbacks", () {
+  test("callbacks", () {
     var started = false;
     var completed = false;
     final task = SetValueAnimationTask(
@@ -28,7 +28,7 @@ main() {
     expect(completed, true);
   });
 
-  test("SetValueAnimationTask - toString", () {
+  test("toString", () {
     final task = SetValueAnimationTask(value: 0.5);
     expect(task.toString(),
         "SetValueAnimationTask(value: 0.5)(startedTime: null, startedValue: null)");

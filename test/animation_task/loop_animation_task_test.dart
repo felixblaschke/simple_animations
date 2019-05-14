@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 main() {
-  test("no value", () {
+  test("asserts", () {
     // ignore: missing_required_param
     expect(() => LoopAnimationTask(), throwsA(isAssertionError));
     // ignore: missing_required_param
@@ -11,20 +11,98 @@ main() {
         throwsA(isAssertionError));
     // ignore: missing_required_param
     expect(() => LoopAnimationTask(to: 1.0), throwsA(isAssertionError));
-    // ignore: missing_required_param
     expect(
-        () => LoopAnimationTask(from: 0.0, to: 1.0), throwsA(isAssertionError));
+        // ignore: missing_required_param
+        () => LoopAnimationTask(from: 0.0, to: 1.0),
+        throwsA(isAssertionError));
   });
 
-  // TODO more tests for different cases
-  // TODO - fromCurrentStartPosition
-  // TODO - interval [0.25-0.75]
-  // TODO - non-linear curve
-  // TODO - limit iterations
-  // TODO - unlimited iteration
-  // TODO - mirrored
+  test("unlimited from 0.0 to 1.0", () {
+    final task = LoopAnimationTask(
+      duration: Duration(seconds: 1),
+      from: 0.0,
+      to: 1.0,
+    );
 
-  test("callbacks", () {
+    task.started(Duration.zero, 0.0);
+    expectValue(task, 0, 0.0, false);
+    expectValue(task, 800, 0.8, false);
+    expectValue(task, 1000, 1.0, false);
+    expectValue(task, 1200, 0.2, false);
+    expectValue(task, 2000, 1.0, false);
+    expectValue(task, 50000, 1.0, false);
+  });
+
+  test("unlimited from 0.0 to 1.0 with non-linear curve", () {
+    final task = LoopAnimationTask(
+      duration: Duration(seconds: 1),
+      from: 0.0,
+      to: 1.0,
+      curve: Curves.easeIn,
+    );
+
+    task.started(Duration.zero, 0.0);
+    expectValue(task, 0, 0.0, false);
+    expectValue(task, 200, 0.063, false);
+    expectValue(task, 400, 0.215, false);
+    expectValue(task, 600, 0.43, false);
+    expectValue(task, 800, 0.692, false);
+    expectValue(task, 1000, 1.0, false);
+    expectValue(task, 1200, 0.063, false);
+  });
+
+  test("unlimited from 0.25 to 0.75", () {
+    final task = LoopAnimationTask(
+      duration: Duration(seconds: 1),
+      from: 0.25,
+      to: 0.75,
+      startOnCurrentPosition: false,
+    );
+
+    task.started(Duration.zero, 0.5);
+    expectValue(task, 0, 0.25, false);
+    expectValue(task, 250, 0.5, false);
+    expectValue(task, 500, 0.75, false);
+    expectValue(task, 750, 0.25, false);
+  });
+
+  test("unlimited from 0.25 to 0.75 with startOnCurrentPosition", () {
+    final task = LoopAnimationTask(
+      duration: Duration(seconds: 1),
+      from: 0.25,
+      to: 0.75,
+      startOnCurrentPosition: true,
+    );
+
+    task.started(Duration.zero, 0.5);
+    expectValue(task, 0, 0.5, false);
+    expectValue(task, 250, 0.75, false);
+    expectValue(task, 500, 0.25, false);
+    expectValue(task, 750, 0.25, false);
+  });
+
+  test("unlimited from 0.0 to 1.0 mirrored", () {
+    final task = LoopAnimationTask(
+      duration: Duration(seconds: 1),
+      from: 0.0,
+      to: 1.0,
+      mirror: true,
+    );
+
+    task.started(Duration.zero, 0.0);
+    expectValue(task, 0, 0.0, false);
+    expectValue(task, 800, 0.8, false);
+    expectValue(task, 1000, 1.0, false);
+    expectValue(task, 1200, 0.8, false);
+    expectValue(task, 1800, 0.2, false);
+    expectValue(task, 2000, 0.0, false);
+    expectValue(task, 2200, 0.2, false);
+    expectValue(task, 3000, 1.0, false);
+    expectValue(task, 4000, 0.0, false);
+    expectValue(task, 5000, 1.0, false);
+  });
+
+  test("callbacks / limited iterations", () {
     var started = false;
     var completed = false;
     var numIterationsCompleted = 0;

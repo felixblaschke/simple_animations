@@ -2,12 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 main() {
-  test("SleepAnimationTask - no duration", () {
+  test("asserts", () {
     // ignore: missing_required_param
     expect(() => SleepAnimationTask(), throwsA(isAssertionError));
   });
 
-  test("SleepAnimationTask - with duration", () {
+  test("with duration", () {
     final task = SleepAnimationTask(duration: Duration(milliseconds: 500));
     task.started(Duration.zero, 0.0);
     expect(task.isCompleted(), false);
@@ -17,7 +17,7 @@ main() {
     expect(task.isCompleted(), true);
   });
 
-  test("SleepAnimationTask - callbacks", () {
+  test("callbacks", () {
     var started = false;
     var completed = false;
     final task = SleepAnimationTask(
@@ -32,7 +32,7 @@ main() {
     expect(completed, true);
   });
 
-  test("SleepAnimationTask - toString", () {
+  test("toString", () {
     final task = SleepAnimationTask(duration: Duration(milliseconds: 500));
     expect(task.toString(),
         "SleepAnimationTask(duration: 0:00:00.500000)(startedTime: null, startedValue: null)");

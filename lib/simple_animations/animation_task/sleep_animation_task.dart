@@ -9,7 +9,7 @@ class SleepAnimationTask extends AnimationTask {
     @required this.duration,
     AnimationTaskCallback onStart,
     AnimationTaskCallback onComplete,
-  })  : assert(duration != null, "Please provide a sleeping duration."),
+  })  : assert(duration != null, "Please provide a 'duration'."),
         super(onStart: onStart, onComplete: onComplete);
 
   @override

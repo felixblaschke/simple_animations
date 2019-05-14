@@ -9,7 +9,7 @@ class SetValueAnimationTask extends AnimationTask {
     @required this.value,
     AnimationTaskCallback onStart,
     AnimationTaskCallback onComplete,
-  })  : assert(value != null, "Please provide a value"),
+  })  : assert(value != null, "Please provide a 'value'."),
         super(onStart: onStart, onComplete: onComplete);
 
   @override
