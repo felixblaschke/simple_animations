@@ -136,7 +136,8 @@ main() {
         to: 1.0,
         mirror: false,
         curve: Curves.bounceInOut);
-    expect(task.toString(), "");
+    expect(task.toString(),
+        "LoopAnimationTask(from: 0.0, to: 1.0, iterationDuration: 0:00:01.000000, iterations: null, mirror: false, curve: _BounceInOutCurve)(startedTime: null, startedValue: null)");
   });
 }
 
