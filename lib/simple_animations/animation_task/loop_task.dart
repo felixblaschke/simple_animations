@@ -1,9 +1,9 @@
 import 'package:flutter/animation.dart';
 import 'package:meta/meta.dart';
 import 'animation_task.dart';
-import 'from_to_animation_task.dart';
+import 'from_to_task.dart';
 
-class LoopAnimationTask extends AnimationTask {
+class LoopTask extends AnimationTask {
   double from;
   double to;
   Duration duration;
@@ -13,7 +13,7 @@ class LoopAnimationTask extends AnimationTask {
   AnimationTaskCallback onIterationCompleted;
   Curve curve;
 
-  LoopAnimationTask({
+  LoopTask({
     @required this.duration,
     @required this.from,
     @required this.to,
@@ -29,7 +29,7 @@ class LoopAnimationTask extends AnimationTask {
         assert(to != null, "Please provide a 'to' value."),
         super(onStart: onStart, onComplete: onComplete);
 
-  FromToAnimationTask _currentIterationTask;
+  FromToTask _currentIterationTask;
   var _iterationsPassed = 0;
 
   @override
@@ -65,7 +65,7 @@ class LoopAnimationTask extends AnimationTask {
         milliseconds: startedTime.inMilliseconds +
             _iterationsPassed * duration.inMilliseconds);
 
-    _currentIterationTask = FromToAnimationTask(
+    _currentIterationTask = FromToTask(
         duration: duration, from: fromValue, to: toValue, curve: curve);
     _currentIterationTask.started(newStartTime, fromValue);
   }

@@ -4,11 +4,11 @@ import 'package:simple_animations/simple_animations.dart';
 main() {
   test("asserts", () {
     // ignore: missing_required_param
-    expect(() => SetValueAnimationTask(), throwsA(isAssertionError));
+    expect(() => SetValueTask(), throwsA(isAssertionError));
   });
 
   test("value", () {
-    final task = SetValueAnimationTask(value: 0.5);
+    final task = SetValueTask(value: 0.5);
     task.started(Duration.zero, 0.0);
     expect(task.isCompleted(), false);
     expect(task.computeValue(Duration.zero), 0.5);
@@ -18,7 +18,7 @@ main() {
   test("callbacks", () {
     var started = false;
     var completed = false;
-    final task = SetValueAnimationTask(
+    final task = SetValueTask(
         value: 0.5,
         onStart: () => started = true,
         onComplete: () => completed = true);
@@ -29,7 +29,7 @@ main() {
   });
 
   test("toString", () {
-    final task = SetValueAnimationTask(value: 0.5);
+    final task = SetValueTask(value: 0.5);
     expect(task.toString(),
         "SetValueAnimationTask(value: 0.5)(startedTime: null, startedValue: null)");
   });

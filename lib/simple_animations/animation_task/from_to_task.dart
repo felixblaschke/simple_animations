@@ -5,14 +5,14 @@ import 'package:meta/meta.dart';
 
 import 'animation_task.dart';
 
-class FromToAnimationTask extends AnimationTask {
+class FromToTask extends AnimationTask {
   Duration duration;
   bool recomputeDurationBasedOnProgress;
   double from;
   double to;
   Curve curve;
 
-  FromToAnimationTask({
+  FromToTask({
     @required this.duration,
     @required this.to,
     this.recomputeDurationBasedOnProgress = true,

@@ -5,24 +5,24 @@ import 'package:simple_animations/simple_animations.dart';
 main() {
   test("asserts", () {
     // ignore: missing_required_param
-    expect(() => LoopAnimationTask(), throwsA(isAssertionError));
+    expect(() => LoopTask(), throwsA(isAssertionError));
     // ignore: missing_required_param
-    expect(() => LoopAnimationTask(duration: Duration(seconds: 1)),
+    expect(() => LoopTask(duration: Duration(seconds: 1)),
         throwsA(isAssertionError));
     // ignore: missing_required_param
-    expect(() => LoopAnimationTask(to: 1.0), throwsA(isAssertionError));
+    expect(() => LoopTask(to: 1.0), throwsA(isAssertionError));
     expect(
         // ignore: missing_required_param
-        () => LoopAnimationTask(from: 0.0, to: 1.0),
+        () => LoopTask(from: 0.0, to: 1.0),
         throwsA(isAssertionError));
     expect(
         // ignore: missing_required_param
-        () => LoopAnimationTask(duration: Duration(seconds: 1), from: 1.0),
+        () => LoopTask(duration: Duration(seconds: 1), from: 1.0),
         throwsA(isAssertionError));
   });
 
   test("unlimited from 0.0 to 1.0", () {
-    final task = LoopAnimationTask(
+    final task = LoopTask(
       duration: Duration(seconds: 1),
       from: 0.0,
       to: 1.0,
@@ -38,7 +38,7 @@ main() {
   });
 
   test("unlimited from 0.0 to 1.0 with non-linear curve", () {
-    final task = LoopAnimationTask(
+    final task = LoopTask(
       duration: Duration(seconds: 1),
       from: 0.0,
       to: 1.0,
@@ -56,7 +56,7 @@ main() {
   });
 
   test("unlimited from 0.25 to 0.75", () {
-    final task = LoopAnimationTask(
+    final task = LoopTask(
       duration: Duration(seconds: 1),
       from: 0.25,
       to: 0.75,
@@ -71,7 +71,7 @@ main() {
   });
 
   test("unlimited from 0.25 to 0.75 with startOnCurrentPosition", () {
-    final task = LoopAnimationTask(
+    final task = LoopTask(
       duration: Duration(seconds: 1),
       from: 0.25,
       to: 0.75,
@@ -86,7 +86,7 @@ main() {
   });
 
   test("unlimited from 0.0 to 1.0 mirrored", () {
-    final task = LoopAnimationTask(
+    final task = LoopTask(
       duration: Duration(seconds: 1),
       from: 0.0,
       to: 1.0,
@@ -110,7 +110,7 @@ main() {
     var started = false;
     var completed = false;
     var numIterationsCompleted = 0;
-    final task = LoopAnimationTask(
+    final task = LoopTask(
         duration: Duration(seconds: 1),
         from: 0.0,
         to: 1.0,
@@ -134,7 +134,7 @@ main() {
   });
 
   test("toString", () {
-    final task = LoopAnimationTask(
+    final task = LoopTask(
         duration: Duration(seconds: 1),
         from: 0.0,
         to: 1.0,

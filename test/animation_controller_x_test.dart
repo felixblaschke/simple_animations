@@ -14,7 +14,7 @@ main() {
     expect(controller != null, true);
     expect(controller.value, 0.0);
 
-    var newTask = SetValueAnimationTask(value: 0.5);
+    var newTask = SetValueTask(value: 0.5);
     controller.addTask(newTask);
     expect(controller.tasks, [newTask]);
 
@@ -29,8 +29,8 @@ main() {
     await tester.pumpWidget(widget);
     await tester.pump(Duration(milliseconds: 100));
 
-    controller.addTask(
-        LoopAnimationTask(duration: Duration(seconds: 1), from: 0.0, to: 1.0));
+    controller
+        .addTask(LoopTask(duration: Duration(seconds: 1), from: 0.0, to: 1.0));
     await tester.pump(Duration(milliseconds: 100));
 
     await tester.pump(Duration(milliseconds: 500));
@@ -50,12 +50,12 @@ main() {
     await tester.pumpWidget(widget);
     await tester.pump(Duration(milliseconds: 100));
 
-    controller.addTask(
-        LoopAnimationTask(duration: Duration(seconds: 1), from: 0.0, to: 1.0));
+    controller
+        .addTask(LoopTask(duration: Duration(seconds: 1), from: 0.0, to: 1.0));
     await tester.pump(Duration(milliseconds: 100));
     expect(controller.tasks.length, 1);
 
-    controller.reset([SetValueAnimationTask(value: 0.7)]);
+    controller.reset([SetValueTask(value: 0.7)]);
     await tester.pump(Duration(milliseconds: 100));
     expect(controller.value, 0.7);
   });
@@ -68,8 +68,8 @@ main() {
     await tester.pump(Duration(milliseconds: 100));
 
     final tasks = Iterable.generate(3)
-        .map((_) => LoopAnimationTask(
-            duration: Duration(seconds: 1), from: 0.0, to: 1.0))
+        .map(
+            (_) => LoopTask(duration: Duration(seconds: 1), from: 0.0, to: 1.0))
         .toList();
     controller.addTasks(tasks);
     await tester.pump(Duration(milliseconds: 100));
@@ -110,8 +110,8 @@ main() {
     expect(aniXStatus.length, 0);
     expect(aniXTask.length, 0);
 
-    final taskFw = FromToAnimationTask(
-        duration: Duration(seconds: 10), from: 0.0, to: 1.0);
+    final taskFw =
+        FromToTask(duration: Duration(seconds: 10), from: 0.0, to: 1.0);
     controller.addTask(taskFw);
     await tester.pump(Duration(milliseconds: 100));
     await tester.pump(Duration(milliseconds: 100));
@@ -131,8 +131,8 @@ main() {
     ]);
     expect(aniXTask, [taskFw, taskFw]);
 
-    final taskRv = FromToAnimationTask(
-        duration: Duration(seconds: 10), from: 1.0, to: 0.0);
+    final taskRv =
+        FromToTask(duration: Duration(seconds: 10), from: 1.0, to: 0.0);
     controller.addTask(taskRv);
     await tester.pump(Duration(milliseconds: 100));
     await tester.pump(Duration(milliseconds: 100));

@@ -2,10 +2,10 @@ import 'package:meta/meta.dart';
 
 import 'animation_task.dart';
 
-class SetValueAnimationTask extends AnimationTask {
+class SetValueTask extends AnimationTask {
   final double value;
 
-  SetValueAnimationTask({
+  SetValueTask({
     @required this.value,
     AnimationTaskCallback onStart,
     AnimationTaskCallback onComplete,

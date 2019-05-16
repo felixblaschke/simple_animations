@@ -2,10 +2,10 @@ import 'package:meta/meta.dart';
 
 import 'animation_task.dart';
 
-class ConditionalAnimationTask extends AnimationTask {
+class ConditionalTask extends AnimationTask {
   bool Function() predicate;
 
-  ConditionalAnimationTask({
+  ConditionalTask({
     @required this.predicate,
     AnimationTaskCallback onStart,
     AnimationTaskCallback onComplete,

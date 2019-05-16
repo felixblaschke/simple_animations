@@ -4,11 +4,11 @@ import 'package:simple_animations/simple_animations.dart';
 main() {
   test("asserts", () {
     // ignore: missing_required_param
-    expect(() => SleepAnimationTask(), throwsA(isAssertionError));
+    expect(() => SleepTask(), throwsA(isAssertionError));
   });
 
   test("with duration", () {
-    final task = SleepAnimationTask(duration: Duration(milliseconds: 500));
+    final task = SleepTask(duration: Duration(milliseconds: 500));
     task.started(Duration.zero, 0.0);
     expect(task.isCompleted(), false);
     expect(task.computeValue(Duration(milliseconds: 250)), 0.0);
@@ -20,7 +20,7 @@ main() {
   test("callbacks", () {
     var started = false;
     var completed = false;
-    final task = SleepAnimationTask(
+    final task = SleepTask(
         duration: Duration(milliseconds: 500),
         onStart: () => started = true,
         onComplete: () => completed = true);
@@ -33,7 +33,7 @@ main() {
   });
 
   test("toString", () {
-    final task = SleepAnimationTask(duration: Duration(milliseconds: 500));
+    final task = SleepTask(duration: Duration(milliseconds: 500));
     expect(task.toString(),
         "SleepAnimationTask(duration: 0:00:00.500000)(startedTime: null, startedValue: null)");
   });

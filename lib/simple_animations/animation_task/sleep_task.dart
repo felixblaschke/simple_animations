@@ -2,10 +2,10 @@ import 'package:meta/meta.dart';
 
 import 'animation_task.dart';
 
-class SleepAnimationTask extends AnimationTask {
+class SleepTask extends AnimationTask {
   Duration duration;
 
-  SleepAnimationTask({
+  SleepTask({
     @required this.duration,
     AnimationTaskCallback onStart,
     AnimationTaskCallback onComplete,
