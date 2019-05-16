@@ -4,8 +4,6 @@ import 'package:meta/meta.dart';
 
 import 'package:simple_animations/simple_animations/animation_task/animation_task.dart';
 
-// TODO try mixin easy adding to StatefulWidget
-
 class AnimationControllerX extends Animation<double>
     with
         AnimationEagerListenerMixin,
