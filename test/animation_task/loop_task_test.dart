@@ -67,7 +67,7 @@ main() {
     expectValue(task, 0, 0.25, false);
     expectValue(task, 250, 0.5, false);
     expectValue(task, 500, 0.75, false);
-    expectValue(task, 750, 0.25, false);
+    expectValue(task, 750, 0.5, false);
   });
 
   test("unlimited from 0.25 to 0.75 with startOnCurrentPosition", () {
@@ -81,8 +81,8 @@ main() {
     task.started(Duration.zero, 0.5);
     expectValue(task, 0, 0.5, false);
     expectValue(task, 250, 0.75, false);
-    expectValue(task, 500, 0.25, false);
-    expectValue(task, 750, 0.25, false);
+    expectValue(task, 500, 0.5, false);
+    expectValue(task, 750, 0.75, false);
   });
 
   test("unlimited from 0.0 to 1.0 mirrored", () {

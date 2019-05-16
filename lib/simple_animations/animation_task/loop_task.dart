@@ -12,6 +12,7 @@ class LoopTask extends AnimationTask {
   bool mirror;
   AnimationTaskCallback onIterationCompleted;
   Curve curve;
+  Duration _lastIterationCompleteTime;
 
   LoopTask({
     @required this.duration,
@@ -33,6 +34,12 @@ class LoopTask extends AnimationTask {
   var _iterationsPassed = 0;
 
   @override
+  started(Duration time, double value) {
+    _lastIterationCompleteTime = time;
+    return super.started(time, value);
+  }
+
+  @override
   double computeValue(Duration time) {
     if (_currentIterationTask == null) {
       _createAnimationTaskForCurrentIteration(time);
@@ -41,7 +48,7 @@ class LoopTask extends AnimationTask {
     final value = _currentIterationTask.computeValue(time);
 
     if (_currentIterationTask.isCompleted()) {
-      finishIteration();
+      finishIteration(time);
     }
 
     return value;
@@ -61,18 +68,20 @@ class LoopTask extends AnimationTask {
       fromValue = swapValue;
     }
 
-    final newStartTime = Duration(
-        milliseconds: startedTime.inMilliseconds +
-            _iterationsPassed * duration.inMilliseconds);
-
     _currentIterationTask = FromToTask(
-        duration: duration, from: fromValue, to: toValue, curve: curve);
-    _currentIterationTask.started(newStartTime, fromValue);
+      duration: duration,
+      from: fromValue,
+      to: toValue,
+      curve: curve,
+      recomputeDurationBasedOnProgress: true,
+    );
+    _currentIterationTask.started(_lastIterationCompleteTime, fromValue);
   }
 
-  void finishIteration() {
+  void finishIteration(Duration time) {
     if (onIterationCompleted != null) onIterationCompleted();
 
+    _lastIterationCompleteTime = time;
     _currentIterationTask.dispose();
     _currentIterationTask = null;
     _iterationsPassed++;
