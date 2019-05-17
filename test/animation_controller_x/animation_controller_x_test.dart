@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:simple_animations/simple_animations/animation_controller_x.dart';
+import 'package:simple_animations/simple_animations/animation_controller_x/animation_controller_x.dart';
 
 main() {
   testWidgets("Basics", (WidgetTester tester) async {

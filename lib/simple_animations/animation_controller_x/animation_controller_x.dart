@@ -15,9 +15,15 @@ class AnimationControllerX extends Animation<double>
   AnimationTask _currentTask;
   List<AnimationTask> _tasks = [];
 
-  AnimationControllerX({@required TickerProvider vsync, this.onStatusChange})
-      : assert(vsync != null,
-            "Please specify a TickerProvider. You can use the SingleTickerProviderStateMixin to get one.") {
+  AnimationControllerX({@required TickerProvider vsync, this.onStatusChange}) {
+    if (vsync != null) {
+      configureVsync(vsync);
+    }
+  }
+
+  void configureVsync(TickerProvider vsync) {
+    assert(_ticker == null, "Vsync is already configured.");
+    assert(vsync != null, "Expected to provide a 'vsync'.");
     _ticker = vsync.createTicker(_tick);
     _ticker.start();
   }
@@ -108,7 +114,7 @@ class AnimationControllerX extends Animation<double>
     }
 
     if (tasksToExecuteAfterReset != null) {
-      _tasks.addAll(tasksToExecuteAfterReset);
+      addTasks(tasksToExecuteAfterReset);
     }
   }
 
