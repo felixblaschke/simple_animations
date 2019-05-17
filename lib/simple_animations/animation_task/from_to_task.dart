@@ -5,17 +5,40 @@ import 'package:meta/meta.dart';
 
 import 'animation_task.dart';
 
+/// Performs an animation from [from] to [to] in [duration] time.
+/// If the [from] is not set the animation will start from the current position.
+///
+/// The [duration] is computed for a an interval from `0.0` to `1.0`. (Example:
+/// animating from 0.5 to 1.0 with duration of 1000ms takes 500ms)
+/// This behavior can be changed by setting [durationBasedOnZeroToOneInterval]
+/// to `false`.
+///
+/// You can apply an easing curve by setting [curve].
 class FromToTask extends AnimationTask {
+  /// Animation duration from 0.0 to 1.0 (if [durationBasedOnZeroToOneInterval] is `true`).
+  /// Else the duration of this animation task (if [durationBasedOnZeroToOneInterval] is `false`).
   Duration duration;
-  bool recomputeDurationBasedOnProgress;
+
+  /// Sets the duration behavior. See [duration].
+  bool durationBasedOnZeroToOneInterval;
+
+  /// Double value between `0.0` and `1.0` that indicates the start position of
+  /// the animation. If it's not set the task will refer to the current position
+  /// of the animation.
   double from;
+
+  /// Double value between `0.0` and `1.0` that indicates the end position of
+  /// the animation.
   double to;
+
+  /// The easing behavior of the animation. Default: [Curves.linear]
   Curve curve;
 
+  /// Creates a new task that animate from a certain value to a another value.
   FromToTask({
     @required this.duration,
     @required this.to,
-    this.recomputeDurationBasedOnProgress = true,
+    this.durationBasedOnZeroToOneInterval = true,
     this.from,
     this.curve = Curves.linear,
     AnimationTaskCallback onStart,
@@ -29,7 +52,7 @@ class FromToTask extends AnimationTask {
     final fromValue = (from == null ? startedValue : from).clamp(0.0, 1.0);
     final toValue = to.clamp(0.0, 1.0);
     final delta = (toValue - fromValue).abs();
-    final durationMillis = recomputeDurationBasedOnProgress
+    final durationMillis = durationBasedOnZeroToOneInterval
         ? delta * duration.inMilliseconds
         : duration.inMilliseconds;
 
@@ -45,7 +68,7 @@ class FromToTask extends AnimationTask {
       value = curve.transform(linearValue);
     }
 
-    if (value == toValue) taskCompleted();
+    if (value == toValue) completeTask();
 
     return value;
   }

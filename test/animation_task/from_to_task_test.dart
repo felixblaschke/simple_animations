@@ -45,7 +45,7 @@ main() {
     final task = FromToTask(
         duration: Duration(seconds: 1),
         to: 1.0,
-        recomputeDurationBasedOnProgress: false);
+        durationBasedOnZeroToOneInterval: false);
     task.started(Duration.zero, 0.5);
     expectValue(task, 0, 0.5, false);
     expectValue(task, 500, 0.75, false);
@@ -96,7 +96,7 @@ main() {
         duration: Duration(seconds: 1),
         from: 0.25,
         to: 0.75,
-        recomputeDurationBasedOnProgress: false);
+        durationBasedOnZeroToOneInterval: false);
     task.started(Duration.zero, 0.0);
     expectValue(task, 0, 0.25, false);
     expectValue(task, 500, 0.5, false);

@@ -3,23 +3,58 @@ import 'package:meta/meta.dart';
 import 'animation_task.dart';
 import 'from_to_task.dart';
 
+/// Performs a repeating animation from [from] to [to] within a specified
+/// [duration].
+///
+/// You can set the count of iterations (loops) by setting [iterations].
+///
+/// By enabling [mirror] every second iteration will reverse. (For example: 0..1,
+/// 1..0, 0..1, 1..0, and so on.)
+///
+/// By setting [startOnCurrentPosition] to `true` it will use the current position
+/// of the animation as the starting point for the first iteration.
+///
+/// You can track the iterations by setting an [onIterationCompleted] listener.
+///
+/// You can assign an alternative animation curve by setting [curve] which defaults
+/// to [Curves.linear].
 class LoopTask extends AnimationTask {
+  /// Double value between `0.0` and `1.0` that indicates the start position of
+  /// the a loop iteration.
   double from;
+
+  /// Double value between `0.0` and `1.0` that indicates the end position of
+  /// the a loop iteration.
   double to;
+
+  /// Duration of a single loop iteration
   Duration duration;
+
+  /// Count of iterations to perform until this task completes. If [iterations] is
+  /// unset it will loop forever.
   int iterations;
+
+  /// If set the first iteration will start right from the current animation position.
   bool startOnCurrentPosition;
+
+  /// If set every second iteration is reversed.
   bool mirror;
+
+  /// Callback that is called after each iteration
   AnimationTaskCallback onIterationCompleted;
+
+  /// Easing behavior curve. Default: [Curves.linear]
   Curve curve;
+
   Duration _lastIterationCompleteTime;
 
+  /// Creates a new loop task.
   LoopTask({
     @required this.duration,
     @required this.from,
     @required this.to,
     this.iterations,
-    this.startOnCurrentPosition = true,
+    this.startOnCurrentPosition = false,
     this.mirror = false,
     this.onIterationCompleted,
     this.curve = Curves.linear,
@@ -73,7 +108,7 @@ class LoopTask extends AnimationTask {
       from: fromValue,
       to: toValue,
       curve: curve,
-      recomputeDurationBasedOnProgress: true,
+      durationBasedOnZeroToOneInterval: true,
     );
     _currentIterationTask.started(_lastIterationCompleteTime, fromValue);
   }
@@ -87,7 +122,7 @@ class LoopTask extends AnimationTask {
     _iterationsPassed++;
 
     if (iterations != null && _iterationsPassed == iterations) {
-      taskCompleted();
+      completeTask();
     }
   }
 

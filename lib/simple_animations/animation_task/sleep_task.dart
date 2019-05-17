@@ -2,7 +2,9 @@ import 'package:meta/meta.dart';
 
 import 'animation_task.dart';
 
+/// Animation task that sleep for a specified [duration]. After that is completes.
 class SleepTask extends AnimationTask {
+  /// Duration to sleep
   Duration duration;
 
   SleepTask({
@@ -16,7 +18,7 @@ class SleepTask extends AnimationTask {
   double computeValue(Duration time) {
     final timePassed = time - startedTime;
     if (timePassed.inMilliseconds >= duration.inMilliseconds) {
-      taskCompleted();
+      completeTask();
     }
     return startedValue;
   }

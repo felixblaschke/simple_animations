@@ -137,7 +137,7 @@ class AnimationControllerX extends Animation<double>
   /// it will continue to process the next task.
   void forceCompleteCurrentTask() {
     if (_currentTask != null) {
-      _currentTask.taskCompleted();
+      _currentTask.completeTask();
     } else if (_tasks.isNotEmpty) {
       _tasks.removeAt(0);
     }
