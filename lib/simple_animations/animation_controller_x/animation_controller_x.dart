@@ -1,8 +1,39 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/scheduler.dart';
 
-import 'package:simple_animations/simple_animations/animation_task/animation_task.dart';
+import 'package:simple_animations/simple_animations.dart';
 
+/// An implementation of Flutter's [AnimationController] that will work with
+/// an [AnimationTask] queue to execute complex custom animation.
+///
+/// You can use [addTask], [addTasks] or [reset] to configure it with tasks.
+/// Common used tasks are [FromToTask], [LoopTask], [SetValueTask] or [ConditionalTask].
+/// You can create your own tasks by extending the abstract class [AnimationTask].
+///
+/// ```dart
+/// // AnimationController (original implementation)
+/// controller.forward();
+///
+/// // AnimationControllerX (this implementation)
+/// controller.addTask(FromToTask(to: 1.0));
+/// ```
+///
+/// You can add multiple tasks to it's internal queue. It will process / animate
+/// each one by one. The [tasks] getter lets you read the task list.
+///
+/// Tween handling is the same like doing it with an [AnimationController]:
+/// ```dart
+/// width = Tween(begin: 100.0, end: 200.0).animate(controller);
+/// ```
+///
+/// Use [reset] or [stop] to cancel the current animation.
+///
+/// You can call [forceCompleteCurrentTask] to just complete the currently
+/// executed task. It will continue with the next one (if defined).
+///
+/// It's possible to track the task processing by attaching an [onStatusChange]
+/// listener. But keep in mind that [AnimationTask] also has listener to track
+/// start and complete status.
 class AnimationControllerX extends Animation<double>
     with
         AnimationEagerListenerMixin,
@@ -20,6 +51,7 @@ class AnimationControllerX extends Animation<double>
     }
   }
 
+  /// Configures controller to a [TickerProvider].
   void configureVsync(TickerProvider vsync) {
     assert(_ticker == null, "Vsync is already configured.");
     assert(vsync != null, "Expected to provide a 'vsync'.");
@@ -82,21 +114,27 @@ class AnimationControllerX extends Animation<double>
   double get value => _value;
   double _value = 0.0;
 
+  /// Appends a new task to the execution queue.
   void addTask(AnimationTask task) {
     _tasks.add(task);
   }
 
+  /// Appends multiple tasks to the execution queue.
   void addTasks(List<AnimationTask> tasks) {
     tasks.forEach((task) => addTask(task));
   }
 
+  /// Returns a copy of the internal task queue.
   List<AnimationTask> get tasks =>
       [if (_currentTask != null) _currentTask, ..._tasks];
 
+  /// Stops and clears the task queue.
   void stop() {
     reset();
   }
 
+  /// Completes the currently executing task. If the queue has remaining tasks
+  /// it will continue to process the next task.
   void forceCompleteCurrentTask() {
     if (_currentTask != null) {
       _currentTask.taskCompleted();
@@ -105,6 +143,8 @@ class AnimationControllerX extends Animation<double>
     }
   }
 
+  /// Clears the current task queue and (optionally) continues to process
+  /// tasks provided by the [tasksToExecuteAfterReset] parameter.
   void reset([List<AnimationTask> tasksToExecuteAfterReset]) {
     _tasks.clear();
     if (_currentTask != null) {
@@ -142,7 +182,14 @@ class AnimationControllerX extends Animation<double>
   }
 }
 
-enum AnimationControllerXStatus { startTask, completeTask }
+/// Type of status event of [AnimationControllerX].
+enum AnimationControllerXStatus {
+  /// Tasks started to process
+  startTask,
+
+  /// Tasks completed it's processing
+  completeTask
+}
 
 typedef StatusChangeCallback = Function(
     AnimationControllerXStatus status, AnimationTask task);
