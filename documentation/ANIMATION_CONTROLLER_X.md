@@ -19,6 +19,7 @@ Aspect | AnimationController *(Flutter)* | AnimationControllerX *(Simple Animati
 -- | -- | --
 Interface to `Animatable` | `Tween(...).animate(controller)` |  `Tween(...).animate(controller)`
 Playback control | Single command at-a-time execution | Multiple commands task queue
+Status callbacks | Very limited | Awesome  
 Extendable | No | Yes (`AnimationTask`)
 Value control | Internal | External model (`AnimationTask`)
 Durations | Only 1 (stored in controller) | Multiple (defined per task)
@@ -162,3 +163,43 @@ controller.addTasks([
 This animation will animate to `0.5` and wait there until `isMyDataLoaded` is `true`. Then it will continue to animate to `1.0`, wait for `2 seconds` and quickly animate back *(reverse)* to `0.0`.
 
 You can also append more tasks while tasks queue is full. These tasks will be executed at the end.
+
+
+## Status callbacks
+
+There are two mechanics build into `AnimationControllerX`'s design to retrieve status from your animation.
+
+### Use onStatusUpdate listener
+
+```dart
+controller.onStatusChange = (AnimationControllerXStatus status, AnimationTask task) {
+      if (status == AnimationControllerXStatus.startTask) {
+        print("started task: $task");
+      }
+      if (status == AnimationControllerXStatus.completeTask) {
+        print("completed task: $task");
+      }
+    };
+```
+
+### Use AnimationTask listener
+
+Each `AnimationTask` has two defaults listener `onStart` and `onComplete`.
+
+```dart
+controller.addTasks([
+      FromToTask(
+          to: 0.5,
+          duration: Duration(seconds: 1),
+          onStart: () => print("here we go"),
+          onComplete: () {
+            setState(() => halfOfAnimationDone = true);
+          }),
+      FromToTask(
+          to: 1.0,
+          duration: Duration(seconds: 1),
+          onComplete: () => print("animation finished")),
+    ]);
+```
+
+Additionally `AnimationTask`s can add their own listeners. For example the `LoopTask` has a parameter `onIterationCompleted`.
