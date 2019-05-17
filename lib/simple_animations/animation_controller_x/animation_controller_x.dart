@@ -191,5 +191,5 @@ enum AnimationControllerXStatus {
   completeTask
 }
 
-typedef StatusChangeCallback = Function(
+typedef StatusChangeCallback = void Function(
     AnimationControllerXStatus status, AnimationTask task);
