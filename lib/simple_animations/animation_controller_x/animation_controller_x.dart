@@ -3,8 +3,8 @@ import 'package:flutter/scheduler.dart';
 
 import 'package:simple_animations/simple_animations.dart';
 
-/// An implementation of Flutter's [AnimationController] that will work with
-/// an [AnimationTask] queue to execute complex custom animation.
+/// An powerful implementation of Flutter's [AnimationController] that will work with
+/// an [AnimationTask] queue to execute complex custom animations easily.
 ///
 /// You can use [addTask], [addTasks] or [reset] to configure it with tasks.
 /// Common used tasks are [FromToTask], [LoopTask], [SetValueTask] or [ConditionalTask].
