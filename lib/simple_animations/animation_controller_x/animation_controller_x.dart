@@ -1,6 +1,5 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:meta/meta.dart';
 
 import 'package:simple_animations/simple_animations/animation_task/animation_task.dart';
 
@@ -15,7 +14,7 @@ class AnimationControllerX extends Animation<double>
   AnimationTask _currentTask;
   List<AnimationTask> _tasks = [];
 
-  AnimationControllerX({@required TickerProvider vsync, this.onStatusChange}) {
+  AnimationControllerX({TickerProvider vsync, this.onStatusChange}) {
     if (vsync != null) {
       configureVsync(vsync);
     }
