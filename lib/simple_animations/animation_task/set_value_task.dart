@@ -1,4 +1,4 @@
-import 'package:meta/meta.dart';
+import 'package:flutter/widgets.dart';
 
 import 'animation_task.dart';
 

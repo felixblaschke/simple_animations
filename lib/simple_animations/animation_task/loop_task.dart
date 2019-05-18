@@ -1,5 +1,5 @@
 import 'package:flutter/animation.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/widgets.dart';
 import 'animation_task.dart';
 import 'from_to_task.dart';
 
