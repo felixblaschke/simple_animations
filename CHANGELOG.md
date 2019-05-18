@@ -1,3 +1,14 @@
+## 1.3.0
+
+- Upgraded to Dart 2.3
+
+### New features
+
+- `AnimationControllerX` a new, powerful AnimationController
+- `AnimationControllerMixin` to easily setup AnimationControllerX
+- 5 types of `AnimationTask`s to use for AnimationControllerX
+
+
 ## 1.2.0
 
 ### New features
