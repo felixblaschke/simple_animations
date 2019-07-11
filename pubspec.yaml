@@ -1,11 +1,11 @@
 name: simple_animations
 description: Create awesome animations. Simplified. Well documented. With many examples.
-version: 1.3.0
+version: 1.3.1
 author: Felix Blaschke <felix@felix-blaschke.de>
 homepage: https://github.com/felixblaschke/simple_animations
 
 environment:
-  sdk: ">=2.2.2 <3.0.0"
+  sdk: ">=2.4.0 <3.0.0"
 
 dependencies:
   flutter:

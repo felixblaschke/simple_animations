@@ -1,6 +1,11 @@
+## 1.3.1
+
+- Upgraded to Flutter 1.7 and Dart 2.4
+
+
 ## 1.3.0
 
-- Upgraded to Dart 2.3
+- Upgraded to Flutter 1.5 and Dart 2.3
 
 ### New features
 
