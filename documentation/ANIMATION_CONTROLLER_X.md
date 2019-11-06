@@ -78,7 +78,8 @@ class _WidgetWithAnimationState extends State<WidgetWithAnimation>
   @override
   void initState() {
     controller = AnimationControllerX(vsync: this);
-    width = Tween(begin: 100.0, end: 200).animate(controller);
+    controller.addListener(() => setState(() {}));
+    width = Tween(begin: 100.0, end: 200.0).animate(controller);
     controller.addTask(FromToTask(duration: Duration(seconds: 1), to: 1.0));
     super.initState();
   }

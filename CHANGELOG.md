@@ -1,4 +1,8 @@
-## 1.3.1
+## 1.3.4
+
+- Fixed documentation: missing line about manual creation of AnimationControllerX
+
+## 1.3.1 - 1.3.3
 
 - Upgraded to Flutter 1.7 and Dart 2.4
 
