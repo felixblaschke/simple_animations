@@ -123,7 +123,7 @@ class _ControlledAnimationState<T> extends State<ControlledAnimation>
       })
       ..value = widget.startPosition;
 
-    _animation = widget.tween
+    _animation = (widget.tween as Animatable<T>)
         .chain(CurveTween(curve: widget.curve))
         .animate(_controller);
 

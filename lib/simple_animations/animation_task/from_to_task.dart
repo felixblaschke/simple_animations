@@ -50,7 +50,7 @@ class FromToTask extends AnimationTask {
   @override
   double computeValue(Duration time) {
     final fromValue = (from == null ? startedValue : from).clamp(0.0, 1.0);
-    final toValue = to.clamp(0.0, 1.0);
+    final toValue = to.clamp(0.0, 1.0).toDouble();
     final delta = (toValue - fromValue).abs();
     final durationMillis = durationBasedOnZeroToOneInterval
         ? delta * duration.inMilliseconds
@@ -64,7 +64,7 @@ class FromToTask extends AnimationTask {
       final timePassed = time - startedTime;
       final progress = timePassed.inMilliseconds / durationMillis;
       final linearValue = (fromValue * (1 - progress) + progress * toValue)
-          .clamp(min(fromValue, toValue), max(fromValue, toValue));
+          .clamp(min(fromValue, toValue), max(fromValue, toValue)).toDouble();
       value = curve.transform(linearValue);
     }
 

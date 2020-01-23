@@ -157,7 +157,7 @@ class AnimationControllerX extends Animation<double>
     }
   }
 
-  void _updateStatusOnNewValue(double oldValue, newValue) {
+  void _updateStatusOnNewValue(double oldValue, double newValue) {
     if (_status != AnimationStatus.forward && oldValue < newValue) {
       _status = AnimationStatus.forward;
       notifyStatusListeners(_status);

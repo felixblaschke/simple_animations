@@ -62,7 +62,7 @@ class _RenderingState extends State<Rendering>
 
   void _simulateStartTimeTicks() {
     if (widget.onTick != null) {
-      Iterable.generate(widget.startTimeSimulationTicks + 1).forEach((i) {
+      Iterable<int>.generate(widget.startTimeSimulationTicks + 1).forEach((i) {
         final simulatedTime = Duration(
             milliseconds: (widget.startTime.inMilliseconds *
                     i /

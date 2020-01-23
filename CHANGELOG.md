@@ -1,3 +1,7 @@
+## 1.3.5
+
+- Preparations for avoiding implicit casting
+
 ## 1.3.4
 
 - Fixed documentation: missing line about manual creation of AnimationControllerX
