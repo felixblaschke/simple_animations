@@ -1,3 +1,7 @@
+## 1.3.6
+
+- Fixed bug in type generics
+
 ## 1.3.5
 
 - Preparations for avoiding implicit casting

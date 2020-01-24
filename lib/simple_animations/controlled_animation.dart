@@ -107,7 +107,7 @@ class ControlledAnimation<T> extends StatefulWidget {
   _ControlledAnimationState<T> createState() => _ControlledAnimationState<T>();
 }
 
-class _ControlledAnimationState<T> extends State<ControlledAnimation>
+class _ControlledAnimationState<T> extends State<ControlledAnimation<T>>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<T> _animation;
@@ -123,7 +123,7 @@ class _ControlledAnimationState<T> extends State<ControlledAnimation>
       })
       ..value = widget.startPosition;
 
-    _animation = (widget.tween as Animatable<T>)
+    _animation = widget.tween
         .chain(CurveTween(curve: widget.curve))
         .animate(_controller);
 
@@ -144,7 +144,7 @@ class _ControlledAnimationState<T> extends State<ControlledAnimation>
   }
 
   @override
-  void didUpdateWidget(ControlledAnimation oldWidget) {
+  void didUpdateWidget(ControlledAnimation<T> oldWidget) {
     _controller.duration = widget.duration;
     executeInstruction();
     super.didUpdateWidget(oldWidget);
