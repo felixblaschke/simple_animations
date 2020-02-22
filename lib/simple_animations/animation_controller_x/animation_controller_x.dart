@@ -78,8 +78,9 @@ class AnimationControllerX extends Animation<double>
   void _createNewTask(Duration time) {
     _currentTask = _tasks.removeAt(0);
     _currentTask.started(time, _value);
-    if (onStatusChange != null)
+    if (onStatusChange != null) {
       onStatusChange(AnimationControllerXStatus.startTask, _currentTask);
+    }
   }
 
   void _computeValue(Duration time) {
@@ -95,8 +96,9 @@ class AnimationControllerX extends Animation<double>
 
   void completeCurrentTask() {
     _updateStatusOnTaskComplete();
-    if (onStatusChange != null)
+    if (onStatusChange != null) {
       onStatusChange(AnimationControllerXStatus.completeTask, _currentTask);
+    }
     _currentTask.dispose();
     _currentTask = null;
   }
