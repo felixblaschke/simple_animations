@@ -83,7 +83,7 @@ class LoopTask extends AnimationTask {
     final value = _currentIterationTask.computeValue(time);
 
     if (_currentIterationTask.isCompleted()) {
-      finishIteration(time);
+      _finishIteration(time);
     }
 
     return value;
@@ -113,7 +113,7 @@ class LoopTask extends AnimationTask {
     _currentIterationTask.started(_lastIterationCompleteTime, fromValue);
   }
 
-  void finishIteration(Duration time) {
+  void _finishIteration(Duration time) {
     if (onIterationCompleted != null) onIterationCompleted();
 
     _lastIterationCompleteTime = time;

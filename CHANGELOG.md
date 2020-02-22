@@ -1,3 +1,7 @@
+## next
+
+- Accidentally public method LoopTask.finishIteration(Duration) is now private
+
 ## 1.3.6
 
 - Fixed bug in type generics
