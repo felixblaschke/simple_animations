@@ -97,6 +97,11 @@ class MultiTrackTween extends Animatable<Map<String, dynamic>> {
     return Duration(milliseconds: _maxDuration);
   }
 
+  /// Computes the map of specific values for the animation.
+  /// You don't need to call it yourself. It's been implicitly used by
+  /// [Tween]-consuming classes.
+  ///
+  /// See [Animatable.transform].
   @override
   Map<String, dynamic> transform(double t) {
     final Map<String, dynamic> result = Map();

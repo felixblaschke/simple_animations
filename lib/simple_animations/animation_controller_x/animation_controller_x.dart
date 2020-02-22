@@ -71,7 +71,7 @@ class AnimationControllerX extends Animation<double>
     _computeValue(time);
 
     if (_currentTask.isCompleted()) {
-      completeCurrentTask();
+      _completeCurrentTask();
     }
   }
 
@@ -94,7 +94,7 @@ class AnimationControllerX extends Animation<double>
     }
   }
 
-  void completeCurrentTask() {
+  void _completeCurrentTask() {
     _updateStatusOnTaskComplete();
     if (onStatusChange != null) {
       onStatusChange(AnimationControllerXStatus.completeTask, _currentTask);
@@ -108,10 +108,14 @@ class AnimationControllerX extends Animation<double>
     super.dispose();
   }
 
+  /// The current status of this animation represented by
+  /// Flutter's own [AnimationStatus] enum.
   @override
   AnimationStatus get status => _status;
   AnimationStatus _status = AnimationStatus.dismissed;
 
+  /// The current value of the animation.
+  /// It gets computed by the used [AnimationTask]s.
   @override
   double get value => _value;
   double _value = 0.0;

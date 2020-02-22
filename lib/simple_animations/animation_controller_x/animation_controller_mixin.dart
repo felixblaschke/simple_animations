@@ -27,6 +27,8 @@ mixin AnimationControllerMixin<T extends StatefulWidget> on State<T>
     implements TickerProvider {
   Ticker _ticker;
 
+  /// [AnimationControllerX] instance created by the mixin that you can
+  /// use inside your [Widget].
   AnimationControllerX controller = AnimationControllerX();
 
   @override
