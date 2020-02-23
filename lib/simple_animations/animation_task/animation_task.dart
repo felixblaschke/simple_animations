@@ -4,7 +4,7 @@ import 'package:simple_animations/simple_animations.dart';
 /// Abstract class that represents a single animation task that can be processed
 /// inside an [AnimationControllerX].
 abstract class AnimationTask {
-  /// Time when start started
+  /// Time when task started
   Duration startedTime;
 
   /// Value of [AnimationControllerX] when task started
