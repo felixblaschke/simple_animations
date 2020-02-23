@@ -1,7 +1,7 @@
-## next
+## 1.3.7
 
 - This release contains fixes requested by the Flutter Ecosystem Committee:
-  - Added API documentation
+  - Added API documentation and improved test coverage
   - Accidentally public method `LoopTask.finishIteration(Duration)` is now private.
     Instead you can use public APIs of `AnimationControllerX` to control the tasks.
   - Accidentally public method `AnimationControllerX.completeCurrentTask()` is now private.
