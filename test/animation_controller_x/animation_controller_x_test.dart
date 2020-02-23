@@ -166,10 +166,29 @@ main() {
     ]);
     expect(aniXTask, [taskFw, taskFw, taskRv, taskRv]);
   });
+
+  test("throw assertion error when configuring ACX with vsync = null", () {
+    final controller = AnimationControllerX(vsync: null);
+    expect(() => controller.configureVsync(null), throwsAssertionError);
+  });
+
+  testWidgets("throw assertion when AnimationTask is providing null values",
+      (WidgetTester tester) async {
+    AnimationControllerX controller;
+    final widget = AnimationControllerXTestWidget((c) => controller = c);
+
+    await tester.pumpWidget(widget);
+    await tester.pump(Duration(milliseconds: 100));
+
+    controller.addTask(NullReturningAnimationTask());
+    await tester.pump(Duration(milliseconds: 100));
+    expect(tester.takeException(), isInstanceOf<AssertionError>());
+  });
 }
 
 class AnimationControllerXTestWidget extends StatefulWidget {
   final Function(AnimationControllerX) upliftController;
+
   AnimationControllerXTestWidget(this.upliftController);
 
   @override
@@ -198,5 +217,12 @@ class _AnimationControllerXTestWidgetState
   @override
   Widget build(BuildContext context) {
     return Container();
+  }
+}
+
+class NullReturningAnimationTask extends AnimationTask {
+  @override
+  double computeValue(Duration time) {
+    return null;
   }
 }
