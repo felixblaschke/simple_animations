@@ -33,9 +33,9 @@ class MultiTrackTween extends Animatable<Map<String, dynamic>> {
   var _maxDuration = 0;
 
   MultiTrackTween(List<Track> tracks)
-      : assert(tracks != null && tracks.length > 0,
+      : assert(tracks != null && tracks.isNotEmpty,
             "Add a List<Track> to configure the tween."),
-        assert(tracks.where((track) => track.items.length == 0).length == 0,
+        assert(tracks.where((track) => track.items.isEmpty).isEmpty,
             "Each Track needs at least one added Tween by using the add()-method.") {
     _computeMaxDuration(tracks);
     _computeTrackTweens(tracks);
