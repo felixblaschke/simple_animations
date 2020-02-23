@@ -27,4 +27,17 @@ main() {
     expect(progress.progress(Duration(milliseconds: 4000)), 1.0);
     expect(progress.progress(Duration(milliseconds: 5000)), 1.0);
   });
+
+  test("throw assertion error when starttime or duration is null", () {
+    expect(
+        () =>
+            AnimationProgress(startTime: null, duration: Duration(seconds: 1)),
+        throwsAssertionError);
+    expect(
+        () =>
+            AnimationProgress(startTime: Duration(seconds: 0), duration: null),
+        throwsAssertionError);
+    expect(() => AnimationProgress(startTime: null, duration: null),
+        throwsAssertionError);
+  });
 }
