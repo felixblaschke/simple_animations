@@ -187,6 +187,34 @@ void main() {
     await tester.pump(Duration(seconds: 50));
     expect(contentOf(text), '50');
   });
+
+  testWidgets("throw assertion error when no duration specified",
+      (WidgetTester tester) async {
+    expect(
+        () => ControlledAnimation(
+            tween: IntTween(begin: 0, end: 100),
+            builder: (context, value) => Container()),
+        throwsAssertionError);
+  });
+
+  testWidgets("throw assertion error when no tween specified",
+      (WidgetTester tester) async {
+    expect(
+        () => ControlledAnimation(
+            duration: Duration(seconds: 1),
+            builder: (context, value) => Container()),
+        throwsAssertionError);
+  });
+
+  testWidgets(
+      "throw assertion error when no builder or builderWithChild specified",
+      (WidgetTester tester) async {
+    expect(
+        () => ControlledAnimation(
+            duration: Duration(seconds: 1),
+            tween: IntTween(begin: 0, end: 100)),
+        throwsAssertionError);
+  });
 }
 
 contentOf(Text text) {

@@ -190,10 +190,6 @@ class _ControlledAnimationState<T> extends State<ControlledAnimation<T>>
     } else if (widget.builderWithChild != null && widget.child != null) {
       return widget.builderWithChild(context, widget.child, _animation.value);
     }
-    _controller.stop(canceled: true);
-    throw FlutterError(
-        "I don't know how to build the animation. Make sure to either specify "
-        "a builder or a builderWithChild (along with a child).");
   }
 
   @override

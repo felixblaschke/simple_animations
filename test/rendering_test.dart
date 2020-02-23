@@ -85,6 +85,11 @@ main() {
     expect(onTickCalls.length, 13);
     expect(onTickCalls[12], 11100);
   });
+
+  testWidgets("throw assertion error when no builder specified",
+      (WidgetTester tester) async {
+    expect(() => Rendering(), throwsAssertionError);
+  });
 }
 
 contentOf(Text text) {
