@@ -1,3 +1,8 @@
+## 1.3.8
+
+- Integrated app example into main repository:
+  - `example/example_app`
+
 ## 1.3.7
 
 - This release contains fixes requested by the Flutter Ecosystem Committee:
