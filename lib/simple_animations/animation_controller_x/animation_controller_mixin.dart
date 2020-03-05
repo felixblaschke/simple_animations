@@ -84,14 +84,15 @@ mixin AnimationControllerMixin<T extends StatefulWidget> on State<T>
     super.debugFillProperties(properties);
     String tickerDescription;
     if (_ticker != null) {
-      if (_ticker.isActive && _ticker.muted)
+      if (_ticker.isActive && _ticker.muted) {
         tickerDescription = 'active but muted';
-      else if (_ticker.isActive)
+      } else if (_ticker.isActive) {
         tickerDescription = 'active';
-      else if (_ticker.muted)
+      } else if (_ticker.muted) {
         tickerDescription = 'inactive and muted';
-      else
+      } else {
         tickerDescription = 'inactive';
+      }
     }
     properties.add(DiagnosticsProperty<Ticker>('ticker', _ticker,
         description: tickerDescription,

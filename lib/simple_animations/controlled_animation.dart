@@ -190,6 +190,7 @@ class _ControlledAnimationState<T> extends State<ControlledAnimation<T>>
     } else if (widget.builderWithChild != null && widget.child != null) {
       return widget.builderWithChild(context, widget.child, _animation.value);
     }
+    return Container();
   }
 
   @override

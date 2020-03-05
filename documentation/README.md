@@ -35,7 +35,7 @@ Setting up *simple_animation* is very easy:
 
 Extend your knowledge about Flutter animations with *simple_animations*:
 
-- Take a look at the [Simple Animations Example App](https://github.com/felixblaschke/simple_animations_example_app). 
+- Take a look at the [Simple Animations Example App](https://github.com/felixblaschke/simple_animations/tree/master/example/example_app). 
 It contains a lot of animation demonstrations to learn from.
 
 - Read some [articles and tutorials](ARTICLES.md)

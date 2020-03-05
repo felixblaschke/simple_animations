@@ -1,3 +1,8 @@
+## 1.3.9
+
+- Fixed Flutter health suggestions
+- Updated links to example app 
+
 ## 1.3.8
 
 - Integrated app example into main repository:

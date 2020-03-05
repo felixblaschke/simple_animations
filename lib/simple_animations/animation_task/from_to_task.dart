@@ -64,7 +64,8 @@ class FromToTask extends AnimationTask {
       final timePassed = time - startedTime;
       final progress = timePassed.inMilliseconds / durationMillis;
       final linearValue = (fromValue * (1 - progress) + progress * toValue)
-          .clamp(min(fromValue, toValue), max(fromValue, toValue)).toDouble();
+          .clamp(min(fromValue, toValue), max(fromValue, toValue))
+          .toDouble();
       value = curve.transform(linearValue);
     }
 
