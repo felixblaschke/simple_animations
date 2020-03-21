@@ -25,7 +25,7 @@ difficult to master.
 There are multiple ways to get started:
 
 - [Dive into the documentation](https://github.com/felixblaschke/simple_animations/blob/master/documentation/README.md)
-- [Try the Example App of *simple_animations*](https://github.com/felixblaschke/simple_animations/tree/master/example/example_app)
+- [Try the Example App of *simple_animations*](https://github.com/felixblaschke/simple_animations/tree/master/example)
 - [Read articles and tutorials about using *simple_animations*](https://github.com/felixblaschke/simple_animations/blob/master/documentation/ARTICLES.md)
 
 ## Examples
@@ -51,7 +51,7 @@ With **simple_animation** you can do it **stateless** just by using
 some fancy **ControlledAnimation** widgets.
 
 The whole animation just takes about **60 lines of code** while 
-maintaining **readability**. *(You can find the [source code here](https://github.com/felixblaschke/simple_animations_example_app/blob/master/lib/examples/typewriter_box.dart). 
+maintaining **readability**. *(You can find the [source code here](https://github.com/felixblaschke/simple_animations/tree/master/example/lib/examples/typewriter_box.dart). 
 I only counted the lines that are responsible for the animation.)*
 
 
@@ -64,7 +64,7 @@ This is the example from the [example page (pub.dartlang.org)](https://pub.dartl
 
 ### Example App
 
-You find these and other examples in [Example App](https://github.com/felixblaschke/simple_animations_example_app).
+You find these and other examples in [Example App](https://github.com/felixblaschke/simple_animations/tree/master/example).
 
 ![fancy-background](https://cdn-images-1.medium.com/max/1040/1*5H-XkZeZ1LW7nqH1leDshg.gif)
 

@@ -94,7 +94,7 @@ class _ExamplePageState extends State<ExamplePage> {
 
   _openSource() async {
     final url =
-        "https://github.com/felixblaschke/simple_animations_example_app/blob/master/lib/examples/${widget.pathToFile}";
+        "https://github.com/felixblaschke/simple_animations/tree/master/example/lib/examples/${widget.pathToFile}";
     if (await canLaunch(url)) {
       await launch(url);
     }

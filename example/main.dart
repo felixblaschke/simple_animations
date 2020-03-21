@@ -5,7 +5,7 @@
 //   https://github.com/felixblaschke/simple_animations/tree/master/documentation
 //
 // Example App:
-//   https://github.com/felixblaschke/simple_animations_example_app
+//   https://github.com/felixblaschke/simple_animations/tree/master/example
 //
 
 import 'dart:math';

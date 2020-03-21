@@ -76,7 +76,7 @@ commands until the end of the duration.
 > Use delay for a simple way of staggering animations. You can also
 > cascade multiple `ControlledAnimation` widgets into each other.
 >
-> [**Example** (staggered animation by using multiple ControlledAnimation)](https://github.com/felixblaschke/simple_animations_example_app/blob/master/lib/examples/typewriter_box.dart) 
+> [**Example** (staggered animation by using multiple ControlledAnimation)](https://github.com/felixblaschke/simple_animations/tree/master/example/lib/examples/typewriter_box.dart) 
 
 #### Example
 ```dart
