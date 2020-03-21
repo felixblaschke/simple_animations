@@ -1,3 +1,7 @@
+## 1.3.11
+
+- Integrated example from pub example page into example_app
+
 ## 1.3.10
 
 - App example is now fully integrated into package example

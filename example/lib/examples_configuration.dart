@@ -5,6 +5,7 @@ import 'package:simple_animations_example_app/examples/fancy_background.dart';
 import 'package:simple_animations_example_app/examples/hit_a_mole.dart';
 import 'package:simple_animations_example_app/examples/particle_background.dart';
 import 'package:simple_animations_example_app/examples/rainbow_circle.dart';
+import 'package:simple_animations_example_app/examples/rectangle.dart';
 import 'package:simple_animations_example_app/examples/switchlike_checkbox.dart';
 import 'package:simple_animations_example_app/examples/typewriter_box.dart';
 import 'package:simple_animations_example_app/examples/load_stuff_button.dart';
@@ -14,6 +15,8 @@ import 'examples/acx_progress_indicator.dart';
 ExamplesConfiguration getExamplesConfiguration() {
   final configuration = ExamplesConfiguration();
 
+  configuration.add(ExampleItem(
+      name: "Rectangle", builder: (context) => RectangleDemo()));
   configuration.add(ExampleItem(
       name: "Typewriter Box", builder: (context) => TypewriterBoxDemo()));
   configuration.add(ExampleItem(
