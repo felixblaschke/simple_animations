@@ -86,9 +86,7 @@ class _MoleState extends State<Mole> {
     await Future.delayed(timeVisible);
     _setMoleVisible(false);
 
-    if (mounted) {
-      _restartMole();
-    }
+    _restartMole();
   }
 
   _manageParticleLifecycle(Duration time) {
@@ -98,10 +96,15 @@ class _MoleState extends State<Mole> {
   }
 
   void _setMoleVisible(bool visible) {
+    setState(() {
+      _moleIsVisible = visible;
+    });
+  }
+
+  @override
+  void setState(fn) {
     if (mounted) {
-      setState(() {
-        _moleIsVisible = visible;
-      });
+      super.setState(fn);
     }
   }
 }

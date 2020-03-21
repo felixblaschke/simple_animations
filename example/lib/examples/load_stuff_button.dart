@@ -95,6 +95,13 @@ class _LoadStuffButtonState extends State<LoadStuffButton> {
     );
   }
 
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
   final contentChildren = <AniWidgetBuilder>[
     loadButtonLabel,
     progressIndicator,
@@ -117,15 +124,15 @@ class _LoadStuffButtonState extends State<LoadStuffButton> {
           duration: Duration(milliseconds: 600),
           tween: Tween(begin: 0.0, end: pi * 2),
           builder: (context, rotation) => Transform.rotate(
-                angle: rotation,
-                child: Opacity(
-                  opacity: ani["opacity"],
-                  child: Icon(
-                    Icons.sync,
-                    color: Colors.green,
-                  ),
-                ),
+            angle: rotation,
+            child: Opacity(
+              opacity: ani["opacity"],
+              child: Icon(
+                Icons.sync,
+                color: Colors.green,
               ),
+            ),
+          ),
         ),
       );
 
@@ -142,26 +149,26 @@ class _LoadStuffButtonState extends State<LoadStuffButton> {
       duration: tween.duration,
       tween: tween,
       builder: (context, animation) => Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Icon(
-                Icons.check,
-                color: Colors.green.shade700,
-              ),
-              ClipRect(
-                child: SizedBox(
-                  width: animation["width"],
-                  child: Opacity(
-                      opacity: animation["opacity"],
-                      child: Text(
-                        "Success",
-                        style: TextStyle(
-                            color: Colors.green.shade800, fontSize: 16),
-                      )),
-                ),
-              )
-            ],
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Icon(
+            Icons.check,
+            color: Colors.green.shade700,
           ),
+          ClipRect(
+            child: SizedBox(
+              width: animation["width"],
+              child: Opacity(
+                  opacity: animation["opacity"],
+                  child: Text(
+                    "Success",
+                    style:
+                        TextStyle(color: Colors.green.shade800, fontSize: 16),
+                  )),
+            ),
+          )
+        ],
+      ),
     );
   };
 
@@ -186,20 +193,20 @@ class LoadStuffButtonDemo extends StatelessWidget {
       title: "Load Stuff Button",
       pathToFile: "load_stuff_button.dart",
       builder: (context) => Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Center(
-                  child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(
-                  "When clicking the button a simulated HTTP request takes randomly between 50ms and 2500ms.",
-                  textAlign: TextAlign.center,
-                ),
-              )),
-              Center(child: LoadStuffButton())
-            ],
-          ),
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Center(
+              child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Text(
+              "When clicking the button a simulated HTTP request takes randomly between 50ms and 2500ms.",
+              textAlign: TextAlign.center,
+            ),
+          )),
+          Center(child: LoadStuffButton())
+        ],
+      ),
     );
   }
 }
