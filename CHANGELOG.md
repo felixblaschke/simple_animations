@@ -1,4 +1,5 @@
 ## 1.3.10
+
 - App example is now fully integrated into package example
 - Updated all documentation references to the app example
 
