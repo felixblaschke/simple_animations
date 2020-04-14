@@ -31,7 +31,7 @@ class Box extends StatelessWidget {
               height: height,
               child: isEnoughRoomForTypewriter(width)
                   ? TypewriterText("Hello Flutter")
-                  : Container(),
+                  : Expanded(child: Container()),
             );
           },
         );
