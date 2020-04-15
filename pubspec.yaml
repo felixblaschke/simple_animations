@@ -13,6 +13,8 @@ dependencies:
     path: ../sa_multi_tween
   sa_anicoto:
     path: ../sa_anicoto
+  sa_stateless_animation:
+    path: ../sa_stateless_animation
 
 dev_dependencies:
   flutter_test:
