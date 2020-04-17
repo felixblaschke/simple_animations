@@ -115,29 +115,26 @@ class ParticlePainter extends CustomPainter {
 class AnimatedBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final tween = MultiTrackTween([
-      Track("color1").add(Duration(seconds: 3),
-          ColorTween(begin: Color(0xff8a113a), end: Colors.lightBlue.shade900)),
-      Track("color2").add(Duration(seconds: 3),
-          ColorTween(begin: Color(0xff440216), end: Colors.blue.shade600))
-    ]);
+    final tween = MultiTween<_ColorTween>()
+      ..add(_ColorTween.color1, Color(0xff8a113a).tweenTo(Colors.lightBlue.shade900), 3.seconds)
+      ..add(_ColorTween.color2, Color(0xff440216).tweenTo(Colors.blue.shade600), 3.seconds);
 
-    return ControlledAnimation(
-      playback: Playback.MIRROR,
+    return MirrorAnimation<MultiTweenValues<_ColorTween>>(
       tween: tween,
       duration: tween.duration,
-      builder: (context, animation) {
+      builder: (context, child, value) {
         return Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [animation["color1"], animation["color2"]])),
+                  colors: [value.get<Color>(_ColorTween.color1), value.get<Color>(_ColorTween.color2)])),
         );
       },
     );
   }
 }
+
 
 class CenteredText extends StatelessWidget {
   const CenteredText({

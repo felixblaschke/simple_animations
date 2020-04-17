@@ -136,7 +136,7 @@ packages:
       path: "..\\sa_stateless_animation"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.2"
   sky_engine:
     dependency: transitive
     description: flutter

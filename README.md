@@ -3,6 +3,15 @@
 [![Awesome Flutter](https://img.shields.io/badge/Awesome-Flutter-blue.svg?longCache=true&style=flat-square)](https://github.com/Solido/awesome-flutter)
 [![Pub](https://img.shields.io/pub/v/simple_animations.svg)](https://pub.dartlang.org/packages/simple_animations)
 
+Anicoto
+[![Tests](https://github.com/felixblaschke/sa_anicoto/workflows/Tests/badge.svg)](https://github.com/felixblaschke/sa_anicoto/actions?query=workflow%3ATests)
+
+Multi Tween
+[![Tests](https://github.com/felixblaschke/sa_multi_tween/workflows/Tests/badge.svg)](https://github.com/felixblaschke/sa_multi_tween/actions?query=workflow%3ATests)
+
+Stateful Animation
+[![Tests](https://github.com/felixblaschke/sa_stateless_animation/workflows/Tests/badge.svg)](https://github.com/felixblaschke/sa_stateless_animation/actions?query=workflow%3ATests)
+
 Simple Animations is a package for Flutter to boost your animation
 productivity by simplifying the way to create animations.
 
