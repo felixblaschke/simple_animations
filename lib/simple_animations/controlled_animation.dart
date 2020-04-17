@@ -146,6 +146,11 @@ class _ControlledAnimationState<T> extends State<ControlledAnimation<T>>
   @override
   void didUpdateWidget(ControlledAnimation<T> oldWidget) {
     _controller.duration = widget.duration;
+
+    _animation = widget.tween
+        .chain(CurveTween(curve: widget.curve))
+        .animate(_controller);
+
     executeInstruction();
     super.didUpdateWidget(oldWidget);
   }

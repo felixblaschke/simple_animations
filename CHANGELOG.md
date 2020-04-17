@@ -1,3 +1,7 @@
+## 1.3.12
+
+- Fixed bug when updating `curve` parameter in `ControlledAnimation`
+
 ## 1.3.11
 
 - Integrated example from pub example page into example_app
