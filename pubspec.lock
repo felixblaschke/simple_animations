@@ -119,24 +119,24 @@ packages:
   sa_anicoto:
     dependency: "direct main"
     description:
-      path: "..\\sa_anicoto"
-      relative: true
-    source: path
-    version: "0.0.2"
+      name: sa_anicoto
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.6"
   sa_multi_tween:
     dependency: "direct main"
     description:
       path: "..\\sa_multi_tween"
       relative: true
     source: path
-    version: "0.0.7"
+    version: "0.0.8"
   sa_stateless_animation:
     dependency: "direct main"
     description:
       path: "..\\sa_stateless_animation"
       relative: true
     source: path
-    version: "0.0.2"
+    version: "0.0.5"
   sky_engine:
     dependency: transitive
     description: flutter

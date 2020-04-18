@@ -11,8 +11,9 @@ dependencies:
     sdk: flutter
   sa_multi_tween:
     path: ../sa_multi_tween
-  sa_anicoto:
-    path: ../sa_anicoto
+  sa_anicoto: ^0.0.6
+#  sa_anicoto:
+#    path: ../sa_anicoto
   sa_stateless_animation:
     path: ../sa_stateless_animation
 

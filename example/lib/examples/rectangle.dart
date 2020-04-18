@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
+import 'package:sa_v1_migration/sa_v1_migration.dart';
 import 'package:simple_animations_example_app/widgets/example_page.dart';
 
 class ExampleRectangle extends StatelessWidget {
