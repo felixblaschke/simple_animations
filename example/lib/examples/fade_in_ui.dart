@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:sa_v1_migration/sa_v1_migration.dart';
 import 'package:simple_animations_example_app/widgets/example_page.dart';
+import 'package:supercharged/supercharged.dart';
 
 class FadeInUi extends StatelessWidget {
   @override
@@ -33,6 +33,8 @@ class FadeInUi extends StatelessWidget {
   }
 }
 
+enum _AniProps { opacity, translateX }
+
 class FadeIn extends StatelessWidget {
   final double delay;
   final Widget child;
@@ -41,24 +43,22 @@ class FadeIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tween = MultiTrackTween([
-      Track("opacity")
-          .add(Duration(milliseconds: 500), Tween(begin: 0.0, end: 1.0)),
-      Track("translateX").add(
-          Duration(milliseconds: 500), Tween(begin: 130.0, end: 0.0),
-          curve: Curves.easeOut)
-    ]);
+    final tween = MultiTween<_AniProps>()
+      ..add(_AniProps.opacity, 0.0.tweenTo(1.0))
+      ..add(_AniProps.translateX, 130.0.tweenTo(0.0));
 
-    return ControlledAnimation(
-      delay: Duration(milliseconds: (300 * delay).round()),
-      duration: tween.duration,
+    return PlayAnimation<MultiTweenValues<_AniProps>>(
+      delay: (300 * delay).round().milliseconds,
+      duration: 500.milliseconds,
       tween: tween,
       child: child,
-      builderWithChild: (context, child, animation) => Opacity(
-            opacity: animation["opacity"],
-            child: Transform.translate(
-                offset: Offset(animation["translateX"], 0), child: child),
-          ),
+      builder: (context, child, value) => Opacity(
+        opacity: value.get(_AniProps.opacity),
+        child: Transform.translate(
+          offset: Offset(value.get(_AniProps.translateX), 0),
+          child: child,
+        ),
+      ),
     );
   }
 }

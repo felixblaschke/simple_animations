@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:sa_v1_migration/sa_v1_migration.dart';
 import 'package:simple_animations_example_app/widgets/example_page.dart';
+import 'package:supercharged/supercharged.dart';
 
 class BarChartApplication extends StatelessWidget {
   @override
@@ -35,10 +35,10 @@ class Bar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ControlledAnimation(
+    return PlayAnimation(
       duration: Duration(milliseconds: (height * _baseDurationMs).round()),
-      tween: Tween(begin: 0.0, end: height),
-      builder: (context, animatedHeight) {
+      tween: 0.0.tweenTo(height),
+      builder: (context, child, animatedHeight) {
         return Column(
           children: <Widget>[
             Container(

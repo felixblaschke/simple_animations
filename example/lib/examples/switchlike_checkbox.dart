@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:sa_v1_migration/sa_v1_migration.dart';
 import 'package:simple_animations_example_app/widgets/example_page.dart';
+import 'package:supercharged/supercharged.dart';
 
 class ExampleForm extends StatefulWidget {
   @override
@@ -41,6 +41,8 @@ class _ExampleFormState extends State<ExampleForm> {
   }
 }
 
+enum _CheckboxProps { paddingLeft, color, text, rotation }
+
 class SwitchlikeCheckbox extends StatelessWidget {
   final bool checked;
 
@@ -48,20 +50,17 @@ class SwitchlikeCheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var tween = MultiTrackTween([
-      Track("paddingLeft")
-          .add(Duration(milliseconds: 1000), Tween(begin: 0.0, end: 20.0)),
-      Track("color").add(Duration(milliseconds: 1000),
-          ColorTween(begin: Colors.grey, end: Colors.blue)),
-      Track("text")
-          .add(Duration(milliseconds: 500), ConstantTween("OFF"))
-          .add(Duration(milliseconds: 500), ConstantTween("ON")),
-      Track("rotation")
-          .add(Duration(milliseconds: 1000), Tween(begin: -2 * pi, end: 0.0))
-    ]);
+    var tween = MultiTween<_CheckboxProps>()
+      ..add(_CheckboxProps.paddingLeft, 0.0.tweenTo(20.0), 1.seconds)
+      ..add(_CheckboxProps.color, Colors.grey.tweenTo(Colors.blue), 1.seconds)
+      ..add(_CheckboxProps.text, ConstantTween("OFF"), 500.milliseconds)
+      ..add(_CheckboxProps.text, ConstantTween("ON"), 500.milliseconds)
+      ..add(_CheckboxProps.rotation, (-2 * pi).tweenTo(0.0), 1.seconds);
 
-    return ControlledAnimation(
-      playback: checked ? Playback.PLAY_FORWARD : Playback.PLAY_REVERSE,
+    return CustomAnimation<MultiTweenValues<_CheckboxProps>>(
+      control: checked
+          ? CustomAnimationControl.PLAY
+          : CustomAnimationControl.PLAY_REVERSE,
       startPosition: checked ? 1.0 : 0.0,
       duration: tween.duration * 1.2,
       tween: tween,
@@ -70,9 +69,10 @@ class SwitchlikeCheckbox extends StatelessWidget {
     );
   }
 
-  Widget _buildCheckbox(context, animation) {
+  Widget _buildCheckbox(
+      context, child, MultiTweenValues<_CheckboxProps> value) {
     return Container(
-      decoration: _outerBoxDecoration(animation["color"]),
+      decoration: _outerBoxDecoration(value.get(_CheckboxProps.color)),
       width: 50,
       height: 30,
       padding: const EdgeInsets.all(3.0),
@@ -80,14 +80,17 @@ class SwitchlikeCheckbox extends StatelessWidget {
         children: [
           Positioned(
               child: Padding(
-            padding: EdgeInsets.only(left: animation["paddingLeft"]),
+            padding:
+                EdgeInsets.only(left: value.get(_CheckboxProps.paddingLeft)),
             child: Transform.rotate(
-              angle: animation["rotation"],
+              angle: value.get(_CheckboxProps.rotation),
               child: Container(
-                decoration: _innerBoxDecoration(animation["color"]),
+                decoration:
+                    _innerBoxDecoration(value.get(_CheckboxProps.color)),
                 width: 20,
-                child:
-                    Center(child: Text(animation["text"], style: labelStyle)),
+                child: Center(
+                    child: Text(value.get(_CheckboxProps.text),
+                        style: labelStyle)),
               ),
             ),
           ))

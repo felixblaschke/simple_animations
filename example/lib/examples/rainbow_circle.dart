@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:sa_v1_migration/sa_v1_migration.dart';
 import 'package:simple_animations_example_app/widgets/example_page.dart';
+import 'package:supercharged/supercharged.dart';
 
 class Circle extends StatelessWidget {
   static final rainbowColors = <MaterialColor>[
@@ -19,32 +19,32 @@ class Circle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ControlledAnimation(
-      playback: Playback.MIRROR,
+    return MirrorAnimation<MultiTweenValues<DefaultAnimationProperties>>(
       duration: Duration(seconds: 10),
       tween: rainbowTween(),
       child: CircleText(),
-      builderWithChild: (context, child, color) {
+      builder: (context, child, value) {
         return Container(
           child: child,
           width: circleRadius * 2,
           height: circleRadius * 2,
           decoration: BoxDecoration(
-              color: color,
+              color: value.get(DefaultAnimationProperties.color),
               borderRadius: BorderRadius.all(Radius.circular(circleRadius))),
         );
       },
     );
   }
 
-  TweenSequence rainbowTween() {
-    final items = <TweenSequenceItem>[];
-    for (int i = 0; i < rainbowColors.length - 1; i++) {
-      items.add(TweenSequenceItem(
-          tween: ColorTween(begin: rainbowColors[i], end: rainbowColors[i + 1]),
-          weight: 1));
-    }
-    return TweenSequence(items);
+  MultiTween<DefaultAnimationProperties> rainbowTween() {
+    final tween = MultiTween<DefaultAnimationProperties>();
+    0.until(rainbowColors.length - 1).forEach((index) {
+      tween.add(
+        DefaultAnimationProperties.color,
+        rainbowColors[index].tweenTo(rainbowColors[index + 1]),
+      );
+    });
+    return tween;
   }
 }
 
