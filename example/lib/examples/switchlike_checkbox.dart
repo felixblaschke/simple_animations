@@ -39,6 +39,7 @@ class _ExampleFormState extends State<ExampleForm> {
       enableCoolStuff = !enableCoolStuff;
     });
   }
+
 }
 
 enum _CheckboxProps { paddingLeft, color, text, rotation }
@@ -99,10 +100,10 @@ class SwitchlikeCheckbox extends StatelessWidget {
     );
   }
 
-  BoxDecoration _innerBoxDecoration(color) => BoxDecoration(
+  BoxDecoration _innerBoxDecoration(Color color) => BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(25)), color: color);
 
-  BoxDecoration _outerBoxDecoration(color) => BoxDecoration(
+  BoxDecoration _outerBoxDecoration(Color color) => BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(30)),
         border: Border.all(
           width: 2,

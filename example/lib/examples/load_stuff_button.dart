@@ -82,7 +82,7 @@ class _LoadStuffButtonState extends State<LoadStuffButton> {
     });
   }
 
-  Widget buildButton(context, MultiTweenValues<_AniProps> ani) {
+  Widget buildButton(BuildContext context, MultiTweenValues<_AniProps> ani) {
     return Container(
       height: 50,
       width: ani.get(_AniProps.width),
@@ -117,7 +117,7 @@ class _LoadStuffButtonState extends State<LoadStuffButton> {
 
   static final AnimatedWidgetBuilder<MultiTweenValues<_AniProps>>
       progressIndicator = (context, child, ani) => Center(
-            child: LoopAnimation(
+            child: LoopAnimation<double>(
               duration: 600.milliseconds,
               tween: 0.0.tweenTo(pi * 2),
               builder: (context, child, rotation) => Transform.rotate(

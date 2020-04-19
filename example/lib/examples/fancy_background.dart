@@ -30,7 +30,7 @@ class FancyBackgroundApp extends StatelessWidget {
     );
   }
 
-  onBottom(Widget child) => Positioned.fill(
+  Widget onBottom(Widget child) => Positioned.fill(
         child: Align(
           alignment: Alignment.bottomCenter,
           child: child,

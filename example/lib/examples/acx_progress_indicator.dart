@@ -102,10 +102,15 @@ class _ProgressIndicatorAnimationState extends State<ProgressIndicatorAnimation>
       await fadeOutController.play(duration: 1200.milliseconds);
     }
     setState(() {
-      if (mounted) {
-        _showCircularProgressIndicator = false;
-      }
+      _showCircularProgressIndicator = false;
     });
+  }
+
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
   }
 }
 

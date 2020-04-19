@@ -35,7 +35,7 @@ class Bar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PlayAnimation(
+    return PlayAnimation<double>(
       duration: Duration(milliseconds: (height * _baseDurationMs).round()),
       tween: 0.0.tweenTo(height),
       builder: (context, child, animatedHeight) {

@@ -45,7 +45,7 @@ class Homescreen extends StatelessWidget {
 
 class LinkToExample extends StatelessWidget {
   final String label;
-  final Function click;
+  final VoidCallback click;
 
   const LinkToExample({
     this.label,

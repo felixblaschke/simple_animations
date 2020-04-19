@@ -95,7 +95,9 @@ class ParticleModel {
   }
 
   double progress() {
-    return ((DateTime.now().duration() - startTime) / duration).clamp(0.0, 1.0);
+    return ((DateTime.now().duration() - startTime) / duration)
+        .clamp(0.0, 1.0)
+        .toDouble();
   }
 }
 
@@ -110,10 +112,11 @@ class ParticlePainter extends CustomPainter {
 
     particles.forEach((particle) {
       final progress = particle.progress();
-      final animation = particle.tween.transform(progress);
+      final MultiTweenValues<_OffsetProps> animation =
+          particle.tween.transform(progress);
       final position = Offset(
-        animation.get(_OffsetProps.x) * size.width,
-        animation.get(_OffsetProps.y) * size.height,
+        animation.get<double>(_OffsetProps.x) * size.width,
+        animation.get<double>(_OffsetProps.y) * size.height,
       );
       canvas.drawCircle(position, size.width * 0.2 * particle.size, paint);
     });

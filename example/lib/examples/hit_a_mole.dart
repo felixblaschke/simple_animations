@@ -114,7 +114,7 @@ class _MoleState extends State<Mole> {
 enum _MoleProps { x, y, scale }
 
 class MoleParticle {
-  Animatable tween;
+  Animatable<MultiTweenValues<_MoleProps>> tween;
   Duration startTime;
   final duration = 600.milliseconds;
 
@@ -150,7 +150,9 @@ class MoleParticle {
   }
 
   double progress() {
-    return ((DateTime.now().duration() - startTime) / duration).clamp(0.0, 1.0);
+    return ((DateTime.now().duration() - startTime) / duration)
+        .clamp(0.0, 1.0)
+        .toDouble();
   }
 }
 

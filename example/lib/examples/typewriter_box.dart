@@ -40,7 +40,7 @@ class Box extends StatelessWidget {
     );
   }
 
-  isEnoughRoomForTypewriter(width) => width > 20;
+  bool isEnoughRoomForTypewriter(double width) => width > 20;
 }
 
 class TypewriterText extends StatelessWidget {
