@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:sa_v1_migration/sa_v1_migration.dart';
 import 'package:simple_animations_example_app/widgets/example_page.dart';
+import 'package:supercharged/supercharged.dart';
 
 class GameArea extends StatelessWidget {
   @override
@@ -50,16 +50,17 @@ class _MoleState extends State<Mole> {
     );
   }
 
-  Rendering _buildMole() {
-    return Rendering(
-      onTick: (time) => _manageParticleLifecycle(time),
-      builder: (context, time) {
+  Widget _buildMole() {
+    _manageParticleLifecycle();
+    return LoopAnimation<int>(
+      tween: ConstantTween(1),
+      builder: (context, child, value) {
         return Stack(
           overflow: Overflow.visible,
           children: [
             if (_moleIsVisible)
-              GestureDetector(onTap: () => _hitMole(time), child: _mole()),
-            ...particles.map((it) => it.buildWidget(time))
+              GestureDetector(onTap: () => _hitMole(), child: _mole()),
+            ...particles.map((it) => it.buildWidget())
           ],
         );
       },
@@ -73,26 +74,26 @@ class _MoleState extends State<Mole> {
     );
   }
 
-  _hitMole(Duration time) {
+  _hitMole() {
     _setMoleVisible(false);
-    Iterable.generate(50).forEach((i) => particles.add(MoleParticle(time)));
+    Iterable.generate(50).forEach((i) => particles.add(MoleParticle()));
   }
 
   void _restartMole() async {
-    var respawnTime = Duration(milliseconds: 2000 + Random().nextInt(8000));
+    var respawnTime = (2000 + Random().nextInt(8000)).milliseconds;
     await Future.delayed(respawnTime);
     _setMoleVisible(true);
 
-    var timeVisible = Duration(milliseconds: 500 + Random().nextInt(1500));
+    var timeVisible = (500 + Random().nextInt(1500)).milliseconds;
     await Future.delayed(timeVisible);
     _setMoleVisible(false);
 
     _restartMole();
   }
 
-  _manageParticleLifecycle(Duration time) {
+  _manageParticleLifecycle() {
     particles.removeWhere((particle) {
-      return particle.progress.progress(time) == 1;
+      return particle.progress() == 1;
     });
   }
 
@@ -110,31 +111,34 @@ class _MoleState extends State<Mole> {
   }
 }
 
+enum _MoleProps { x, y, scale }
+
 class MoleParticle {
   Animatable tween;
-  AnimationProgress progress;
+  Duration startTime;
+  final duration = 600.milliseconds;
 
-  MoleParticle(Duration time) {
+  MoleParticle() {
     final random = Random();
     final x = (100 + 200) * random.nextDouble() * (random.nextBool() ? 1 : -1);
     final y = (100 + 200) * random.nextDouble() * (random.nextBool() ? 1 : -1);
 
-    tween = MultiTrackTween([
-      Track("x").add(Duration(seconds: 1), Tween(begin: 0.0, end: x)),
-      Track("y").add(Duration(seconds: 1), Tween(begin: 0.0, end: y)),
-      Track("scale").add(Duration(seconds: 1), Tween(begin: 1.0, end: 0.0))
-    ]);
-    progress = AnimationProgress(
-        startTime: time, duration: Duration(milliseconds: 600));
+    tween = MultiTween<_MoleProps>()
+      ..add(_MoleProps.x, 0.0.tweenTo(x))
+      ..add(_MoleProps.y, 0.0.tweenTo(y))
+      ..add(_MoleProps.scale, 1.0.tweenTo(0.0));
+
+    startTime = DateTime.now().duration();
   }
 
-  buildWidget(Duration time) {
-    final animation = tween.transform(progress.progress(time));
+  Widget buildWidget() {
+    final MultiTweenValues<_MoleProps> values = tween.transform(progress());
+
     return Positioned(
-      left: animation["x"],
-      top: animation["y"],
+      left: values.get(_MoleProps.x),
+      top: values.get(_MoleProps.y),
       child: Transform.scale(
-        scale: animation["scale"],
+        scale: values.get(_MoleProps.scale),
         child: Container(
           width: 100,
           height: 100,
@@ -143,6 +147,10 @@ class MoleParticle {
         ),
       ),
     );
+  }
+
+  double progress() {
+    return ((DateTime.now().duration() - startTime) / duration).clamp(0.0, 1.0);
   }
 }
 

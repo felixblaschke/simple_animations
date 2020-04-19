@@ -95,9 +95,7 @@ class ParticleModel {
   }
 
   double progress() {
-    var progress =
-        max(0.0, min((DateTime.now().duration() - startTime) / duration, 1.0));
-    return progress;
+    return ((DateTime.now().duration() - startTime) / duration).clamp(0.0, 1.0);
   }
 }
 
