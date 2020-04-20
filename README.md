@@ -31,7 +31,7 @@ For more details have a look at the [install tab](https://pub.dev/packages/simpl
 🛈 *If are upgrading from version `1.x.x` read the [**migration guide**](https://pub.dev/packages/sa_v1_migration).*
 
 
-## Modules
+## 🍱 Modules
 
 Simple Animations constists of multiple modules that are provided by this Flutter package. You can also use them separately.
 
