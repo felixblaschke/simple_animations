@@ -129,7 +129,7 @@ packages:
       path: "..\\sa_multi_tween"
       relative: true
     source: path
-    version: "0.0.8"
+    version: "0.0.9"
   sa_stateless_animation:
     dependency: "direct main"
     description:
