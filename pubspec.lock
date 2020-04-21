@@ -126,16 +126,16 @@ packages:
   sa_multi_tween:
     dependency: "direct main"
     description:
-      path: "..\\sa_multi_tween"
-      relative: true
-    source: path
-    version: "0.0.9"
+      name: sa_multi_tween
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.10"
   sa_stateless_animation:
     dependency: "direct main"
     description:
-      path: "..\\sa_stateless_animation"
-      relative: true
-    source: path
+      name: sa_stateless_animation
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.5"
   sky_engine:
     dependency: transitive
@@ -176,7 +176,7 @@ packages:
       name: supercharged
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.0"
+    version: "1.5.1"
   term_glyph:
     dependency: transitive
     description:

@@ -109,7 +109,7 @@ class AnimatedBackground extends StatelessWidget {
 
     return MirrorAnimation<MultiTweenValues<_BgProps>>(
       tween: tween,
-      duration: tween.duration,
+      duration: 3.seconds,
       builder: (context, child, value) {
         return Container(
           decoration: BoxDecoration(

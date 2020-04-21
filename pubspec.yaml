@@ -9,13 +9,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sa_multi_tween:
-    path: ../sa_multi_tween
-  sa_anicoto: ^0.0.6
-#  sa_anicoto:
+  sa_multi_tween: ^0.0.1
+#    path: ../sa_multi_tween
+  sa_anicoto: ^0.0.1
 #    path: ../sa_anicoto
-  sa_stateless_animation:
-    path: ../sa_stateless_animation
+  sa_stateless_animation: ^0.0.1
+#    path: ../sa_stateless_animation
 
 dev_dependencies:
   flutter_test:
