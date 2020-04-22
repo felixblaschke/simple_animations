@@ -148,21 +148,21 @@ packages:
       name: sa_anicoto
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.6"
+    version: "1.0.0"
   sa_multi_tween:
     dependency: transitive
     description:
       name: sa_multi_tween
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.10"
+    version: "1.0.0"
   sa_stateless_animation:
     dependency: transitive
     description:
       name: sa_stateless_animation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.5"
+    version: "1.0.0"
   simple_animations:
     dependency: "direct main"
     description:
