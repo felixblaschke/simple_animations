@@ -1,3 +1,16 @@
+## 2.0.0
+
+- **New:** Simple Animation has been reworked with version `2.0.0`.
+
+- **New:** Added module [Stateless Animation](https://pub.dev/packages/sa_stateless_animation)
+- **New:** Added module [Multi Tween](https://pub.dev/packages/sa_multi_tween)
+- **New:** Added module [Anicoto](https://pub.dev/packages/sa_anicoto)
+- **Breaking changes:** See [migration guide](https://pub.dev/packages/sa_v1_migration) 
+
+## 1.3.12
+
+- Fixed bug when updating `curve` parameter in `ControlledAnimation`
+
 ## 1.3.11
 
 - Integrated example from pub example page into example_app
