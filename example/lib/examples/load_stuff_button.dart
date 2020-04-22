@@ -3,13 +3,14 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:simple_animations_example_app/widgets/example_page.dart';
+import 'package:supercharged/supercharged.dart';
 
 class LoadStuffButton extends StatefulWidget {
   @override
   _LoadStuffButtonState createState() => _LoadStuffButtonState();
 }
 
-typedef AniWidgetBuilder = Widget Function(BuildContext context, dynamic ani);
+enum _AniProps { width, backgroundColor, childIndex, opacity }
 
 class _LoadStuffButtonState extends State<LoadStuffButton> {
   bool _startedLoading = false;
@@ -18,45 +19,40 @@ class _LoadStuffButtonState extends State<LoadStuffButton> {
 
   @override
   Widget build(BuildContext context) {
-    final durationPart1 = const Duration(milliseconds: 400);
-    final durationPart1a = const Duration(milliseconds: 200);
-    final durationPart1b = const Duration(milliseconds: 200);
-    final durationPart2 = const Duration(milliseconds: 400);
+    final tween1 = MultiTween<_AniProps>()
+      ..add(_AniProps.width, 200.0.tweenTo(50.0), 400.milliseconds)
+      ..add(_AniProps.backgroundColor, Colors.green.tweenTo(Colors.white),
+          400.milliseconds)
+      ..add(_AniProps.childIndex, ConstantTween(0), 200.milliseconds)
+      ..add(_AniProps.childIndex, ConstantTween(1), 200.milliseconds)
+      ..add(_AniProps.opacity, 1.0.tweenTo(0.0), 200.milliseconds)
+      ..add(_AniProps.opacity, 0.0.tweenTo(1.0), 200.milliseconds);
 
-    final tween1 = MultiTrackTween([
-      Track("width").add(durationPart1, Tween(begin: 200.0, end: 50.0)),
-      Track("backgroundColor").add(
-          durationPart1, ColorTween(begin: Colors.green, end: Colors.white)),
-      Track("childIndex")
-          .add(durationPart1a, ConstantTween(0))
-          .add(durationPart1b, ConstantTween(1)),
-      Track("opacity")
-          .add(durationPart1a, Tween(begin: 1.0, end: 0.0))
-          .add(durationPart1b, Tween(begin: 0.0, end: 1.0))
-    ]);
-
-    final tween2 = MultiTrackTween([
-      Track("width").add(durationPart2, Tween(begin: 50.0, end: 200.0)),
-      Track("backgroundColor").add(durationPart2, ConstantTween(Colors.white)),
-      Track("childIndex").add(durationPart2, ConstantTween(2))
-    ]);
+    final tween2 = MultiTween<_AniProps>()
+      ..add(_AniProps.width, 50.0.tweenTo(200.0), 400.milliseconds)
+      ..add(_AniProps.backgroundColor, ConstantTween(Colors.white),
+          400.milliseconds)
+      ..add(_AniProps.childIndex, ConstantTween(2), 400.milliseconds);
 
     final playSecondAnimation = _dataAvailable && _firstAnimationFinished;
 
     return GestureDetector(
       onTap: _clickLoadStuff,
-      child: ControlledAnimation(
-        playback: !_startedLoading ? Playback.PAUSE : Playback.PLAY_FORWARD,
+      child: CustomAnimation<MultiTweenValues<_AniProps>>(
+        control: !_startedLoading
+            ? CustomAnimationControl.STOP
+            : CustomAnimationControl.PLAY,
         tween: tween1,
         duration: tween1.duration,
-        animationControllerStatusListener: _listenToAnimationFinished,
-        builder: (context, ani1) {
-          return ControlledAnimation(
-            playback:
-                !playSecondAnimation ? Playback.PAUSE : Playback.PLAY_FORWARD,
+        animationStatusListener: _listenToAnimationFinished,
+        builder: (context, child, ani1) {
+          return CustomAnimation<MultiTweenValues<_AniProps>>(
+            control: !playSecondAnimation
+                ? CustomAnimationControl.STOP
+                : CustomAnimationControl.PLAY,
             tween: tween2,
             duration: tween2.duration,
-            builder: (context, ani2) {
+            builder: (context, child, ani2) {
               final ani = !playSecondAnimation ? ani1 : ani2;
               return buildButton(context, ani);
             },
@@ -86,12 +82,12 @@ class _LoadStuffButtonState extends State<LoadStuffButton> {
     });
   }
 
-  Widget buildButton(context, ani) {
+  Widget buildButton(BuildContext context, MultiTweenValues<_AniProps> ani) {
     return Container(
       height: 50,
-      width: ani["width"],
-      decoration: boxDecoration(ani["backgroundColor"]),
-      child: contentChildren[ani["childIndex"]](context, ani),
+      width: ani.get(_AniProps.width),
+      decoration: boxDecoration(ani.get(_AniProps.backgroundColor)),
+      child: contentChildren[ani.get(_AniProps.childIndex)](context, null, ani),
     );
   }
 
@@ -102,53 +98,52 @@ class _LoadStuffButtonState extends State<LoadStuffButton> {
     }
   }
 
-  final contentChildren = <AniWidgetBuilder>[
+  final contentChildren = <AnimatedWidgetBuilder<MultiTweenValues<_AniProps>>>[
     loadButtonLabel,
     progressIndicator,
     showSuccess
   ];
 
-  static final AniWidgetBuilder loadButtonLabel = (context, ani) => Center(
-        child: Opacity(
-          opacity: ani["opacity"],
-          child: Text(
-            "Load Stuff",
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-        ),
-      );
-
-  static final AniWidgetBuilder progressIndicator = (context, ani) => Center(
-        child: ControlledAnimation(
-          playback: Playback.LOOP,
-          duration: Duration(milliseconds: 600),
-          tween: Tween(begin: 0.0, end: pi * 2),
-          builder: (context, rotation) => Transform.rotate(
-            angle: rotation,
+  static final AnimatedWidgetBuilder<MultiTweenValues<_AniProps>>
+      loadButtonLabel = (context, child, ani) => Center(
             child: Opacity(
-              opacity: ani["opacity"],
-              child: Icon(
-                Icons.sync,
-                color: Colors.green,
+              opacity: ani.get(_AniProps.opacity),
+              child: Text(
+                "Load Stuff",
+                style: TextStyle(color: Colors.white, fontSize: 16),
               ),
             ),
-          ),
-        ),
-      );
+          );
 
-  static final AniWidgetBuilder showSuccess = (context, ani) {
-    final tween = MultiTrackTween([
-      Track("width")
-          .add(Duration(milliseconds: 400), Tween(begin: 0.0, end: 100.0)),
-      Track("opacity")
-          .add(Duration(milliseconds: 300), ConstantTween(0.0))
-          .add(Duration(milliseconds: 300), Tween(begin: 0.0, end: 1.0))
-    ]);
+  static final AnimatedWidgetBuilder<MultiTweenValues<_AniProps>>
+      progressIndicator = (context, child, ani) => Center(
+            child: LoopAnimation<double>(
+              duration: 600.milliseconds,
+              tween: 0.0.tweenTo(pi * 2),
+              builder: (context, child, rotation) => Transform.rotate(
+                angle: rotation,
+                child: Opacity(
+                  opacity: ani.get(_AniProps.opacity),
+                  child: Icon(
+                    Icons.sync,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+            ),
+          );
 
-    return ControlledAnimation(
+  static final AnimatedWidgetBuilder<MultiTweenValues<_AniProps>> showSuccess =
+      (context, child, ani) {
+    final tween = MultiTween<_AniProps>()
+      ..add(_AniProps.width, 0.0.tweenTo(100.0), 400.milliseconds)
+      ..add(_AniProps.opacity, ConstantTween(0.0), 300.milliseconds)
+      ..add(_AniProps.opacity, 0.0.tweenTo(1.0), 300.milliseconds);
+
+    return PlayAnimation<MultiTweenValues<_AniProps>>(
       duration: tween.duration,
       tween: tween,
-      builder: (context, animation) => Row(
+      builder: (context, child, value) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Icon(
@@ -157,9 +152,9 @@ class _LoadStuffButtonState extends State<LoadStuffButton> {
           ),
           ClipRect(
             child: SizedBox(
-              width: animation["width"],
+              width: value.get(_AniProps.width),
               child: Opacity(
-                  opacity: animation["opacity"],
+                  opacity: value.get(_AniProps.opacity),
                   child: Text(
                     "Success",
                     style:

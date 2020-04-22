@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:simple_animations_example_app/widgets/example_page.dart';
+import 'package:supercharged/supercharged.dart';
 
 class FancyBackgroundApp extends StatelessWidget {
   @override
@@ -29,7 +30,7 @@ class FancyBackgroundApp extends StatelessWidget {
     );
   }
 
-  onBottom(Widget child) => Positioned.fill(
+  Widget onBottom(Widget child) => Positioned.fill(
         child: Align(
           alignment: Alignment.bottomCenter,
           child: child,
@@ -50,11 +51,10 @@ class AnimatedWave extends StatelessWidget {
       return Container(
         height: height,
         width: constraints.biggest.width,
-        child: ControlledAnimation(
-            playback: Playback.LOOP,
-            duration: Duration(milliseconds: (5000 / speed).round()),
-            tween: Tween(begin: 0.0, end: 2 * pi),
-            builder: (context, value) {
+        child: LoopAnimation<double>(
+            duration: (5000 / speed).round().milliseconds,
+            tween: 0.0.tweenTo(2 * pi),
+            builder: (context, child, value) {
               return CustomPaint(
                 foregroundPainter: CurvePainter(value + offset),
               );
@@ -97,27 +97,29 @@ class CurvePainter extends CustomPainter {
   }
 }
 
+enum _BgProps { color1, color2 }
+
 class AnimatedBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final tween = MultiTrackTween([
-      Track("color1").add(Duration(seconds: 3),
-          ColorTween(begin: Color(0xffD38312), end: Colors.lightBlue.shade900)),
-      Track("color2").add(Duration(seconds: 3),
-          ColorTween(begin: Color(0xffA83279), end: Colors.blue.shade600))
-    ]);
+    final tween = MultiTween<_BgProps>()
+      ..add(
+          _BgProps.color1, Color(0xffD38312).tweenTo(Colors.lightBlue.shade900))
+      ..add(_BgProps.color2, Color(0xffA83279).tweenTo(Colors.blue.shade600));
 
-    return ControlledAnimation(
-      playback: Playback.MIRROR,
+    return MirrorAnimation<MultiTweenValues<_BgProps>>(
       tween: tween,
-      duration: tween.duration,
-      builder: (context, animation) {
+      duration: 3.seconds,
+      builder: (context, child, value) {
         return Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [animation["color1"], animation["color2"]])),
+                  colors: [
+                value.get(_BgProps.color1),
+                value.get(_BgProps.color2)
+              ])),
         );
       },
     );

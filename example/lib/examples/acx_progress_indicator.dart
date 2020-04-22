@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:simple_animations_example_app/widgets/example_page.dart';
+import 'package:supercharged/supercharged.dart';
 
 class ProgressIndicatorAnimation extends StatefulWidget {
   @override
@@ -9,18 +10,20 @@ class ProgressIndicatorAnimation extends StatefulWidget {
 }
 
 class _ProgressIndicatorAnimationState extends State<ProgressIndicatorAnimation>
-    with AnimationControllerMixin {
-  Animation tween;
+    with AnimationMixin {
+  AnimationController fadeInController;
+  AnimationController fadeOutController;
+
+  Animation<double> translateY;
+  Animation<double> scale;
 
   @override
   void initState() {
-    tween = MultiTrackTween([
-      Track("translateY")
-          .add(Duration(seconds: 1), Tween(begin: -100.0, end: 0.0)),
-      Track("scale")
-          .add(Duration(seconds: 1), ConstantTween(1.0))
-          .add(Duration(seconds: 1), Tween(begin: 1.0, end: 0.0)),
-    ]).animate(controller);
+    fadeInController = createController();
+    fadeOutController = createController();
+
+    translateY = (-100.0).tweenTo(0.0).animatedBy(fadeInController);
+    scale = 1.0.tweenTo(0.0).animatedBy(fadeOutController);
 
     super.initState();
   }
@@ -40,9 +43,9 @@ class _ProgressIndicatorAnimationState extends State<ProgressIndicatorAnimation>
     return Padding(
       padding: const EdgeInsets.only(top: 50),
       child: Transform.translate(
-        offset: Offset(0, tween.value["translateY"]),
+        offset: Offset(0.0, translateY.value),
         child: Transform.scale(
-          scale: tween.value["scale"],
+          scale: scale.value,
           child: Container(
             decoration: BoxDecoration(
               color: Colors.blue.shade200,
@@ -78,28 +81,36 @@ class _ProgressIndicatorAnimationState extends State<ProgressIndicatorAnimation>
     );
   }
 
-  var _dataIsLoaded = false;
+  _loadData() async {
+    if (_showCircularProgressIndicator) {
+      return;
+    }
 
-  _loadData() {
+    _showCircularProgressIndicator = true;
+    fadeInController.reset();
+    fadeOutController.reset();
+
     // Simulate HTTP Request
-    _dataIsLoaded = false;
-    Future.delayed(Duration(seconds: 4)).then((_) => _dataIsLoaded = true);
+    final futureHttpRequest = Future.delayed(4.seconds);
 
-    controller.addTasks([
-      FromToTask(
-          duration: Duration(milliseconds: 700),
-          from: 0,
-          to: 0.5,
-          onStart: () => _showCircularProgressIndicator = true),
-      ConditionalTask(
-        predicate: () => _dataIsLoaded,
-      ),
-      FromToTask(
-          duration: Duration(milliseconds: 1500),
-          from: 0.5,
-          to: 1.0,
-          onComplete: () => _showCircularProgressIndicator = false)
-    ]);
+    final futureFadeIn = fadeInController.play(duration: 700.milliseconds);
+
+    await Future.wait([futureHttpRequest, futureFadeIn]);
+
+    // check if widget is still visible (otherwise animation will fail)
+    if (mounted) {
+      await fadeOutController.play(duration: 1200.milliseconds);
+    }
+    setState(() {
+      _showCircularProgressIndicator = false;
+    });
+  }
+
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
   }
 }
 

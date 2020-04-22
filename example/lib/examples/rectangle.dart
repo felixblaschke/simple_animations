@@ -3,40 +3,36 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:simple_animations_example_app/widgets/example_page.dart';
+import 'package:supercharged/supercharged.dart';
+
+enum _SquareProps { size, color, rotation }
 
 class ExampleRectangle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ControlledAnimation(
-      playback: Playback.MIRROR,
+    return MirrorAnimation<MultiTweenValues<_SquareProps>>(
       duration: tween.duration,
       tween: tween,
-      builder: (context, animation) {
+      builder: (context, child, value) {
         return Transform.rotate(
-          angle: animation["rotation"],
+          angle: value.get(_SquareProps.rotation),
           child: Container(
-            width: animation["size"],
-            height: animation["size"],
-            color: animation["color"],
+            width: value.get(_SquareProps.size),
+            height: value.get(_SquareProps.size),
+            color: value.get(_SquareProps.color),
           ),
         );
       },
     );
   }
 
-  final tween = MultiTrackTween([
-    Track("size").add(Duration(seconds: 4), Tween(begin: 0.0, end: 150.0)),
-    Track("color")
-        .add(Duration(seconds: 2),
-            ColorTween(begin: Colors.red, end: Colors.blue),
-            curve: Curves.easeIn)
-        .add(Duration(seconds: 2),
-            ColorTween(begin: Colors.blue, end: Colors.green),
-            curve: Curves.easeOut),
-    Track("rotation").add(Duration(seconds: 1), ConstantTween(0.0)).add(
-        Duration(seconds: 3), Tween(begin: 0.0, end: pi / 2),
-        curve: Curves.easeOutSine)
-  ]);
+  final tween = MultiTween<_SquareProps>()
+    ..add(_SquareProps.size, 0.0.tweenTo(150.0), 4.seconds)
+    ..add(_SquareProps.color, Colors.red.tweenTo(Colors.blue), 2.seconds)
+    ..add(_SquareProps.color, Colors.blue.tweenTo(Colors.green), 2.seconds)
+    ..add(_SquareProps.rotation, ConstantTween(0.0), 1.seconds)
+    ..add(_SquareProps.rotation, 0.0.tweenTo(pi / 2.0), 3.seconds,
+        Curves.easeOutSine);
 }
 
 class RectangleDemo extends StatelessWidget {
