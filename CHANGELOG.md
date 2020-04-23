@@ -1,3 +1,7 @@
+## 2.0.1
+
+- **Fix:** pub.dev dart analyzer issues
+
 ## 2.0.0
 
 - **New:** Simple Animation has been reworked with version `2.0.0`.
