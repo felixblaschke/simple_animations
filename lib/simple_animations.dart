@@ -1,3 +1,4 @@
+/// Simple Animation Framework
 library simple_animations;
 
 export 'package:sa_anicoto/sa_anicoto.dart';
