@@ -1,3 +1,7 @@
+## 2.0.2
+
+- **Fix:** typo in README documentation
+
 ## 2.0.1
 
 - **Fix:** pub.dev dart analyzer issues

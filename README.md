@@ -21,7 +21,7 @@
 
 ## ⛏️ Getting started
 
-Add the dependency `simple_animation: ^2.0.0` to your project and start using it:
+Add the dependency `simple_animation: ^2.0.2` to your project and start using it:
 ```dart
 import 'package:simple_animations/simple_animations.dart';
 ```
@@ -51,9 +51,9 @@ Click on a module name to read it's documentation and to see examples.
 
 ---
 
-### 🚀 Stateful Animation
+### 🚀 Stateless Animation
 
-Stateful Animation provides your app with a powerful set of Flutter widgets that hide the most complex part of creating animations.
+Stateless Animation provides your app with a powerful set of Flutter widgets that hide the most complex part of creating animations.
 
 *Example: Square with a animated, fading background color.*
 
