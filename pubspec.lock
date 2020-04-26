@@ -137,6 +137,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  sa_v1_migration:
+    dependency: "direct main"
+    description:
+      name: sa_v1_migration
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.1"
   sky_engine:
     dependency: transitive
     description: flutter

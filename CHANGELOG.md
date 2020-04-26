@@ -1,3 +1,7 @@
+## 2.1.0
+
+- **New:** integrated all classes from version 1. They are all marked as deprecated.
+
 ## 2.0.2
 
 - **Fix:** typo in README documentation

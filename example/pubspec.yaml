@@ -19,8 +19,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  simple_animations:
-    path: ../../simple_animations
+  simple_animations: ^2.1.0
   supercharged: ^1.5.0
   url_launcher: ^5.0.2
 
