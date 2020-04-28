@@ -173,9 +173,9 @@ packages:
   simple_animations:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
+      name: simple_animations
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "2.1.0"
   sky_engine:
     dependency: transitive

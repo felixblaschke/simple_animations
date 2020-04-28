@@ -21,7 +21,7 @@
 
 ## ⛏️ Getting started
 
-Add the dependency `simple_animation: ^2.1.0` to your project and start using it:
+Add the dependency `simple_animations: ^2.1.1` to your project and start using it:
 ```dart
 import 'package:simple_animations/simple_animations.dart';
 ```
