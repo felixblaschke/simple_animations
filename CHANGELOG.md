@@ -1,3 +1,7 @@
+## 2.2.0
+
+- **New:** MultiTween `add` method now uses `Animatable` instead of `Tween`.
+
 ## 2.1.1
 
 - **Fix:** critical typo in readme (dependency name)
