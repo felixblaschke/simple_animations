@@ -1,3 +1,9 @@
+## 2.2.1
+
+- **Update:** dependencies
+- **Update:** enforce stricter type rules
+- **Update:** upgraded to pedantic rule set 1.9.0
+
 ## 2.2.0
 
 - **New:** MultiTween `add` method now uses `Animatable` instead of `Tween`.

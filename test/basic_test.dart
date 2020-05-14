@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 void main() {
-  testWidgets("Simple Animations quick test", (WidgetTester tester) async {
+  testWidgets('Simple Animations quick test', (WidgetTester tester) async {
     var widget = MaterialApp(home: TestWidget());
 
     await tester.pumpWidget(widget);
@@ -11,7 +11,7 @@ void main() {
     await tester.pump(Duration(minutes: 1));
     await tester.pump(Duration(milliseconds: 100));
 
-    expect(find.text("100 200"), findsOneWidget);
+    expect(find.text('100 200'), findsOneWidget);
   });
 }
 
@@ -39,7 +39,7 @@ class _TestWidgetState extends State<TestWidget> with AnimationMixin {
     return PlayAnimation<int>(
       tween: IntTween(begin: 100, end: 200),
       builder: (context, child, value) {
-        return Text("${animation.value.get(_AniProps.example)} ${value}");
+        return Text('${animation.value.get<int>(_AniProps.example)} ${value}');
       },
     );
   }

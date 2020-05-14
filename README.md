@@ -21,12 +21,10 @@
 
 ## ⛏️ Getting started
 
-Add the dependency `simple_animations: ^2.1.1` to your project and start using it:
+Add the dependency `simple_animations: ^2.X.X` ([find recent version](https://pub.dev/packages/simple_animations#-installing-tab-)) to your project and start using it:
 ```dart
 import 'package:simple_animations/simple_animations.dart';
 ```
-
-For more details have a look at the [install tab](https://pub.dev/packages/simple_animations#-installing-tab-).
 
 🛈 *If are upgrading from version `1.x.x` read the [**migration guide**](https://pub.dev/packages/sa_v1_migration).*
 
