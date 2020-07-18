@@ -1,3 +1,7 @@
+# next
+
+- **Fix:** removed directory with old / outdated documentation
+
 ## 2.2.1
 
 - **Update:** dependencies
