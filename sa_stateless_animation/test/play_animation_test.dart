@@ -6,7 +6,7 @@ import 'package:supercharged/supercharged.dart';
 import './widget_tester_extension.dart';
 
 void main() {
-  testWidgets("PlayAnimation case1", (WidgetTester tester) async {
+  testWidgets('PlayAnimation case1', (WidgetTester tester) async {
     var values = <int>[];
     final animation = MaterialApp(
         home: PlayAnimation<int>(
