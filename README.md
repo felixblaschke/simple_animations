@@ -1,4 +1,4 @@
-# Simple Animations framework
+# 🎬 Simple Animations framework
 
 This repository contains four Dart packages.
 
