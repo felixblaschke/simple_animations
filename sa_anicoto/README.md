@@ -17,13 +17,13 @@ Anicoto (**Ani**mation**Con**troller **to**olkit) enriches your developing expie
 ### Getting started
 
 Add **Simple Animations** to your project by following the instructions on the 
-**[install page](https://pub.dev/packages/simple_animations#-installing-tab-)**.
+**[install page](https://pub.dev/packages/simple_animations/install)**.
 
 To learn how to use Anicoto:
 
 - Continue reading this page
 - Study complete examples at
-[**example page**](https://pub.dev/packages/sa_anicoto#-example-tab-)
+[**example page**](https://pub.dev/packages/sa_anicoto/example)
 - Discover the
 [**API documentation**](https://pub.dev/documentation/sa_anicoto/latest/sa_anicoto/sa_anicoto-library.html)
 
@@ -115,7 +115,7 @@ void initState() {
 }
 ```
 
-You can find the complete code on top of the [example page](https://pub.dev/packages/sa_anicoto#-example-tab-).
+You can find the complete code on top of the [example page](https://pub.dev/packages/sa_anicoto/example).
 
 
 ### Shortcuts for AnimationController

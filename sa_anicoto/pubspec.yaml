@@ -1,6 +1,6 @@
 name: sa_anicoto
 description: Anicoto (part of Simple Animations Framework) enriches your developing expierience with Flutter`s AnimationController.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/felixblaschke/simple_animations/blob/master/sa_anicoto
 
 environment:
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  supercharged: ^1.4.0
+  supercharged: ^1.10.0
 
 dev_dependencies:
   flutter_test:
