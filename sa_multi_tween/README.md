@@ -17,13 +17,13 @@ MultiTween is a **powerful** `Animateable` that animates multiple properties at 
 ### Getting started
 
 Add **Simple Animations** to your project by following the instructions on the 
-**[install page](https://pub.dev/packages/simple_animations#-installing-tab-)**.
+**[install page](https://pub.dev/packages/simple_animations/install)**.
 
 To learn how to use MultiTween:
 
 - Continue reading this page
 - Study complete examples at
-[**example page**](https://pub.dev/packages/sa_multi_tween#-example-tab-)
+[**example page**](https://pub.dev/packages/sa_multi_tween/example)
 - Discover the
 [**API documentation**](https://pub.dev/documentation/sa_multi_tween/latest/sa_multi_tween/sa_multi_tween-library.html)
 

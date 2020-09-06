@@ -1,6 +1,6 @@
 name: sa_multi_tween
 description: MultiTween (part of Simple Animations Framework) can animate multiple properties at once.
-version: 1.1.1
+version: 1.1.2
 homepage: https://github.com/felixblaschke/simple_animations/blob/master/sa_multi_tween
 
 environment:
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  supercharged: ^1.4.0
+  supercharged: ^1.10.0
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,9 @@
+## 1.1.2
+
+- **Update:** Migrated to new pub.dev page structure
+- **Update:** Migrated to new repository
+- **Update:** Upgraded dependencies
+
 ## 1.1.1
 
 - **Update:** dependencies
