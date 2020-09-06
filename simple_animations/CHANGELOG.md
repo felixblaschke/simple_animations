@@ -1,5 +1,7 @@
-# next
+## 2.2.2
 
+- **Update:** Migrated to new pub.dev page structure
+- **Update:** Upgraded dependencies
 - **Fix:** removed directory with old / outdated documentation
 
 ## 2.2.1

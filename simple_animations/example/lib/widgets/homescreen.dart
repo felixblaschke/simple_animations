@@ -19,7 +19,7 @@ class Homescreen extends StatelessWidget {
               Container(
                 height: 20,
               ),
-              Text("Pick one demo:", style: Theme.of(context).textTheme.body1),
+              Text("Pick one demo:", style: Theme.of(context).textTheme.bodyText1),
               Container(
                 height: 5,
               )
@@ -76,13 +76,13 @@ class _GreetingText extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       textAlign: TextAlign.justify,
-      text: TextSpan(style: Theme.of(context).textTheme.body1, children: [
+      text: TextSpan(style: Theme.of(context).textTheme.bodyText1, children: [
         TextSpan(
             text:
                 "Hey, hey! This is the companion app for the Flutter package "),
         TextSpan(
             text: "simple_animations",
-            style: Theme.of(context).textTheme.body2),
+            style: Theme.of(context).textTheme.bodyText2),
         TextSpan(
             text: ". Here you can discover all features of this "
                 "package by exploring examples. Inspire yourself and"

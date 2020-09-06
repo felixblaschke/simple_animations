@@ -19,8 +19,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  simple_animations: ^2.1.0
-  supercharged: ^1.5.0
+  simple_animations: ^2.2.2
+  supercharged: ^1.10.0
   url_launcher: ^5.0.2
 
   # The following adds the Cupertino Icons font to your application.

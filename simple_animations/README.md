@@ -21,7 +21,8 @@
 
 ## ⛏️ Getting started
 
-Add the dependency `simple_animations: ^2.X.X` ([find recent version](https://pub.dev/packages/simple_animations#-installing-tab-)) to your project and start using it:
+Add **Simple Animations** to your project by following the instructions on the 
+**[install page](https://pub.dev/packages/simple_animations/install)** and start using it:
 ```dart
 import 'package:simple_animations/simple_animations.dart';
 ```
@@ -67,7 +68,7 @@ PlayAnimation<Color>( // <-- specify type of animated variable
 });
 ```
 
-[**Read more about it**](https://pub.dev/packages/sa_stateless_animation) or [**watch examples**](https://pub.dev/packages/sa_stateless_animation#-example-tab-).
+[**Read more about it**](https://pub.dev/packages/sa_stateless_animation) or [**watch examples**](https://pub.dev/packages/sa_stateless_animation/example).
 
 ---
 
@@ -96,7 +97,7 @@ class MyWidget extends StatelessWidget {
 }
 ```
 
-[**Read more about it**](https://pub.dev/packages/sa_multi_tween) or [**watch examples**](https://pub.dev/packages/sa_multi_tween#-example-tab-).
+[**Read more about it**](https://pub.dev/packages/sa_multi_tween) or [**watch examples**](https://pub.dev/packages/sa_multi_tween/example).
 
 ---
 
@@ -130,18 +131,9 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 }
 ```
 
-[**Read more about it**](https://pub.dev/packages/sa_anicoto) or [**watch examples**](https://pub.dev/packages/sa_anicoto#-example-tab-).
+[**Read more about it**](https://pub.dev/packages/sa_anicoto) or [**watch examples**](https://pub.dev/packages/sa_anicoto/example).
 
 ---
-
-
-## 👓 Project overview
-
-| Module | Tests | Repository | Pub |
-| --- | --- | --- | --- |
-| Stateful Animation | [![Tests](https://github.com/felixblaschke/sa_stateless_animation/workflows/Tests/badge.svg)](https://github.com/felixblaschke/sa_stateless_animation/actions?query=workflow%3ATests) | [Github](https://github.com/felixblaschke/sa_stateless_animation) | [![Pub](https://img.shields.io/pub/v/sa_stateless_animation.svg)](https://pub.dartlang.org/packages/sa_stateless_animation) |
-| MultiTween | [![Tests](https://github.com/felixblaschke/sa_multi_tween/workflows/Tests/badge.svg)](https://github.com/felixblaschke/sa_multi_tween/actions?query=workflow%3ATests) | [Github](https://github.com/felixblaschke/sa_multi_tween) | [![Pub](https://img.shields.io/pub/v/sa_multi_tween.svg)](https://pub.dartlang.org/packages/sa_multi_tween) |
-| Anicoto | [![Tests](https://github.com/felixblaschke/sa_anicoto/workflows/Tests/badge.svg)](https://github.com/felixblaschke/sa_anicoto/actions?query=workflow%3ATests) | [Github](https://github.com/felixblaschke/sa_anicoto) | [![Pub](https://img.shields.io/pub/v/sa_anicoto.svg)](https://pub.dartlang.org/packages/sa_anicoto) |
 
 ## 📈 Improve
 
