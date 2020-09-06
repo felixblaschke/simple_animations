@@ -93,11 +93,11 @@ class CustomAnimation<T> extends StatefulWidget {
       this.animationStatusListener,
       Key key})
       : assert(tween != null,
-            "Please set property tween. Example:\ntween: Tween(from: 0.0, to: 100.0)"),
+            'Please set property tween. Example:\ntween: Tween(from: 0.0, to: 100.0)'),
         assert(builder != null,
-            "Please set property builder. Example:\nbuilder: (context, child, value) => Container(width: value))"),
+            'Please set property builder. Example:\nbuilder: (context, child, value) => Container(width: value))'),
         assert(startPosition >= 0 && startPosition <= 1,
-            "The property startPosition must have a value between 0.0 and 1.0."),
+            'The property startPosition must have a value between 0.0 and 1.0.'),
         super(key: key);
 
   @override
@@ -132,7 +132,7 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
 
   void asyncInitState() async {
     if (widget.delay != null) {
-      await Future.delayed(widget.delay);
+      await Future<void>.delayed(widget.delay);
     }
     _waitForDelay = false;
     _applyControlInstruction();

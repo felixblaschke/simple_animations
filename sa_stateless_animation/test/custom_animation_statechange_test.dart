@@ -6,7 +6,7 @@ import 'package:supercharged/supercharged.dart';
 import './widget_tester_extension.dart';
 
 void main() {
-  testWidgets("CustomAnimation stateChange", (WidgetTester tester) async {
+  testWidgets('CustomAnimation stateChange', (WidgetTester tester) async {
     var values = <int>[];
     Function() changeValue;
     final animation = MaterialApp(
@@ -63,7 +63,7 @@ class _TestWidgetState extends State<TestWidget> {
     );
   }
 
-  changeWidget() {
+  void changeWidget() {
     setState(() {
       control = CustomAnimationControl.PLAY_REVERSE;
       curve = Curves.easeInOut;

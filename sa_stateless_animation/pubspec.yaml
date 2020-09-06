@@ -1,6 +1,6 @@
 name: sa_stateless_animation
 description: Stateless Animation (part of Simple Animations Framework) enables developers to craft custom animations with simple widgets.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/felixblaschke/simple_animations/blob/master/sa_stateless_animation
 
 environment:
@@ -9,12 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  supercharged: ^1.4.0
-  sa_anicoto: ^1.0.0
+  supercharged: ^1.10.0
+  sa_anicoto: ^1.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  pedantic: ^1.9.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
