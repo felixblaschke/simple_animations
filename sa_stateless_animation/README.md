@@ -18,13 +18,13 @@ Stateless Animation enables developers to craft custom animations with simple wi
 ### Getting started
 
 Add **Simple Animations** to your project by following the instructions on the 
-**[install page](https://pub.dev/packages/simple_animations#-installing-tab-)**.
+**[install page](https://pub.dev/packages/simple_animations/install)**.
 
 To learn how to use Stateless Animation:
 
 - Continue reading this page
 - Study complete examples at
-[**example page**](https://pub.dev/packages/sa_stateless_animation#-example-tab-)
+[**example page**](https://pub.dev/packages/sa_stateless_animation/example)
 - Discover the
 [**API documentation**](https://pub.dev/documentation/sa_stateless_animation/latest/sa_stateless_animation/sa_stateless_animation-library.html)
 

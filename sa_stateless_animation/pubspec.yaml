@@ -1,6 +1,6 @@
 name: sa_stateless_animation
 description: Stateless Animation (part of Simple Animations Framework) enables developers to craft custom animations with simple widgets.
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/felixblaschke/simple_animations/blob/master/sa_stateless_animation
 
 environment:
