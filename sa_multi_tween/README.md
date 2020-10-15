@@ -65,7 +65,7 @@ PlayAnimation<MultiTweenValues<AniProps>>(
 It's always good to create your own `enum` that contain the precise animation properties the animation uses.
 But we developers are sometimes lazy. 
 
-If you feel lazy can also use the [`DefaultAnimationProperties`](https://github.com/felixblaschke/sa_multi_tween/blob/master/lib/multi_tween/default_animation_properties.dart) enum that contains a varity of common used animation properties.
+If you feel lazy can also use the [`DefaultAnimationProperties`](https://pub.dev/documentation/sa_multi_tween/latest/sa_multi_tween/DefaultAnimationProperties-class.html) enum that contains a varity of common used animation properties.
 
 ```dart
 final _tween = MultiTween<DefaultAnimationProperties>()
