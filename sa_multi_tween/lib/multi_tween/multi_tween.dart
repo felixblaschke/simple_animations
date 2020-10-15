@@ -87,7 +87,8 @@ class MultiTween<P> extends Animatable<MultiTweenValues<P>> {
 
   /// Returns a [MultiTweenValues] that is used to get the animated values.
   @override
-  MultiTweenValues<P> transform(double t) => MultiTweenValues<P>(duration, _tracks, t);
+  MultiTweenValues<P> transform(double t) =>
+      MultiTweenValues<P>(duration, _tracks, t);
 }
 
 /// Represents the result of a MultiTween processed by an animation.
@@ -128,10 +129,27 @@ class MultiTweenValues<P> {
   /// ```dart
   /// values.get<double>(DefaultAnimationProperties.width);
   /// ```
+  ///
+  /// If the property doesn't exist it will throw an assertion exception.
   T get<T>(P property) {
     assert(_tracks.containsKey(property),
         "Property '${property.toString()}' does not exists.");
 
+    return _computeValue(property);
+  }
+
+  /// Returns the animated value for a specified [property] regarding the
+  /// current position (in time) of the animation, similar to [get].
+  ///
+  /// If the property is not defined inside the [MultiTween] it will return
+  /// the specified [defaultValue].
+  T getOrElse<T>(P property, T defaultValue) {
+    return _tracks.containsKey(property)
+        ? _computeValue(property)
+        : defaultValue;
+  }
+
+  T _computeValue<T>(P property) {
     var timeWhenTweenStarts = 0.0;
     final track = _tracks[property];
 
