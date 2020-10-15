@@ -1,3 +1,7 @@
+## 2.2.3
+
+- **New:** Added accessor `getOrElse()` for the `MultiTweenValues` class.
+
 ## 2.2.2
 
 - **Update:** Migrated to new pub.dev page structure
