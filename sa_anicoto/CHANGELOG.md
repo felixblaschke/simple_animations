@@ -1,6 +1,10 @@
+## 1.2.0
+
+- **New:** Parameter `fps` for frame limiting in `AnimationMixin` `createController()`
+
 ## 1.1.0
 
-- **New:** Parameter for using unbounded AnimationController in `AnimationMixin` `createController()`
+- **New:** Parameter `unbounded` for using unbounded AnimationController in `AnimationMixin` `createController()`
 
 ## 1.0.3
 

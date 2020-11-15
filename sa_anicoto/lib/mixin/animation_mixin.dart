@@ -51,6 +51,9 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   /// Creates an additional [AnimationController] instance that gets initialized
   /// and disposed by this mixin.
   ///
+  /// Optionally you can limit the framerate (fps) by specifying a target [fps]
+  /// value.
+  ///
   /// You can create an unbound [AnimationController] by setting the [unbounded]
   /// parameter.
   ///
@@ -76,23 +79,50 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   ///   }
   /// }
   /// ```
-  AnimationController createController({bool unbounded = false}) {
-    final instance = _newAnimationController(unbounded: unbounded);
+  AnimationController createController({
+    bool unbounded = false,
+    int fps,
+  }) {
+    final instance = _newAnimationController(unbounded: unbounded, fps: fps);
     _controllerInstances.add(instance);
     return instance;
   }
 
-  AnimationController _newAnimationController({bool unbounded = false}) {
-    AnimationController controller;
-    if (!unbounded) {
-      controller = AnimationController(vsync: this, duration: 1.seconds);
+  AnimationController _newAnimationController({
+    bool unbounded = false,
+    int fps,
+  }) {
+    var controller = _instanceController(unbounded: unbounded);
+
+    if (fps == null) {
+      controller.addListener(() => setState(() {}));
     } else {
-      controller =
-          AnimationController.unbounded(vsync: this, duration: 1.seconds);
+      _addFrameLimitingUpdater(controller, fps);
     }
 
-    controller.addListener(() => setState(() {}));
     return controller;
+  }
+
+  void _addFrameLimitingUpdater(AnimationController controller, int fps) {
+    var lastUpdateEmitted = DateTime(1970);
+    final frameTimeMs = (1000 / fps).floor();
+
+    controller.addListener(() {
+      final now = DateTime.now();
+      if (lastUpdateEmitted
+          .isBefore(now.subtract(frameTimeMs.milliseconds))) {
+        lastUpdateEmitted = DateTime.now();
+        setState(() {});
+      }
+    });
+  }
+
+  AnimationController _instanceController({bool unbounded}) {
+    if (!unbounded) {
+      return AnimationController(vsync: this, duration: 1.seconds);
+    } else {
+      return AnimationController.unbounded(vsync: this, duration: 1.seconds);
+    }
   }
 
   // below code from TickerProviderStateMixin (dispose method is modified) ----------------------------------------
