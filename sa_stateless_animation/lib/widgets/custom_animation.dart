@@ -61,6 +61,9 @@ enum CustomAnimationControl {
 /// can set a [startPosition] that takes values between `0.0` (start)
 /// and `1.0` (end).
 ///
+/// You can optionally limit the framerate (fps) of the animation by
+/// setting the [fps] value.
+///
 /// You can provide an [animationStatusListener] that gets called by
 /// the internal `AnimationController`. It's receives events of the
 /// type [AnimationStatus].
@@ -78,6 +81,7 @@ class CustomAnimation<T> extends StatefulWidget {
   final Widget child;
   final AnimationStatusListener animationStatusListener;
   final double startPosition;
+  final int fps;
 
   /// Creates a new CustomAnimation widget.
   /// See class documentation for more information.
@@ -91,6 +95,7 @@ class CustomAnimation<T> extends StatefulWidget {
       this.startPosition = 0.0,
       this.child,
       this.animationStatusListener,
+      this.fps,
       Key key})
       : assert(tween != null,
             'Please set property tween. Example:\ntween: Tween(from: 0.0, to: 100.0)'),
@@ -106,6 +111,7 @@ class CustomAnimation<T> extends StatefulWidget {
 
 class _CustomAnimationState<T> extends State<CustomAnimation<T>>
     with AnimationMixin {
+  AnimationController aniController;
   Animation<T> _animation;
   bool _isDisposed = false;
   bool _waitForDelay = true;
@@ -113,13 +119,14 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
 
   @override
   void initState() {
-    controller.value = widget.startPosition;
-    controller.duration = widget.duration;
+    aniController = createController(fps: widget.fps);
+    aniController.value = widget.startPosition;
+    aniController.duration = widget.duration;
 
     _buildAnimation();
 
     if (widget.animationStatusListener != null) {
-      controller.addStatusListener(widget.animationStatusListener);
+      aniController.addStatusListener(widget.animationStatusListener);
     }
 
     asyncInitState();
@@ -127,7 +134,7 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
   }
 
   void _buildAnimation() {
-    _animation = widget.tween.curved(widget.curve).animatedBy(controller);
+    _animation = widget.tween.curved(widget.curve).animatedBy(aniController);
   }
 
   void asyncInitState() async {
@@ -140,7 +147,7 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
 
   @override
   void didUpdateWidget(CustomAnimation<T> oldWidget) {
-    controller.duration = widget.duration;
+    aniController.duration = widget.duration;
     _buildAnimation();
     _applyControlInstruction();
     super.didUpdateWidget(oldWidget);
@@ -152,27 +159,27 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
     }
 
     if (widget.control == CustomAnimationControl.STOP) {
-      controller.stop();
+      aniController.stop();
     }
     if (widget.control == CustomAnimationControl.PLAY) {
-      controller.play();
+      aniController.play();
     }
     if (widget.control == CustomAnimationControl.PLAY_REVERSE) {
-      controller.playReverse();
+      aniController.playReverse();
     }
     if (widget.control == CustomAnimationControl.PLAY_FROM_START) {
-      controller.forward(from: 0.0);
+      aniController.forward(from: 0.0);
     }
     if (widget.control == CustomAnimationControl.PLAY_REVERSE_FROM_END) {
-      controller.reverse(from: 1.0);
+      aniController.reverse(from: 1.0);
     }
     if (widget.control == CustomAnimationControl.LOOP) {
-      controller.loop();
+      aniController.loop();
     }
     if (widget.control == CustomAnimationControl.MIRROR &&
         !_isControlSetToMirror) {
       _isControlSetToMirror = true;
-      controller.mirror();
+      aniController.mirror();
     }
 
     if (widget.control != CustomAnimationControl.MIRROR) {

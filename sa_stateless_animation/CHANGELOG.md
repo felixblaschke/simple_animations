@@ -1,3 +1,7 @@
+## 1.1.0
+
+- **New:** Optional parameter `fps` to limit the framerate of `PlayAnimation`, `LoopAnimation`, `MirrorAnimation` and `CustomAnimation`
+
 ## 1.0.3
 
 - **Fix:** Changelog

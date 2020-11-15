@@ -18,6 +18,9 @@ part of sa_stateless_animation;
 /// The [curve] parameter can be used to apply a non-linear animation
 /// to your tween.
 ///
+/// You can optionally limit the framerate (fps) of the animation by
+/// setting the [fps] value.
+///
 /// If you work with multiple animation widgets that are conditionally
 /// rendered, you might want to set a [key]. Otherwise Flutter will
 /// recycled your "old animation" which results in strange behavior.
@@ -27,6 +30,7 @@ class MirrorAnimation<T> extends StatelessWidget {
   final Duration duration;
   final Animatable<T> tween;
   final Curve curve;
+  final int fps;
 
   /// Creates a new MirrorAnimation widget.
   /// See class documentation for more information.
@@ -36,6 +40,7 @@ class MirrorAnimation<T> extends StatelessWidget {
       this.duration = const Duration(seconds: 1),
       this.curve = Curves.linear,
       this.child,
+      this.fps,
       Key key})
       : super(key: key);
 
@@ -48,6 +53,7 @@ class MirrorAnimation<T> extends StatelessWidget {
       duration: duration,
       curve: curve,
       child: child,
+      fps: fps,
     );
   }
 }
