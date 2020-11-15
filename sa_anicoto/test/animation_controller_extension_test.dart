@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pedantic/pedantic.dart';
 import 'package:sa_anicoto/sa_anicoto.dart';
 import 'package:supercharged/supercharged.dart';
 
@@ -43,10 +44,10 @@ class _TestWidgetState extends State<TestWidget> with AnimationMixin {
     await controller.play(duration: 10.days);
     await controller.playReverse(duration: 10.days);
 
-    controller.loop(duration: 10.days);
+    unawaited(controller.loop(duration: 10.days));
     await Future<void>.delayed(20.days);
 
-    controller.mirror(duration: 10.days);
+    unawaited(controller.mirror(duration: 10.days));
     await Future<void>.delayed(20.days);
 
     controller.stop();

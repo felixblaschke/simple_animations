@@ -51,6 +51,9 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   /// Creates an additional [AnimationController] instance that gets initialized
   /// and disposed by this mixin.
   ///
+  /// You can create an unbound [AnimationController] by setting the [unbounded]
+  /// parameter.
+  ///
   /// Example: (using [supercharged](https://pub.dev/packages/supercharged))
   /// ```dart
   /// class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
@@ -73,14 +76,21 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   ///   }
   /// }
   /// ```
-  AnimationController createController() {
-    final instance = _newAnimationController();
+  AnimationController createController({bool unbounded = false}) {
+    final instance = _newAnimationController(unbounded: unbounded);
     _controllerInstances.add(instance);
     return instance;
   }
 
-  AnimationController _newAnimationController() {
-    final controller = AnimationController(vsync: this, duration: 1.seconds);
+  AnimationController _newAnimationController({bool unbounded = false}) {
+    AnimationController controller;
+    if (!unbounded) {
+      controller = AnimationController(vsync: this, duration: 1.seconds);
+    } else {
+      controller =
+          AnimationController.unbounded(vsync: this, duration: 1.seconds);
+    }
+
     controller.addListener(() => setState(() {}));
     return controller;
   }

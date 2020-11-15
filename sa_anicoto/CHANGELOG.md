@@ -1,3 +1,7 @@
+## 1.1.0
+
+- **New:** Parameter for using unbounded AnimationController in `AnimationMixin` `createController()`
+
 ## 1.0.3
 
 - **Update:** Migrated to new pub.dev page structure
