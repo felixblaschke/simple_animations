@@ -3,7 +3,7 @@
 
 You can find a complete app [**in this directory**](https://github.com/felixblaschke/simple_animations/tree/master/example) that contains examples of Simple Animations in action. Also you can visit **[Liquid Studio](https://felixblaschke.github.io/liquid-studio)** to explore Liquid animations.
 
-## Fire dance
+## Flame dance
 
 Animation created by Liquid's **Plasma** widget. You can create your own Plasma animation **[here](https://felixblaschke.github.io/liquid-studio/#/plasma)**.
 
