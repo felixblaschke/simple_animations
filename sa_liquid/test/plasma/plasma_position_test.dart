@@ -22,7 +22,11 @@ void main() {
       }
     }
 
-    expect(positions, _expected);
+    expect(positions.length, equals(_expected.length));
+
+    positions.forEachIndexed((index, element) {
+      expect(element.toStringAsFixed(5), equals(_expected[index].toStringAsFixed(5)));
+    });
   });
 }
 

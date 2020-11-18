@@ -14,8 +14,8 @@ void main() {
     final compute = InternalPlasmaCompute(
         canvasSize: Size(100, 100), value: 0, offset: 1.2, circleSize: 1.0);
 
-    expect(compute.position(0).dx, equals(96.6019542983613));
-    expect(compute.position(0).dy, equals(96.6019542983613));
+    expect(compute.position(0).dx.toStringAsFixed(5), equals('96.60195'));
+    expect(compute.position(0).dy.toStringAsFixed(5), equals('96.60195'));
   });
 
   test('plasma - radius 1', () {
