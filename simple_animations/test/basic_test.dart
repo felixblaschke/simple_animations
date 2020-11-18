@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:sa_liquid/plasma/compute/plasma_compute.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 void main() {
@@ -12,6 +13,15 @@ void main() {
     await tester.pump(Duration(milliseconds: 100));
 
     expect(find.text('100 200'), findsOneWidget);
+
+    expect(
+        PlasmaCompute(
+                circleSize: 100,
+                canvasSize: Size(100, 100),
+                offset: 0.0,
+                value: 0.0)
+            .radius(),
+        equals(3333.0));
   });
 }
 

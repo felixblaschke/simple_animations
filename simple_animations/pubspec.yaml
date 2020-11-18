@@ -1,6 +1,6 @@
 name: simple_animations
 description: Powerful framework to create beautiful custom animations in no time.
-version: 2.2.3
+version: 2.3.0-beta.1
 homepage: https://github.com/felixblaschke/simple_animations/blob/master/simple_animations
 
 environment:
@@ -12,6 +12,7 @@ dependencies:
   sa_multi_tween: ^1.1.3
   sa_anicoto: ^1.0.3
   sa_stateless_animation: ^1.0.3
+  sa_liquid: ^0.0.1-beta.4
   sa_v1_migration: ^1.1.2
 
 dev_dependencies:

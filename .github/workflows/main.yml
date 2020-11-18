@@ -58,6 +58,20 @@ jobs:
         working-directory: ./sa_stateless_animation
 
 
+      # sa_liquid  
+      - name: sa_liquid / Remove example
+        run: rm -rf example/
+        working-directory: ./sa_liquid
+
+      - name: sa_liquid / Get dependencies
+        run: flutter pub get
+        working-directory: ./sa_liquid
+
+      - name: sa_liquid / Run tests
+        run: flutter test
+        working-directory: ./sa_liquid
+
+
       # simple_animations  
       - name: simple_animations / Remove example
         run: rm -rf example/

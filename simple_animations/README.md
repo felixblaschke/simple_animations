@@ -40,6 +40,7 @@ Simple Animations constists of multiple modules that are provided by this Flutte
 | --- | ----------- |
 | 🚀&nbsp;[Stateless&nbsp;Animation](https://pub.dev/packages/sa_stateless_animation) | Widgets for super simple creating custom animations. |
 | 🎭&nbsp;[MultiTween](https://pub.dev/packages/sa_multi_tween) | Animate multiple properties at once or create staggered animations. |
+| 🍹&nbsp;[Liquid](https://pub.dev/packages/sa_liquid) | Beautiful visual animations that increases the visual quality of your app. |
 | 🎥&nbsp;[Anicoto](https://pub.dev/packages/sa_anicoto) | Setup managed AnimationControllers instantly. |
 
 Click on a module name to read it's documentation and to see examples.
@@ -98,6 +99,16 @@ class MyWidget extends StatelessWidget {
 ```
 
 [**Read more about it**](https://pub.dev/packages/sa_multi_tween) or [**watch examples**](https://pub.dev/packages/sa_multi_tween/example).
+
+---
+
+### 🍹 Liquid
+
+Liquid provides ready-to-use, stunning visual animations that can be explored and configured with **[Liquid Studio](https://felixblaschke.github.io/liquid-studio)**.
+
+![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/plasma-example.gif)
+
+[**Read more about it**](https://pub.dev/packages/sa_liquid) or [**watch examples**](https://pub.dev/packages/sa_liquid/example).
 
 ---
 

@@ -1,3 +1,8 @@
+## 2.3.0
+
+- **New:** Added new module **Liquid** along with **[Liquid Studio](https://felixblaschke.github.io/liquid-studio)**
+- **New:** FPS-Limiter for **Anicoto** and **Stateless Animation**
+
 ## 2.2.3
 
 - **New:** Added accessor `getOrElse()` for the `MultiTweenValues` class.
