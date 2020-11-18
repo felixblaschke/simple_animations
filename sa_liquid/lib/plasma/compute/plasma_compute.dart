@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+/// Class that computes position of the particles based on [canvasSize],
+/// [circleSize], [offset] and [value].
 class PlasmaCompute {
   final Size canvasSize;
   final double circleSize;

@@ -1,14 +1,68 @@
 part of sa_liquid;
 
+/// Plasma creates an animation with moving particles that generates a
+/// smooth liquid effect. It can be configured in many styles.
+///
+/// You can also use a non-animating variant by setting [speed] to `0.0`
+/// and find a good looking position with the [offset].
+///
+/// Example:
+/// ```dart
+/// import 'package:flutter/material.dart';
+/// import 'package:simple_animations/simple_animations.dart';
+///
+/// void main() => runApp(MaterialApp(home: Page()));
+///
+/// class Page extends StatelessWidget {
+///   @override
+///   Widget build(BuildContext context) {
+///     return Scaffold(
+///       body: Plasma(
+///         particles: 10,
+///         foregroundColor: Color(0xd61e0000),
+///         backgroundColor: Color(0xffee360d),
+///         size: 0.87,
+///         speed: 5.92,
+///         offset: 0.00,
+///         blendMode: BlendMode.darken,
+///         child: Center(child: Text("Hot!")), // your UI here
+///       ),
+///     );
+///   }
+/// }
+///
+/// ```
 class Plasma extends StatelessWidget {
+
+  /// Number of particles to simulate. Has impact on computation demand.
   final int particles;
+
+  /// Color of the animating particles
   final Color foregroundColor;
+
+  /// Color of the static background
   final Color backgroundColor;
-  final double size;
-  final double speed;
-  final int fps;
+
+  /// The [BlendMode] that describes how foreground and background merges
+  /// together.
   final BlendMode blendMode;
+
+  /// Size scale of the animating particles. Has slight impact on computation
+  /// demand.
+  final double size;
+
+  /// Speed scale of the animation. You can set it to `0.0` that disable the
+  /// animation. Disabled animations doesn't require computational demand at all.
+  final double speed;
+
+  /// If set, the animation will reduce the framerate (fps) to the specified
+  /// value.
+  final int fps;
+
+  /// Influences the start position of the particle animation.
   final double offset;
+
+  /// Prebuild child that's placed inside the Plasma [Widget].
   final Widget child;
 
   Plasma({

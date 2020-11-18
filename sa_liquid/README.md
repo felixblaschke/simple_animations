@@ -27,13 +27,15 @@ To learn how to use Liquid:
 
 ### Plasma
 
-Plasma is a `Widget` that creates an animation with moving particles that generates a smooth liquid effect. It can be configured in many styles. You can also use a non-animating variant to generate a fancy background image.
+Plasma is a `Widget` that creates an animation with moving particles that generates a smooth liquid effect. It can be configured in many styles. 
+
+You can also use a non-animating variant to generate a fancy background image. Therefor set `speed` to `0.0` and choose nice position by tuning the `offset`.
 
 
 ![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/plasma-example.gif)
 
 
-Use the **[Plasma creator in Liquid Studio](https://felixblaschke.github.io/liquid-studio/#plasma)** to create an animation. 
+Use the **[Plasma creator in Liquid Studio](https://felixblaschke.github.io/liquid-studio/#/plasma)** to create an animation.
 
 Hit the **Generate code** button and copy the code into your Flutter app.
 
