@@ -101,7 +101,7 @@ packages:
       name: sa_liquid
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.1-beta.4"
+    version: "0.0.1-beta.6"
   sa_multi_tween:
     dependency: "direct main"
     description:
