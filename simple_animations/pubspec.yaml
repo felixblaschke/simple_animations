@@ -1,6 +1,6 @@
 name: simple_animations
 description: Powerful framework to create beautiful custom animations in no time.
-version: 2.3.0-beta.3
+version: 2.3.0-beta.4
 homepage: https://github.com/felixblaschke/simple_animations/blob/master/simple_animations
 
 environment:
