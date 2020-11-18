@@ -33,7 +33,6 @@ part of sa_liquid;
 ///
 /// ```
 class Plasma extends StatelessWidget {
-
   /// Number of particles to simulate. Has impact on computation demand.
   final int particles;
 

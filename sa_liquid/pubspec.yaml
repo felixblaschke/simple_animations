@@ -1,6 +1,6 @@
 name: sa_liquid
 description: Liquid (part of Simple Animations Framework)  provides beautiful visual animations that increases the visual quality of your Flutter application.
-version: 0.0.1-beta.3
+version: 0.0.1-beta.5
 homepage: https://github.com/felixblaschke/simple_animations/blob/master/sa_liquid
 
 environment:
