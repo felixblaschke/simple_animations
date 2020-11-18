@@ -137,7 +137,7 @@ class _PlasmaPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var compute = PlasmaCompute(
+    var compute = InternalPlasmaCompute(
         circleSize: circleSize, offset: offset, canvasSize: size, value: value);
 
     var paint = Paint()
@@ -154,4 +154,37 @@ class _PlasmaPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
   }
+}
+
+/// Class that computes position of the particles based on [canvasSize],
+/// [circleSize], [offset] and [value].
+///
+/// Don't use this directly. Use [Plasma] widget.
+class InternalPlasmaCompute {
+  final Size canvasSize;
+  final double circleSize;
+  final double offset;
+  final double value;
+
+  double _radius;
+
+  InternalPlasmaCompute(
+      {this.canvasSize, this.circleSize, this.offset, this.value}) {
+    _radius = (circleSize * (canvasSize.width + canvasSize.height) / 2 / 3)
+        .roundToDouble();
+  }
+
+  Offset position(int particleNumber) {
+    var rand = sin(particleNumber).abs();
+    var rvalue = (value + rand * 2 * pi) % (2 * pi);
+
+    var x = sin(-rand + rvalue + offset) * canvasSize.width / 2;
+    var y = sin(rand + -2 * rvalue + offset) * canvasSize.height / 2;
+
+    return Offset(canvasSize.width / 2 + x, canvasSize.height / 2 + y);
+  }
+
+  double radius() => _radius;
+
+  double blurRadius() => (_radius * 1.2).roundToDouble();
 }

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sa_liquid/plasma/compute/plasma_compute.dart';
+import 'package:sa_liquid/sa_liquid.dart';
 import 'package:supercharged/supercharged.dart';
 
 void main() {
@@ -12,7 +12,7 @@ void main() {
     for (var w = 20.0; w <= 200; w += 50) {
       for (var h = 20.0; h <= 200; h += 50) {
         for (var v = 0.0; v < 2 * pi; v += pi / 5) {
-          final compute = PlasmaCompute(
+          final compute = InternalPlasmaCompute(
               canvasSize: Size(w, h), value: v, offset: 0, circleSize: 1.0);
 
           0.until(30).forEach((n) {
