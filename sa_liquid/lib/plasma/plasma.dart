@@ -79,42 +79,45 @@ class Plasma extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRect(
-      clipBehavior: Clip.hardEdge,
-      child: CustomAnimation<double>(
-          control: speed > 0
-              ? CustomAnimationControl.LOOP
-              : CustomAnimationControl.STOP,
-          tween: 0.0.tweenTo(2 * pi),
-          child: child,
-          fps: fps,
-          duration:
-              speed > 0 ? (120000.0 / speed).round().milliseconds : 1.seconds,
-          builder: (context, animatedChild, value) {
-            return Stack(
-              children: [
-                Positioned.fill(
-                  child: CustomPaint(
-                    foregroundPainter: _PlasmaPainter(
-                      particles: particles,
-                      value: value,
-                      color: foregroundColor,
-                      circleSize: size,
-                      blendMode: blendMode,
-                      offset: offset,
-                    ),
-                    child: Container(
-                      color: backgroundColor,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 0.01), // workaround for https://github.com/felixblaschke/simple_animations/issues/45
+      child: ClipRect(
+        clipBehavior: Clip.hardEdge,
+        child: CustomAnimation<double>(
+            control: speed > 0
+                ? CustomAnimationControl.LOOP
+                : CustomAnimationControl.STOP,
+            tween: 0.0.tweenTo(2 * pi),
+            child: child,
+            fps: fps,
+            duration:
+                speed > 0 ? (120000.0 / speed).round().milliseconds : 1.seconds,
+            builder: (context, animatedChild, value) {
+              return Stack(
+                children: [
+                  Positioned.fill(
+                    child: CustomPaint(
+                      foregroundPainter: _PlasmaPainter(
+                        particles: particles,
+                        value: value,
+                        color: foregroundColor,
+                        circleSize: size,
+                        blendMode: blendMode,
+                        offset: offset,
+                      ),
+                      child: Container(
+                        color: backgroundColor,
+                      ),
                     ),
                   ),
-                ),
-                if (animatedChild != null)
-                  Positioned.fill(
-                    child: animatedChild,
-                  )
-              ],
-            );
-          }),
+                  if (animatedChild != null)
+                    Positioned.fill(
+                      child: animatedChild,
+                    )
+                ],
+              );
+            }),
+      ),
     );
   }
 }
