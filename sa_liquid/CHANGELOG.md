@@ -1,6 +1,6 @@
 ## 1.0.1
 
-- **Fix:** Plasma: added workaround for hotfix (#45)
+- **Fix:** Plasma: added fix for render issue in web builds (#45)
 
 ## 1.0.0
 
