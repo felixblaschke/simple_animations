@@ -1,3 +1,7 @@
+## 2.3.1
+
+- **Fix:** Liquid - Plasma: added fix for render issue in web builds (#45)
+
 ## 2.3.0
 
 - **New:** Added new module **Liquid** along with **[Liquid Studio](https://felixblaschke.github.io/liquid-studio)**
