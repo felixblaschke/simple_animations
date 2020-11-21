@@ -80,7 +80,8 @@ class Plasma extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 0.01), // workaround for https://github.com/felixblaschke/simple_animations/issues/45
+      padding: const EdgeInsets.only(bottom: 0.01),
+      // workaround for https://github.com/felixblaschke/simple_animations/issues/45
       child: ClipRect(
         clipBehavior: Clip.hardEdge,
         child: CustomAnimation<double>(
