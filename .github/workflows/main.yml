@@ -16,72 +16,16 @@ jobs:
         with:
           channel: 'stable'
 
-      # sa_anicoto  
-      - name: sa_anicoto / Remove example
-        run: rm -rf example/
-        working-directory: ./sa_anicoto
-
-      - name: sa_anicoto / Get dependencies
-        run: flutter pub get
-        working-directory: ./sa_anicoto
-
-      - name: sa_anicoto / Run tests
-        run: flutter test
-        working-directory: ./sa_anicoto
-
-
-      # sa_multi_tween  
-      - name: sa_multi_tween / Remove example
-        run: rm -rf example/
-        working-directory: ./sa_multi_tween
-
-      - name: sa_multi_tween / Get dependencies
-        run: flutter pub get
-        working-directory: ./sa_multi_tween
-
-      - name: sa_multi_tween / Run tests
-        run: flutter test
-        working-directory: ./sa_multi_tween
-
-
-      # sa_stateless_animation  
-      - name: sa_stateless_animation / Remove example
-        run: rm -rf example/
-        working-directory: ./sa_stateless_animation
-
-      - name: sa_stateless_animation / Get dependencies
-        run: flutter pub get
-        working-directory: ./sa_stateless_animation
-
-      - name: sa_stateless_animation / Run tests
-        run: flutter test
-        working-directory: ./sa_stateless_animation
-
-
-      # sa_liquid  
-      - name: sa_liquid / Remove example
-        run: rm -rf example/
-        working-directory: ./sa_liquid
-
-      - name: sa_liquid / Get dependencies
-        run: flutter pub get
-        working-directory: ./sa_liquid
-
-      - name: sa_liquid / Run tests
-        run: flutter test
-        working-directory: ./sa_liquid
-
-
       # simple_animations  
       - name: simple_animations / Remove example
         run: rm -rf example/
-        working-directory: ./simple_animations
+        working-directory: .
 
       - name: simple_animations / Get dependencies
         run: flutter pub get
-        working-directory: ./simple_animations
+        working-directory: .
 
       - name: simple_animations / Run tests
         run: flutter test
-        working-directory: ./simple_animations
+        working-directory: .
         
