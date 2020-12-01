@@ -38,10 +38,10 @@ Simple Animations contains multiple features. Each one covers a different aspect
 
 | Feature | Description |
 | --- | ----------- |
-| 🍹&nbsp;[Liquid](https://pub.dev/packages/sa_liquid) | Beautiful visual animations that increases the visual quality of your app. |
-| 🚀&nbsp;[Stateless&nbsp;Animation](https://pub.dev/packages/sa_stateless_animation) | Widgets for super simple creation of custom animations. |
-| 🎭&nbsp;[MultiTween](https://pub.dev/packages/sa_multi_tween) | Animate multiple properties at once or create staggered animations. |
-| 🎥&nbsp;[Anicoto](https://pub.dev/packages/sa_anicoto) | Setup managed AnimationControllers instantly. |
+| 🍹&nbsp;[Liquid](#-liquid-documentation) | Beautiful visual animations that increases the visual quality of your app. |
+| 🚀&nbsp;[Stateless&nbsp;Animation](#-stateless-animation-documentation) | Widgets for super simple creation of custom animations. |
+| 🎭&nbsp;[MultiTween](#-stateless-animation-documentation) | Animate multiple properties at once or create staggered animations. |
+| 🎥&nbsp;[Anicoto](#-anicoto-documentation) | Setup managed AnimationControllers instantly. |
 
 
 ---
@@ -56,7 +56,7 @@ Liquid provides ready-to-use, stunning visual animations that can be explored an
 
 ![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/plasma-example.gif)
 
-[**Read more about it**](https://pub.dev/packages/sa_liquid) or [**watch examples**](https://pub.dev/packages/sa_liquid/example).
+[**Read more about it**](#-liquid-documentation) or [**watch examples**](example/example.md#-liquid).
 
 ---
 
@@ -78,7 +78,7 @@ PlayAnimation<Color>( // <-- specify type of animated variable
 });
 ```
 
-[**Read more about it**](https://pub.dev/packages/sa_stateless_animation) or [**watch examples**](https://pub.dev/packages/sa_stateless_animation/example).
+[**Read more about it**](#-stateless-animation-documentation) or [**watch examples**](example/example.md#-stateless-animation).
 
 ---
 
@@ -107,7 +107,7 @@ class MyWidget extends StatelessWidget {
 }
 ```
 
-[**Read more about it**](https://pub.dev/packages/sa_multi_tween) or [**watch examples**](https://pub.dev/packages/sa_multi_tween/example).
+[**Read more about it**](#-stateless-animation-documentation) or [**watch examples**](example/example.md#-multi-tween).
 
 ---
 
@@ -143,7 +143,7 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 }
 ```
 
-[**Read more about it**](https://pub.dev/packages/sa_anicoto) or [**watch examples**](https://pub.dev/packages/sa_anicoto/example).
+[**Read more about it**](#-anicoto-documentation) or [**watch examples**](example/example.md#-anicoto).
 
 ---
 
@@ -508,7 +508,7 @@ PlayAnimation<MultiTweenValues<AniProps>>(
 It's always good to create your own `enum` that contain the precise animation properties the animation uses.
 But we developers are sometimes lazy. 
 
-If you feel lazy can also use the [`DefaultAnimationProperties`](https://pub.dev/documentation/sa_multi_tween/latest/sa_multi_tween/DefaultAnimationProperties-class.html) enum that contains a varity of common used animation properties.
+If you feel lazy can also use the `DefaultAnimationProperties` enum that contains a varity of common used animation properties.
 
 ```dart
 final _tween = MultiTween<DefaultAnimationProperties>()
@@ -676,7 +676,7 @@ void initState() {
 }
 ```
 
-You can find the complete code on top of the [example page](https://pub.dev/packages/sa_anicoto/example).
+You can find the complete code on top of the [example page](example/#-anicoto).
 
 
 ### Shortcuts for AnimationController
@@ -770,5 +770,3 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 }
 ```
 Isn't it insanely simple? It's Simple Animations!
-
----
