@@ -1,3 +1,8 @@
+## 2.4.1
+
+- **Update:** Dependencies
+- **Fix:** Homepage url in `pubspec.yaml`
+
 ## 2.4.0
 
 - **Update:** Merged module packages into a single `simple_animations` package
