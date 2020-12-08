@@ -1,3 +1,7 @@
+## 2.4.2
+
+- **Fix:** Link in `README.md`
+
 ## 2.4.1
 
 - **Update:** Dependencies

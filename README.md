@@ -40,7 +40,7 @@ Simple Animations contains multiple features. Each one covers a different aspect
 | --- | ----------- |
 | 🍹&nbsp;[Liquid](#-liquid-documentation) | Beautiful visual animations that increases the visual quality of your app. |
 | 🚀&nbsp;[Stateless&nbsp;Animation](#-stateless-animation-documentation) | Widgets for super simple creation of custom animations. |
-| 🎭&nbsp;[MultiTween](#-stateless-animation-documentation) | Animate multiple properties at once or create staggered animations. |
+| 🎭&nbsp;[MultiTween](#-multitween-documentation) | Animate multiple properties at once or create staggered animations. |
 | 🎥&nbsp;[Anicoto](#-anicoto-documentation) | Setup managed AnimationControllers instantly. |
 
 
@@ -107,7 +107,7 @@ class MyWidget extends StatelessWidget {
 }
 ```
 
-[**Read more about it**](#-stateless-animation-documentation) or [**watch examples**](example/example.md#-multi-tween).
+[**Read more about it**](#-multitween-documentation) or [**watch examples**](example/example.md#-multi-tween).
 
 ---
 
