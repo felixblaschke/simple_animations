@@ -17,6 +17,7 @@ part 'anicoto/animation_mixin.dart';
 part 'liquid/plasma/plasma.dart';
 part 'multi_tween/default_animation_properties.dart';
 part 'multi_tween/multi_tween.dart';
+part 'timeline_tween/timeline_tween.dart';
 part 'stateless_animation/animated_widget_builder.dart';
 part 'stateless_animation/custom_animation.dart';
 part 'stateless_animation/loop_animation.dart';
