@@ -1,3 +1,7 @@
+## 2.5.0
+
+- **Update:** Reorganized documentation
+
 ## 2.4.2
 
 - **Fix:** Link in `README.md`
