@@ -27,10 +27,10 @@ It contains multiple features. Each covers a different aspect of making animatio
 
 | Feature | Description |
 | --- | ----------- |
-| 🍹&nbsp;[Liquid](#-liquid-documentation) | Beautiful visual animations that increases the visual quality of your app. |
-| 🚀&nbsp;[Stateless&nbsp;Animation](#-stateless-animation-documentation) | Widgets for super simple creation of custom animations. |
-| 🎭&nbsp;[MultiTween](#-multitween-documentation) | Animate multiple properties at once or create staggered animations. |
-| 🎥&nbsp;[Anicoto](#-anicoto-documentation) | Setup managed AnimationControllers instantly. |
+| 🍹&nbsp;[Liquid](#-liquid) | Beautiful visual animations that increases the visual quality of your app. |
+| 🚀&nbsp;[Stateless&nbsp;Animation](#-stateless-animation) | Widgets for super simple creation of custom animations. |
+| 🎭&nbsp;[MultiTween](#-multitween) | Animate multiple properties at once or create staggered animations. |
+| 🎥&nbsp;[Anicoto](#-anicoto) | Setup managed AnimationControllers instantly. |
 
 ---
 
