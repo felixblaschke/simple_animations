@@ -64,7 +64,7 @@ PlayAnimation<Color>( // <-- specify type of animated variable
 });
 ```
 
-[**Read more about it**](docs/stateless_animation.md) or [**watch examples**](example/stateless_animation.md).
+[**Read more about it**](doc/stateless_animation.md) or [**watch examples**](example/stateless_animation.md).
 
 ---
 
@@ -93,7 +93,7 @@ class MyWidget extends StatelessWidget {
 }
 ```
 
-[**Read more about it**](docs/multi_tween.md) or [**watch examples**](example/multi_tween.md)
+[**Read more about it**](doc/multi_tween.md) or [**watch examples**](example/multi_tween.md)
 
 ---
 
@@ -128,7 +128,7 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 }
 ```
 
-[**Read more about it**](docs/anicoto.md) or [**watch examples**](example/anicoto.md).
+[**Read more about it**](doc/anicoto.md) or [**watch examples**](example/anicoto.md).
 
 ---
 
