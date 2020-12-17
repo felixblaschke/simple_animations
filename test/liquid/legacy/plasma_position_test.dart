@@ -12,7 +12,7 @@ void main() {
     for (var w = 20.0; w <= 200; w += 50) {
       for (var h = 20.0; h <= 200; h += 50) {
         for (var v = 0.0; v < 2 * pi; v += pi / 5) {
-          final compute = InternalPlasmaCompute(
+          final compute = LegacyInternalPlasmaCompute(
               canvasSize: Size(w, h), value: v, offset: 0, circleSize: 1.0);
 
           0.until(30).forEach((n) {

@@ -32,18 +32,17 @@ part of simple_animations;
 /// }
 ///
 /// ```
-class Plasma extends StatelessWidget {
+class PlasmaRenderer extends StatelessWidget {
+  /// Type of plasma animation
+  final PlasmaType type;
+
   /// Number of particles to simulate. Has impact on computation demand.
   final int particles;
 
   /// Color of the animating particles
-  final Color foregroundColor;
+  final Color color;
 
-  /// Color of the static background
-  final Color backgroundColor;
-
-  /// The [BlendMode] that describes how foreground and background merges
-  /// together.
+  /// Describes how the color merges.
   final BlendMode blendMode;
 
   /// Size scale of the animating particles. Has slight impact on computation
@@ -61,96 +60,167 @@ class Plasma extends StatelessWidget {
   /// Influences the start position of the particle animation.
   final double offset;
 
-  /// Prebuild child that's placed inside the Plasma [Widget].
+  /// Rotation of the animation in radians
+  final double rotation;
+
+  /// Blur scale of the particle.
+  final double blur;
+
+  /// Number influencing the rendering of certain Plasma types.
+  final double variation1;
+
+  /// Number influencing the rendering of certain Plasma types.
+  final double variation2;
+
+  /// Number influencing the rendering of certain Plasma types.
+  final double variation3;
+
+  /// Child that's placed inside this [Widget].
   final Widget child;
 
-  Plasma({
+  PlasmaRenderer({
     Key key,
+    this.type = PlasmaType.infinity,
     this.particles = 10,
-    this.foregroundColor = Colors.white,
-    this.backgroundColor = Colors.black,
+    this.color = Colors.white,
     this.size = 1.0,
     this.speed = 1.0,
     this.offset = 0.0,
     this.fps,
     this.blendMode = BlendMode.srcOver,
+    this.blur = 1.0,
+    this.variation1 = 0.0,
+    this.variation2 = 0.0,
+    this.variation3 = 0.0,
+    this.rotation = 0.0,
     this.child,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 0.01),
-      // workaround for https://github.com/felixblaschke/simple_animations/issues/45
-      child: ClipRect(
-        clipBehavior: Clip.hardEdge,
-        child: CustomAnimation<double>(
-            control: speed > 0
-                ? CustomAnimationControl.LOOP
-                : CustomAnimationControl.STOP,
-            tween: 0.0.tweenTo(2 * pi),
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 0.01),
+            // workaround for https://github.com/felixblaschke/simple_animations/issues/45
+            child: ClipRect(
+              clipBehavior: Clip.hardEdge,
+              child: Transform.rotate(
+                angle: rotation,
+                child: CustomAnimation<double>(
+                    key: Key('plasma_$fps'),
+                    control: speed > 0
+                        ? CustomAnimationControl.LOOP
+                        : CustomAnimationControl.STOP,
+                    tween: 0.0.tweenTo(2 * pi),
+                    fps: fps,
+                    duration: speed > 0
+                        ? (120000.0 / speed).round().milliseconds
+                        : 1.seconds,
+                    builder: (context, _, value) {
+                      return CustomPaint(
+                        painter: _PlasmaPainter(
+                          particles: particles,
+                          value: value,
+                          color: color,
+                          circleSize: size,
+                          blendMode: blendMode,
+                          offset: offset,
+                          blur: blur,
+                          type: type,
+                          rotation: rotation,
+                          variation1: variation1,
+                          variation2: variation2,
+                          variation3: variation3,
+                        ),
+                      );
+                    }),
+              ),
+            ),
+          ),
+        ),
+        if (child != null)
+          Positioned.fill(
             child: child,
-            fps: fps,
-            duration:
-                speed > 0 ? (120000.0 / speed).round().milliseconds : 1.seconds,
-            builder: (context, animatedChild, value) {
-              return Stack(
-                children: [
-                  Positioned.fill(
-                    child: CustomPaint(
-                      foregroundPainter: _PlasmaPainter(
-                        particles: particles,
-                        value: value,
-                        color: foregroundColor,
-                        circleSize: size,
-                        blendMode: blendMode,
-                        offset: offset,
-                      ),
-                      child: Container(
-                        color: backgroundColor,
-                      ),
-                    ),
-                  ),
-                  if (animatedChild != null)
-                    Positioned.fill(
-                      child: animatedChild,
-                    )
-                ],
-              );
-            }),
-      ),
+          )
+      ],
     );
   }
 }
 
 class _PlasmaPainter extends CustomPainter {
   final int particles;
+  final PlasmaType type;
   final double value;
   final Color color;
   final double circleSize;
   final BlendMode blendMode;
   final double offset;
+  final double blur;
+  final double rotation;
+  final double variation1;
+  final double variation2;
+  final double variation3;
 
-  _PlasmaPainter(
-      {this.particles,
-      this.value,
-      this.color,
-      this.circleSize,
-      this.blendMode,
-      this.offset});
+  _PlasmaPainter({
+    this.type,
+    this.particles,
+    this.value,
+    this.color,
+    this.circleSize,
+    this.blendMode,
+    this.offset,
+    this.blur,
+    this.rotation,
+    this.variation1,
+    this.variation2,
+    this.variation3,
+  });
 
   @override
-  void paint(Canvas canvas, Size size) {
-    var compute = InternalPlasmaCompute(
-        circleSize: circleSize, offset: offset, canvasSize: size, value: value);
+  void paint(Canvas canvas, Size canvasSize) {
+    var size = Size(
+      max(canvasSize.width, canvasSize.height),
+      max(canvasSize.width, canvasSize.height),
+    );
 
-    var paint = Paint()
-      ..color = color
-      ..maskFilter = MaskFilter.blur(BlurStyle.normal, compute.blurRadius())
-      ..blendMode = blendMode;
+    var correctionX = (size.width - canvasSize.width) / 2;
+    var correctionY = (size.height - canvasSize.height) / 2;
+
+    var compute = LiPlasmaComputeFactory.create(
+      particles: particles,
+      type: type,
+      circleSize: circleSize,
+      offset: offset,
+      canvasSize: size,
+      value: value,
+      blur: blur,
+      variation1: variation1,
+      variation2: variation2,
+      variation3: variation3,
+    );
 
     0.until(particles).forEach((n) {
-      canvas.drawCircle(compute.position(n), compute.radius(), paint);
+      var position = compute.position(n);
+      var particleRadius = compute.radius(n);
+
+      final paint = Paint()
+        ..color = color
+        ..blendMode = blendMode;
+
+      if (blur > 0) {
+        var blurRadius = (blur * particleRadius * 0.4).roundToDouble();
+        paint.maskFilter = MaskFilter.blur(BlurStyle.normal, blurRadius);
+      }
+
+      canvas.drawCircle(
+          Offset(
+            position.dx - correctionX,
+            position.dy - correctionY,
+          ),
+          particleRadius,
+          paint);
     });
   }
 
@@ -160,35 +230,10 @@ class _PlasmaPainter extends CustomPainter {
   }
 }
 
-/// Class that computes position of the particles based on [canvasSize],
-/// [circleSize], [offset] and [value].
-///
-/// Don't use this directly. Use [Plasma] widget.
-class InternalPlasmaCompute {
-  final Size canvasSize;
-  final double circleSize;
-  final double offset;
-  final double value;
+abstract class LiPlasmaCompute {
+  Offset position(int n);
 
-  double _radius;
-
-  InternalPlasmaCompute(
-      {this.canvasSize, this.circleSize, this.offset, this.value}) {
-    _radius = (circleSize * (canvasSize.width + canvasSize.height) / 2 / 3)
-        .roundToDouble();
-  }
-
-  Offset position(int particleNumber) {
-    var rand = sin(particleNumber).abs();
-    var rvalue = (value + rand * 2 * pi) % (2 * pi);
-
-    var x = sin(-rand + rvalue + offset) * canvasSize.width / 2;
-    var y = sin(rand + -2 * rvalue + offset) * canvasSize.height / 2;
-
-    return Offset(canvasSize.width / 2 + x, canvasSize.height / 2 + y);
-  }
-
-  double radius() => _radius;
-
-  double blurRadius() => (_radius * 1.2).roundToDouble();
+  double radius(int n);
 }
+
+enum PlasmaType { infinity, bubbles, circle }
