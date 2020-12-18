@@ -82,22 +82,24 @@ class CustomAnimation<T> extends StatefulWidget {
   final AnimationStatusListener animationStatusListener;
   final double startPosition;
   final int fps;
+  final bool developerMode;
 
   /// Creates a new CustomAnimation widget.
   /// See class documentation for more information.
-  CustomAnimation(
-      {@required this.builder,
-      @required this.tween,
-      this.control = CustomAnimationControl.PLAY,
-      this.curve = Curves.linear,
-      this.duration = const Duration(seconds: 1),
-      this.delay = Duration.zero,
-      this.startPosition = 0.0,
-      this.child,
-      this.animationStatusListener,
-      this.fps,
-      Key key})
-      : assert(tween != null,
+  CustomAnimation({
+    @required this.builder,
+    @required this.tween,
+    this.control = CustomAnimationControl.PLAY,
+    this.curve = Curves.linear,
+    this.duration = const Duration(seconds: 1),
+    this.delay = Duration.zero,
+    this.startPosition = 0.0,
+    this.child,
+    this.animationStatusListener,
+    this.fps,
+    this.developerMode = false,
+    Key key,
+  })  : assert(tween != null,
             'Please set property tween. Example:\ntween: Tween(from: 0.0, to: 100.0)'),
         assert(builder != null,
             'Please set property builder. Example:\nbuilder: (context, child, value) => Container(width: value))'),
@@ -123,6 +125,14 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
     aniController.value = widget.startPosition;
     aniController.duration = widget.duration;
 
+    if (widget.developerMode) {
+      var transfer =
+          context.findAncestorWidgetOfExactType<AnimationControllerTransfer>();
+      assert(transfer != null,
+          'Please place an AnimationDeveloperTools widget inside the widget tree');
+      transfer.controllerProvider(aniController);
+    }
+
     _buildAnimation();
 
     if (widget.animationStatusListener != null) {
@@ -138,7 +148,7 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
   }
 
   void asyncInitState() async {
-    if (widget.delay != null) {
+    if (widget.delay != null && !widget.developerMode) {
       await Future<void>.delayed(widget.delay);
     }
     _waitForDelay = false;
@@ -154,7 +164,7 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
   }
 
   void _applyControlInstruction() async {
-    if (_isDisposed || _waitForDelay) {
+    if (_isDisposed || _waitForDelay || widget.developerMode) {
       return;
     }
 

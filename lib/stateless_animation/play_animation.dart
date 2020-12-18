@@ -33,19 +33,21 @@ class PlayAnimation<T> extends StatelessWidget {
   final Animatable<T> tween;
   final Curve curve;
   final int fps;
+  final bool developerMode;
 
   /// Creates a new PlayAnimation widget.
   /// See class documentation for more information.
-  PlayAnimation(
-      {@required this.builder,
-      @required this.tween,
-      this.duration = const Duration(seconds: 1),
-      this.delay = Duration.zero,
-      this.curve = Curves.linear,
-      this.child,
-      this.fps,
-      Key key})
-      : super(key: key);
+  PlayAnimation({
+    @required this.builder,
+    @required this.tween,
+    this.duration = const Duration(seconds: 1),
+    this.delay = Duration.zero,
+    this.curve = Curves.linear,
+    this.child,
+    this.fps,
+    this.developerMode = false,
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +59,7 @@ class PlayAnimation<T> extends StatelessWidget {
       curve: curve,
       child: child,
       fps: fps,
+      developerMode: developerMode,
     );
   }
 }

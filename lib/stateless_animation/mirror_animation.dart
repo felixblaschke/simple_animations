@@ -31,18 +31,20 @@ class MirrorAnimation<T> extends StatelessWidget {
   final Animatable<T> tween;
   final Curve curve;
   final int fps;
+  final bool developerMode;
 
   /// Creates a new MirrorAnimation widget.
   /// See class documentation for more information.
-  MirrorAnimation(
-      {@required this.builder,
-      @required this.tween,
-      this.duration = const Duration(seconds: 1),
-      this.curve = Curves.linear,
-      this.child,
-      this.fps,
-      Key key})
-      : super(key: key);
+  MirrorAnimation({
+    @required this.builder,
+    @required this.tween,
+    this.duration = const Duration(seconds: 1),
+    this.curve = Curves.linear,
+    this.child,
+    this.fps,
+    this.developerMode = false,
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +56,7 @@ class MirrorAnimation<T> extends StatelessWidget {
       curve: curve,
       child: child,
       fps: fps,
+      developerMode: developerMode,
     );
   }
 }

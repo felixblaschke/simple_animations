@@ -30,28 +30,32 @@ class LoopAnimation<T> extends StatelessWidget {
   final Animatable<T> tween;
   final Curve curve;
   final int fps;
+  final bool developerMode;
 
   /// Creates a new LoopAnimation widget.
   /// See class documentation for more information.
-  LoopAnimation(
-      {@required this.builder,
-      @required this.tween,
-      this.duration = const Duration(seconds: 1),
-      this.curve = Curves.linear,
-      this.child,
-      this.fps,
-      Key key})
-      : super(key: key);
+  LoopAnimation({
+    @required this.builder,
+    @required this.tween,
+    this.duration = const Duration(seconds: 1),
+    this.curve = Curves.linear,
+    this.child,
+    this.fps,
+    this.developerMode = false,
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CustomAnimation<T>(
-        builder: builder,
-        control: CustomAnimationControl.LOOP,
-        tween: tween,
-        duration: duration,
-        curve: curve,
-        child: child,
-        fps: fps);
+      builder: builder,
+      control: CustomAnimationControl.LOOP,
+      tween: tween,
+      duration: duration,
+      curve: curve,
+      child: child,
+      fps: fps,
+      developerMode: developerMode,
+    );
   }
 }

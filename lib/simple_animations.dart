@@ -5,6 +5,7 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pedantic/pedantic.dart';
@@ -15,6 +16,8 @@ export 'package:sa_v1_migration/sa_v1_migration.dart';
 part 'anicoto/animation_controller_extension.dart';
 
 part 'anicoto/animation_mixin.dart';
+
+part 'developer_tools/animation_developer_tools.dart';
 
 part 'liquid/plasma/factory.dart';
 
