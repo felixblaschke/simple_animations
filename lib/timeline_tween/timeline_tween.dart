@@ -208,7 +208,7 @@ class TimelineScene<T> {
   TimelineScene addSubsequentScene({
     Duration duration,
     Duration delay = Duration.zero,
-    Curve curve = Curves.linear,
+    Curve curve,
   }) {
     return parent.addScene(
       begin: begin + this.duration + delay,
