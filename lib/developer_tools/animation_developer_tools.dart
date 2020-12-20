@@ -52,7 +52,10 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
             color: Colors.black.withOpacity(0.6),
             height: 50,
             child: controller == null
-                ? Center(child: Text('Waiting for widget to connect...'))
+                ? Center(
+                    child: Text(
+                        'Waiting for widget to enable Developer Mode...',
+                        style: TextStyle(color: Colors.white)))
                 : Row(
                     children: [
                       Expanded(

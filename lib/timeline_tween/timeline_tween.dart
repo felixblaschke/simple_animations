@@ -3,6 +3,8 @@ part of simple_animations;
 /// Animatable that handles complex animations which handles
 /// multiple properties or scenes.
 ///
+/// You can specify a default curve for the tween by setting [curve].
+///
 /// Example: (using [supercharged](https://pub.dev/packages/supercharged))
 /// ```dart
 /// enum Prop { width, height, color }
@@ -20,6 +22,10 @@ part of simple_animations;
 /// ```
 class TimelineTween<T> extends Animatable<TimelineValue<T>> {
   final _scenes = <TimelineScene<T>>[];
+
+  final Curve curve;
+
+  TimelineTween({this.curve = Curves.linear});
 
   /// Returns the total [Duration] based on the specified scenes.
   Duration get duration {
@@ -48,7 +54,7 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
     Duration begin,
     Duration duration,
     Duration end,
-    Curve curve = Curves.linear,
+    Curve curve,
   }) {
     assert(
         (begin != null && duration != null && end == null) ||
@@ -143,7 +149,7 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
           end: scene.begin.inMicroseconds +
               scene.duration.inMicroseconds +
               item.shiftEnd.inMicroseconds,
-          curve: item.curve ?? scene.curve,
+          curve: item.curve ?? scene.curve ?? curve,
           property: item.property,
           tween: item.tween,
         ));
