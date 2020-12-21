@@ -125,14 +125,6 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
     aniController.value = widget.startPosition;
     aniController.duration = widget.duration;
 
-    if (widget.developerMode) {
-      var transfer =
-          context.findAncestorWidgetOfExactType<AnimationControllerTransfer>();
-      assert(transfer != null,
-          'Please place an AnimationDeveloperTools widget inside the widget tree');
-      transfer.controllerProvider(aniController);
-    }
-
     _buildAnimation();
 
     if (widget.animationStatusListener != null) {
@@ -145,6 +137,14 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
 
   void _buildAnimation() {
     _animation = widget.tween.curved(widget.curve).animatedBy(aniController);
+
+    if (widget.developerMode) {
+      var transfer =
+      context.findAncestorWidgetOfExactType<AnimationControllerTransfer>();
+      assert(transfer != null,
+      'Please place an AnimationDeveloperTools widget inside the widget tree');
+      transfer.controllerProvider(aniController);
+    }
   }
 
   void asyncInitState() async {
