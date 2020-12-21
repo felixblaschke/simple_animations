@@ -128,9 +128,19 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
               inactiveColor: Colors.grey,
             ),
           ),
+          Positioned(
+            bottom: 2,
+            right: 24,
+            child: Text(_currentTime(), style: TextStyle(color: Colors.grey)),
+          )
         ],
       );
     });
+  }
+
+  String _currentTime() {
+    var now = (controller.value * baseDuration.inMilliseconds).round();
+    return '$now ms';
   }
 
   void _obtainController(AnimationController animationController) {
