@@ -24,7 +24,8 @@ class LiInfinityPlasmaCompute extends LiPlasmaCompute {
     var rand = sin(n + variation2).abs();
     var rvalue = (value + rand * 2 * pi) % (2 * pi);
 
-    var x = (1-variation3) * sin(-rand + rvalue + offset) * canvasSize.width / 2;
+    var x =
+        (1 - variation3) * sin(-rand + rvalue + offset) * canvasSize.width / 2;
     var y = sin(rand + -2 * rvalue + offset) * canvasSize.height / 2;
 
     return Offset(
@@ -37,10 +38,11 @@ class LiInfinityPlasmaCompute extends LiPlasmaCompute {
   double radius(int n) {
     var rand = sin(n / 0.1).abs();
     var rvalue = (rand * 2 * pi) % (2 * pi);
-    final scale = (1-variation1) + variation1 * (0.1 + 0.9 * (rvalue / (2 * pi)));
+    final scale =
+        (1 - variation1) + variation1 * (0.1 + 0.9 * (rvalue / (2 * pi)));
 
-    return scale*(circleSize * (canvasSize.width + canvasSize.height) / 2 / 3)
-        .roundToDouble();
+    return scale *
+        (circleSize * (canvasSize.width + canvasSize.height) / 2 / 3)
+            .roundToDouble();
   }
-
 }

@@ -32,7 +32,8 @@ part of simple_animations;
 /// }
 ///
 /// ```
-@Deprecated('Migrate to PlasmaRenderer by recreating your scene via Liquid Studio. Create a "Solid Color" layer with the background color. Then add a "Plasma Layer" using the foreground colors. All other properties can be taken over.')
+@Deprecated(
+    'Migrate to PlasmaRenderer by recreating your scene via Liquid Studio. Create a "Solid Color" layer with the background color. Then add a "Plasma Layer" using the foreground colors. All other properties can be taken over.')
 class Plasma extends StatelessWidget {
   /// Number of particles to simulate. Has impact on computation demand.
   final int particles;
@@ -93,7 +94,7 @@ class Plasma extends StatelessWidget {
             child: child,
             fps: fps,
             duration:
-            speed > 0 ? (120000.0 / speed).round().milliseconds : 1.seconds,
+                speed > 0 ? (120000.0 / speed).round().milliseconds : 1.seconds,
             builder: (context, animatedChild, value) {
               return Stack(
                 children: [
@@ -134,11 +135,11 @@ class _LegacyPlasmaPainter extends CustomPainter {
 
   _LegacyPlasmaPainter(
       {this.particles,
-        this.value,
-        this.color,
-        this.circleSize,
-        this.blendMode,
-        this.offset});
+      this.value,
+      this.color,
+      this.circleSize,
+      this.blendMode,
+      this.offset});
 
   @override
   void paint(Canvas canvas, Size size) {

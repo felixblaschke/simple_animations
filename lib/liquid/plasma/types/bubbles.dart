@@ -26,7 +26,7 @@ class LiBubblesPlasmaCompute extends LiPlasmaCompute {
 
     final progress = (3 * rvalue / (2 * pi)) % 1.0;
 
-    final fromX = 1.2 * sin(n) * (1- variation3) + variation3 * 1.2 * cos(n);
+    final fromX = 1.2 * sin(n) * (1 - variation3) + variation3 * 1.2 * cos(n);
     final toX = 1.2 * cos(n);
 
     var fromY = 1 + 2 * circleSize;
@@ -45,7 +45,8 @@ class LiBubblesPlasmaCompute extends LiPlasmaCompute {
   double radius(int n) {
     var rand = sin(n / 0.1).abs();
     var rvalue = (rand * 2 * pi) % (2 * pi);
-    final scale = ((1-variation1)*0.7) + (pow(10,variation2)) * 0.6 * (rvalue / (2 * pi));
+    final scale = ((1 - variation1) * 0.7) +
+        (pow(10, variation2)) * 0.6 * (rvalue / (2 * pi));
 
     return scale *
         (circleSize * max(canvasSize.width, canvasSize.height) / 2 / 3)
