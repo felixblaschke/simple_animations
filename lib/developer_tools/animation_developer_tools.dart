@@ -18,15 +18,17 @@ class AnimationControllerTransfer extends InheritedWidget {
 
 class AnimationDeveloperTools extends StatefulWidget {
   final Widget child;
+  final AnimationDeveloperToolsPosition position;
 
-  AnimationDeveloperTools({
-    this.child,
-  });
+  AnimationDeveloperTools(
+      {this.child, this.position = AnimationDeveloperToolsPosition.top});
 
   @override
   _AnimationDeveloperToolsState createState() =>
       _AnimationDeveloperToolsState();
 }
+
+enum AnimationDeveloperToolsPosition { top, bottom, hidden }
 
 class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
   AnimationController controller;
@@ -38,102 +40,132 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned.fill(
-            child: AnimationControllerTransfer(
-          controllerProvider: _obtainController,
-          child: widget.child,
-        )),
-        Positioned.fill(
-            child: Align(
-          alignment: Alignment.topCenter,
-          child: Container(
-            color: Colors.black.withOpacity(0.6),
-            height: 50,
-            child: controller == null
-                ? Center(
-                    child: Text(
-                        'Waiting for widget to enable Developer Mode...',
-                        style: TextStyle(color: Colors.white)))
-                : Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: _buildSlider(),
+    return LayoutBuilder(builder: (context, constraints) {
+      var smallScreen = constraints.maxWidth < 700;
+
+      return Stack(
+        children: [
+          Positioned.fill(
+              child: AnimationControllerTransfer(
+            controllerProvider: _obtainController,
+            child: widget.child,
+          )),
+          if (widget.position != AnimationDeveloperToolsPosition.hidden)
+            Positioned.fill(
+                child: Align(
+              alignment: widget.position == AnimationDeveloperToolsPosition.top
+                  ? Alignment.topCenter
+                  : Alignment.bottomCenter,
+              child: Container(
+                color: Colors.black.withOpacity(0.8),
+                child: controller == null
+                    ? Center(
+                        child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            'Waiting for widget to enable Developer Mode...',
+                            style: TextStyle(color: Colors.white)),
+                      ))
+                    : Flex(
+                        direction:
+                            smallScreen ? Axis.vertical : Axis.horizontal,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          smallScreen
+                              ? _buildSlider()
+                              : Expanded(
+                                  flex: 1,
+                                  child: _buildSlider(),
+                                ),
+                          Container(
+                            height: 50,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                ToolbarButton(
+                                    onTap: _play,
+                                    icon: Icons.play_arrow,
+                                    active: play),
+                                ToolbarButton(
+                                    onTap: () => _speed(2),
+                                    icon: Icons.fast_rewind,
+                                    active: currentDuration > baseDuration),
+                                Container(
+                                    alignment: Alignment.center,
+                                    width: 50,
+                                    child: Text('${_currentSpeedFactor()}x',
+                                        style: TextStyle(
+                                            color: Colors.white
+                                                .withOpacity(0.7)))),
+                                ToolbarButton(
+                                    onTap: () => _speed(0.5),
+                                    icon: Icons.fast_forward,
+                                    active: currentDuration < baseDuration),
+                                Container(width: 32),
+                                Transform.scale(
+                                  scale: -1,
+                                  child: ToolbarButton(
+                                      onTap: () => _lowerBounds(),
+                                      icon: Icons.keyboard_tab,
+                                      active: lowerBounds != 0.0),
+                                ),
+                                ToolbarButton(
+                                    onTap: () => _upperBounds(),
+                                    icon: Icons.keyboard_tab,
+                                    active: upperBounds != 1.0),
+                                Container(width: 16),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      ToolbarButton(
-                          onTap: _play, icon: Icons.play_arrow, active: play),
-                      ToolbarButton(
-                          onTap: () => _speed(2),
-                          icon: Icons.fast_rewind,
-                          active: currentDuration > baseDuration),
-                      Container(
-                          alignment: Alignment.center,
-                          width: 50,
-                          child: Text('${_currentSpeedFactor()}x')),
-                      ToolbarButton(
-                          onTap: () => _speed(0.5),
-                          icon: Icons.fast_forward,
-                          active: currentDuration < baseDuration),
-                      Container(width: 32),
-                      Transform.scale(
-                        scale: -1,
-                        child: ToolbarButton(
-                            onTap: () => _lowerBounds(),
-                            icon: Icons.keyboard_tab,
-                            active: lowerBounds != 0.0),
-                      ),
-                      ToolbarButton(
-                          onTap: () => _upperBounds(),
-                          icon: Icons.keyboard_tab,
-                          active: upperBounds != 1.0),
-                      Container(width: 16),
-                    ],
-                  ),
-          ),
-        ))
-      ],
-    );
+              ),
+            ))
+        ],
+      );
+    });
   }
 
   Widget _buildSlider() {
     return LayoutBuilder(builder: (context, constraints) {
-      return Stack(
-        children: [
-          if (lowerBounds > 0 || upperBounds < 1)
-            Positioned.fill(
-                child: Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.only(
-                    left: 24 + lowerBounds * (constraints.maxWidth - 48)),
-                child: Container(
-                  width:
-                      (constraints.maxWidth - 48) * (upperBounds - lowerBounds),
-                  height: 30,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                      border: Border.all(color: Colors.white, width: 2)),
+      return Container(
+        height: 50,
+        child: Stack(
+          children: [
+            if (lowerBounds > 0 || upperBounds < 1)
+              Positioned.fill(
+                  child: Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: 24 + lowerBounds * (constraints.maxWidth - 48)),
+                  child: Container(
+                    width: (constraints.maxWidth - 48) *
+                        (upperBounds - lowerBounds),
+                    height: 30,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                        border: Border.all(color: Colors.white, width: 2)),
+                  ),
                 ),
+              )),
+            Positioned.fill(
+              child: Slider(
+                min: 0.0,
+                max: 1.0,
+                value: controller.value,
+                onChanged: _scroll,
+                activeColor: Colors.white,
+                inactiveColor: Colors.grey,
               ),
-            )),
-          Positioned.fill(
-            child: Slider(
-              min: 0.0,
-              max: 1.0,
-              value: controller.value,
-              onChanged: _scroll,
-              activeColor: Colors.white,
-              inactiveColor: Colors.grey,
             ),
-          ),
-          Positioned(
-            bottom: 2,
-            right: 24,
-            child: Text(_currentTime(), style: TextStyle(color: Colors.grey)),
-          )
-        ],
+            Positioned(
+              bottom: 2,
+              right: 24,
+              child: Text(_currentTime(), style: TextStyle(color: Colors.grey)),
+            )
+          ],
+        ),
       );
     });
   }
