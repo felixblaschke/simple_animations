@@ -225,8 +225,22 @@ class _PlasmaPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
+  bool shouldRepaint(covariant _PlasmaPainter oldDelegate) {
+    if (type != oldDelegate.type ||
+        particles != oldDelegate.particles ||
+        value != oldDelegate.value ||
+        color != oldDelegate.color ||
+        circleSize != oldDelegate.circleSize ||
+        blendMode != oldDelegate.blendMode ||
+        offset != oldDelegate.offset ||
+        blur != oldDelegate.blur ||
+        rotation != oldDelegate.rotation ||
+        variation1 != oldDelegate.variation1 ||
+        variation2 != oldDelegate.variation2 ||
+        variation3 != oldDelegate.variation3) {
+      return true;
+    }
+    return false;
   }
 }
 
