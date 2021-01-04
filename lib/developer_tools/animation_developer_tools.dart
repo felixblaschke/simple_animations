@@ -1,21 +1,11 @@
 part of simple_animations;
 
-class AnimationControllerTransfer extends InheritedWidget {
-  final void Function(AnimationController) controllerProvider;
-
-  AnimationControllerTransfer({
-    Key key,
-    this.controllerProvider,
-    @required Widget child,
-  })  : assert(child != null),
-        super(key: key, child: child);
-
-  @override
-  bool updateShouldNotify(covariant AnimationControllerTransfer oldWidget) {
-    return oldWidget.controllerProvider != controllerProvider;
-  }
-}
-
+/// Wrapper widget for displaying developer tooling that will
+/// assist your while creating custom animation.
+///
+/// If you are using stateless animation widget like [PlayAnimation],
+/// [CustomAnimation], [LoopAnimation] or [MirrorAnimation] set it's
+/// constructor parameter `developerMode` to `true`.
 class AnimationDeveloperTools extends StatefulWidget {
   final Widget child;
   final AnimationDeveloperToolsPosition position;
@@ -28,7 +18,17 @@ class AnimationDeveloperTools extends StatefulWidget {
       _AnimationDeveloperToolsState();
 }
 
-enum AnimationDeveloperToolsPosition { top, bottom, hidden }
+/// Possible values for the position of the [AnimationDeveloperTools].
+enum AnimationDeveloperToolsPosition {
+  /// Toolbar is placed at top
+  top,
+
+  /// Toolbar is placed at the bottom
+  bottom,
+
+  /// Toolbar is not visible
+  hidden,
+}
 
 class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
   AnimationController controller;
@@ -46,7 +46,7 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
       return Stack(
         children: [
           Positioned.fill(
-              child: AnimationControllerTransfer(
+              child: _AnimationControllerTransfer(
             controllerProvider: _obtainController,
             child: widget.child,
           )),
@@ -82,11 +82,11 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                ToolbarButton(
+                                _ToolbarButton(
                                     onTap: _play,
                                     icon: Icons.play_arrow,
                                     active: play),
-                                ToolbarButton(
+                                _ToolbarButton(
                                     onTap: () => _speed(2),
                                     icon: Icons.fast_rewind,
                                     active: currentDuration > baseDuration),
@@ -97,19 +97,19 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
                                         style: TextStyle(
                                             color: Colors.white
                                                 .withOpacity(0.7)))),
-                                ToolbarButton(
+                                _ToolbarButton(
                                     onTap: () => _speed(0.5),
                                     icon: Icons.fast_forward,
                                     active: currentDuration < baseDuration),
                                 Container(width: 32),
                                 Transform.scale(
                                   scale: -1,
-                                  child: ToolbarButton(
+                                  child: _ToolbarButton(
                                       onTap: () => _lowerBounds(),
                                       icon: Icons.keyboard_tab,
                                       active: lowerBounds != 0.0),
                                 ),
-                                ToolbarButton(
+                                _ToolbarButton(
                                     onTap: () => _upperBounds(),
                                     icon: Icons.keyboard_tab,
                                     active: upperBounds != 1.0),
@@ -257,16 +257,16 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
   }
 }
 
-class ToolbarButton extends StatelessWidget {
+class _ToolbarButton extends StatelessWidget {
   final GestureTapCallback onTap;
   final IconData icon;
   final bool active;
 
-  ToolbarButton({this.onTap, this.icon, this.active});
+  _ToolbarButton({this.onTap, this.icon, this.active});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetectorWithClickHover(
+    return _GestureDetectorWithClickHover(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Container(
@@ -284,11 +284,11 @@ class ToolbarButton extends StatelessWidget {
   }
 }
 
-class GestureDetectorWithClickHover extends StatelessWidget {
+class _GestureDetectorWithClickHover extends StatelessWidget {
   final GestureTapCallback onTap;
   final Widget child;
 
-  GestureDetectorWithClickHover({this.onTap, this.child});
+  _GestureDetectorWithClickHover({this.onTap, this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -300,5 +300,21 @@ class GestureDetectorWithClickHover extends StatelessWidget {
         child: child,
       ),
     );
+  }
+}
+
+class _AnimationControllerTransfer extends InheritedWidget {
+  final void Function(AnimationController) controllerProvider;
+
+  _AnimationControllerTransfer({
+    Key key,
+    this.controllerProvider,
+    @required Widget child,
+  })  : assert(child != null),
+        super(key: key, child: child);
+
+  @override
+  bool updateShouldNotify(covariant _AnimationControllerTransfer oldWidget) {
+    return oldWidget.controllerProvider != controllerProvider;
   }
 }

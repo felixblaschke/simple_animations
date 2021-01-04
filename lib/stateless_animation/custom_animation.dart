@@ -140,9 +140,9 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
 
     if (widget.developerMode) {
       var transfer =
-      context.findAncestorWidgetOfExactType<AnimationControllerTransfer>();
+          context.findAncestorWidgetOfExactType<_AnimationControllerTransfer>();
       assert(transfer != null,
-      'Please place an AnimationDeveloperTools widget inside the widget tree');
+          'Please place an AnimationDeveloperTools widget inside the widget tree');
       transfer.controllerProvider(aniController);
     }
   }

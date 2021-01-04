@@ -3,6 +3,7 @@
 
 MultiTween is a **powerful** `Animateable` that animates multiple properties at once.
 
+You can find [**examples here**](../example/multi_tween.md).
 
 ## Basic usage pattern
 

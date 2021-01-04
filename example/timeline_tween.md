@@ -1,6 +1,6 @@
 
 
-# 🎭 Multi Tween (predecessor of Timeline Tween)
+# 🎭 Timeline Tween
 
 💡 *Note: These examples uses **[supercharged](https://pub.dev/packages/supercharged)** for syntactic sugar.*
 

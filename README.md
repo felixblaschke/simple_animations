@@ -29,7 +29,7 @@ It contains multiple features. Each covers a different aspect of making animatio
 | --- | ----------- |
 | 🍹&nbsp;[Liquid](#-liquid) | Beautiful visual animations that increases the visual quality of your app. |
 | 🚀&nbsp;[Stateless&nbsp;Animation](#-stateless-animation) | Widgets for super simple creation of custom animations. |
-| 🎭&nbsp;[MultiTween](#-multitween) | Animate multiple properties at once or create staggered animations. |
+| 🎭&nbsp;[Timeline Tween](#-timeline-tween) | Animate multiple properties at once or create staggered animations. |
 | 🎥&nbsp;[Anicoto](#-anicoto) | Setup managed AnimationControllers instantly. |
 
 ---
@@ -68,10 +68,10 @@ PlayAnimation<Color>( // <-- specify type of animated variable
 
 ---
 
-### 🎭 MultiTween
+### 🎭 Timeline Tween
 
 
-MultiTween gives is mighty tool thats enables you to tween multiple properties in a single `Animatable` or designing staggered animations.
+Timeline Tween (successor of [MultiTween](doc/multi_tween.md)) is a mighty tool thats enables you to tween multiple properties *or* designing staggered animations in a single `Animatable`.
 
 *Example: Custom tween with multiple properties.*
 
@@ -80,11 +80,13 @@ enum AniProps { width, height, color } // <-- define properties
 
 class MyWidget extends StatelessWidget {
 
-  final _tween = MultiTween<AniProps>() // <-- design tween
-    ..add(AniProps.width, 0.0.tweenTo(400.0), 1000.milliseconds)
-    ..add(AniProps.width, 400.0.tweenTo(300.0), 1000.milliseconds)
-    ..add(AniProps.height, 500.0.tweenTo(200.0), 2000.milliseconds)
-    ..add(AniProps.color, Colors.red.tweenTo(Colors.blue), 2.seconds);
+  final _tween = TimelineTween<AniProps>() // <-- design tween
+    ..addScene(begin: 0.milliseconds, duration: 500.milliseconds)
+        .animate(AniProps.width, tween: 0.0.tweenTo(400.0))
+        .animate(AniProps.height, tween: 500.0.tweenTo(200.0))
+        .animate(AniProps.color, tween: Colors.red.tweenTo(Colors.yellow))
+    ..addScene(begin: 700.milliseconds, end: 1200.milliseconds)
+        .animate(AniProps.width, tween: 400.0.tweenTo(500.0));
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +95,7 @@ class MyWidget extends StatelessWidget {
 }
 ```
 
-[**Read more about it**](doc/multi_tween.md) or [**watch examples**](example/multi_tween.md)
+[**Read more about it**](doc/timeline_tween.md) or [**watch examples**](example/timeline_tween.md)
 
 ---
 

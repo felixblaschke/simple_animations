@@ -33,7 +33,7 @@ part of simple_animations;
 ///
 /// ```
 @Deprecated(
-    'Migrate to PlasmaRenderer by recreating your scene via Liquid Studio. Create a "Solid Color" layer with the background color. Then add a "Plasma Layer" using the foreground colors. All other properties can be taken over.')
+    'Migrate to PlasmaRenderer by recreating your scene via Liquid Studio. Create a "Solid Color" layer with the background color. Then add a "Plasma Layer" using the foreground colors. All other properties can be just copied.')
 class Plasma extends StatelessWidget {
   /// Number of particles to simulate. Has impact on computation demand.
   final int particles;

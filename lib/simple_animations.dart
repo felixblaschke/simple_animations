@@ -45,4 +45,6 @@ part 'stateless_animation/mirror_animation.dart';
 
 part 'stateless_animation/play_animation.dart';
 
+part 'timeline_tween/prop.dart';
+
 part 'timeline_tween/timeline_tween.dart';
