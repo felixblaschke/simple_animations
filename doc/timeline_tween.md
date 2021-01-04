@@ -74,6 +74,23 @@ The most simple way to add a scene is to call `tween.addScene()`. It requires yo
 
 You can freely combine begin/duration, begin/end or duration/end.
 
+```dart
+var scene1 = tween.addScene(
+  begin: 0.milliseconds,
+  duration: 700.milliseconds,
+);
+
+var scene2 = tween.addScene(
+  begin: 700.milliseconds,
+  end: 1400.milliseconds,
+);
+
+var scene3 = tween.addScene(
+  duration: 600.milliseconds,
+  end: 3000.milliseconds,
+);
+```
+
 
 ### Relative scenes
 
