@@ -106,9 +106,9 @@ var secondScene = firstScene.addSubsequentScene(...)
   .animate(...);
 ```
 
-Subsequently defined scenes will start whenever it's predecessor's duration ends. 
+Subsequent scenes start right after their predecessor. 
 
-Due to it's relative nature the subsequent scenes require you to pass in a `duration`. Optionally you can add some `delay`.
+The relative nature of subsequent scenes require you to pass in a `duration`. Optionally you can add some `delay`.
 
 ```dart
 var nextScene = previousScene.addSubsequentScene(
