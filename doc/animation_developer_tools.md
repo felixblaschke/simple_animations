@@ -69,6 +69,8 @@ class MyApp extends StatelessWidget {
 
 ```
 
+![devtools](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/v2/devtools.gif)
+
 ### Using Anicoto AnimationMixin
 
 If your stateful widget uses `AnimationMixin` to manage your instances of `AnimationController` you can call `enableDeveloperMode()` to connect to the clostest `AnimationDeveloperMode` widget.

@@ -97,7 +97,7 @@ class MyWidget extends StatelessWidget {
 }
 ```
 
-[**Read more about it**](doc/timeline_tween.md) or [**watch examples**](example/timeline_tween.md)
+[**Read more about it**](doc/timeline_tween.md) or [**watch examples**](example/timeline_tween.md).
 
 ---
 
@@ -139,6 +139,8 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 ### ⏯ Animation Developer Tools
 
 Tired of watching the same animation over and over again, in order to fine tune it?
+
+![devtools](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/v2/devtools.gif)
 
 The Animation Developer Tools allows you pause anywhere, scroll around, speed up, slow down or focus on a certain interval of the animation.
 
