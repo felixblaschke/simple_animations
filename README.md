@@ -17,6 +17,7 @@
 - Animate **multiple properties** at once
 - Create **staggered animations** within seconds
 - Simplified working with **AnimationController** instances
+- Debug animations
 
 ## ⛏️ Getting started
 
@@ -31,6 +32,7 @@ It contains multiple features. Each covers a different aspect of making animatio
 | 🚀&nbsp;[Stateless&nbsp;Animation](#-stateless-animation) | Widgets for super simple creation of custom animations. |
 | 🎭&nbsp;[Timeline Tween](#-timeline-tween) | Animate multiple properties at once or create staggered animations. |
 | 🎥&nbsp;[Anicoto](#-anicoto) | Setup managed AnimationControllers instantly. |
+| ⏯&nbsp;[Animation Developer Tools](#-animation-developer-tools) | Debug animations or create them step by step. |
 
 ---
 
@@ -131,6 +133,16 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 ```
 
 [**Read more about it**](doc/anicoto.md) or [**watch examples**](example/anicoto.md).
+
+---
+
+### ⏯ Animation Developer Tools
+
+Tired of watching the same animation over and over again, in order to fine tune it?
+
+The Animation Developer Tools allows you pause anywhere, scroll around, speed up, slow down or focus on a certain interval of the animation.
+
+[**Read more about it**](doc/animation_developer_tools.md).
 
 ---
 
