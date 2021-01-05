@@ -48,6 +48,16 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
     return _mainControllerInstance;
   }
 
+  /// Connects given [controller] to the closest [AnimationDeveloperTools]
+  /// widget to enable developer mode.
+  void enableDeveloperMode(AnimationController controller) {
+    var transfer =
+        context.findAncestorWidgetOfExactType<_AnimationControllerTransfer>();
+    assert(transfer != null,
+        'Please place an AnimationDeveloperTools widget inside the widget tree');
+    transfer.controllerProvider(controller);
+  }
+
   /// Creates an additional [AnimationController] instance that gets initialized
   /// and disposed by this mixin.
   ///

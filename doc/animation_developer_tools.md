@@ -19,7 +19,7 @@ Widget build(BuildContext context) {
 
 Enable developer mode on the animation you want to debug.
 
-### Stateless animation widgets
+### Using stateless animation widgets
 
 Stateless animation widgets like
 
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         body: SafeArea(
           child: AnimationDeveloperTools( // place widget
             child: Center(
-              child: LoopAnimation<double>(
+              child: PlayAnimation<double>(
                 tween: 0.0.tweenTo(100.0),
                 duration: 1.seconds,
                 developerMode: true, // enable developer mode
@@ -63,6 +63,65 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+```
+
+### Using Anicoto AnimationMixin
+
+If your stateful widget uses `AnimationMixin` to manage your instances of `AnimationController` you can call `enableDeveloperMode()` to connect to the clostest `AnimationDeveloperMode` widget.
+
+**Example**
+```dart
+import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
+import 'package:supercharged/supercharged.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: SafeArea(
+          child: AnimationDeveloperTools( // place widget
+            child: Center(
+              child: MyAnimation(),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class MyAnimation extends StatefulWidget {
+  @override
+  _MyAnimationState createState() => _MyAnimationState();
+}
+
+class _MyAnimationState extends State<MyAnimation> with AnimationMixin {
+
+  Animation<double> size;
+
+  @override
+  void initState() {
+    size = 0.0.tweenTo(100.0).animatedBy(controller);
+    enableDeveloperMode(controller); // enable developer mode
+    controller.forward();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size.value,
+      height: size.value,
+      color: Colors.blue,
     );
   }
 }

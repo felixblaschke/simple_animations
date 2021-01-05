@@ -71,6 +71,9 @@ enum CustomAnimationControl {
 /// If you work with multiple animation widgets that are conditionally
 /// rendered, you might want to set a [key]. Otherwise Flutter will
 /// recycled your "old animation" which results in strange behavior.
+///
+/// You can connect this widget to the closest [AnimationDeveloperTools]
+/// by setting [developerMode] to `true`.
 class CustomAnimation<T> extends StatefulWidget {
   final Animatable<T> tween;
   final AnimatedWidgetBuilder<T> builder;

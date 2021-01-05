@@ -59,13 +59,14 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
               child: Container(
                 color: Colors.black.withOpacity(0.8),
                 child: controller == null
-                    ? Center(
-                        child: Padding(
+                    ? Container(
                         padding: const EdgeInsets.all(8.0),
+                        alignment: Alignment.center,
+                        height: 50,
                         child: Text(
                             'Waiting for widget to enable Developer Mode...',
                             style: TextStyle(color: Colors.white)),
-                      ))
+                      )
                     : Flex(
                         direction:
                             smallScreen ? Axis.vertical : Axis.horizontal,
