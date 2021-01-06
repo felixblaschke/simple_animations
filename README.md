@@ -44,7 +44,9 @@ It contains multiple features. Each covers a different aspect of making animatio
 
 Liquid provides ready-to-use, stunning visual animations that can be explored and configured with **[Liquid Studio](https://felixblaschke.github.io/liquid-studio)**.
 
-![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/plasma-example.gif)
+![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/studio1.jpg)
+
+![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/plasma2.gif)
 
 ---
 
