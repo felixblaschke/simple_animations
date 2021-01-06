@@ -1,9 +1,10 @@
-## 2.5.0-internal.3
+## 2.5.0-internal.4
 
 - **New:** PlasmaRenderer
-- **New:** TimelineTween
-- **New:** AnimationDeveloperTools
+- **New:** Timeline Tween
+- **New:** Animation Developer Tools
 - **Update:** Reorganized documentation
+- **Deprecation:** Plasma (replaced by PlasmaRenderer)
 
 ## 2.4.2
 
