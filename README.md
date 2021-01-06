@@ -32,7 +32,7 @@ It contains multiple features. Each covers a different aspect of making animatio
 | 🚀&nbsp;[Stateless&nbsp;Animation](#-stateless-animation) | Widgets for super simple creation of custom animations. |
 | 🎭&nbsp;[Timeline Tween](#-timeline-tween) | Animate multiple properties at once or create staggered animations. |
 | 🎥&nbsp;[Anicoto](#-anicoto) | Setup managed AnimationControllers instantly. |
-| ⏯&nbsp;[Animation Developer Tools](#-animation-developer-tools) | Debug animations or create them step by step. |
+| ⏯&nbsp;[Animation&nbsp;Developer&nbsp;Tools](#-animation-developer-tools) | Debug animations or create them step by step. |
 
 ---
 
