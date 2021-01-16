@@ -36,10 +36,6 @@ It contains multiple features. Each covers a different aspect of making animatio
 
 ---
 
-💡 *Note: These examples uses **[supercharged](https://pub.dev/packages/supercharged)** for syntactic sugar.*
-
----
-
 ### 🍹 Liquid
 
 Liquid provides ready-to-use, stunning visual animations that can be explored and configured with **[Liquid Studio](https://felixblaschke.github.io/liquid-studio)**.
@@ -48,13 +44,15 @@ Liquid provides ready-to-use, stunning visual animations that can be explored an
 
 ![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/plasma2.gif)
 
+**[Open Liquid Studio](https://felixblaschke.github.io/liquid-studio)**.
+
 ---
 
 ### 🚀 Stateless Animation
 
 Stateless Animation provides a powerful set of Flutter widgets that hide the most complex part of creating animations.
 
-*Example: Square with a animated, fading background color.*
+***Example**: Square with a animated background color. (Example uses [supercharged](https://pub.dev/packages/supercharged) for syntactic sugar.)*
 
 ```dart
 PlayAnimation<Color>( // <-- specify type of animated variable
@@ -63,7 +61,7 @@ PlayAnimation<Color>( // <-- specify type of animated variable
     return Container(
         color: value, // <-- use animated value
         width: 100, 
-        height: 100
+        height: 100,
     );
 });
 ```
@@ -77,7 +75,7 @@ PlayAnimation<Color>( // <-- specify type of animated variable
 
 Timeline Tween (successor of [MultiTween](doc/multi_tween.md)) is a mighty tool thats enables you to tween multiple properties *or* designing staggered animations in a single `Animatable`.
 
-*Example: Custom tween with multiple properties.*
+***Example**: Custom tween with multiple properties. (Example uses [supercharged](https://pub.dev/packages/supercharged) for syntactic sugar.)*
 
 ```dart
 enum AniProps { width, height, color } // <-- define properties
@@ -108,7 +106,7 @@ class MyWidget extends StatelessWidget {
 
 Anicoto fully manages your AnimationController instances and handles initialization, configuration and disposing. No more boilerplate code.
 
-*Example: Animated stateful widget with full-fledged AnimationController instance.*
+***Example**: Animated stateful widget with full-fledged AnimationController instance. (Example uses [supercharged](https://pub.dev/packages/supercharged) for syntactic sugar.)*
 
 ```dart
 class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
