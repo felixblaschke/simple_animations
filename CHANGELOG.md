@@ -1,4 +1,4 @@
-## 2.5.0-internal.5
+## 2.5.0-internal.6
 
 - **New:** PlasmaRenderer
 - **New:** Timeline Tween
