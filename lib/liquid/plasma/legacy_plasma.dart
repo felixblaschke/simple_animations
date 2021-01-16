@@ -164,8 +164,6 @@ class _LegacyPlasmaPainter extends CustomPainter {
 
 /// Class that computes position of the particles based on [canvasSize],
 /// [circleSize], [offset] and [value].
-///
-/// Don't use this directly. Use [Plasma] widget.
 class LegacyInternalPlasmaCompute {
   final Size canvasSize;
   final double circleSize;
