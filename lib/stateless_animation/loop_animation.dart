@@ -28,24 +28,24 @@ part of simple_animations;
 /// by setting [developerMode] to `true`.
 class LoopAnimation<T> extends StatelessWidget {
   final AnimatedWidgetBuilder<T> builder;
-  final Widget child;
+  final Widget? child;
   final Duration duration;
   final Animatable<T> tween;
   final Curve curve;
-  final int fps;
+  final int? fps;
   final bool developerMode;
 
   /// Creates a new LoopAnimation widget.
   /// See class documentation for more information.
   LoopAnimation({
-    @required this.builder,
-    @required this.tween,
+    required this.builder,
+    required this.tween,
     this.duration = const Duration(seconds: 1),
     this.curve = Curves.linear,
     this.child,
     this.fps,
     this.developerMode = false,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

@@ -14,4 +14,4 @@ part of simple_animations;
 ///
 /// [value] is current value of your animated property.
 typedef AnimatedWidgetBuilder<T> = Widget Function(
-    BuildContext context, Widget child, T value);
+    BuildContext context, Widget? child, T value);

@@ -11,14 +11,14 @@ class LiCirclePlasmaCompute extends LiPlasmaCompute {
   final double variation3;
 
   LiCirclePlasmaCompute({
-    this.canvasSize,
-    this.circleSize,
-    this.offset,
-    this.value,
-    this.particles,
-    this.variation1,
-    this.variation2,
-    this.variation3,
+    required this.canvasSize,
+    required this.circleSize,
+    required this.offset,
+    required this.value,
+    required this.particles,
+    required this.variation1,
+    required this.variation2,
+    required this.variation3,
   });
 
   @override

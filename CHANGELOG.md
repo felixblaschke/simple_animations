@@ -1,3 +1,8 @@
+## 3.0.0-nullsafety.3
+
+- **New:** Nullsafety migration based on version `2.5.0`
+- **Breaking:** Remove widgets that got deprecated with version `2.x.x`
+
 ## 2.5.0
 
 - **New:** PlasmaRenderer

@@ -87,14 +87,7 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.9.2"
-  sa_v1_migration:
-    dependency: "direct main"
-    description:
-      name: sa_v1_migration
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.2"
+    version: "1.10.0-nullsafety.3"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -134,14 +127,14 @@ packages:
       name: supercharged
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.12.0"
+    version: "2.0.0-nullsafety.1"
   supercharged_dart:
     dependency: transitive
     description:
       name: supercharged_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.0"
+    version: "2.0.0-nullsafety.1"
   term_glyph:
     dependency: transitive
     description:

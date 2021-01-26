@@ -14,7 +14,7 @@ extension AnimationControllerExtension on AnimationController {
   /// ```dart
   /// controller.play(5.seconds);
   /// ```
-  TickerFuture play({Duration duration}) {
+  TickerFuture play({Duration? duration}) {
     this.duration = duration ?? this.duration;
     return forward();
   }
@@ -31,9 +31,9 @@ extension AnimationControllerExtension on AnimationController {
   /// ```dart
   /// controller.playReverse(5.seconds);
   /// ```
-  TickerFuture playReverse({Duration duration}) {
+  TickerFuture playReverse({Duration? duration}) {
     this.duration = duration ?? this.duration;
-    return reverse();
+    return this.reverse();
   }
 
   /// Starts playing the animation in an endless loop. After reaching the
@@ -50,7 +50,7 @@ extension AnimationControllerExtension on AnimationController {
   /// ```dart
   /// controller.loop(5.seconds);
   /// ```
-  TickerFuture loop({Duration duration}) {
+  TickerFuture loop({Duration? duration}) {
     this.duration = duration ?? this.duration;
     return repeat();
   }
@@ -69,7 +69,7 @@ extension AnimationControllerExtension on AnimationController {
   /// ```dart
   /// controller.mirror(5.seconds);
   /// ```
-  TickerFuture mirror({Duration duration}) {
+  TickerFuture mirror({Duration? duration}) {
     this.duration = duration ?? this.duration;
     return repeat(reverse: true);
   }

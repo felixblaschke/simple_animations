@@ -81,17 +81,17 @@ class CustomAnimation<T> extends StatefulWidget {
   final Curve curve;
   final Duration duration;
   final Duration delay;
-  final Widget child;
-  final AnimationStatusListener animationStatusListener;
+  final Widget? child;
+  final AnimationStatusListener? animationStatusListener;
   final double startPosition;
-  final int fps;
+  final int? fps;
   final bool developerMode;
 
   /// Creates a new CustomAnimation widget.
   /// See class documentation for more information.
   CustomAnimation({
-    @required this.builder,
-    @required this.tween,
+    required this.builder,
+    required this.tween,
     this.control = CustomAnimationControl.PLAY,
     this.curve = Curves.linear,
     this.duration = const Duration(seconds: 1),
@@ -101,12 +101,8 @@ class CustomAnimation<T> extends StatefulWidget {
     this.animationStatusListener,
     this.fps,
     this.developerMode = false,
-    Key key,
-  })  : assert(tween != null,
-            'Please set property tween. Example:\ntween: Tween(from: 0.0, to: 100.0)'),
-        assert(builder != null,
-            'Please set property builder. Example:\nbuilder: (context, child, value) => Container(width: value))'),
-        assert(startPosition >= 0 && startPosition <= 1,
+    Key? key,
+  })  : assert(startPosition >= 0 && startPosition <= 1,
             'The property startPosition must have a value between 0.0 and 1.0.'),
         super(key: key);
 
@@ -116,8 +112,8 @@ class CustomAnimation<T> extends StatefulWidget {
 
 class _CustomAnimationState<T> extends State<CustomAnimation<T>>
     with AnimationMixin {
-  AnimationController aniController;
-  Animation<T> _animation;
+  late AnimationController aniController;
+  late Animation<T> _animation;
   bool _isDisposed = false;
   bool _waitForDelay = true;
   bool _isControlSetToMirror = false;
@@ -131,7 +127,7 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
     _buildAnimation();
 
     if (widget.animationStatusListener != null) {
-      aniController.addStatusListener(widget.animationStatusListener);
+      aniController.addStatusListener(widget.animationStatusListener!);
     }
 
     asyncInitState();
@@ -146,12 +142,12 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
           context.findAncestorWidgetOfExactType<_AnimationControllerTransfer>();
       assert(transfer != null,
           'Please place an AnimationDeveloperTools widget inside the widget tree');
-      transfer.controllerProvider(aniController);
+      transfer?.controllerProvider(aniController);
     }
   }
 
   void asyncInitState() async {
-    if (widget.delay != null && !widget.developerMode) {
+    if (widget.delay != Duration.zero && !widget.developerMode) {
       await Future<void>.delayed(widget.delay);
     }
     _waitForDelay = false;

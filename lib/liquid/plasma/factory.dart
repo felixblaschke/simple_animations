@@ -2,16 +2,16 @@ part of simple_animations;
 
 class LiPlasmaComputeFactory {
   static LiPlasmaCompute create({
-    PlasmaType type,
-    double circleSize,
-    double offset,
-    Size canvasSize,
-    double value,
-    double blur,
-    int particles,
-    double variation1,
-    double variation2,
-    double variation3,
+    required PlasmaType type,
+    required double circleSize,
+    required double offset,
+    required Size canvasSize,
+    required double value,
+    required double blur,
+    required int particles,
+    required double variation1,
+    required double variation2,
+    required double variation3,
   }) {
     if (type == PlasmaType.bubbles) {
       return LiBubblesPlasmaCompute(

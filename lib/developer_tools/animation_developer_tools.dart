@@ -10,8 +10,10 @@ class AnimationDeveloperTools extends StatefulWidget {
   final Widget child;
   final AnimationDeveloperToolsPosition position;
 
-  AnimationDeveloperTools(
-      {this.child, this.position = AnimationDeveloperToolsPosition.top});
+  AnimationDeveloperTools({
+    required this.child,
+    this.position = AnimationDeveloperToolsPosition.top,
+  });
 
   @override
   _AnimationDeveloperToolsState createState() =>
@@ -31,9 +33,9 @@ enum AnimationDeveloperToolsPosition {
 }
 
 class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
-  AnimationController controller;
-  Duration baseDuration;
-  Duration currentDuration;
+  AnimationController? controller;
+  Duration? baseDuration;
+  Duration? currentDuration;
   var play = true;
   var lowerBounds = 0.0;
   var upperBounds = 1.0;
@@ -90,7 +92,7 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
                                 _ToolbarButton(
                                     onTap: () => _speed(2),
                                     icon: Icons.fast_rewind,
-                                    active: currentDuration > baseDuration),
+                                    active: currentDuration! > baseDuration!),
                                 Container(
                                     alignment: Alignment.center,
                                     width: 50,
@@ -101,7 +103,7 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
                                 _ToolbarButton(
                                     onTap: () => _speed(0.5),
                                     icon: Icons.fast_forward,
-                                    active: currentDuration < baseDuration),
+                                    active: currentDuration! < baseDuration!),
                                 Container(width: 32),
                                 Transform.scale(
                                   scale: -1,
@@ -154,7 +156,7 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
               child: Slider(
                 min: 0.0,
                 max: 1.0,
-                value: controller.value,
+                value: controller!.value,
                 onChanged: _scroll,
                 activeColor: Colors.white,
                 inactiveColor: Colors.grey,
@@ -172,14 +174,14 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
   }
 
   String _currentTime() {
-    var now = (controller.value * baseDuration.inMilliseconds).round();
+    var now = (controller!.value * baseDuration!.inMilliseconds).round();
     return '$now ms';
   }
 
   void _obtainController(AnimationController animationController) {
     controller = animationController;
-    controller.addListener(() => setState(() {}));
-    baseDuration = controller.duration;
+    controller!.addListener(() => setState(() {}));
+    baseDuration = controller!.duration ?? 1.seconds;
     currentDuration = baseDuration;
     Future<void>.delayed(100.milliseconds).then((_) => _updateController());
   }
@@ -191,33 +193,33 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
 
   void _updateController() {
     if (!play) {
-      controller.stop();
+      controller!.stop();
     } else {
-      controller.duration =
-          (currentDuration.inMicroseconds * (upperBounds - lowerBounds))
+      controller!.duration =
+          (currentDuration!.inMicroseconds * (upperBounds - lowerBounds))
               .round()
               .microseconds;
-      controller.repeat(min: lowerBounds, max: upperBounds, reverse: false);
+      controller!.repeat(min: lowerBounds, max: upperBounds, reverse: false);
     }
   }
 
   void _scroll(double position) {
-    controller.stop();
-    controller.value = position;
+    controller!.stop();
+    controller!.value = position;
     _updateController();
   }
 
   void _speed(double factor) {
     setState(() {});
     currentDuration =
-        (currentDuration.inMicroseconds * factor).round().microseconds;
-    controller.stop();
+        (currentDuration!.inMicroseconds * factor).round().microseconds;
+    controller!.stop();
     _updateController();
   }
 
   String _currentSpeedFactor() {
-    var factor = baseDuration.inMicroseconds.toDouble() /
-        currentDuration.inMicroseconds.toDouble();
+    var factor = baseDuration!.inMicroseconds.toDouble() /
+        currentDuration!.inMicroseconds.toDouble();
 
     if (factor >= 1) {
       return factor.round().toString();
@@ -227,13 +229,13 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
   }
 
   void _lowerBounds() {
-    setState(() => lowerBounds = lowerBounds == 0.0 ? controller.value : 0.0);
+    setState(() => lowerBounds = lowerBounds == 0.0 ? controller!.value : 0.0);
     _fixBoundsOrder();
     _updateController();
   }
 
   void _upperBounds() {
-    setState(() => upperBounds = upperBounds == 1.0 ? controller.value : 1.0);
+    setState(() => upperBounds = upperBounds == 1.0 ? controller!.value : 1.0);
     _fixBoundsOrder();
     _updateController();
   }
@@ -263,7 +265,11 @@ class _ToolbarButton extends StatelessWidget {
   final IconData icon;
   final bool active;
 
-  _ToolbarButton({this.onTap, this.icon, this.active});
+  _ToolbarButton({
+    required this.onTap,
+    required this.icon,
+    required this.active,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -289,7 +295,10 @@ class _GestureDetectorWithClickHover extends StatelessWidget {
   final GestureTapCallback onTap;
   final Widget child;
 
-  _GestureDetectorWithClickHover({this.onTap, this.child});
+  _GestureDetectorWithClickHover({
+    required this.onTap,
+    required this.child,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -308,11 +317,10 @@ class _AnimationControllerTransfer extends InheritedWidget {
   final void Function(AnimationController) controllerProvider;
 
   _AnimationControllerTransfer({
-    Key key,
-    this.controllerProvider,
-    @required Widget child,
-  })  : assert(child != null),
-        super(key: key, child: child);
+    Key? key,
+    required this.controllerProvider,
+    required Widget child,
+  }) : super(key: key, child: child);
 
   @override
   bool updateShouldNotify(covariant _AnimationControllerTransfer oldWidget) {

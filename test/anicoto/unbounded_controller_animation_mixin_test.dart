@@ -8,7 +8,7 @@ import './widget_tester_extension.dart';
 void main() {
   testWidgets('AnimationMixin - Unbounded Controller',
       (WidgetTester tester) async {
-    AnimationController exposedController;
+    late AnimationController exposedController;
     var animation = MaterialApp(
         home: TestWidget((controller) => exposedController = controller));
 

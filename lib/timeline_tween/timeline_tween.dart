@@ -31,12 +31,12 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
   Duration get duration {
     var items = _generateAbsoluteItems().map((item) => item.end);
 
-    var itemsDuration = items.isNotEmpty ? items.max() : 0;
+    var itemsDuration = items.isNotEmpty ? items.max()! : 0;
     var scenesDuration = _scenes.isNotEmpty
         ? _scenes
             .map((scene) =>
                 scene.begin.inMicroseconds + scene.duration.inMicroseconds)
-            .max()
+            .max()!
         : 0;
 
     return max(itemsDuration, scenesDuration).microseconds;
@@ -51,10 +51,10 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
   /// By default the scene uses a linear easing curve for all it's animated
   /// properties. This can be change by specifying a [curve].
   TimelineScene<T> addScene({
-    Duration begin,
-    Duration duration,
-    Duration end,
-    Curve curve,
+    Duration? begin,
+    Duration? duration,
+    Duration? end,
+    Curve? curve,
   }) {
     assert(
         (begin != null && duration != null && end == null) ||
@@ -70,14 +70,14 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
       begin = end - duration;
     }
 
-    assert(duration >= 0.seconds,
+    assert(duration! >= 0.seconds,
         'Scene duration must be or result in a positive value');
-    assert(begin >= 0.seconds,
+    assert(begin! >= 0.seconds,
         'Scene begin must be or result in a positive value');
 
     var scene = TimelineScene<T>(
-      begin: begin,
-      duration: duration,
+      begin: begin!,
+      duration: duration!,
       curve: curve,
       parent: this,
     );
@@ -102,16 +102,15 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
     return TimelineValue<T>(map: valueMap);
   }
 
-  void _transformProperty(
-      List<_AbsoluteSceneItem> allItems, T property, double now, Map valueMap) {
+  void _transformProperty(List<_AbsoluteSceneItem<T>> allItems, T property,
+      double now, Map valueMap) {
     var items = allItems
         .filter((item) => item.property == property)
-        .sortedByNum((item) => item.begin);
+        .sortedBy<num>((item) => item.begin);
     assert(items.isNotEmpty);
 
-    var matchInScene = items
-        .filter((item) => item.begin <= now && now <= item.end)
-        .firstOrNull();
+    var matchInScene =
+        items.where((item) => item.begin <= now && now <= item.end).firstOrNull;
 
     if (matchInScene != null) {
       // inside a scene
@@ -166,12 +165,17 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
 class TimelineScene<T> {
   final Duration begin;
   final Duration duration;
-  final Curve curve;
+  final Curve? curve;
   final TimelineTween parent;
 
   final items = <_SceneItem<T>>[];
 
-  TimelineScene({this.begin, this.duration, this.curve, this.parent});
+  TimelineScene({
+    required this.begin,
+    required this.duration,
+    required this.parent,
+    this.curve,
+  });
 
   /// Specifies a [tween] for certain [property].
   ///
@@ -182,8 +186,8 @@ class TimelineScene<T> {
   /// by defining [shiftBegin] and [shiftEnd].
   TimelineScene animate(
     T property, {
-    Animatable tween,
-    Curve curve,
+    required Animatable tween,
+    Curve? curve,
     Duration shiftBegin = Duration.zero,
     Duration shiftEnd = Duration.zero,
   }) {
@@ -206,9 +210,9 @@ class TimelineScene<T> {
   /// By default the scene uses a linear easing curve for all it's animated
   /// properties. This can be change by specifying a [curve].
   TimelineScene addSubsequentScene({
-    Duration duration,
+    required Duration duration,
     Duration delay = Duration.zero,
-    Curve curve,
+    Curve? curve,
   }) {
     return parent.addScene(
       begin: begin + this.duration + delay,
@@ -221,30 +225,29 @@ class TimelineScene<T> {
 class _SceneItem<T> {
   final T property;
   final Animatable tween;
-  final Curve curve;
+  final Curve? curve;
   final Duration shiftBegin;
   final Duration shiftEnd;
 
   _SceneItem({
-    this.property,
+    required this.property,
+    required this.tween,
+    required this.shiftBegin,
+    required this.shiftEnd,
     this.curve,
-    this.tween,
-    this.shiftBegin,
-    this.shiftEnd,
   });
 }
 
 /// A snapshot of properties that were animated by a [TimelineTween].
 /// This class can obtained by using [TimelineTween.transform].
 class TimelineValue<T> {
-  Map<T, dynamic> _map;
+  final Map<T, dynamic> _map;
 
-  TimelineValue({Map<T, dynamic> map}) {
-    _map = map;
-  }
+  TimelineValue({required Map<T, dynamic> map}) : _map = map;
 
   /// Returns the value for a given [property].
   V get<V>(T property) {
+    assert(_map.containsKey(property), 'Property $property was not found.');
     return _map[property] as V;
   }
 }
@@ -257,10 +260,10 @@ class _AbsoluteSceneItem<T> {
   final int end;
 
   _AbsoluteSceneItem({
-    this.property,
-    this.tween,
-    this.curve,
-    this.begin,
-    this.end,
+    required this.property,
+    required this.tween,
+    required this.curve,
+    required this.begin,
+    required this.end,
   });
 }

@@ -81,7 +81,7 @@ void main() {
       tween: IntTween(begin: 0, end: 100),
       child: Text('static child'),
       builder: (context, child, value) =>
-          Row(children: [Text('$value'), child]),
+          Row(children: [Text('$value'), child!]),
     ));
 
     await tester.addAnimationWidget(animation);
@@ -220,24 +220,6 @@ void main() {
       AnimationStatus.forward.toString(),
       AnimationStatus.completed.toString()
     ]);
-  });
-
-  testWidgets('CustomAnimation throw assertion error when no tween specified',
-      (WidgetTester tester) async {
-    expect(
-        // ignore: missing_required_param
-        () => CustomAnimation<int>(
-            duration: 1.days, builder: (context, child, value) => Container()),
-        throwsAssertionError);
-  });
-
-  testWidgets('throw assertion error when no builder or builder specified',
-      (WidgetTester tester) async {
-    expect(
-        // ignore: missing_required_param
-        () => CustomAnimation(
-            duration: 1.days, tween: IntTween(begin: 0, end: 100)),
-        throwsAssertionError);
   });
 }
 
@@ -446,7 +428,7 @@ const expectedValues1 = [
 ];
 
 const expectedValues2 = [
-  50,
+  0,
   0,
   1,
   1,
@@ -650,7 +632,7 @@ const expectedValues2 = [
 ];
 
 const expectedValues3 = [
-  50,
+  100,
   100,
   99,
   99,

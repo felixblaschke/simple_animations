@@ -55,7 +55,7 @@ class PlasmaRenderer extends StatelessWidget {
 
   /// If set, the animation will reduce the framerate (fps) to the specified
   /// value.
-  final int fps;
+  final int? fps;
 
   /// Influences the start position of the particle animation.
   final double offset;
@@ -76,10 +76,10 @@ class PlasmaRenderer extends StatelessWidget {
   final double variation3;
 
   /// Child that's placed inside this [Widget].
-  final Widget child;
+  final Widget? child;
 
   PlasmaRenderer({
-    Key key,
+    Key? key,
     this.type = PlasmaType.infinity,
     this.particles = 10,
     this.color = Colors.white,
@@ -142,7 +142,7 @@ class PlasmaRenderer extends StatelessWidget {
         ),
         if (child != null)
           Positioned.fill(
-            child: child,
+            child: child!,
           )
       ],
     );
@@ -164,18 +164,18 @@ class _PlasmaPainter extends CustomPainter {
   final double variation3;
 
   _PlasmaPainter({
-    this.type,
-    this.particles,
-    this.value,
-    this.color,
-    this.circleSize,
-    this.blendMode,
-    this.offset,
-    this.blur,
-    this.rotation,
-    this.variation1,
-    this.variation2,
-    this.variation3,
+    required this.type,
+    required this.particles,
+    required this.value,
+    required this.color,
+    required this.circleSize,
+    required this.blendMode,
+    required this.offset,
+    required this.blur,
+    required this.rotation,
+    required this.variation1,
+    required this.variation2,
+    required this.variation3,
   });
 
   @override

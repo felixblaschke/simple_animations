@@ -10,13 +10,13 @@ class LiBubblesPlasmaCompute extends LiPlasmaCompute {
   final double variation3;
 
   LiBubblesPlasmaCompute({
-    this.canvasSize,
-    this.circleSize,
-    this.offset,
-    this.value,
-    this.variation1,
-    this.variation2,
-    this.variation3,
+    required this.canvasSize,
+    required this.circleSize,
+    required this.offset,
+    required this.value,
+    required this.variation1,
+    required this.variation2,
+    required this.variation3,
   });
 
   @override

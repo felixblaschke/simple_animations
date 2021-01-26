@@ -31,7 +31,7 @@ class TestWidget extends StatefulWidget {
 }
 
 class _TestWidgetState extends State<TestWidget> with AnimationMixin {
-  Animation<int> a;
+  late Animation<int> a;
 
   @override
   void initState() {

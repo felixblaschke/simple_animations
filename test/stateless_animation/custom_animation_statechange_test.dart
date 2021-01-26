@@ -8,7 +8,7 @@ import './widget_tester_extension.dart';
 void main() {
   testWidgets('CustomAnimation stateChange', (WidgetTester tester) async {
     var values = <int>[];
-    Function() changeValue;
+    late Function() changeValue;
     final animation = MaterialApp(
         home: TestWidget((cv) {
       changeValue = cv;
