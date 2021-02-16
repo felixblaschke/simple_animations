@@ -1,7 +1,11 @@
-## 3.0.0-nullsafety.3
+## 3.0.0-nullsafety.4
 
-- **New:** Nullsafety migration based on version `2.5.0`
+- **New:** Nullsafety migration based on version `2.5.1`
 - **Breaking:** Remove widgets that got deprecated with version `2.x.x`
+
+## 2.5.1
+
+- **Fix:** Added missing type annotations to `TimelineTween`
 
 ## 2.5.0
 
@@ -76,7 +80,7 @@
 - **New:** Added module [Stateless Animation](https://pub.dev/packages/sa_stateless_animation)
 - **New:** Added module [Multi Tween](https://pub.dev/packages/sa_multi_tween)
 - **New:** Added module [Anicoto](https://pub.dev/packages/sa_anicoto)
-- **Breaking changes:** See [migration guide](https://pub.dev/packages/sa_v1_migration) 
+- **Breaking changes:** See [migration guide](https://pub.dev/packages/sa_v1_migration)
 
 ## 1.3.12
 
@@ -94,7 +98,7 @@
 ## 1.3.9
 
 - Fixed Flutter health suggestions
-- Updated links to example app 
+- Updated links to example app
 
 ## 1.3.8
 
@@ -144,11 +148,11 @@
 ### New features
 - `Rendering` a widget for building of continuous animations
 - `AnimationProgress` a utility class that helps you with `Duration`-based
-Animations
+  Animations
 
 ## 1.1.1
 
-- Fixed strange effect when rebuilding a `ControlledAnimation` with `playback` set to 
+- Fixed strange effect when rebuilding a `ControlledAnimation` with `playback` set to
   `Playback.MIRROR`
 
 ## 1.1.0

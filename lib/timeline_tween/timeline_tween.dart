@@ -166,7 +166,7 @@ class TimelineScene<T> {
   final Duration begin;
   final Duration duration;
   final Curve? curve;
-  final TimelineTween parent;
+  final TimelineTween<T> parent;
 
   final items = <_SceneItem<T>>[];
 
@@ -184,7 +184,7 @@ class TimelineScene<T> {
   ///
   /// The begin and end time is also taken from the scene but can be fine-tuned
   /// by defining [shiftBegin] and [shiftEnd].
-  TimelineScene animate(
+  TimelineScene<T> animate(
     T property, {
     required Animatable tween,
     Curve? curve,
@@ -209,7 +209,7 @@ class TimelineScene<T> {
   ///
   /// By default the scene uses a linear easing curve for all it's animated
   /// properties. This can be change by specifying a [curve].
-  TimelineScene addSubsequentScene({
+  TimelineScene<T> addSubsequentScene({
     required Duration duration,
     Duration delay = Duration.zero,
     Curve? curve,
