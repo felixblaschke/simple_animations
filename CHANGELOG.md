@@ -1,3 +1,7 @@
+## 2.5.1
+
+- **Fix:** Added missing type annotations to `TimelineTween`
+
 ## 2.5.0
 
 - **New:** PlasmaRenderer
