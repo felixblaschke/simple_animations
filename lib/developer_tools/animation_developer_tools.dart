@@ -274,6 +274,7 @@ class _ToolbarButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _GestureDetectorWithClickHover(
+      onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Container(
@@ -286,7 +287,6 @@ class _ToolbarButton extends StatelessWidget {
           child: Icon(icon, color: active ? Colors.white : Colors.grey),
         ),
       ),
-      onTap: onTap,
     );
   }
 }

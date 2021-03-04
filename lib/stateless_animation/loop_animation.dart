@@ -56,9 +56,9 @@ class LoopAnimation<T> extends StatelessWidget {
       tween: tween,
       duration: duration,
       curve: curve,
-      child: child,
       fps: fps,
       developerMode: developerMode,
+      child: child,
     );
   }
 }

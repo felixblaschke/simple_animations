@@ -91,10 +91,12 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
     var now = t * duration.inMicroseconds;
     var allItems = _generateAbsoluteItems();
     var properties = <T>{};
+    // TODO this can be micro-optimized to reduced objects allocated each frame
     allItems.forEach((item) => properties.add(item.property));
 
     var valueMap = <T, dynamic>{};
 
+    // TODO this can be micro-optimized to reduced objects allocated each frame
     properties.forEach((property) {
       _transformProperty(allItems, property, now, valueMap);
     });
@@ -102,12 +104,13 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
     return TimelineValue<T>(map: valueMap);
   }
 
+  // TODO this can be micro-optimized to reduced objects allocated each frame
   void _transformProperty(List<_AbsoluteSceneItem<T>> allItems, T property,
-      double now, Map valueMap) {
+      double now, Map<T, dynamic> valueMap) {
     var items = allItems
         .filter((item) => item.property == property)
         .sortedBy<num>((item) => item.begin);
-    assert(items.isNotEmpty);
+    assert(items.isNotEmpty, 'Nothing to animate.');
 
     var matchInScene =
         items.where((item) => item.begin <= now && now <= item.end).firstOrNull;
@@ -138,6 +141,7 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
     }
   }
 
+  // TODO this can be micro-optimized to reduced objects allocated each frame
   List<_AbsoluteSceneItem<T>> _generateAbsoluteItems() {
     var absoluteItems = <_AbsoluteSceneItem<T>>[];
 

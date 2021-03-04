@@ -79,9 +79,9 @@ void main() {
         home: CustomAnimation<int>(
       duration: 100.days,
       tween: IntTween(begin: 0, end: 100),
-      child: Text('static child'),
       builder: (context, child, value) =>
           Row(children: [Text('$value'), child!]),
+          child: Text('static child'),
     ));
 
     await tester.addAnimationWidget(animation);

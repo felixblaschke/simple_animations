@@ -1,6 +1,6 @@
-## 3.0.0-nullsafety.4
+## 3.0.0-nullsafety.5
 
-- **New:** Nullsafety migration based on version `2.5.1`
+- **New:** Simple Animations is sound null-safe (Flutter 2.0)
 - **Breaking:** Remove widgets that got deprecated with version `2.x.x`
 
 ## 2.5.1

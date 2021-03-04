@@ -60,9 +60,9 @@ class PlayAnimation<T> extends StatelessWidget {
       duration: duration,
       delay: delay,
       curve: curve,
-      child: child,
       fps: fps,
       developerMode: developerMode,
+      child: child,
     );
   }
 }

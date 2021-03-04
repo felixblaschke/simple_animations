@@ -87,39 +87,40 @@ class Plasma extends StatelessWidget {
       child: ClipRect(
         clipBehavior: Clip.hardEdge,
         child: CustomAnimation<double>(
-            control: speed > 0
-                ? CustomAnimationControl.LOOP
-                : CustomAnimationControl.STOP,
-            tween: 0.0.tweenTo(2 * pi),
-            child: child,
-            fps: fps,
-            duration:
-                speed > 0 ? (120000.0 / speed).round().milliseconds : 1.seconds,
-            builder: (context, animatedChild, value) {
-              return Stack(
-                children: [
-                  Positioned.fill(
-                    child: CustomPaint(
-                      foregroundPainter: _LegacyPlasmaPainter(
-                        particles: particles,
-                        value: value,
-                        color: foregroundColor,
-                        circleSize: size,
-                        blendMode: blendMode,
-                        offset: offset,
-                      ),
-                      child: Container(
-                        color: backgroundColor,
-                      ),
+          control: speed > 0
+              ? CustomAnimationControl.LOOP
+              : CustomAnimationControl.STOP,
+          tween: 0.0.tweenTo(2 * pi),
+          fps: fps,
+          duration:
+              speed > 0 ? (120000.0 / speed).round().milliseconds : 1.seconds,
+          builder: (context, animatedChild, value) {
+            return Stack(
+              children: [
+                Positioned.fill(
+                  child: CustomPaint(
+                    foregroundPainter: _LegacyPlasmaPainter(
+                      particles: particles,
+                      value: value,
+                      color: foregroundColor,
+                      circleSize: size,
+                      blendMode: blendMode,
+                      offset: offset,
+                    ),
+                    child: Container(
+                      color: backgroundColor,
                     ),
                   ),
-                  if (animatedChild != null)
-                    Positioned.fill(
-                      child: animatedChild,
-                    )
-                ],
-              );
-            }),
+                ),
+                if (animatedChild != null)
+                  Positioned.fill(
+                    child: animatedChild,
+                  )
+              ],
+            );
+          },
+          child: child,
+        ),
       ),
     );
   }
