@@ -151,7 +151,7 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
   }
 
   void asyncInitState() async {
-    if (widget.delay != null && !widget.developerMode) {
+    if (widget.delay != null && widget.delay != Duration.zero && !widget.developerMode) {
       await Future<void>.delayed(widget.delay);
     }
     _waitForDelay = false;
