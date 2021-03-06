@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -51,6 +52,46 @@ void main() {
       expect(value.toStringAsPrecision(3),
           equals(_expectedValues[index].toStringAsPrecision(3)));
     });
+  });
+
+  testWidgets('PlasmaRenderer renders atlas particles', (WidgetTester tester) async {
+    // Render using atlas, check that atlas is generated.
+    await tester.pumpWidget(Directionality(
+      textDirection: TextDirection.ltr,
+      child: PlasmaRenderer(
+        particleType: ParticleType.atlas,
+        blur: 0.5,
+        variation1: 0.5,
+      ),
+    ));
+
+    var customPaint = tester.widget<CustomPaint>(find.byType(CustomPaint));
+    dynamic plasmaPainter = customPaint.painter;
+
+    expect(plasmaPainter.atlasFuture, isNotNull);
+    var atlas = plasmaPainter.atlas as ui.Image;
+    expect(atlas, isNotNull);
+    expect(atlas.width, 180);
+    expect(atlas.height, 180);
+
+    // Change blur level, check that atlas is updated.
+    await tester.pumpWidget(Directionality(
+      textDirection: TextDirection.ltr,
+      child: PlasmaRenderer(
+        particleType: ParticleType.atlas,
+        blur: 1,
+        variation1: 0.5,
+      ),
+    ));
+
+    customPaint = tester.widget<CustomPaint>(find.byType(CustomPaint));
+    plasmaPainter = customPaint.painter;
+
+    expect(plasmaPainter.atlasFuture, isNotNull);
+    atlas = plasmaPainter.atlas as ui.Image;
+    expect(atlas, isNotNull);
+    expect(atlas.width, 260);
+    expect(atlas.height, 260);
   });
 }
 

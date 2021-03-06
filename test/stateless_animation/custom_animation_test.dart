@@ -446,7 +446,7 @@ const expectedValues1 = [
 ];
 
 const expectedValues2 = [
-  50,
+  0,
   0,
   1,
   1,
@@ -650,7 +650,7 @@ const expectedValues2 = [
 ];
 
 const expectedValues3 = [
-  50,
+  100,
   100,
   99,
   99,
