@@ -1,4 +1,4 @@
-## 3.0.0-nullsafety.5
+## 3.0.0
 
 - **New:** Simple Animations is sound null-safe (Flutter 2.0)
 - **New:** Atlas-based particle rendering mode for `PlasmaRenderer`
