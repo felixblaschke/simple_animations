@@ -121,7 +121,8 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
       List<_AbsoluteSceneItem> items, T property, double now, Map valueMap) {
     // Pre-sorting items makes the look-up of first, last, and matching items
     // all doable in a single O(n) pass of the list.
-    assert(items.every((item) => item.property == property), 'Items must already be filtered for $property');
+    assert(items.every((item) => item.property == property),
+        'Items must already be filtered for $property');
     assert(() {
       for (var i = 1; i < items.length; i++) {
         var previous = items[i - 1];

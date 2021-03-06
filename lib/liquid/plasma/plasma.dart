@@ -222,7 +222,8 @@ class _PlasmaPainter extends CustomPainter {
     }
   }
 
-  void _drawCircleParticles(Canvas canvas, LiPlasmaCompute compute, double correctionX, double correctionY) {
+  void _drawCircleParticles(Canvas canvas, LiPlasmaCompute compute,
+      double correctionX, double correctionY) {
     final paint = Paint()
       ..color = color
       ..blendMode = blendMode;
@@ -266,8 +267,7 @@ class _PlasmaPainter extends CustomPainter {
   // render all particles using `Canvas.drawAtlas`, which is very fast.
   void _createAtlas() {
     var atlasSize = _atlasResolution;
-    final paint = Paint()
-      ..color = const Color(0xFFFFFFFF);
+    final paint = Paint()..color = const Color(0xFFFFFFFF);
     if (blur > 0) {
       var blurRadius = (blur * atlasSize * 0.4).roundToDouble();
       atlasSize = atlasSize + 4 * blurRadius;
@@ -282,12 +282,14 @@ class _PlasmaPainter extends CustomPainter {
       paint,
     );
     final picture = recorder.endRecording();
-    atlasFuture = picture.toImage(atlasSize.toInt(), atlasSize.toInt()).then((image) {
+    atlasFuture =
+        picture.toImage(atlasSize.toInt(), atlasSize.toInt()).then((image) {
       atlas = image;
     });
   }
 
-  void _drawAtlasParticles(Canvas canvas, LiPlasmaCompute compute, double correctionX, double correctionY) {
+  void _drawAtlasParticles(Canvas canvas, LiPlasmaCompute compute,
+      double correctionX, double correctionY) {
     // If the atlas is not available yet, fallback on drawCircle
     // See: https://github.com/flutter/flutter/issues/77289
     if (atlas == null) {

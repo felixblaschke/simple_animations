@@ -1,5 +1,5 @@
-import 'package:simple_animations/simple_animations.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 void main() {
@@ -35,7 +35,6 @@ void main() {
     timeline
         .addScene(begin: 4.seconds, end: 5.seconds)
         .animate(Prop.width, tween: 1000.0.tweenTo(2000.0));
-
 
     expect(timeline.transform(1.5 / 5.0).get<double>(Prop.width), 20.0);
     expect(timeline.transform(3.5 / 5.0).get<double>(Prop.width), 200.0);

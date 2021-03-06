@@ -1,11 +1,11 @@
 import 'dart:math';
 import 'dart:ui' as ui;
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
-import 'package:collection/collection.dart';
 
 void main() {
   test('plasma', () {
@@ -55,7 +55,8 @@ void main() {
     });
   });
 
-  testWidgets('PlasmaRenderer renders atlas particles', (WidgetTester tester) async {
+  testWidgets('PlasmaRenderer renders atlas particles',
+      (WidgetTester tester) async {
     // Render using atlas, check that atlas is generated.
     await tester.pumpWidget(Directionality(
       textDirection: TextDirection.ltr,

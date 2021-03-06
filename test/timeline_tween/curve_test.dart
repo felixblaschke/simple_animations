@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 void main() {
@@ -38,7 +38,6 @@ void main() {
         timeline.transform(0.75 / 1.0).get<double>(Prop.height).round(), 191);
     expect(timeline.transform(1.0 / 1.0).get<double>(Prop.height).round(), 200);
   });
-
 
   test('default curve on timeline tween', () {
     var timeline = TimelineTween<Prop>();
