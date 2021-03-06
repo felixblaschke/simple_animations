@@ -111,7 +111,7 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
     var valueMap = <T, dynamic>{};
 
     for (var property in propertyItems.keys) {
-      _transformProperty(propertyItems[property], property, now, valueMap);
+      _transformProperty(propertyItems[property]!, property, now, valueMap);
     }
 
     return TimelineValue<T>(map: valueMap);
@@ -131,9 +131,10 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
       return true;
     }(), 'Items must already be sorted by "begin" field');
 
-    _AbsoluteSceneItem earliestItem;
-    _AbsoluteSceneItem latestItem;
-    _AbsoluteSceneItem matchInScene;
+    _AbsoluteSceneItem? earliestItem;
+    _AbsoluteSceneItem? latestItem;
+    _AbsoluteSceneItem? matchInScene;
+
     for (var i = 0; i < items.length; i++) {
       final item = items[i];
       if (item.property == property) {
@@ -159,11 +160,11 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
           (matchInScene.end - matchInScene.begin).toDouble();
       valueMap[property] =
           matchInScene.tween.curved(matchInScene.curve).transform(localT);
-    } else if (now < earliestItem.begin) {
+    } else if (now < earliestItem!.begin) {
       // before first scene
       valueMap[property] =
           earliestItem.tween.curved(earliestItem.curve).transform(0.0);
-    } else if (latestItem.end < now) {
+    } else if (latestItem!.end < now) {
       // after last scene
       valueMap[property] =
           latestItem.tween.curved(latestItem.curve).transform(1.0);

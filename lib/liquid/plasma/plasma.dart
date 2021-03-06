@@ -174,19 +174,19 @@ class _PlasmaPainter extends CustomPainter {
   final double variation3;
 
   _PlasmaPainter({
-    this.type,
-    this.particleType,
-    this.particles,
-    this.value,
-    this.color,
-    this.circleSize,
-    this.blendMode,
-    this.offset,
-    this.blur,
-    this.rotation,
-    this.variation1,
-    this.variation2,
-    this.variation3,
+    required this.type,
+    required this.particleType,
+    required this.particles,
+    required this.value,
+    required this.color,
+    required this.circleSize,
+    required this.blendMode,
+    required this.offset,
+    required this.blur,
+    required this.rotation,
+    required this.variation1,
+    required this.variation2,
+    required this.variation3,
   });
 
   @override
@@ -255,12 +255,12 @@ class _PlasmaPainter extends CustomPainter {
   static const double _atlasResolution = 100;
 
   // If not null, indicates that we started generating an atlas.
-  Future<void> atlasFuture;
+  Future<void>? atlasFuture;
 
   // If not null, the atlas used to render particles.
   //
   // If null, we fallback to drawCircle.
-  ui.Image atlas;
+  ui.Image? atlas;
 
   // Produces an image containing one blurred circle. The image is then used to
   // render all particles using `Canvas.drawAtlas`, which is very fast.
@@ -306,7 +306,7 @@ class _PlasmaPainter extends CustomPainter {
     final rects = Float32List(4 * particles);
     final colors = Int32List(particles);
     final colorValue = color.value;
-    final atlasSize = atlas.width.toDouble();
+    final atlasSize = atlas!.width.toDouble();
 
     for (var n = 0; n < particles; n++) {
       colors[n] = colorValue;
@@ -330,7 +330,7 @@ class _PlasmaPainter extends CustomPainter {
     }
 
     canvas.drawRawAtlas(
-      atlas,
+      atlas!,
       rstTransforms,
       rects,
       colors,
