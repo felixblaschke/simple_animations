@@ -1,6 +1,8 @@
 ## 3.0.0-nullsafety.5
 
 - **New:** Simple Animations is sound null-safe (Flutter 2.0)
+- **New:** Atlas-based particle rendering mode for `PlasmaRenderer`
+- **Update:** Optimization of `TimelineTween` computations
 - **Breaking:** Remove widgets that got deprecated with version `2.x.x`
 
 ## 2.5.1
