@@ -36,6 +36,13 @@ class PlasmaRenderer extends StatelessWidget {
   /// Type of plasma animation
   final PlasmaType type;
 
+  /// Method used to render each particle.
+  ///
+  /// By default renders using [ParticleType.circle].
+  ///
+  /// See [ParticleType] for details.
+  final ParticleType particleType;
+
   /// Number of particles to simulate. Has impact on computation demand.
   final int particles;
 
@@ -81,6 +88,7 @@ class PlasmaRenderer extends StatelessWidget {
   PlasmaRenderer({
     Key? key,
     this.type = PlasmaType.infinity,
+    this.particleType = ParticleType.circle,
     this.particles = 10,
     this.color = Colors.white,
     this.size = 1.0,
@@ -129,6 +137,7 @@ class PlasmaRenderer extends StatelessWidget {
                           offset: offset,
                           blur: blur,
                           type: type,
+                          particleType: particleType,
                           rotation: rotation,
                           variation1: variation1,
                           variation2: variation2,
@@ -152,6 +161,7 @@ class PlasmaRenderer extends StatelessWidget {
 class _PlasmaPainter extends CustomPainter {
   final int particles;
   final PlasmaType type;
+  final ParticleType particleType;
   final double value;
   final Color color;
   final double circleSize;
@@ -164,18 +174,19 @@ class _PlasmaPainter extends CustomPainter {
   final double variation3;
 
   _PlasmaPainter({
-    required this.type,
-    required this.particles,
-    required this.value,
-    required this.color,
-    required this.circleSize,
-    required this.blendMode,
-    required this.offset,
-    required this.blur,
-    required this.rotation,
-    required this.variation1,
-    required this.variation2,
-    required this.variation3,
+    this.type,
+    this.particleType,
+    this.particles,
+    this.value,
+    this.color,
+    this.circleSize,
+    this.blendMode,
+    this.offset,
+    this.blur,
+    this.rotation,
+    this.variation1,
+    this.variation2,
+    this.variation3,
   });
 
   @override
@@ -201,13 +212,24 @@ class _PlasmaPainter extends CustomPainter {
       variation3: variation3,
     );
 
-    0.until(particles).forEach((n) {
+    switch (particleType) {
+      case ParticleType.circle:
+        _drawCircleParticles(canvas, compute, correctionX, correctionY);
+        break;
+      case ParticleType.atlas:
+        _drawAtlasParticles(canvas, compute, correctionX, correctionY);
+        break;
+    }
+  }
+
+  void _drawCircleParticles(Canvas canvas, LiPlasmaCompute compute, double correctionX, double correctionY) {
+    final paint = Paint()
+      ..color = color
+      ..blendMode = blendMode;
+
+    for (var n = 0; n < particles; n++) {
       var position = compute.position(n);
       var particleRadius = compute.radius(n);
-
-      final paint = Paint()
-        ..color = color
-        ..blendMode = blendMode;
 
       if (blur > 0) {
         var blurRadius = (blur * particleRadius * 0.4).roundToDouble();
@@ -221,12 +243,112 @@ class _PlasmaPainter extends CustomPainter {
           ),
           particleRadius,
           paint);
+    }
+  }
+
+  // The resolution of the atlas.
+  //
+  // The number 100 was picked empirically. It can be adjusted if found to be
+  // insufficient, or it can be made customizable. If this number is too big
+  // it may impact memory usage and/or performance. It should be as small as
+  // possible while still producing reasonably looking results.
+  static const double _atlasResolution = 100;
+
+  // If not null, indicates that we started generating an atlas.
+  Future<void> atlasFuture;
+
+  // If not null, the atlas used to render particles.
+  //
+  // If null, we fallback to drawCircle.
+  ui.Image atlas;
+
+  // Produces an image containing one blurred circle. The image is then used to
+  // render all particles using `Canvas.drawAtlas`, which is very fast.
+  void _createAtlas() {
+    var atlasSize = _atlasResolution;
+    final paint = Paint()
+      ..color = const Color(0xFFFFFFFF);
+    if (blur > 0) {
+      var blurRadius = (blur * atlasSize * 0.4).roundToDouble();
+      atlasSize = atlasSize + 4 * blurRadius;
+      paint.maskFilter = MaskFilter.blur(BlurStyle.normal, blurRadius);
+    }
+
+    final recorder = ui.PictureRecorder();
+    final canvas = Canvas(recorder, Rect.fromLTRB(0, 0, atlasSize, atlasSize));
+    canvas.drawCircle(
+      Offset(atlasSize / 2, atlasSize / 2),
+      _atlasResolution / 2,
+      paint,
+    );
+    final picture = recorder.endRecording();
+    atlasFuture = picture.toImage(atlasSize.toInt(), atlasSize.toInt()).then((image) {
+      atlas = image;
     });
+  }
+
+  void _drawAtlasParticles(Canvas canvas, LiPlasmaCompute compute, double correctionX, double correctionY) {
+    // If the atlas is not available yet, fallback on drawCircle
+    // See: https://github.com/flutter/flutter/issues/77289
+    if (atlas == null) {
+      // Create an atlas if we're not already creating one.
+      if (atlasFuture == null) {
+        _createAtlas();
+      }
+      _drawCircleParticles(canvas, compute, correctionX, correctionY);
+      return;
+    }
+
+    final paint = Paint()
+      ..filterQuality = FilterQuality.medium
+      ..blendMode = blendMode;
+    final rstTransforms = Float32List(4 * particles);
+    final rects = Float32List(4 * particles);
+    final colors = Int32List(particles);
+    final colorValue = color.value;
+    final atlasSize = atlas.width.toDouble();
+
+    for (var n = 0; n < particles; n++) {
+      colors[n] = colorValue;
+      final offset = 4 * n;
+      rects[offset + 2] = atlasSize;
+      rects[offset + 3] = atlasSize;
+
+      final position = compute.position(n);
+      final particleRadius = compute.radius(n);
+      final scale = 2 * particleRadius / atlasSize;
+      final center = atlasSize / 2;
+      final scos = scale;
+      final ssin = 0.0;
+      final tx = position.dx + -scos * center + ssin * center;
+      final ty = position.dy + -ssin * center - scos * center;
+
+      rstTransforms[offset] = scos;
+      rstTransforms[offset + 1] = ssin;
+      rstTransforms[offset + 2] = tx;
+      rstTransforms[offset + 3] = ty;
+    }
+
+    canvas.drawRawAtlas(
+      atlas,
+      rstTransforms,
+      rects,
+      colors,
+      BlendMode.dstIn,
+      null,
+      paint,
+    );
   }
 
   @override
   bool shouldRepaint(covariant _PlasmaPainter oldDelegate) {
+    // If the blur hasn't changed we can reuse the atlas from the old painter.
+    if (blur == oldDelegate.blur) {
+      atlas = oldDelegate.atlas;
+      atlasFuture = oldDelegate.atlasFuture;
+    }
     if (type != oldDelegate.type ||
+        particleType != oldDelegate.particleType ||
         particles != oldDelegate.particles ||
         value != oldDelegate.value ||
         color != oldDelegate.color ||
@@ -251,3 +373,32 @@ abstract class LiPlasmaCompute {
 }
 
 enum PlasmaType { infinity, bubbles, circle }
+
+/// The shape and rendering method used for drawing particles.
+enum ParticleType {
+  /// Renders particles by calling [Canvas.drawCircle] for each particle.
+  ///
+  /// This method is computationally more expensive than [atlas] but it
+  /// produces perfectly shaped circles at all blur levels.
+  circle,
+
+  /// Renders particles from a prerasterized atlas scaled to the particle size.
+  ///
+  /// This method is typically the fastest. However, at low blur levels it may
+  /// look pixelated, especially at large particle sizes. The atlas is
+  /// regenerated every time the value of [PlasmaRenderer.blur] changes. If the
+  /// blur is being animated, this method will fallback to [circle] on every
+  /// frame and therefore not have any performance benefit.
+  ///
+  /// Because altases are prerasterized, when blended into the scene the result
+  /// may be different from blending [Canvas.drawCircle] because the bounds of
+  /// an atlas (being a rectangular image) are always a [Rect].
+  ///
+  /// This method is best under the following circumstances:
+  ///
+  /// * [PlasmaRenderer.blendMode] produces the desired effect with atlases.
+  /// * Blur is high enough or particle size is small enough to hide atlas
+  ///   pixelation, or if pixelation is not a concern.
+  /// * Blur value does not change during the animation.
+  atlas,
+}

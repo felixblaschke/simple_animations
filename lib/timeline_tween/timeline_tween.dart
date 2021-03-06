@@ -90,30 +90,68 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
   TimelineValue<T> transform(double t) {
     var now = t * duration.inMicroseconds;
     var allItems = _generateAbsoluteItems();
-    var properties = <T>{};
-    // TODO this can be micro-optimized to reduced objects allocated each frame
-    allItems.forEach((item) => properties.add(item.property));
+
+    // It's faster to sort the entire array once than chop it up then sort each
+    // property-specific sub-array. The sorting is done because
+    // _transformProperty wants to process the scene items in `begin` order.
+    allItems.sort((a, b) => a.begin - b.begin);
+
+    // Each list in this map is automatically sorted because allItems
+    // is already pre-sorted by `begin` property. No extra sorting is
+    // necessary.
+    var propertyItems = <T, List<_AbsoluteSceneItem>>{};
+    for (var item in allItems) {
+      var items = propertyItems[item.property];
+      if (items == null) {
+        propertyItems[item.property] = items = <_AbsoluteSceneItem>[];
+      }
+      items.add(item);
+    }
 
     var valueMap = <T, dynamic>{};
 
-    // TODO this can be micro-optimized to reduced objects allocated each frame
-    properties.forEach((property) {
-      _transformProperty(allItems, property, now, valueMap);
-    });
+    for (var property in propertyItems.keys) {
+      _transformProperty(propertyItems[property], property, now, valueMap);
+    }
 
     return TimelineValue<T>(map: valueMap);
   }
 
-  // TODO this can be micro-optimized to reduced objects allocated each frame
-  void _transformProperty(List<_AbsoluteSceneItem<T>> allItems, T property,
-      double now, Map<T, dynamic> valueMap) {
-    var items = allItems
-        .filter((item) => item.property == property)
-        .sortedBy<num>((item) => item.begin);
-    assert(items.isNotEmpty, 'Nothing to animate.');
+  void _transformProperty(
+      List<_AbsoluteSceneItem> items, T property, double now, Map valueMap) {
+    // Pre-sorting items makes the look-up of first, last, and matching items
+    // all doable in a single O(n) pass of the list.
+    assert(items.every((item) => item.property == property), 'Items must already be filtered for $property');
+    assert(() {
+      for (var i = 1; i < items.length; i++) {
+        var previous = items[i - 1];
+        var current = items[i];
+        assert(current.begin >= previous.begin);
+      }
+      return true;
+    }(), 'Items must already be sorted by "begin" field');
 
-    var matchInScene =
-        items.where((item) => item.begin <= now && now <= item.end).firstOrNull;
+    _AbsoluteSceneItem earliestItem;
+    _AbsoluteSceneItem latestItem;
+    _AbsoluteSceneItem matchInScene;
+    for (var i = 0; i < items.length; i++) {
+      final item = items[i];
+      if (item.property == property) {
+        if (earliestItem == null || item.begin < earliestItem.begin) {
+          earliestItem = item;
+        }
+        if (latestItem == null || item.begin > latestItem.begin) {
+          latestItem = item;
+        }
+        if (item.begin <= now && now <= item.end) {
+          if (matchInScene == null || item.begin < matchInScene.begin) {
+            matchInScene = item;
+          }
+        }
+      }
+    }
+    assert(earliestItem != null);
+    assert(latestItem != null);
 
     if (matchInScene != null) {
       // inside a scene
@@ -121,32 +159,31 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
           (matchInScene.end - matchInScene.begin).toDouble();
       valueMap[property] =
           matchInScene.tween.curved(matchInScene.curve).transform(localT);
-    } else if (now < items.first.begin) {
+    } else if (now < earliestItem.begin) {
       // before first scene
       valueMap[property] =
-          items.first.tween.curved(items.first.curve).transform(0.0);
-    } else if (items.last.end < now) {
+          earliestItem.tween.curved(earliestItem.curve).transform(0.0);
+    } else if (latestItem.end < now) {
       // after last scene
       valueMap[property] =
-          items.last.tween.curved(items.last.curve).transform(1.0);
+          latestItem.tween.curved(latestItem.curve).transform(1.0);
     } else {
       // between two scenes
-      1.until(items.length).forEach((i) {
+      for (var i = 1; i < items.length; i++) {
         var left = items[i - 1];
         var right = items[i];
         if (left.end < now && now < right.begin) {
           valueMap[property] = left.tween.curved(left.curve).transform(1.0);
         }
-      });
+      }
     }
   }
 
-  // TODO this can be micro-optimized to reduced objects allocated each frame
   List<_AbsoluteSceneItem<T>> _generateAbsoluteItems() {
     var absoluteItems = <_AbsoluteSceneItem<T>>[];
 
-    _scenes.forEach((scene) {
-      scene.items.forEach((item) {
+    for (final scene in _scenes) {
+      for (final item in scene.items) {
         absoluteItems.add(_AbsoluteSceneItem<T>(
           begin: scene.begin.inMicroseconds + item.shiftBegin.inMicroseconds,
           end: scene.begin.inMicroseconds +
@@ -156,8 +193,8 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
           property: item.property,
           tween: item.tween,
         ));
-      });
-    });
+      }
+    }
 
     return absoluteItems;
   }
