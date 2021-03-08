@@ -1,3 +1,6 @@
+## 3.0.1
+- **Fix:** Rendering size / position of atlas-based particle rendering
+
 ## 3.0.0
 
 - **New:** Simple Animations is sound null-safe (Flutter 2.0)
