@@ -73,8 +73,8 @@ void main() {
     expect(plasmaPainter.atlasFuture, isNotNull);
     var atlas = plasmaPainter.atlas as ui.Image;
     expect(atlas, isNotNull);
-    expect(atlas.width, 180);
-    expect(atlas.height, 180);
+    expect(atlas.width, 150);
+    expect(atlas.height, 150);
 
     // Change blur level, check that atlas is updated.
     await tester.pumpWidget(Directionality(
@@ -92,8 +92,8 @@ void main() {
     expect(plasmaPainter.atlasFuture, isNotNull);
     atlas = plasmaPainter.atlas as ui.Image;
     expect(atlas, isNotNull);
-    expect(atlas.width, 260);
-    expect(atlas.height, 260);
+    expect(atlas.width, 200);
+    expect(atlas.height, 200);
   });
 }
 

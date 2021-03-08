@@ -267,10 +267,14 @@ class _PlasmaPainter extends CustomPainter {
   // render all particles using `Canvas.drawAtlas`, which is very fast.
   void _createAtlas() {
     var atlasSize = _atlasResolution;
+    var particleRadius = _atlasResolution / 2;
     final paint = Paint()..color = const Color(0xFFFFFFFF);
     if (blur > 0) {
-      var blurRadius = (blur * atlasSize * 0.4).roundToDouble();
-      atlasSize = atlasSize + 4 * blurRadius;
+      var blurRadius = (blur * particleRadius * 0.4).roundToDouble();
+
+      // Increase the atlas size to fit the effect of the blur. 2.5x blur on
+      // each side seems enough.
+      atlasSize = atlasSize + 5 * blurRadius;
       paint.maskFilter = MaskFilter.blur(BlurStyle.normal, blurRadius);
     }
 
@@ -278,7 +282,7 @@ class _PlasmaPainter extends CustomPainter {
     final canvas = Canvas(recorder, Rect.fromLTRB(0, 0, atlasSize, atlasSize));
     canvas.drawCircle(
       Offset(atlasSize / 2, atlasSize / 2),
-      _atlasResolution / 2,
+      particleRadius,
       paint,
     );
     final picture = recorder.endRecording();
@@ -318,12 +322,12 @@ class _PlasmaPainter extends CustomPainter {
 
       final position = compute.position(n);
       final particleRadius = compute.radius(n);
-      final scale = 2 * particleRadius / atlasSize;
+      final scale = 2 * particleRadius / _atlasResolution;
       final center = atlasSize / 2;
       final scos = scale;
       final ssin = 0.0;
-      final tx = position.dx + -scos * center + ssin * center;
-      final ty = position.dy + -ssin * center - scos * center;
+      final tx = (position.dx - correctionX) + -scos * center + ssin * center;
+      final ty = (position.dy - correctionY) + -ssin * center - scos * center;
 
       rstTransforms[offset] = scos;
       rstTransforms[offset + 1] = ssin;
@@ -380,23 +384,24 @@ enum PlasmaType { infinity, bubbles, circle }
 enum ParticleType {
   /// Renders particles by calling [Canvas.drawCircle] for each particle.
   ///
-  /// This method is computationally more expensive than [atlas] but it
-  /// produces perfectly shaped circles at all blur levels.
+  /// This rendering method is visually accurate but computationally more
+  /// expensive than [atlas].
   circle,
 
   /// Renders particles from a prerasterized atlas scaled to the particle size.
   ///
-  /// This method is typically the fastest. However, at low blur levels it may
-  /// look pixelated, especially at large particle sizes. The atlas is
-  /// regenerated every time the value of [PlasmaRenderer.blur] changes. If the
-  /// blur is being animated, this method will fallback to [circle] on every
-  /// frame and therefore not have any performance benefit.
+  /// This rendering method is faster than [circle] but it's not visually
+  /// accurate. At low blur levels, large particle sizes, and certain
+  /// [BlendMode]s it may look different from [circle]. It is therefore not a
+  /// drop-in replacement for [circle]. The plasma effect should be
+  /// intentionally tuned for the atlas mode.
   ///
-  /// Because altases are prerasterized, when blended into the scene the result
-  /// may be different from blending [Canvas.drawCircle] because the bounds of
-  /// an atlas (being a rectangular image) are always a [Rect].
+  /// The atlas image is regenerated every time the value of
+  /// [PlasmaRenderer.blur] changes. If the blur level is being animated, this
+  /// method will fallback to [circle] on every frame and therefore not have
+  /// any performance benefit.
   ///
-  /// This method is best under the following circumstances:
+  /// Choose this method if:
   ///
   /// * [PlasmaRenderer.blendMode] produces the desired effect with atlases.
   /// * Blur is high enough or particle size is small enough to hide atlas
