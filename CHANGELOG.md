@@ -1,4 +1,9 @@
+## 3.0.2
+
+- **Fix:** Exception in SKIA web if effective blur radius is `0` (`PlasmaRenderer`)
+
 ## 3.0.1
+
 - **Fix:** Rendering size / position of atlas-based particle rendering
 
 ## 3.0.0

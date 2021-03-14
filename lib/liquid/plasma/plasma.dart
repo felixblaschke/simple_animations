@@ -234,7 +234,9 @@ class _PlasmaPainter extends CustomPainter {
 
       if (blur > 0) {
         var blurRadius = (blur * particleRadius * 0.4).roundToDouble();
-        paint.maskFilter = MaskFilter.blur(BlurStyle.normal, blurRadius);
+        if (blurRadius > 0) {
+          paint.maskFilter = MaskFilter.blur(BlurStyle.normal, blurRadius);
+        }
       }
 
       canvas.drawCircle(
