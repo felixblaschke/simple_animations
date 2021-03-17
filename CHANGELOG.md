@@ -1,3 +1,7 @@
+## 3.0.3
+
+- **Fix:** Analyzer issue
+
 ## 3.0.2
 
 - **Fix:** Exception in SKIA web if effective blur radius is `0` (`PlasmaRenderer`)

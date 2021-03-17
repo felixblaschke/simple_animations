@@ -33,7 +33,7 @@ extension AnimationControllerExtension on AnimationController {
   /// ```
   TickerFuture playReverse({Duration? duration}) {
     this.duration = duration ?? this.duration;
-    return this.reverse();
+    return reverse();
   }
 
   /// Starts playing the animation in an endless loop. After reaching the
