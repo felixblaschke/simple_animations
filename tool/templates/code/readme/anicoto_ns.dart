@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-class MyAnimatedWidget extends StatefulWidget {
+class MyWidget extends StatefulWidget {
   @override
-  _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
+  _MyWidgetState createState() => _MyWidgetState();
 }
 
 // add AnimationMixin to widget's state
-class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
-    with AnimationMixin {
+class _MyWidgetState extends State<MyWidget> with AnimationMixin {
   // declare animation variable
   late Animation<double> size;
 

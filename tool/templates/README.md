@@ -3,13 +3,11 @@
 [![Awesome Flutter](https://img.shields.io/badge/Awesome-Flutter-blue.svg?longCache=true&style=flat-square)](https://github.com/Solido/awesome-flutter)
 [![Pub](https://img.shields.io/pub/v/simple_animations.svg)](https://pub.dartlang.org/packages/simple_animations)
 
-
 **Simple Animations** is a powerful package to create beautiful custom animations in no time.
 
 - 💪 **fully tested**
 - 📝 **well documented**
 - 💼 **enterprise-ready**
-
 
 ## 🌞 Highlights
 
@@ -21,7 +19,7 @@
 
 ## ⛏️ Getting started
 
-Add **Simple Animations** to your project by following the instructions on the 
+Add **Simple Animations** to your project by following the instructions on the
 **[install page](https://pub.dev/packages/simple_animations/install)**.
 
 It contains multiple features. Each covers a different aspect of making animation very simple.
@@ -38,7 +36,8 @@ It contains multiple features. Each covers a different aspect of making animatio
 
 ### 🍹 Liquid
 
-Liquid provides ready-to-use, stunning visual animations that can be explored and configured with **[Liquid Studio](https://felixblaschke.github.io/liquid-studio)**.
+Liquid provides ready-to-use, stunning visual animations that can be explored and configured
+with **[Liquid Studio](https://felixblaschke.github.io/liquid-studio)**.
 
 ![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/studio1.jpg)
 
@@ -52,7 +51,7 @@ Liquid provides ready-to-use, stunning visual animations that can be explored an
 
 Stateless Animation provides a powerful set of Flutter widgets that hide the most complex part of creating animations.
 
-***Example**: Square with an animated background color. (Example uses [supercharged](https://pub.dev/packages/supercharged) for syntactic sugar.)*
+**Example**: Square with an animated background color.
 
 @code tool/templates/code/readme/stateless_animation.dart
 
@@ -62,10 +61,10 @@ Stateless Animation provides a powerful set of Flutter widgets that hide the mos
 
 ### 🎭 Timeline Tween
 
+Timeline Tween (successor of [MultiTween](doc/multi_tween.md)) is a mighty tool thats enables you to tween multiple
+properties *or* designing staggered animations in a single `Animatable`.
 
-Timeline Tween (successor of [MultiTween](doc/multi_tween.md)) is a mighty tool thats enables you to tween multiple properties *or* designing staggered animations in a single `Animatable`.
-
-***Example**: Custom tween with multiple properties. (Example uses [supercharged](https://pub.dev/packages/supercharged) for syntactic sugar.)*
+**Example**: Custom tween with multiple properties.
 
 @code tool/templates/code/readme/timeline_tween.dart
 
@@ -73,12 +72,12 @@ Timeline Tween (successor of [MultiTween](doc/multi_tween.md)) is a mighty tool 
 
 ---
 
-
 ### 🎥 Anicoto
 
-Anicoto fully manages your AnimationController instances and handles initialization, configuration and disposing. No more boilerplate code.
+Anicoto fully manages your AnimationController instances and handles initialization, configuration and disposing. No
+more boilerplate code.
 
-***Example**: Animated stateful widget with full-fledged AnimationController instance. (Example uses [supercharged](https://pub.dev/packages/supercharged) for syntactic sugar.)*
+**Example**: Animated stateful widget with full-fledged AnimationController instance.
 
 @code tool/templates/code/readme/anicoto.dart
 
@@ -92,7 +91,8 @@ Tired of watching the same animation over and over again, in order to fine tune 
 
 ![devtools](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/v2/devtools.gif)
 
-The Animation Developer Tools allows you pause anywhere, scroll around, speed up, slow down or focus on a certain interval of the animation.
+The Animation Developer Tools allows you pause anywhere, scroll around, speed up, slow down or focus on a certain
+interval of the animation.
 
 [**Read more about it**](doc/animation_developer_tools.md).
 
@@ -100,7 +100,8 @@ The Animation Developer Tools allows you pause anywhere, scroll around, speed up
 
 ## 📈 Improve
 
-Simple Animations will **improve** in future updates. Help me by reporting bugs, **submit new ideas** for features or anything else that you want to share.
+Simple Animations will **improve** in future updates. Help me by reporting bugs, **submit new ideas** for features or
+anything else that you want to share.
 
 - Just [write an issue](https://github.com/felixblaschke/simple_animations/issues) on GitHub. ✏️
 - And don't forget to hit the **like button** for this package ✌️

@@ -8,9 +8,13 @@ class MyApp extends StatelessWidget {
     // create animation widget with type of animated variable
     return PlayAnimation<Color?>(
         tween: Colors.red.tweenTo(Colors.blue), // define tween
+        duration: 2.seconds, // define duration
         builder: (context, child, value) {
-          // use animated value
-          return Container(color: value, width: 100, height: 100);
+          return Container(
+            color: value, // use animated value
+            width: 100,
+            height: 100,
+          );
         });
   }
 }

@@ -66,7 +66,7 @@ ${codeFile.readAsStringSync()}
             file.path;
 
     result.add(
-        '*Note: This example uses **[⚡️ Supercharged](https://pub.dev/packages/supercharged)** to **simplify** the code and **improve** the readability. But if you don\'t want to use that package you can use a [dependency-less example]($ref).*');
+        '*Note: This example uses **[⚡️ Supercharged](https://pub.dev/packages/supercharged)** to **simplify** the code and **improve** the readability. But if you don\'t want to use that package you can view a [dependency-less example]($ref).*');
   }
 
   return result;
