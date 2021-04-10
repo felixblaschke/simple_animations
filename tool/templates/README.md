@@ -54,25 +54,7 @@ Stateless Animation provides a powerful set of Flutter widgets that hide the mos
 
 ***Example**: Square with an animated background color. (Example uses [supercharged](https://pub.dev/packages/supercharged) for syntactic sugar.)*
 
-```dart
-import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // create animation widget with type of animated variable
-    return PlayAnimation<Color?>(
-        tween: Colors.red.tweenTo(Colors.blue), // define tween
-        builder: (context, child, value) {
-          // use animated value
-          return Container(color: value, width: 100, height: 100);
-        });
-  }
-}
-```
-*Note: This example uses **[⚡️ Supercharged](https://pub.dev/packages/supercharged)** to **simplify** the code and **improve** the readability. But if you don't want to use that package you can use a [dependency-less example](doc/no_supercharged/readme/stateless_animation_ns.dart.md).*
+@code tool/templates/code/readme/stateless_animation.dart
 
 [**Read more about it**](doc/stateless_animation.md) or [**watch examples**](example/stateless_animation.md).
 
@@ -85,24 +67,7 @@ Timeline Tween (successor of [MultiTween](doc/multi_tween.md)) is a mighty tool 
 
 ***Example**: Custom tween with multiple properties. (Example uses [supercharged](https://pub.dev/packages/supercharged) for syntactic sugar.)*
 
-```dart
-import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
-
-// define animated properties
-enum AniProps { width, height, color }
-
-// design tween by composing scenes
-final tween = TimelineTween<AniProps>()
-  ..addScene(begin: 0.milliseconds, duration: 500.milliseconds)
-      .animate(AniProps.width, tween: 0.0.tweenTo(400.0))
-      .animate(AniProps.height, tween: 500.0.tweenTo(200.0))
-      .animate(AniProps.color, tween: Colors.red.tweenTo(Colors.yellow))
-  ..addScene(begin: 700.milliseconds, end: 1200.milliseconds)
-      .animate(AniProps.width, tween: 400.0.tweenTo(500.0));
-```
-*Note: This example uses **[⚡️ Supercharged](https://pub.dev/packages/supercharged)** to **simplify** the code and **improve** the readability. But if you don't want to use that package you can use a [dependency-less example](doc/no_supercharged/readme/timeline_tween_ns.dart.md).*
+@code tool/templates/code/readme/timeline_tween.dart
 
 [**Read more about it**](doc/timeline_tween.md) or [**watch examples**](example/timeline_tween.md).
 
@@ -115,43 +80,7 @@ Anicoto fully manages your AnimationController instances and handles initializat
 
 ***Example**: Animated stateful widget with full-fledged AnimationController instance. (Example uses [supercharged](https://pub.dev/packages/supercharged) for syntactic sugar.)*
 
-```dart
-import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
-
-class MyAnimatedWidget extends StatefulWidget {
-  @override
-  _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
-}
-
-// add AnimationMixin to widget's state
-class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
-    with AnimationMixin {
-  // declare animation variable
-  late Animation<double> size;
-
-  @override
-  void initState() {
-    // connect tween and controller and apply to animation variable
-    size = 0.0.tweenTo(200.0).animatedBy(controller);
-
-    controller.play(); // start the animation playback
-
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: size.value, // use animation variable's value
-      height: size.value, // use animation variable's value
-      color: Colors.red,
-    );
-  }
-}
-```
-*Note: This example uses **[⚡️ Supercharged](https://pub.dev/packages/supercharged)** to **simplify** the code and **improve** the readability. But if you don't want to use that package you can use a [dependency-less example](doc/no_supercharged/readme/anicoto_ns.dart.md).*
+@code tool/templates/code/readme/anicoto.dart
 
 [**Read more about it**](doc/anicoto.md) or [**watch examples**](example/anicoto.md).
 
@@ -175,3 +104,4 @@ Simple Animations will **improve** in future updates. Help me by reporting bugs,
 
 - Just [write an issue](https://github.com/felixblaschke/simple_animations/issues) on GitHub. ✏️
 - And don't forget to hit the **like button** for this package ✌️
+
