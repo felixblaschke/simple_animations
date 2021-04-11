@@ -1,6 +1,6 @@
-# anicoto.dart without ⚡ Supercharged
+# anicoto.dart
 
-Here is the example without using any syntactic sugar, provided by the [⚡️ Supercharged](https://pub.dev/packages/supercharged) package:
+Here is the example **without** using Supercharged: 
 
 ```dart
 import 'package:flutter/material.dart';
@@ -37,12 +37,11 @@ class _MyWidgetState extends State<MyWidget> with AnimationMixin {
 }
 
 ```
-## About Supercharged
+## What is Supercharged?
 
+Supercharged is a package we created along Simple Animations.
 
-⚡️ **Supercharged** is created and maintained by the 🎬 **Simple Animations** developers.
-
-It contains many useful **extension methods** that **increase readability** of your `Widget` code:
+I provides **extension methods** to simplify certain scenarios even further. Have a look:
 
 ```dart
 // Tweens
@@ -68,11 +67,13 @@ var persons = [
     Person(name: "Sarah", age: 61)
 ];
 
+var randomPerson = persons.pickOne();
+
 persons.groupBy(
     (p) => p.age < 40 ? "young" : "old",
     valueTransform: (p) => p.name
 ); // {"young": ["John", "Carl"], "old": ["Peter", "Sarah"]}
 ```
 
-If you are curious of ⚡ Supercharged [take a look at more examples](https://pub.dev/packages/supercharged).
+So if you are curious take a look at [**more Supercharged examples**](https://pub.dev/packages/supercharged).
 

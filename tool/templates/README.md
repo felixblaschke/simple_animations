@@ -26,25 +26,11 @@ It contains multiple features. Each covers a different aspect of making animatio
 
 | Feature | Description |
 | --- | ----------- |
-| 🍹&nbsp;[Liquid](#-liquid) | Beautiful visual animations that increases the visual quality of your app. |
 | 🚀&nbsp;[Stateless&nbsp;Animation](#-stateless-animation) | Widgets for super simple creation of custom animations. |
 | 🎭&nbsp;[Timeline Tween](#-timeline-tween) | Animate multiple properties at once or create staggered animations. |
 | 🎥&nbsp;[Anicoto](#-anicoto) | Setup managed AnimationControllers instantly. |
 | ⏯&nbsp;[Animation&nbsp;Developer&nbsp;Tools](#-animation-developer-tools) | Debug animations or create them step by step. |
-
----
-
-### 🍹 Liquid
-
-Liquid provides ready-to-use, stunning visual animations that can be explored and configured
-with **[Liquid Studio](https://felixblaschke.github.io/liquid-studio)**.
-
-![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/studio1.jpg)
-
-![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/plasma2.gif)
-
-**[Open Liquid Studio](https://felixblaschke.github.io/liquid-studio)**.
-
+| 🍹&nbsp;[Liquid](#-liquid) | Beautiful visual animations that increases the visual quality of your app. |
 ---
 
 ### 🚀 Stateless Animation
@@ -95,6 +81,19 @@ The Animation Developer Tools allows you pause anywhere, scroll around, speed up
 interval of the animation.
 
 [**Read more about it**](doc/animation_developer_tools.md).
+
+---
+
+### 🍹 Liquid
+
+Liquid provides ready-to-use, stunning visual animations that can be explored and configured
+with **[Liquid Studio](https://felixblaschke.github.io/liquid-studio)**.
+
+![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/studio1.jpg)
+
+![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/plasma2.gif)
+
+**[Open Liquid Studio](https://felixblaschke.github.io/liquid-studio)**.
 
 ---
 

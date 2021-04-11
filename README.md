@@ -26,25 +26,11 @@ It contains multiple features. Each covers a different aspect of making animatio
 
 | Feature | Description |
 | --- | ----------- |
-| 🍹&nbsp;[Liquid](#-liquid) | Beautiful visual animations that increases the visual quality of your app. |
 | 🚀&nbsp;[Stateless&nbsp;Animation](#-stateless-animation) | Widgets for super simple creation of custom animations. |
 | 🎭&nbsp;[Timeline Tween](#-timeline-tween) | Animate multiple properties at once or create staggered animations. |
 | 🎥&nbsp;[Anicoto](#-anicoto) | Setup managed AnimationControllers instantly. |
 | ⏯&nbsp;[Animation&nbsp;Developer&nbsp;Tools](#-animation-developer-tools) | Debug animations or create them step by step. |
-
----
-
-### 🍹 Liquid
-
-Liquid provides ready-to-use, stunning visual animations that can be explored and configured
-with **[Liquid Studio](https://felixblaschke.github.io/liquid-studio)**.
-
-![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/studio1.jpg)
-
-![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/plasma2.gif)
-
-**[Open Liquid Studio](https://felixblaschke.github.io/liquid-studio)**.
-
+| 🍹&nbsp;[Liquid](#-liquid) | Beautiful visual animations that increases the visual quality of your app. |
 ---
 
 ### 🚀 Stateless Animation
@@ -75,7 +61,7 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
-*Note: This example uses **[⚡️ Supercharged](https://pub.dev/packages/supercharged)** to **simplify** the code and **improve** the readability. But if you don't want to use that package you can view a [dependency-less example](doc/no_supercharged/readme/stateless_animation_ns.dart.md).*
+> *Note: We use [supercharged extensions](https://pub.dev/packages/supercharged) here. If you don't like it, refer to this [dependency-less example](doc/no_supercharged/readme/stateless_animation_ns.dart.md).*
 
 [**Read more about it**](doc/stateless_animation.md) or [**watch examples**](example/stateless_animation.md).
 
@@ -105,7 +91,7 @@ final tween = TimelineTween<AniProps>()
   ..addScene(begin: 700.milliseconds, end: 1200.milliseconds)
       .animate(AniProps.width, tween: 400.0.tweenTo(500.0));
 ```
-*Note: This example uses **[⚡️ Supercharged](https://pub.dev/packages/supercharged)** to **simplify** the code and **improve** the readability. But if you don't want to use that package you can view a [dependency-less example](doc/no_supercharged/readme/timeline_tween_ns.dart.md).*
+> *Note: We use [supercharged extensions](https://pub.dev/packages/supercharged) here. If you don't like it, refer to this [dependency-less example](doc/no_supercharged/readme/timeline_tween_ns.dart.md).*
 
 [**Read more about it**](doc/timeline_tween.md) or [**watch examples**](example/timeline_tween.md).
 
@@ -153,7 +139,7 @@ class _MyWidgetState extends State<MyWidget> with AnimationMixin {
   }
 }
 ```
-*Note: This example uses **[⚡️ Supercharged](https://pub.dev/packages/supercharged)** to **simplify** the code and **improve** the readability. But if you don't want to use that package you can view a [dependency-less example](doc/no_supercharged/readme/anicoto_ns.dart.md).*
+> *Note: We use [supercharged extensions](https://pub.dev/packages/supercharged) here. If you don't like it, refer to this [dependency-less example](doc/no_supercharged/readme/anicoto_ns.dart.md).*
 
 [**Read more about it**](doc/anicoto.md) or [**watch examples**](example/anicoto.md).
 
@@ -169,6 +155,19 @@ The Animation Developer Tools allows you pause anywhere, scroll around, speed up
 interval of the animation.
 
 [**Read more about it**](doc/animation_developer_tools.md).
+
+---
+
+### 🍹 Liquid
+
+Liquid provides ready-to-use, stunning visual animations that can be explored and configured
+with **[Liquid Studio](https://felixblaschke.github.io/liquid-studio)**.
+
+![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/studio1.jpg)
+
+![plasma](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_liquid/plasma2.gif)
+
+**[Open Liquid Studio](https://felixblaschke.github.io/liquid-studio)**.
 
 ---
 

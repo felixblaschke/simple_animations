@@ -57,19 +57,18 @@ List<String> checkNoSupercharged(File docFile, File baseCodeFile) {
         'doc/no_supercharged/${codeFile.path.substring('tool/templates/code/'.length)}.md');
     file.createSync(recursive: true);
     file.writeAsStringSync('''
-# ${baseCodeFile.path.split('/').last} without ⚡ Supercharged
+# ${baseCodeFile.path.split('/').last}
 
-Here is the example without using any syntactic sugar, provided by the [⚡️ Supercharged](https://pub.dev/packages/supercharged) package:
+Here is the example **without** using Supercharged: 
 
 ```dart
 ${codeFile.readAsStringSync()}
 ```
-## About Supercharged
+## What is Supercharged?
 
+Supercharged is a package we created along Simple Animations.
 
-⚡️ **Supercharged** is created and maintained by the 🎬 **Simple Animations** developers.
-
-It contains many useful **extension methods** that **increase readability** of your `Widget` code:
+I provides **extension methods** to simplify certain scenarios even further. Have a look:
 
 ```dart
 // Tweens
@@ -95,13 +94,15 @@ var persons = [
     Person(name: "Sarah", age: 61)
 ];
 
+var randomPerson = persons.pickOne();
+
 persons.groupBy(
     (p) => p.age < 40 ? "young" : "old",
     valueTransform: (p) => p.name
 ); // {"young": ["John", "Carl"], "old": ["Peter", "Sarah"]}
 ```
 
-If you are curious of ⚡ Supercharged [take a look at more examples](https://pub.dev/packages/supercharged).
+So if you are curious take a look at [**more Supercharged examples**](https://pub.dev/packages/supercharged).
 
 ''');
     var ref =
@@ -109,7 +110,7 @@ If you are curious of ⚡ Supercharged [take a look at more examples](https://pu
             file.path;
 
     result.add(
-        '*Note: This example uses **[⚡️ Supercharged](https://pub.dev/packages/supercharged)** to **simplify** the code and **improve** the readability. But if you don\'t want to use that package you can view a [dependency-less example]($ref).*');
+        '> *Note: We use [supercharged extensions](https://pub.dev/packages/supercharged) here. If you don\'t like it, refer to this [dependency-less example]($ref).*');
   }
 
   return result;
