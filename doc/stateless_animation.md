@@ -5,20 +5,25 @@ Stateless Animation enables developers to craft custom animations with simple wi
 
 ## PlayAnimation widget
 
-Create your animation by adding the `PlayAnimation` widget to your app. It takes two mandatory parameters `tween` and `builder`.
+The `PlayAnimation()` widget plays an animation described by the properties `tween` and `builder`.
 
 ### Tween
 
 The `tween` is the description of your animation. Mostly it will change a value from A to B. Tweens describe **what** will happen but **not how fast it will happen**.
 
 ```dart
+import 'package:flutter/material.dart';
+
 // Animate a color from red to blue
-Animatable<Color> myTween = Colors.red.tweenTo(Colors.blue);
+var colorTween = ColorTween(begin: Colors.red, end: Colors.blue);
+
+// Animate a double value from 0 to 100
+var doubleTween = Tween<double>(begin: 0.0, end: 100.0);
 ```
 
 ### Builder
 
-The `builder` is a function that is called for each new rendered frame of your animation. It takes three parameters: `context`, `child` and `value`.
+The `builder` is a function that is called for **each new rendered frame** of your animation. It takes three parameters: `context`, `child` and `value`.
 
 - `context` is your Flutter `BuildContext`, which should be familiar to you.
 
@@ -33,29 +38,42 @@ How often your `builder` function is called, depends on the animation duration a
 The `PlayAnimation<?>` widget can be typed with the type of the animated variable. This enables us the code type-safe.
 
 ```dart
-PlayAnimation<Color>( // <-- specify type of animated variable
-  tween: Colors.red.tweenTo(Colors.blue), // <-- define tween of colors
-  builder: (context, child, value) { // <-- builder function
+import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
+
+// set Color? as type of PlayAnimation because use a ColorTween
+var widget = PlayAnimation<Color?>(
+  tween: ColorTween(begin: Colors.red, end: Colors.blue), // define tween
+  builder: (context, child, value) {
     return Container(
-        color: value, // <-- use animated value
-        width: 100, 
-        height: 100
+      color: value, // use animated color
+      width: 100,
+      height: 100,
     );
-});
+  },
+);
 ```
+
 This snippet creates animation of a red square. It's color will fade to blue within one second.
 
 ### Animation duration
 
-By default the duration of the animation is one second. You set the optional parameter `duration` to refine that.
+By default, the duration of the animation is one second. You set the optional parameter `duration` to refine that.
 
 ```dart
-PlayAnimation<Color>(
-  tween: Colors.red.tweenTo(Colors.blue),
+import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
+
+var widget = PlayAnimation<Color?>(
+  tween: ColorTween(begin: Colors.red, end: Colors.blue),
+  duration: Duration(seconds: 5), // specify duration
   builder: (context, child, value) {
-    return Container(color: value, width: 100, height: 100);
+    return Container(
+      color: value,
+      width: 100,
+      height: 100,
+    );
   },
-  duration: 5.seconds, // <-- specify duration
 );
 ```
 
@@ -63,20 +81,27 @@ Now the red square will fade it's color for 5 seconds.
 
 ### Delay
 
-By default animations will play automatically. You can set the `delay` parameter to make `PlayAnimation` wait for a given amount of time.
+By default, animations will play automatically. You can set the `delay` parameter to make `PlayAnimation` wait for a given amount of time.
 
 ```dart
-PlayAnimation<Color>(
-  tween: Colors.red.tweenTo(Colors.blue),
+import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
+
+var widget = PlayAnimation<Color?>(
+  tween: ColorTween(begin: Colors.red, end: Colors.blue),
+  duration: Duration(seconds: 5),
+  delay: Duration(seconds: 2), // add delay
   builder: (context, child, value) {
-    return Container(color: value, width: 100, height: 100);
+    return Container(
+      color: value,
+      width: 100,
+      height: 100,
+    );
   },
-  duration: 5.seconds,
-  delay: 2.seconds, // <-- add delay
 );
 ```
 
-The red square will wait for 2 seconds before it starts fading it's color.
+The red square will wait for 2 seconds before it starts fading its color.
 
 ### Non-linear animation
 
@@ -87,14 +112,22 @@ Scenarios where the animation is faster at beginning and slower at the ending ar
 You can enrich your animation with non-linear behavior by supplying a `Curve` to the `curve` parameter. Flutter comes with a set of predefined curves inside the `Curves` class.
 
 ```dart
-PlayAnimation<Color>(
-  tween: Colors.red.tweenTo(Colors.blue),
-  curve: Curves.easeInOut, // <-- specify curve
+import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
+
+var widget = PlayAnimation<Color?>(
+  tween: ColorTween(begin: Colors.red, end: Colors.blue),
+  curve: Curves.easeInOut, // specify curve
   builder: (context, child, value) {
-    return Container(color: value, width: 100, height: 100);
+    return Container(
+      color: value,
+      width: 100,
+      height: 100,
+    );
   },
 );
 ```
+
 
 ### Working with child widgets
 
@@ -105,17 +138,21 @@ Animations are highly demanding because parts of your apps are recomputed many t
 In that scenario we have static `Text` widget. Only the `Container` need to be update on each frame. We can set the static widget as a `child` parameter. In our `builder` function we receive that child widget and can use it inside our animated scene. **This way the child widget is only computed once.**
 
 ```dart
-PlayAnimation<Color>(
-  tween: Colors.red.tweenTo(Colors.blue),
-  child: Text("Hello World"), // <-- set child widget
-  builder: (context, child, value) { // <-- get child passed into builder function
+import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
+
+var widget = PlayAnimation<Color?>(
+  tween: ColorTween(begin: Colors.red, end: Colors.blue),
+  // child gets passed into builder function
+  builder: (context, child, value) {
     return Container(
-      child: child, // <-- use child
       color: value,
       width: 100,
       height: 100,
+      child: child, // use child
     );
   },
+  child: Text('Hello World'), // specify child widget
 );
 ```
 
@@ -125,6 +162,44 @@ Flutter tends to recycle used widgets. If your app swaps out a `PlayAnimation` w
 
 All widgets mentioned here support keys to avoid such strange behavior. If you are not familiar with keys then [watch this video](https://www.youtube.com/watch?v=kn0EOS-ZiIc).
 
+### App example
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
+import 'package:supercharged/supercharged.dart';
+
+void main() => runApp(MaterialApp(home: Scaffold(body: Center(child: Page()))));
+
+class Page extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return PlayAnimation<double>(
+      // specify tween (from 50.0 to 200.0)
+      tween: (50.0).tweenTo(200.0),
+
+      // set a duration
+      duration: 5.seconds,
+
+      // set a curve
+      curve: Curves.easeInOut,
+
+      // use builder function
+      builder: (context, child, value) {
+        // apply animated value obtained from builder function parameter
+        return Container(
+          width: value,
+          height: value,
+          color: Colors.green,
+          child: child,
+        );
+      },
+      child: Text('Hello World'),
+    );
+  }
+}
+```
+> *Note: We use [supercharged extensions](https://pub.dev/packages/supercharged) here. If you don't like it, refer to this [dependency-less example](../doc/no_supercharged/stateless_animation/example_play_animation_ns.dart.md).*
 
 
 
@@ -132,40 +207,49 @@ All widgets mentioned here support keys to avoid such strange behavior. If you a
 
 Beside `PlayAnimation` there are two similar widgets `LoopAnimation` and `MirrorAnimation`.
 
-It's configuration is pretty the same as the `PlayAnimation`.
+Its configuration is pretty the same as the `PlayAnimation`.
 
 ### LoopAnimation
 
-A `LoopAnimation` repeatly plays the specified `tween` from the start to the end.
+A `LoopAnimation` repeatedly plays the specified `tween` from the start to the end.
 
 ```dart
-LoopAnimation<Color>(
-  tween: Colors.red.tweenTo(Colors.blue), // <-- mandatory
-  builder: (context, child, value) { // <-- mandatory
-    return Container(child: child, color: value, width: 100, height: 100);
+import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
+
+var widget = LoopAnimation<Color?>(
+  // mandatory parameters
+  tween: ColorTween(begin: Colors.red, end: Colors.blue),
+  builder: (context, child, value) {
+    return Container(color: value, width: 100, height: 100, child: child);
   },
-  duration: 5.seconds, // <-- optional
-  curve: Curves.easeInOut, // <-- optional
-  child: Text("Hello World"), // <-- optional
+  // optional parameters
+  duration: Duration(seconds: 5),
+  curve: Curves.easeInOut,
+  child: Text('Hello World'),
 );
 ```
 
 ### MirrorAnimation
 
-A `MirrorAnimation` repeatly plays the specified `tween` from the start to the end, then reverse to the start, then again forward and so on.
+A `MirrorAnimation` repeatedly plays the specified `tween` from the start to the end, then reverse to the start, then again forward and so on.
 
 ```dart
-MirrorAnimation<Color>(
-  tween: Colors.red.tweenTo(Colors.blue), // <-- mandatory
-  builder: (context, child, value) { // <-- mandatory
-    return Container(child: child, color: value, width: 100, height: 100);
+import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
+
+var widget = MirrorAnimation<Color?>(
+  // mandatory parameters
+  tween: ColorTween(begin: Colors.red, end: Colors.blue),
+  builder: (context, child, value) {
+    return Container(color: value, width: 100, height: 100, child: child);
   },
-  duration: 5.seconds, // <-- optional
-  curve: Curves.easeInOut, // <-- optional
-  child: Text("Hello World"), // <-- optional
+  // optional parameters
+  duration: Duration(seconds: 5),
+  curve: Curves.easeInOut,
+  child: Text('Hello World'),
 );
 ```
-
 
 
 ## CustomAnimation

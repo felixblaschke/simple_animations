@@ -23,6 +23,13 @@ final tween = TimelineTween<AniProps>()
       .animate(AniProps.width, tween: Tween<double>(begin: 400.0, end: 500.0));
 
 ```
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 ## What is Supercharged?
 
 Supercharged is a package we created along Simple Animations.

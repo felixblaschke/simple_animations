@@ -64,6 +64,13 @@ Here is the example **without** using Supercharged:
 ```dart
 ${codeFile.readAsStringSync()}
 ```
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 ## What is Supercharged?
 
 Supercharged is a package we created along Simple Animations.

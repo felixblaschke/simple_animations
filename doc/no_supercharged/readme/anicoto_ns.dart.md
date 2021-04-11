@@ -37,6 +37,13 @@ class _MyWidgetState extends State<MyWidget> with AnimationMixin {
 }
 
 ```
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 ## What is Supercharged?
 
 Supercharged is a package we created along Simple Animations.
