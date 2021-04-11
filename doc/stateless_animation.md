@@ -27,11 +27,11 @@ The `builder` is a function that is called for **each new rendered frame** of yo
 
 - `context` is your Flutter `BuildContext`, which should be familiar to you.
 
-- `child` is a placeholder for any widget that you can additionally pass in a `PlayAnimation` widget. It's usage is described further below.
+- `child` is a placeholder for any widget that you can additionally pass in a `PlayAnimation` widget. Its usage is described further below.
 
 - `value` is "current value" of any animated variable. If your tween describes to interpolate from `0` to `100`, the `variable` is a value somewhere between `0` and `100`.
 
-How often your `builder` function is called, depends on the animation duration and the framerate of the device used.
+How often your `builder` function is called, depends on the animation duration, and the framerate of the device used.
 
 ### A simple PlayAnimation
 
@@ -105,7 +105,7 @@ The red square will wait for 2 seconds before it starts fading its color.
 
 ### Non-linear animation
 
-You can make your animation more interesting by applying a non-linear timing curve to it. By default the tween is animated constantly or **linear**.
+You can make your animation more interesting by applying a non-linear timing curve to it. By default, the tween is animated constantly or **linear**.
 
 Scenarios where the animation is faster at beginning and slower at the ending are called **non-linear animations**.
 
@@ -131,11 +131,11 @@ var widget = PlayAnimation<Color?>(
 
 ### Working with child widgets
 
-Animations are highly demanding because parts of your apps are recomputed many times per second. It's important to keep these computions as low as possible.
+Animations are highly demanding because parts of your apps are recomputed many times per second. It's important to keep these computations as low as possible.
 
 **Image the following scenario:** There is a `Container` with a colored background. Inside the `Container` is a `Text`. Now we want to animate the background color. There is no need to recompute the `Text` because the animation only effects the `Container` color.
 
-In that scenario we have static `Text` widget. Only the `Container` need to be update on each frame. We can set the static widget as a `child` parameter. In our `builder` function we receive that child widget and can use it inside our animated scene. **This way the child widget is only computed once.**
+In that scenario we have static `Text` widget. Only the `Container` need to be updated on each frame. We can set the static widget as a `child` parameter. In our `builder` function we receive that child widget and can use it inside our animated scene. **This way the child widget is only computed once.**
 
 ```dart
 import 'package:flutter/material.dart';
@@ -357,14 +357,17 @@ Behind the scenes there is an `AnimationController` processing the animation. `C
 You can specify your own listener at the `animationStatusListener` parameter.
 
 ```dart
-CustomAnimation<Color>(
-  tween: Colors.red.tweenTo(Colors.blue),
+import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
+
+var widget = CustomAnimation<Color?>(
+  tween: ColorTween(begin: Colors.red, end: Colors.blue),
   builder: (context, child, value) {
     return Container(color: value, width: 100, height: 100);
   },
   animationStatusListener: (AnimationStatus status) {
     if (status == AnimationStatus.completed) {
-      print("Animation completed!");
+      print('Animation completed!');
     }
   },
 );
