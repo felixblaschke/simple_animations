@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
-import './widget_tester_extension.dart';
+import '../widget_tester_extension.dart';
 
 void main() {
   testWidgets('CustomAnimation case1', (WidgetTester tester) async {
@@ -31,7 +31,8 @@ void main() {
     var values = <int>[];
     final animation = MaterialApp(
         home: CustomAnimation<int>(
-      control: CustomAnimationControl.playFromStart,
+      // ignore: deprecated_member_use_from_same_package
+      control: CustomAnimationControl.PLAY_FROM_START,
       duration: 100.days,
       tween: 0.tweenTo(100),
       startPosition: 0.5,
@@ -55,7 +56,8 @@ void main() {
     var values = <int>[];
     final animation = MaterialApp(
         home: CustomAnimation<int>(
-      control: CustomAnimationControl.playReverseFromEnd,
+      // ignore: deprecated_member_use_from_same_package
+      control: CustomAnimationControl.PLAY_REVERSE_FROM_END,
       duration: 100.days,
       tween: 0.tweenTo(100),
       startPosition: 0.5,
@@ -137,7 +139,8 @@ void main() {
   testWidgets('CustomAnimation reverse', (WidgetTester tester) async {
     var animation = MaterialApp(
         home: CustomAnimation<int>(
-      control: CustomAnimationControl.playReverse,
+      // ignore: deprecated_member_use_from_same_package
+      control: CustomAnimationControl.PLAY_REVERSE,
       duration: 100.days,
       tween: IntTween(begin: 0, end: 100),
       builder: (context, child, value) => Text('$value'),
@@ -157,7 +160,8 @@ void main() {
       (WidgetTester tester) async {
     var animation = MaterialApp(
         home: CustomAnimation<int>(
-      control: CustomAnimationControl.playReverse,
+      // ignore: deprecated_member_use_from_same_package
+      control: CustomAnimationControl.PLAY_REVERSE,
       duration: 100.days,
       tween: IntTween(begin: 0, end: 100),
       startPosition: 1.0,
@@ -186,7 +190,8 @@ void main() {
       (WidgetTester tester) async {
     var animation = MaterialApp(
         home: CustomAnimation<int>(
-      control: CustomAnimationControl.stop,
+      // ignore: deprecated_member_use_from_same_package
+      control: CustomAnimationControl.STOP,
       duration: 100.days,
       tween: IntTween(begin: 0, end: 100),
       startPosition: 0.5,
@@ -206,7 +211,8 @@ void main() {
     var values = <String>[];
     var animation = MaterialApp(
         home: CustomAnimation<int>(
-      control: CustomAnimationControl.play,
+      // ignore: deprecated_member_use_from_same_package
+      control: CustomAnimationControl.PLAY,
       duration: 100.days,
       tween: IntTween(begin: 0, end: 100),
       animationStatusListener: (status) => values.add(status.toString()),

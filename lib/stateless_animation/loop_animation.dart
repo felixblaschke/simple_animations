@@ -52,7 +52,7 @@ class LoopAnimation<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomAnimation<T>(
       builder: builder,
-      control: CustomAnimationControl.LOOP,
+      control: CustomAnimationControl.loop,
       tween: tween,
       duration: duration,
       curve: curve,

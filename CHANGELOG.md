@@ -1,3 +1,8 @@
+## 3.1.0
+
+- **Update:** Improved documentation
+- **Update:** Adapted `CustomAnimationControl` enum style guide. The values in "SCREAMING_CAPS" are deprecated now.
+
 ## 3.0.3
 
 - **Fix:** Analyzer issue

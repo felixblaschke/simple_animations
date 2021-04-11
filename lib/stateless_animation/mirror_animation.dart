@@ -53,7 +53,7 @@ class MirrorAnimation<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomAnimation<T>(
       builder: builder,
-      control: CustomAnimationControl.MIRROR,
+      control: CustomAnimationControl.mirror,
       tween: tween,
       duration: duration,
       curve: curve,

@@ -3,32 +3,46 @@ part of simple_animations;
 /// Set of instruction you can pass into a [CustomAnimation.control].
 enum CustomAnimationControl {
   /// Stops the animation at the current position.
+  stop,
+  @Deprecated('Use lowercase name: stop')
   STOP,
 
   /// Plays the animation from the current position to the end.
+  play,
+  @Deprecated('Use lowercase name: play')
   PLAY,
 
   /// Plays the animation from the current position reverse to the start.
+  playReverse,
+  @Deprecated('Use lowercase name: playReverse')
   PLAY_REVERSE,
 
   /// Reset the position of the animation to `0.0` and starts playing
   /// to the end.
+  playFromStart,
+  @Deprecated('Use lowercase name: playFromStart')
   PLAY_FROM_START,
 
   /// Reset the position of the animation to `1.0` and starts playing
   /// reverse to the start.
+  playReverseFromEnd,
+  @Deprecated('Use lowercase name: playReverseFromEnd')
   PLAY_REVERSE_FROM_END,
 
   /// Endlessly plays the animation from the start to the end.
   /// Make sure to utilize [CustomAnimation.child] since a permanent
   /// animation eats up performance.
+  loop,
+  @Deprecated('Use lowercase name: loop')
   LOOP,
 
   /// Endlessly plays the animation from the start to the end, then
   /// it plays reverse to the start, then forward again and so on.
   /// Make sure to utilize [CustomAnimation.child] since a permanent
   /// animation eats up performance.
-  MIRROR
+  mirror,
+  @Deprecated('Use lowercase name: mirror')
+  MIRROR,
 }
 
 /// Widget that creates a customized animation.
@@ -92,7 +106,7 @@ class CustomAnimation<T> extends StatefulWidget {
   CustomAnimation({
     required this.builder,
     required this.tween,
-    this.control = CustomAnimationControl.PLAY,
+    this.control = CustomAnimationControl.play,
     this.curve = Curves.linear,
     this.duration = const Duration(seconds: 1),
     this.delay = Duration.zero,
@@ -167,31 +181,47 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
       return;
     }
 
-    if (widget.control == CustomAnimationControl.STOP) {
+    if (widget.control == CustomAnimationControl.stop ||
+        // ignore: deprecated_member_use_from_same_package
+        widget.control == CustomAnimationControl.STOP) {
       aniController.stop();
     }
-    if (widget.control == CustomAnimationControl.PLAY) {
+    if (widget.control == CustomAnimationControl.play ||
+        // ignore: deprecated_member_use_from_same_package
+        widget.control == CustomAnimationControl.PLAY) {
       unawaited(aniController.play());
     }
-    if (widget.control == CustomAnimationControl.PLAY_REVERSE) {
+    if (widget.control == CustomAnimationControl.playReverse ||
+        // ignore: deprecated_member_use_from_same_package
+        widget.control == CustomAnimationControl.PLAY_REVERSE) {
       unawaited(aniController.playReverse());
     }
-    if (widget.control == CustomAnimationControl.PLAY_FROM_START) {
+    if (widget.control == CustomAnimationControl.playFromStart ||
+        // ignore: deprecated_member_use_from_same_package
+        widget.control == CustomAnimationControl.PLAY_FROM_START) {
       unawaited(aniController.forward(from: 0.0));
     }
-    if (widget.control == CustomAnimationControl.PLAY_REVERSE_FROM_END) {
+    if (widget.control == CustomAnimationControl.playReverseFromEnd ||
+        // ignore: deprecated_member_use_from_same_package
+        widget.control == CustomAnimationControl.PLAY_REVERSE_FROM_END) {
       unawaited(aniController.reverse(from: 1.0));
     }
-    if (widget.control == CustomAnimationControl.LOOP) {
+    if (widget.control == CustomAnimationControl.loop ||
+        // ignore: deprecated_member_use_from_same_package
+        widget.control == CustomAnimationControl.LOOP) {
       unawaited(aniController.loop());
     }
-    if (widget.control == CustomAnimationControl.MIRROR &&
+    if ((widget.control == CustomAnimationControl.mirror ||
+            // ignore: deprecated_member_use_from_same_package
+            widget.control == CustomAnimationControl.MIRROR) &&
         !_isControlSetToMirror) {
       _isControlSetToMirror = true;
       unawaited(aniController.mirror());
     }
 
-    if (widget.control != CustomAnimationControl.MIRROR) {
+    if (widget.control != CustomAnimationControl.mirror &&
+        // ignore: deprecated_member_use_from_same_package
+        widget.control != CustomAnimationControl.MIRROR) {
       _isControlSetToMirror = false;
     }
   }

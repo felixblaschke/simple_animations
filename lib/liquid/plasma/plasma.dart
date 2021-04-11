@@ -119,8 +119,8 @@ class PlasmaRenderer extends StatelessWidget {
                 child: CustomAnimation<double>(
                     key: Key('plasma_$fps'),
                     control: speed > 0
-                        ? CustomAnimationControl.LOOP
-                        : CustomAnimationControl.STOP,
+                        ? CustomAnimationControl.loop
+                        : CustomAnimationControl.stop,
                     tween: 0.0.tweenTo(2 * pi),
                     fps: fps,
                     duration: speed > 0

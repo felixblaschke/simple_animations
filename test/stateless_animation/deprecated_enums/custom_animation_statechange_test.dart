@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
-import './widget_tester_extension.dart';
+import '../widget_tester_extension.dart';
 
 void main() {
   testWidgets('CustomAnimation stateChange', (WidgetTester tester) async {
@@ -39,7 +39,8 @@ class TestWidget extends StatefulWidget {
 }
 
 class _TestWidgetState extends State<TestWidget> {
-  var control = CustomAnimationControl.play;
+  // ignore: deprecated_member_use_from_same_package
+  var control = CustomAnimationControl.PLAY;
   var curve = Curves.linear;
   var duration = 100.days;
 
@@ -65,7 +66,8 @@ class _TestWidgetState extends State<TestWidget> {
 
   void changeWidget() {
     setState(() {
-      control = CustomAnimationControl.playReverse;
+      // ignore: deprecated_member_use_from_same_package
+      control = CustomAnimationControl.PLAY_REVERSE;
       curve = Curves.easeInOut;
       duration = 150.days;
     });

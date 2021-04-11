@@ -109,67 +109,28 @@ Use `CustomAnimation` if the animation widgets discussed above aren't sufficient
 
 The `control` parameter can be set to the following values:
 
-CustomAnimationControl.VALUE | Description
+CustomAnimationControl.*VALUE* | Description
 -------------- | ------------
-STOP | Stops the animation at the current position.
-PLAY | Plays the animation from the current position reverse to the start.
-PLAY_REVERSE | Plays the animation from the current position reverse to the start.
-PLAY_FROM_START | Reset the position of the animation to `0.0` and starts playing to the end.
-PLAY_REVERSE_FROM_END | Reset the position of the animation to `1.0` and starts playing reverse to the start.
-LOOP | Endlessly plays the animation from the start to the end.
-MIRROR | Endlessly plays the animation from the start to the end, then it plays reverse to the start, then forward again and so on.
+stop | Stops the animation at the current position.
+play | Plays the animation from the current position reverse to the start.
+playReverse | Plays the animation from the current position reverse to the start.
+playFromStart | Reset the position of the animation to `0.0` and starts playing to the end.
+playReverseFromEnd | Reset the position of the animation to `1.0` and starts playing reverse to the start.
+loop | Endlessly plays the animation from the start to the end.
+mirror | Endlessly plays the animation from the start to the end, then it plays reverse to the start, then forward again and so on.
 
 You can bind the `control` value to state variable and change it during the animation. The `CustomAnimation` will adapt to that.
 
-```dart
-class _PageState extends State<Page> {
-  CustomAnimationControl control = CustomAnimationControl.PLAY; // <-- state variable
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomAnimation<double>(
-      control: control, // <-- bind state variable to parameter
-      tween: (-100.0).tweenTo(100.0),
-      builder: (context, child, value) {
-        return Transform.translate( // <-- animation that moves childs from left to right
-          offset: Offset(value, 0),
-          child: child,
-        );
-      },
-      child: MaterialButton( // <-- there is a button
-        color: Colors.yellow,
-        child: Text("Swap"),
-        onPressed: toggleDirection, // <-- clicking button changes animation direction
-      ),
-    );
-  }
-
-  void toggleDirection() {
-    setState(() { // toggle between control instructions
-      control = (control == CustomAnimationControl.PLAY)
-          ? CustomAnimationControl.PLAY_REVERSE
-          : CustomAnimationControl.PLAY;
-    });
-  }
-}
-```
+@code tool/templates/code/stateless_animation/example_control.dart
 
 ### Start position
 
-Each animation has an internal abstract position. This is a value ranging form `0.0` (start) to `1.0` end.
+Each animation has an internal abstract position. This is a value ranging form `0.0` *(start)* to `1.0` *(end)*.
 
 You can modify the initial position by setting the `startPosition` parameter.
 
-```dart
-CustomAnimation<Color>(
-    control: CustomAnimationControl.PLAY, // <-- play forward
-    startPosition: 0.5, // <-- set start position at 50%
-    duration: 10.seconds, // <-- full duration is 10 seconds
-    tween: Colors.red.tweenTo(Colors.blue),
-    builder: (context, child, value) {
-      return Container(color: value, width: 100, height: 100);
-    });
-```
+@code tool/templates/code/stateless_animation/start_position.dart
+
 
 This animation will start playing right in the middle of the specified animation and only will animate for 5 seconds.
 
