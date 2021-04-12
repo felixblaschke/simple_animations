@@ -35,6 +35,9 @@ List<String> codeMacro(File docFile, List<String> lines) {
           file.path.substring(file.path.lastIndexOf('.') + '.'.length);
       var code = file.readAsStringSync().trim().split('\n');
 
+      code =
+          code.where((line) => !line.trim().startsWith('// ignore:')).toList();
+
       result.add('```$extension');
       result.addAll(code);
       result.add('```');
