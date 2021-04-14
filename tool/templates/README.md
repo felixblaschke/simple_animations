@@ -47,7 +47,7 @@ Stateless Animation provides a powerful set of Flutter widgets that hide the mos
 
 ### 🎭 Timeline Tween
 
-Timeline Tween (successor of [MultiTween](doc/multi_tween.md)) is a mighty tool thats enables you to tween multiple
+Timeline Tween is a mighty tool that enables you to tween multiple
 properties *or* designing staggered animations in a single `Animatable`.
 
 **Example**: Custom tween with multiple properties.

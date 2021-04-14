@@ -3,8 +3,6 @@
 
 Timeline Tween is a **powerful** `Animateable` that animates multiple properties at once.
 
-💡 *Note: These code examples uses **[supercharged](https://pub.dev/packages/supercharged)** for syntactic sugar.*
-
 ## Basic usage pattern
 
 Create an `enum` outside your widget class. It contains all properties you want to animate. *(For example: width, height or color)*

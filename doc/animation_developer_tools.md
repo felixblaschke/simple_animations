@@ -9,13 +9,22 @@ The Animation Developer Tools allow you to create or review your animation step 
 Wrap your UI with the `AnimationDeveloperTools` widget.
 
 ```dart
-@override
-Widget build(BuildContext context) {
-  return AnimationDeveloperTools(
-    child: // your UI
-  );
+import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
+
+class MyPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // put DevTools very high in the widget hierarchy
+      body: AnimationDeveloperTools(
+        child: Container(), // your UI
+      ),
+    );
+  }
 }
 ```
+
 
 Enable developer mode on the animation you want to debug.
 
@@ -34,39 +43,33 @@ have a constructor parameter `developerMode` that can be set to `true`. It will 
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MaterialApp(home: Scaffold(body: MyPage())));
 
-class MyApp extends StatelessWidget {
-
+class MyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: SafeArea(
-          child: AnimationDeveloperTools( // place widget
-            child: Center(
-              child: PlayAnimation<double>(
-                tween: 0.0.tweenTo(100.0),
-                duration: 1.seconds,
-                developerMode: true, // enable developer mode
-                builder: (context, child, value) {
-                  return Container(
-                    width: value,
-                    height: value,
-                    color: Colors.blue,
-                  );
-                },
-              ),
-            ),
+    return SafeArea(
+      // put DevTools very high in the widget hierarchy
+      child: AnimationDeveloperTools(
+        child: Center(
+          child: PlayAnimation<double>(
+            tween: Tween<double>(begin: 0.0, end: 100.0),
+            duration: Duration(seconds: 1),
+            developerMode: true, // enable developer mode
+            builder: (context, child, value) {
+              return Container(
+                width: value,
+                height: value,
+                color: Colors.blue,
+              );
+            },
           ),
         ),
       ),
     );
   }
 }
-
 ```
 
 ![devtools](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/v2/devtools.gif)
@@ -79,18 +82,17 @@ If your stateful widget uses `AnimationMixin` to manage your instances of `Anima
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
-          child: AnimationDeveloperTools( // place widget
+          // put DevTools very high in the widget hierarchy
+          child: AnimationDeveloperTools(
             child: Center(
               child: MyAnimation(),
             ),
@@ -107,12 +109,11 @@ class MyAnimation extends StatefulWidget {
 }
 
 class _MyAnimationState extends State<MyAnimation> with AnimationMixin {
-
-  Animation<double> size;
+  late Animation<double> size;
 
   @override
   void initState() {
-    size = 0.0.tweenTo(100.0).animatedBy(controller);
+    size = Tween<double>(begin: 0.0, end: 100.0).animate(controller);
     enableDeveloperMode(controller); // enable developer mode
     controller.forward();
     super.initState();
@@ -120,14 +121,9 @@ class _MyAnimationState extends State<MyAnimation> with AnimationMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: size.value,
-      height: size.value,
-      color: Colors.blue,
-    );
+    return Container(width: size.value, height: size.value, color: Colors.blue);
   }
 }
-
 ```
 
 ## Features and tricks

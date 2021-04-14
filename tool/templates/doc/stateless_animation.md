@@ -2,7 +2,6 @@
 
 Stateless Animation enables developers to craft custom animations with simple widgets.
 
-
 ## PlayAnimation widget
 
 The `PlayAnimation()` widget plays an animation described by the properties `tween` and `builder`.
