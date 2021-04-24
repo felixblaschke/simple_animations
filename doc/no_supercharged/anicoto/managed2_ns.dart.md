@@ -1,4 +1,4 @@
-# anicoto.dart
+# managed2.dart
 
 Here is the example **without** using Supercharged: 
 
@@ -6,22 +6,34 @@ Here is the example **without** using Supercharged:
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-class MyWidget extends StatefulWidget {
+class MyAnimatedWidget extends StatefulWidget {
   @override
-  _MyWidgetState createState() => _MyWidgetState();
+  _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
 }
 
-// add AnimationMixin to widget's state
-class _MyWidgetState extends State<MyWidget> with AnimationMixin {
-  // declare animation variable
-  late Animation<double> size;
+class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
+    with AnimationMixin {
+  late AnimationController widthController;
+  late AnimationController heightController;
+  late AnimationController colorController;
+
+  late Animation<double> width;
+  late Animation<double> height;
+  late Animation<Color?> color;
 
   @override
   void initState() {
-    // connect tween and controller and apply to animation variable
-    size = Tween<double>(begin: 0.0, end: 200.0).animate(controller);
+    widthController = createController()
+      ..mirror(duration: Duration(seconds: 5));
+    heightController = createController()
+      ..mirror(duration: Duration(seconds: 3));
+    colorController = createController()
+      ..mirror(duration: Duration(milliseconds: 1500));
 
-    controller.play(); // start the animation playback
+    width = Tween<double>(begin: 100.0, end: 200.0).animate(widthController);
+    height = Tween<double>(begin: 100.0, end: 200.0).animate(heightController);
+    color = ColorTween(begin: Colors.red, end: Colors.blue)
+        .animate(colorController);
 
     super.initState();
   }
@@ -29,10 +41,7 @@ class _MyWidgetState extends State<MyWidget> with AnimationMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: size.value, // use animation variable's value
-      height: size.value, // use animation variable's value
-      color: Colors.red,
-    );
+        width: width.value, height: height.value, color: color.value);
   }
 }
 

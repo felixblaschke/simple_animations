@@ -76,9 +76,7 @@ ${codeFile.readAsStringSync()}
 
 ## What is Supercharged?
 
-Supercharged is a package we created along Simple Animations.
-
-I provides **extension methods** to simplify certain scenarios even further. Have a look:
+It provides **extension methods** to simplify certain scenarios even further. Have a look:
 
 ```dart
 // Tweens
