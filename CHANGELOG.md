@@ -1,3 +1,7 @@
+## 3.1.1
+
+- **Fix:** README file issue
+
 ## 3.1.0
 
 - **Update:** Reworked and improved documentation

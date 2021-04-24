@@ -24,13 +24,14 @@ Add **Simple Animations** to your project by following the instructions on the
 
 It contains multiple features. Each covers a different aspect of making animation very simple.
 
-| Feature | Description |
-| --- | ----------- |
-| 🚀&nbsp;[Stateless&nbsp;Animation](#-stateless-animation) | Widgets for super simple creation of custom animations. |
-| 🎭&nbsp;[Timeline Tween](#-timeline-tween) | Animate multiple properties at once or create staggered animations. |
-| 🎥&nbsp;[Anicoto](#-anicoto) | Setup managed AnimationControllers instantly. |
-| ⏯&nbsp;[Animation&nbsp;Developer&nbsp;Tools](#-animation-developer-tools) | Debug animations or create them step by step. |
-| 🍹&nbsp;[Liquid](#-liquid) | Beautiful visual animations that increases the visual quality of your app. |
+| Feature                                                                    | Description | 
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| 🚀&nbsp;[Stateless&nbsp;Animation](#-stateless-animation)                  | Widgets for super simple creation of custom animations.                    |
+| 🎭&nbsp;[Timeline Tween](#-timeline-tween)                                 | Animate multiple properties at once or create staggered animations.        |
+| 🎥&nbsp;[Anicoto](#-anicoto)                                               | Setup managed AnimationControllers instantly.                              |
+| ⏯&nbsp;[Animation&nbsp;Developer&nbsp;Tools](#-animation-developer-tools) | Debug animations or create them step by step.                              |
+| 🍹&nbsp;[Liquid](#-liquid)                                                 | Beautiful visual animations that increases the visual quality of your app. |
+
 ---
 
 ### 🚀 Stateless Animation
