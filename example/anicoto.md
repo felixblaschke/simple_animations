@@ -1,8 +1,6 @@
-
-
 # 🎥 Anicoto
 
-💡 *Note: These examples uses **[supercharged](https://pub.dev/packages/supercharged)** for syntactic sugar.*
+💡 _Note: These examples uses **[supercharged](https://pub.dev/packages/supercharged)** for syntactic sugar._
 
 ## Basic usage pattern
 
@@ -31,33 +29,30 @@ class MyAnimatedWidget extends StatefulWidget {
   _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
 }
 
+// Add AnimationMixin to state class
 class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
-    with AnimationMixin {  // Add AnimationMixin to state class
-
-  Animation<double> size; // Declare animation variable
+    with AnimationMixin {
+  late Animation<double> size; // Declare animation variable
 
   @override
   void initState() {
-    size = 0.0.tweenTo(200.0).animatedBy(controller); // Connect tween and controller and apply to animation variable
-    controller.play(); // Start the animation playback
+    // Connect tween and controller and apply to animation variable
+    size = 0.0.tweenTo(200.0).animatedBy(controller);
+
+    // Start the animation playback
+    controller.play();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: size.value, // Use animation variable's value here 
-      height: size.value, // Use animation variable's value here
-      color: Colors.red
-    );
+        width: size.value, // Use animation variable's value here
+        height: size.value, // Use animation variable's value here
+        color: Colors.red);
   }
 }
 ```
-
-
-
-
-
 
 ## Multiple AnimationController instances
 
@@ -88,23 +83,27 @@ class MyAnimatedWidget extends StatefulWidget {
 
 class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
     with AnimationMixin {
-  AnimationController widthController; // <-- declare AnimationController
-  AnimationController heightController; // <-- declare AnimationController
-  AnimationController colorController; // <-- declare AnimationController
+  // declare AnimationControllers
+  late AnimationController widthController;
+  late AnimationController heightController;
+  late AnimationController colorController;
 
-  Animation<double> width; // <-- declare Animation variable
-  Animation<double> height; // <-- declare Animation variable
-  Animation<Color> color; // <-- declare Animation variable
+  // declare Animation variables
+  late Animation<double> width;
+  late Animation<double> height;
+  late Animation<Color?> color;
 
   @override
   void initState() {
-    widthController = createController()..mirror(duration: 5.seconds); // <-- create controller instance and let it mirror animate
-    heightController = createController()..mirror(duration: 3.seconds); // <-- create controller instance and let it mirror animate
-    colorController = createController()..mirror(duration: 1500.milliseconds); // <-- create controller instance and let it mirror animate
+    // create controller instance and let it mirror animate
+    widthController = createController()..mirror(duration: 5.seconds);
+    heightController = createController()..mirror(duration: 3.seconds);
+    colorController = createController()..mirror(duration: 1500.milliseconds);
 
-    width = 100.0.tweenTo(200.0).animatedBy(widthController); // <-- connect tween with individual controller
-    height = 100.0.tweenTo(200.0).animatedBy(heightController); // <-- connect tween with individual controller
-    color = Colors.red.tweenTo(Colors.blue).animatedBy(colorController); // <-- connect tween with individual controller
+    // connect tween with individual controller
+    width = 100.0.tweenTo(200.0).animatedBy(widthController);
+    height = 100.0.tweenTo(200.0).animatedBy(heightController);
+    color = Colors.red.tweenTo(Colors.blue).animatedBy(colorController);
 
     super.initState();
   }
@@ -112,10 +111,10 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: width.value, height: height.value, color: color.value); // <-- use animated values
+      width: width.value, //  use animated values
+      height: height.value,
+      color: color.value,
+    );
   }
 }
 ```
-
-
-

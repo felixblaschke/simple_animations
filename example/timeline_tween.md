@@ -1,6 +1,6 @@
 # 🎭 Timeline Tween documentation
 
-💡 *Note: These examples uses **[supercharged](https://pub.dev/packages/supercharged)** for syntactic sugar.*
+💡 _Note: These examples uses **[supercharged](https://pub.dev/packages/supercharged)** for syntactic sugar._
 
 ## Animate multiple properties
 
@@ -19,9 +19,8 @@ void main() => runApp(MyApp());
 enum AniProps { width, height, color }
 
 class MyApp extends StatelessWidget {
-  
   // Specify your tween
-  final _tween = TimelineTween<AniProps>() 
+  final _tween = TimelineTween<AniProps>()
     ..addScene(begin: 0.milliseconds, end: 1000.milliseconds)
         .animate(AniProps.width, tween: 0.0.tweenTo(100.0))
     ..addScene(begin: 1000.milliseconds, end: 1500.milliseconds)
@@ -42,9 +41,9 @@ class MyApp extends StatelessWidget {
             duration: _tween.duration, // Obtain duration
             builder: (context, child, value) {
               return Container(
-                width: value.get(AniProps.width), // Get animated value for width
-                height: value.get(AniProps.height), // Get animated value for height
-                color: value.get(AniProps.color), // Get animated value for color
+                width: value.get(AniProps.width), // Get animated value
+                height: value.get(AniProps.height), // Get animated value
+                color: value.get(AniProps.color), // Get animated value
               );
             },
           ),
@@ -53,11 +52,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 ```
-
-
-
 
 ## Chained tweens in single animation
 
@@ -113,11 +108,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 ```
-
-
-
 
 ## Complex example
 
@@ -191,5 +182,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 ```

@@ -1,8 +1,6 @@
-
-
 # 🚀 Stateless Animation
 
-💡 *Note: These examples uses **[supercharged](https://pub.dev/packages/supercharged)** for syntactic sugar.*
+💡 _Note: These examples uses **[supercharged](https://pub.dev/packages/supercharged)** for syntactic sugar._
 
 ## Simple PlayAnimation widget
 
@@ -21,12 +19,13 @@ class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlayAnimation<double>(
-      tween: (50.0).tweenTo(200.0), // <-- specify tween (from 50.0 to 200.0)
-      duration: 5.seconds, // <-- set a duration
-      builder: (context, child, value) { // <-- use builder function
+      tween: (50.0).tweenTo(200.0), // specify tween (from 50.0 to 200.0)
+      duration: 5.seconds, // set a duration
+      builder: (context, child, value) {
+        // <-- use builder function
         return Container(
-          width: value, // <-- apply animated value obtained from builder function parameter
-          height: value, // <-- apply animated value obtained from builder function parameter
+          width: value, // apply animated value from builder function parameter
+          height: value,
           color: Colors.green,
         );
       },
@@ -34,10 +33,6 @@ class Page extends StatelessWidget {
   }
 }
 ```
-
-
-
-
 
 ## PlayAnimation widget with a child
 
@@ -58,21 +53,20 @@ class Page extends StatelessWidget {
     return PlayAnimation<double>(
       tween: (50.0).tweenTo(200.0),
       duration: 5.seconds,
-      child: Center(child: Text("Hello!")), // <-- specify widget called "child"
-      builder: (context, child, value) { // <-- obtain child from builder function parameter
+      child: Center(child: Text('Hello!')), // specify widget called "child"
+      builder: (context, child, value) {
+        // obtain child via function parameter
         return Container(
           width: value,
           height: value,
-          child: child, // <-- place child inside your animation
           color: Colors.green,
+          child: child, // place child inside your animation
         );
       },
     );
   }
 }
 ```
-
-
 
 ## PlayAnimation with non-linear animation
 
@@ -105,7 +99,6 @@ class Page extends StatelessWidget {
   }
 }
 ```
-
 
 ## PlayAnimation with delay
 
@@ -140,7 +133,6 @@ class Page extends StatelessWidget {
 }
 ```
 
-
 ## LoopAnimation
 
 Animation that repeatly pops up a text.
@@ -167,13 +159,10 @@ class Page extends StatelessWidget {
             child: child,
           );
         },
-        child: Text("Hello!"));
+        child: Text('Hello!'));
   }
 }
 ```
-
-
-
 
 ## MirrorAnimation
 
@@ -192,12 +181,12 @@ class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MirrorAnimation<double>(
-      tween: (-100.0).tweenTo(100.0), // <-- value for offset x-coordinate
+      tween: (-100.0).tweenTo(100.0), // value for offset x-coordinate
       duration: 2.seconds,
-      curve: Curves.easeInOutSine, // <-- non-linear animation
+      curve: Curves.easeInOutSine, // non-linear animation
       builder: (context, child, value) {
         return Transform.translate(
-          offset: Offset(value, 0), // <-- use animated value for x-coordinate
+          offset: Offset(value, 0), // use animated value for x-coordinate
           child: child,
         );
       },
@@ -210,7 +199,6 @@ class Page extends StatelessWidget {
   }
 }
 ```
-
 
 ## CustomAnimation in stateless environment
 
@@ -229,24 +217,24 @@ class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomAnimation<double>(
-      control: CustomAnimationControl.MIRROR,
+      control: CustomAnimationControl.mirror,
       tween: 100.0.tweenTo(200.0),
       duration: 2.seconds,
       delay: 1.seconds,
       curve: Curves.easeInOut,
-      child: Center(
-          child: Text(
-        "Hello!",
-        style: TextStyle(color: Colors.white, fontSize: 24),
-      )),
       startPosition: 0.5,
       animationStatusListener: (status) {
-        print("status updated: $status");
+        print('status updated: $status');
       },
       builder: (context, child, value) {
         return Container(
             width: value, height: value, color: Colors.blue, child: child);
       },
+      child: Center(
+          child: Text(
+        'Hello!',
+        style: TextStyle(color: Colors.white, fontSize: 24),
+      )),
     );
   }
 }
@@ -271,35 +259,38 @@ class Page extends StatefulWidget {
 }
 
 class _PageState extends State<Page> {
-  CustomAnimationControl control = CustomAnimationControl.PLAY; // <-- state variable
+  CustomAnimationControl control =
+      CustomAnimationControl.play; // state variable
 
   @override
   Widget build(BuildContext context) {
     return CustomAnimation<double>(
-      control: control, // <-- bind state variable to parameter
+      control: control, // bind state variable to parameter
       tween: (-100.0).tweenTo(100.0),
       builder: (context, child, value) {
-        return Transform.translate( // <-- animation that moves childs from left to right
+        return Transform.translate(
+          // animation that moves childs from left to right
           offset: Offset(value, 0),
           child: child,
         );
       },
-      child: MaterialButton( // <-- there is a button
+      child: MaterialButton(
+        // there is a button
         color: Colors.yellow,
-        child: Text("Swap"),
-        onPressed: toggleDirection, // <-- clicking button changes animation direction
+        onPressed:
+            toggleDirection, // clicking button changes animation direction
+        child: Text('Swap'),
       ),
     );
   }
 
   void toggleDirection() {
-    setState(() { // toggle between control instructions
-      control = (control == CustomAnimationControl.PLAY)
-          ? CustomAnimationControl.PLAY_REVERSE
-          : CustomAnimationControl.PLAY;
+    // toggle between control instructions
+    setState(() {
+      control = (control == CustomAnimationControl.play)
+          ? CustomAnimationControl.playReverse
+          : CustomAnimationControl.play;
     });
   }
 }
 ```
-
-
