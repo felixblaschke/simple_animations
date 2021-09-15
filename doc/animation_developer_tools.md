@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class MyPage extends StatelessWidget {
+  const MyPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,9 +46,11 @@ have a constructor parameter `developerMode` that can be set to `true`. It will 
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-void main() => runApp(MaterialApp(home: Scaffold(body: MyPage())));
+void main() => runApp(const MaterialApp(home: Scaffold(body: MyPage())));
 
 class MyPage extends StatelessWidget {
+  const MyPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -55,7 +59,7 @@ class MyPage extends StatelessWidget {
         child: Center(
           child: PlayAnimation<double>(
             tween: Tween<double>(begin: 0.0, end: 100.0),
-            duration: Duration(seconds: 1),
+            duration: const Duration(seconds: 1),
             developerMode: true, // enable developer mode
             builder: (context, child, value) {
               return Container(
@@ -83,12 +87,14 @@ If your stateful widget uses `AnimationMixin` to manage your instances of `Anima
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Scaffold(
         body: SafeArea(
           // put DevTools very high in the widget hierarchy
@@ -104,6 +110,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAnimation extends StatefulWidget {
+  const MyAnimation({Key? key}) : super(key: key);
+
   @override
   _MyAnimationState createState() => _MyAnimationState();
 }

@@ -8,7 +8,7 @@ TimelineTween<AniProps> createTween() {
 
   var scene = tween.addScene(
     begin: Duration.zero,
-    end: Duration(milliseconds: 700),
+    end: const Duration(milliseconds: 700),
   );
 
   // (4) apply tweens to properties, referenced in enum

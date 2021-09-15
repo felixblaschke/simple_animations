@@ -45,7 +45,7 @@ TimelineTween<AniProps> createTween() {
   // (3) add a scene to the tween
   var scene = tween.addScene(
     begin: Duration.zero,
-    end: Duration(milliseconds: 700),
+    end: const Duration(milliseconds: 700),
   );
 
   return tween;
@@ -65,7 +65,7 @@ TimelineTween<AniProps> createTween() {
 
   var scene = tween.addScene(
     begin: Duration.zero,
-    end: Duration(milliseconds: 700),
+    end: const Duration(milliseconds: 700),
   );
 
   // (4) apply tweens to properties, referenced in enum
@@ -108,6 +108,8 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class MyWidget extends StatelessWidget {
+  const MyWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // create tween
@@ -130,7 +132,7 @@ class MyWidget extends StatelessWidget {
 enum AniProps { width, height, color }
 
 TimelineTween<AniProps> createTween() => TimelineTween<AniProps>()
-  ..addScene(begin: Duration.zero, end: Duration(milliseconds: 700))
+  ..addScene(begin: Duration.zero, end: const Duration(milliseconds: 700))
       .animate(AniProps.width, tween: Tween<double>(begin: 0.0, end: 100.0))
       .animate(AniProps.height, tween: Tween<double>(begin: 300.0, end: 200.0));
 ```
@@ -161,20 +163,20 @@ TimelineTween<Prop> createTween() {
 
   // begin + duration
   var scene1 = tween.addScene(
-    begin: Duration(milliseconds: 0),
-    duration: Duration(milliseconds: 700),
+    begin: const Duration(milliseconds: 0),
+    duration: const Duration(milliseconds: 700),
   );
 
   // begin + end
   var scene2 = tween.addScene(
-    begin: Duration(milliseconds: 700),
-    end: Duration(milliseconds: 1400),
+    begin: const Duration(milliseconds: 700),
+    end: const Duration(milliseconds: 1400),
   );
 
   // duration + end
   var scene3 = tween.addScene(
-    duration: Duration(milliseconds: 600),
-    end: Duration(milliseconds: 300),
+    duration: const Duration(milliseconds: 600),
+    end: const Duration(milliseconds: 300),
   );
 
   return tween;
@@ -198,16 +200,16 @@ TimelineTween<Prop> createTween() {
 
   var firstScene = tween
       .addScene(
-        begin: Duration(seconds: 0),
-        duration: Duration(seconds: 2),
+        begin: const Duration(seconds: 0),
+        duration: const Duration(seconds: 2),
       )
       .animate(Prop.x, tween: ConstantTween<int>(0));
 
   // secondScene references the firstScene
   var secondScene = firstScene
       .addSubsequentScene(
-        delay: Duration(milliseconds: 200),
-        duration: Duration(seconds: 2),
+        delay: const Duration(milliseconds: 200),
+        duration: const Duration(seconds: 2),
       )
       .animate(Prop.x, tween: ConstantTween<int>(1));
 
@@ -261,7 +263,10 @@ import 'package:simple_animations/simple_animations.dart';
 TimelineTween<Prop> createTween() {
   var tween = TimelineTween<Prop>();
 
-  var scene = tween.addScene(begin: Duration.zero, end: Duration(seconds: 1));
+  var scene = tween.addScene(
+    begin: Duration.zero,
+    end: const Duration(seconds: 1),
+  );
 
   // animate properties within scene
   scene.animate(
@@ -282,13 +287,17 @@ import 'package:simple_animations/simple_animations.dart';
 TimelineTween<Prop> createTween() {
   var tween = TimelineTween<Prop>();
 
-  var scene = tween.addScene(begin: Duration.zero, end: Duration(seconds: 1));
+  var scene = tween.addScene(
+    begin: Duration.zero,
+    end: const Duration(seconds: 1),
+  );
 
   scene.animate(
     Prop.width,
     tween: Tween<double>(begin: 0.0, end: 100.0),
-    shiftBegin: Duration(milliseconds: 200), // tune begin or
-    shiftEnd: Duration(milliseconds: -200), // end timings by shifting them
+    shiftBegin: const Duration(milliseconds: 200), // tune begin or
+    shiftEnd:
+        const Duration(milliseconds: -200), // end timings by shifting them
   );
 
   return tween;
@@ -310,7 +319,10 @@ import 'package:simple_animations/simple_animations.dart';
 TimelineTween<Prop> createTween() {
   var tween = TimelineTween<Prop>();
 
-  var scene = tween.addScene(begin: Duration.zero, end: Duration(seconds: 1));
+  var scene = tween.addScene(
+    begin: Duration.zero,
+    end: const Duration(seconds: 1),
+  );
 
   scene.animate(
     Prop.width,
@@ -338,7 +350,7 @@ TimelineTween<Prop> createTween() {
 
   var scene = tween.addScene(
     begin: Duration.zero,
-    end: Duration(seconds: 1),
+    end: const Duration(seconds: 1),
     curve: Curves.easeInOut, // apply scene-level curve
   );
 
@@ -411,7 +423,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 TimelineTween<Prop> createTween() => TimelineTween<Prop>()
-  ..addScene(begin: Duration.zero, end: Duration(milliseconds: 700))
+  ..addScene(begin: Duration.zero, end: const Duration(milliseconds: 700))
       .animate(Prop.x, tween: ConstantTween<double>(0.0))
       .animate(Prop.y, tween: ConstantTween<double>(0.0))
       .animate(Prop.width, tween: ConstantTween<double>(0.0))
@@ -436,6 +448,8 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class MyWidget extends StatelessWidget {
+  const MyWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var tween = createTween();
@@ -455,7 +469,7 @@ class MyWidget extends StatelessWidget {
 }
 
 TimelineTween<Prop> createTween() => TimelineTween<Prop>()
-  ..addScene(begin: Duration.zero, end: Duration(milliseconds: 700))
+  ..addScene(begin: Duration.zero, end: const Duration(milliseconds: 700))
       .animate(Prop.width, tween: Tween<double>(begin: 0.0, end: 100.0))
       .animate(Prop.height, tween: Tween<double>(begin: 300.0, end: 200.0));
 ```
@@ -472,13 +486,15 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class MyWidget extends StatelessWidget {
+  const MyWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var tween = createTween();
 
     return PlayAnimation<TimelineValue<Prop>>(
       tween: tween,
-      duration: Duration(seconds: 3), // use own duration
+      duration: const Duration(seconds: 3), // use own duration
       builder: (context, child, value) {
         return Container(
           width: value.get(Prop.width),
@@ -491,7 +507,7 @@ class MyWidget extends StatelessWidget {
 }
 
 TimelineTween<Prop> createTween() => TimelineTween<Prop>()
-  ..addScene(begin: Duration.zero, end: Duration(milliseconds: 700))
+  ..addScene(begin: Duration.zero, end: const Duration(milliseconds: 700))
       .animate(Prop.width, tween: Tween<double>(begin: 0.0, end: 100.0))
       .animate(Prop.height, tween: Tween<double>(begin: 300.0, end: 200.0));
 ```

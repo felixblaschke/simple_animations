@@ -10,10 +10,11 @@ class AnimationDeveloperTools extends StatefulWidget {
   final Widget child;
   final AnimationDeveloperToolsPosition position;
 
-  AnimationDeveloperTools({
+  const AnimationDeveloperTools({
+    Key? key,
     required this.child,
     this.position = AnimationDeveloperToolsPosition.top,
-  });
+  }) : super(key: key);
 
   @override
   _AnimationDeveloperToolsState createState() =>
@@ -65,7 +66,7 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
                         padding: const EdgeInsets.all(8.0),
                         alignment: Alignment.center,
                         height: 50,
-                        child: Text(
+                        child: const Text(
                             'Waiting for widget to enable Developer Mode...',
                             style: TextStyle(color: Colors.white)),
                       )
@@ -80,7 +81,7 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
                                   flex: 1,
                                   child: _buildSlider(),
                                 ),
-                          Container(
+                          SizedBox(
                             height: 50,
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
@@ -131,7 +132,7 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
 
   Widget _buildSlider() {
     return LayoutBuilder(builder: (context, constraints) {
-      return Container(
+      return SizedBox(
         height: 50,
         child: Stack(
           children: [
@@ -147,7 +148,8 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
                         (upperBounds - lowerBounds),
                     height: 30,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(4)),
                         border: Border.all(color: Colors.white, width: 2)),
                   ),
                 ),
@@ -165,7 +167,8 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
             Positioned(
               bottom: 2,
               right: 24,
-              child: Text(_currentTime(), style: TextStyle(color: Colors.grey)),
+              child: Text(_currentTime(),
+                  style: const TextStyle(color: Colors.grey)),
             )
           ],
         ),
@@ -265,11 +268,12 @@ class _ToolbarButton extends StatelessWidget {
   final IconData icon;
   final bool active;
 
-  _ToolbarButton({
+  const _ToolbarButton({
+    Key? key,
     required this.onTap,
     required this.icon,
     required this.active,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -280,7 +284,7 @@ class _ToolbarButton extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(4)),
+              borderRadius: const BorderRadius.all(Radius.circular(4)),
               border: Border.all(
                   color: active ? Colors.white : Colors.transparent, width: 2),
               color: Colors.grey.shade800),
@@ -295,7 +299,7 @@ class _GestureDetectorWithClickHover extends StatelessWidget {
   final GestureTapCallback onTap;
   final Widget child;
 
-  _GestureDetectorWithClickHover({
+  const _GestureDetectorWithClickHover({
     required this.onTap,
     required this.child,
   });
@@ -316,7 +320,7 @@ class _GestureDetectorWithClickHover extends StatelessWidget {
 class _AnimationControllerTransfer extends InheritedWidget {
   final void Function(AnimationController) controllerProvider;
 
-  _AnimationControllerTransfer({
+  const _AnimationControllerTransfer({
     Key? key,
     required this.controllerProvider,
     required Widget child,

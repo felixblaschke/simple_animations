@@ -11,7 +11,7 @@ TimelineTween<AniProps> createTween() {
   // ignore: unused_local_variable
   var scene = tween.addScene(
     begin: Duration.zero,
-    end: Duration(milliseconds: 700),
+    end: const Duration(milliseconds: 700),
   );
 
   return tween;

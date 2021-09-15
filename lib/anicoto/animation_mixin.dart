@@ -156,7 +156,9 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   void dispose() {
     // Added disposing for created entities
     _mainControllerInstance?.dispose();
-    _controllerInstances.forEach((instance) => instance.dispose());
+    for (var instance in _controllerInstances) {
+      instance.dispose();
+    }
     // Original dispose code
     assert(() {
       if (_tickers != null) {

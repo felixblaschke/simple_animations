@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pedantic/pedantic.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
@@ -24,7 +23,7 @@ void main() {
 class TestWidget extends StatefulWidget {
   final Function(int value) exposeValue;
 
-  TestWidget(this.exposeValue);
+  const TestWidget(this.exposeValue, {Key? key}) : super(key: key);
 
   @override
   _TestWidgetState createState() => _TestWidgetState();

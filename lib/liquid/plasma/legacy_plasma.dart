@@ -66,7 +66,7 @@ class Plasma extends StatelessWidget {
   /// Prebuild child that's placed inside the Plasma [Widget].
   final Widget? child;
 
-  Plasma({
+  const Plasma({
     Key? key,
     this.particles = 10,
     this.foregroundColor = Colors.white,

@@ -8,7 +8,7 @@ var widget = LoopAnimation<Color?>(
     return Container(color: value, width: 100, height: 100, child: child);
   },
   // optional parameters
-  duration: Duration(seconds: 5),
+  duration: const Duration(seconds: 5),
   curve: Curves.easeInOut,
-  child: Text('Hello World'),
+  child: const Text('Hello World'),
 );

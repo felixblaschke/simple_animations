@@ -3,8 +3,8 @@ import 'package:simple_animations/simple_animations.dart';
 
 var widget = PlayAnimation<Color?>(
   tween: ColorTween(begin: Colors.red, end: Colors.blue),
-  duration: Duration(seconds: 5),
-  delay: Duration(seconds: 2), // add delay
+  duration: const Duration(seconds: 5),
+  delay: const Duration(seconds: 2), // add delay
   builder: (context, child, value) {
     return Container(
       color: value,

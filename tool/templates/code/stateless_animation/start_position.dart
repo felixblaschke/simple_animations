@@ -9,7 +9,7 @@ var widget = CustomAnimation<Color?>(
   startPosition: 0.5,
 
   // full duration is 10 seconds
-  duration: Duration(seconds: 5),
+  duration: const Duration(seconds: 5),
 
   tween: ColorTween(begin: Colors.red, end: Colors.blue),
   builder: (context, child, value) {

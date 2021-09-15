@@ -46,6 +46,8 @@ import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // create animation widget with type of animated variable
@@ -111,6 +113,8 @@ import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 class MyWidget extends StatefulWidget {
+  const MyWidget({Key? key}) : super(key: key);
+
   @override
   _MyWidgetState createState() => _MyWidgetState();
 }

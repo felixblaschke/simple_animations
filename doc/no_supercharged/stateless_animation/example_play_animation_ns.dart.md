@@ -6,9 +6,11 @@ Here is the example **without** using Supercharged:
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-void main() => runApp(MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
+  const Page({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return PlayAnimation<double>(
@@ -16,7 +18,7 @@ class Page extends StatelessWidget {
       tween: Tween<double>(begin: 50.0, end: 200.0),
 
       // set a duration
-      duration: Duration(seconds: 5),
+      duration: const Duration(seconds: 5),
 
       // set a curve
       curve: Curves.easeInOut,
@@ -31,7 +33,7 @@ class Page extends StatelessWidget {
           child: child,
         );
       },
-      child: Text('Hello World'),
+      child: const Text('Hello World'),
     );
   }
 }

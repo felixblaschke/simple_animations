@@ -85,7 +85,7 @@ class PlasmaRenderer extends StatelessWidget {
   /// Child that's placed inside this [Widget].
   final Widget? child;
 
-  PlasmaRenderer({
+  const PlasmaRenderer({
     Key? key,
     this.type = PlasmaType.infinity,
     this.particleType = ParticleType.circle,
@@ -327,7 +327,7 @@ class _PlasmaPainter extends CustomPainter {
       final scale = 2 * particleRadius / _atlasResolution;
       final center = atlasSize / 2;
       final scos = scale;
-      final ssin = 0.0;
+      const ssin = 0.0;
       final tx = (position.dx - correctionX) + -scos * center + ssin * center;
       final ty = (position.dy - correctionY) + -ssin * center - scos * center;
 

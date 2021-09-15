@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class MyWidget extends StatefulWidget {
+  const MyWidget({Key? key}) : super(key: key);
+
   @override
   _MyWidgetState createState() => _MyWidgetState();
 }

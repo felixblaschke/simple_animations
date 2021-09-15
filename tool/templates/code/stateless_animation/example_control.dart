@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-void main() => runApp(MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatefulWidget {
+  const Page({Key? key}) : super(key: key);
+
   @override
   _PageState createState() => _PageState();
 }
@@ -29,7 +31,7 @@ class _PageState extends State<Page> {
         color: Colors.yellow,
         // clicking button changes animation direction
         onPressed: toggleDirection,
-        child: Text('Swap'),
+        child: const Text('Swap'),
       ),
     );
   }

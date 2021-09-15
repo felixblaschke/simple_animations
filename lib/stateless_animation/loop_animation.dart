@@ -37,7 +37,7 @@ class LoopAnimation<T> extends StatelessWidget {
 
   /// Creates a new LoopAnimation widget.
   /// See class documentation for more information.
-  LoopAnimation({
+  const LoopAnimation({
     required this.builder,
     required this.tween,
     this.duration = const Duration(seconds: 1),

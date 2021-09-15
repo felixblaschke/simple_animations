@@ -6,8 +6,8 @@ TimelineTween<Prop> createTween() {
 
   var firstScene = tween
       .addScene(
-        begin: Duration(seconds: 0),
-        duration: Duration(seconds: 2),
+        begin: const Duration(seconds: 0),
+        duration: const Duration(seconds: 2),
       )
       .animate(Prop.x, tween: ConstantTween<int>(0));
 
@@ -15,8 +15,8 @@ TimelineTween<Prop> createTween() {
   // ignore: unused_local_variable
   var secondScene = firstScene
       .addSubsequentScene(
-        delay: Duration(milliseconds: 200),
-        duration: Duration(seconds: 2),
+        delay: const Duration(milliseconds: 200),
+        duration: const Duration(seconds: 2),
       )
       .animate(Prop.x, tween: ConstantTween<int>(1));
 

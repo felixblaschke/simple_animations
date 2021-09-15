@@ -58,7 +58,7 @@ void main() {
   testWidgets('PlasmaRenderer renders atlas particles',
       (WidgetTester tester) async {
     // Render using atlas, check that atlas is generated.
-    await tester.pumpWidget(Directionality(
+    await tester.pumpWidget(const Directionality(
       textDirection: TextDirection.ltr,
       child: PlasmaRenderer(
         particleType: ParticleType.atlas,
@@ -77,7 +77,7 @@ void main() {
     expect(atlas.height, 150);
 
     // Change blur level, check that atlas is updated.
-    await tester.pumpWidget(Directionality(
+    await tester.pumpWidget(const Directionality(
       textDirection: TextDirection.ltr,
       child: PlasmaRenderer(
         particleType: ParticleType.atlas,

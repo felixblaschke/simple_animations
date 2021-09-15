@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 part of simple_animations;
 
 /// Set of instruction you can pass into a [CustomAnimation.control].
@@ -103,7 +105,7 @@ class CustomAnimation<T> extends StatefulWidget {
 
   /// Creates a new CustomAnimation widget.
   /// See class documentation for more information.
-  CustomAnimation({
+  const CustomAnimation({
     required this.builder,
     required this.tween,
     this.control = CustomAnimationControl.play,

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Scaffold(
         body: SafeArea(
           // put DevTools very high in the widget hierarchy
@@ -22,6 +24,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAnimation extends StatefulWidget {
+  const MyAnimation({Key? key}) : super(key: key);
+
   @override
   _MyAnimationState createState() => _MyAnimationState();
 }

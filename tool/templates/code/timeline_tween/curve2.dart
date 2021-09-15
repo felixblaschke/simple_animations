@@ -7,7 +7,7 @@ TimelineTween<Prop> createTween() {
   // ignore: unused_local_variable
   var scene = tween.addScene(
     begin: Duration.zero,
-    end: Duration(seconds: 1),
+    end: const Duration(seconds: 1),
     curve: Curves.easeInOut, // apply scene-level curve
   );
 

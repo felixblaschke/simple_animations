@@ -12,5 +12,5 @@ var widget = PlayAnimation<Color?>(
       child: child, // use child
     );
   },
-  child: Text('Hello World'), // specify child widget
+  child: const Text('Hello World'), // specify child widget
 );

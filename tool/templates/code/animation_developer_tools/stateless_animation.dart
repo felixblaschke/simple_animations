@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-void main() => runApp(MaterialApp(home: Scaffold(body: MyPage())));
+void main() => runApp(const MaterialApp(home: Scaffold(body: MyPage())));
 
 class MyPage extends StatelessWidget {
+  const MyPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -12,7 +14,7 @@ class MyPage extends StatelessWidget {
         child: Center(
           child: PlayAnimation<double>(
             tween: Tween<double>(begin: 0.0, end: 100.0),
-            duration: Duration(seconds: 1),
+            duration: const Duration(seconds: 1),
             developerMode: true, // enable developer mode
             builder: (context, child, value) {
               return Container(

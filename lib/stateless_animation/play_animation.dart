@@ -40,7 +40,7 @@ class PlayAnimation<T> extends StatelessWidget {
 
   /// Creates a new PlayAnimation widget.
   /// See class documentation for more information.
-  PlayAnimation({
+  const PlayAnimation({
     required this.builder,
     required this.tween,
     this.duration = const Duration(seconds: 1),

@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class MyAnimatedWidget extends StatefulWidget {
+  const MyAnimatedWidget({Key? key}) : super(key: key);
+
   @override
   _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
 }
@@ -57,10 +59,10 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 void someFunction(AnimationController controller) {
-  controller.play(duration: Duration(milliseconds: 1500));
-  controller.playReverse(duration: Duration(milliseconds: 1500));
-  controller.loop(duration: Duration(milliseconds: 1500));
-  controller.mirror(duration: Duration(milliseconds: 1500));
+  controller.play(duration: const Duration(milliseconds: 1500));
+  controller.playReverse(duration: const Duration(milliseconds: 1500));
+  controller.loop(duration: const Duration(milliseconds: 1500));
+  controller.mirror(duration: const Duration(milliseconds: 1500));
 }
 ```
 
@@ -82,6 +84,8 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class MyAnimatedWidget extends StatefulWidget {
+  const MyAnimatedWidget({Key? key}) : super(key: key);
+
   @override
   _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
 }
@@ -96,7 +100,7 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
   void initState() {
     sizeController = createController(); // create custom AnimationController
     size = Tween<double>(begin: 0.0, end: 200.0).animate(sizeController);
-    sizeController.play(duration: Duration(seconds: 5));
+    sizeController.play(duration: const Duration(seconds: 5));
     super.initState();
   }
 
@@ -117,6 +121,8 @@ import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 class MyAnimatedWidget extends StatefulWidget {
+  const MyAnimatedWidget({Key? key}) : super(key: key);
+
   @override
   _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
 }

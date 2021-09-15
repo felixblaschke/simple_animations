@@ -13,9 +13,12 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() =>
+    runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
+  const Page({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return PlayAnimation<double>(
@@ -45,15 +48,17 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
+  const Page({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return PlayAnimation<double>(
       tween: (50.0).tweenTo(200.0),
       duration: 5.seconds,
-      child: Center(child: Text('Hello!')), // specify widget called "child"
+      child: const Center(child: Text('Hello!')), // specify widget called "child"
       builder: (context, child, value) {
         // obtain child via function parameter
         return Container(
@@ -79,9 +84,11 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
+  const Page({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return PlayAnimation<double>(
@@ -111,9 +118,11 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
+  const Page({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return PlayAnimation<double>(
@@ -144,9 +153,11 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
+  const Page({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return LoopAnimation<double>(
@@ -159,7 +170,7 @@ class Page extends StatelessWidget {
             child: child,
           );
         },
-        child: Text('Hello!'));
+        child: const Text('Hello!'));
   }
 }
 ```
@@ -175,9 +186,11 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
+  const Page({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MirrorAnimation<double>(
@@ -207,13 +220,18 @@ Example of a pulsing square created with a fully configured `CustomAnimation` wi
 ![example7](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_stateless_animation/v1/stateless-animation-7.gif)
 
 ```dart
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() =>
+    runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
+  const Page({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return CustomAnimation<double>(
@@ -230,7 +248,7 @@ class Page extends StatelessWidget {
         return Container(
             width: value, height: value, color: Colors.blue, child: child);
       },
-      child: Center(
+      child: const Center(
           child: Text(
         'Hello!',
         style: TextStyle(color: Colors.white, fontSize: 24),
@@ -251,9 +269,12 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() =>
+    runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatefulWidget {
+  const Page({Key? key}) : super(key: key);
+
   @override
   _PageState createState() => _PageState();
 }
@@ -279,7 +300,7 @@ class _PageState extends State<Page> {
         color: Colors.yellow,
         onPressed:
             toggleDirection, // clicking button changes animation direction
-        child: Text('Swap'),
+        child: const Text('Swap'),
       ),
     );
   }

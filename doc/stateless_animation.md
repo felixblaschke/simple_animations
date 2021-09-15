@@ -65,7 +65,7 @@ import 'package:simple_animations/simple_animations.dart';
 
 var widget = PlayAnimation<Color?>(
   tween: ColorTween(begin: Colors.red, end: Colors.blue),
-  duration: Duration(seconds: 5), // specify duration
+  duration: const Duration(seconds: 5), // specify duration
   builder: (context, child, value) {
     return Container(
       color: value,
@@ -88,8 +88,8 @@ import 'package:simple_animations/simple_animations.dart';
 
 var widget = PlayAnimation<Color?>(
   tween: ColorTween(begin: Colors.red, end: Colors.blue),
-  duration: Duration(seconds: 5),
-  delay: Duration(seconds: 2), // add delay
+  duration: const Duration(seconds: 5),
+  delay: const Duration(seconds: 2), // add delay
   builder: (context, child, value) {
     return Container(
       color: value,
@@ -151,7 +151,7 @@ var widget = PlayAnimation<Color?>(
       child: child, // use child
     );
   },
-  child: Text('Hello World'), // specify child widget
+  child: const Text('Hello World'), // specify child widget
 );
 ```
 
@@ -168,9 +168,12 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() =>
+    runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
+  const Page({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return PlayAnimation<double>(
@@ -193,7 +196,7 @@ class Page extends StatelessWidget {
           child: child,
         );
       },
-      child: Text('Hello World'),
+      child: const Text('Hello World'),
     );
   }
 }
@@ -223,9 +226,9 @@ var widget = LoopAnimation<Color?>(
     return Container(color: value, width: 100, height: 100, child: child);
   },
   // optional parameters
-  duration: Duration(seconds: 5),
+  duration: const Duration(seconds: 5),
   curve: Curves.easeInOut,
-  child: Text('Hello World'),
+  child: const Text('Hello World'),
 );
 ```
 
@@ -244,9 +247,9 @@ var widget = MirrorAnimation<Color?>(
     return Container(color: value, width: 100, height: 100, child: child);
   },
   // optional parameters
-  duration: Duration(seconds: 5),
+  duration: const Duration(seconds: 5),
   curve: Curves.easeInOut,
-  child: Text('Hello World'),
+  child: const Text('Hello World'),
 );
 ```
 
@@ -275,9 +278,11 @@ You can bind the `control` value to state variable and change it during the anim
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-void main() => runApp(MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatefulWidget {
+  const Page({Key? key}) : super(key: key);
+
   @override
   _PageState createState() => _PageState();
 }
@@ -303,7 +308,7 @@ class _PageState extends State<Page> {
         color: Colors.yellow,
         // clicking button changes animation direction
         onPressed: toggleDirection,
-        child: Text('Swap'),
+        child: const Text('Swap'),
       ),
     );
   }
@@ -337,7 +342,7 @@ var widget = CustomAnimation<Color?>(
   startPosition: 0.5,
 
   // full duration is 10 seconds
-  duration: Duration(seconds: 5),
+  duration: const Duration(seconds: 5),
 
   tween: ColorTween(begin: Colors.red, end: Colors.blue),
   builder: (context, child, value) {
@@ -356,6 +361,8 @@ Behind the scenes there is an `AnimationController` processing the animation. `C
 You can specify your own listener at the `animationStatusListener` parameter.
 
 ```dart
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 

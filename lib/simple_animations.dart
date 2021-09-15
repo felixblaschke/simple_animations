@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pedantic/pedantic.dart';
 import 'package:supercharged/supercharged.dart';
 
 part 'anicoto/animation_controller_extension.dart';
@@ -31,3 +30,5 @@ part 'stateless_animation/mirror_animation.dart';
 part 'stateless_animation/play_animation.dart';
 part 'timeline_tween/prop.dart';
 part 'timeline_tween/timeline_tween.dart';
+
+part 'unawaited.dart';

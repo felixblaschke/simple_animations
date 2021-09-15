@@ -4,7 +4,10 @@ import 'package:simple_animations/simple_animations.dart';
 TimelineTween<Prop> createTween() {
   var tween = TimelineTween<Prop>();
 
-  var scene = tween.addScene(begin: Duration.zero, end: Duration(seconds: 1));
+  var scene = tween.addScene(
+    begin: Duration.zero,
+    end: const Duration(seconds: 1),
+  );
 
   // animate properties within scene
   scene.animate(

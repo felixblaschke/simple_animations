@@ -38,7 +38,7 @@ class MirrorAnimation<T> extends StatelessWidget {
 
   /// Creates a new MirrorAnimation widget.
   /// See class documentation for more information.
-  MirrorAnimation({
+  const MirrorAnimation({
     required this.builder,
     required this.tween,
     this.duration = const Duration(seconds: 1),

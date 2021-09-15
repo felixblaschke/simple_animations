@@ -3,6 +3,8 @@ import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 class MyAnimatedWidget extends StatefulWidget {
+  const MyAnimatedWidget({Key? key}) : super(key: key);
+
   @override
   _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
 }

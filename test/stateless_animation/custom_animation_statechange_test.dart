@@ -32,7 +32,8 @@ class TestWidget extends StatefulWidget {
   final Function(Function() changeWidget) widgetChangeProvider;
   final Function(int) valueProvider;
 
-  TestWidget(this.widgetChangeProvider, this.valueProvider);
+  const TestWidget(this.widgetChangeProvider, this.valueProvider, {Key? key})
+      : super(key: key);
 
   @override
   _TestWidgetState createState() => _TestWidgetState();

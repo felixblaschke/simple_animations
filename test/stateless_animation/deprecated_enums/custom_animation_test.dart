@@ -83,7 +83,7 @@ void main() {
       tween: IntTween(begin: 0, end: 100),
       builder: (context, child, value) =>
           Row(children: [Text('$value'), child!]),
-      child: Text('static child'),
+      child: const Text('static child'),
     ));
 
     await tester.addAnimationWidget(animation);

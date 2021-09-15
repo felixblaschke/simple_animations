@@ -23,7 +23,7 @@ void main() {
 class TestWidget extends StatefulWidget {
   final Function(AnimationController) exposeControllerFn;
 
-  TestWidget(this.exposeControllerFn);
+  const TestWidget(this.exposeControllerFn, {Key? key}) : super(key: key);
 
   @override
   _TestWidgetState createState() => _TestWidgetState();

@@ -13,18 +13,22 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(MaterialApp(home: Page()));
+void main() => runApp(const MaterialApp(home: Page()));
 
 class Page extends StatelessWidget {
+  const Page({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(child: Center(child: MyAnimatedWidget())),
     );
   }
 }
 
 class MyAnimatedWidget extends StatefulWidget {
+  const MyAnimatedWidget({Key? key}) : super(key: key);
+
   @override
   _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
 }
@@ -65,18 +69,22 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(MaterialApp(home: Page()));
+void main() => runApp(const MaterialApp(home: Page()));
 
 class Page extends StatelessWidget {
+  const Page({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(child: Center(child: MyAnimatedWidget())),
     );
   }
 }
 
 class MyAnimatedWidget extends StatefulWidget {
+  const MyAnimatedWidget({Key? key}) : super(key: key);
+
   @override
   _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
 }

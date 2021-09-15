@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class MyAnimatedWidget extends StatefulWidget {
+  const MyAnimatedWidget({Key? key}) : super(key: key);
+
   @override
   _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
 }
@@ -19,11 +21,11 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
   @override
   void initState() {
     widthController = createController()
-      ..mirror(duration: Duration(seconds: 5));
+      ..mirror(duration: const Duration(seconds: 5));
     heightController = createController()
-      ..mirror(duration: Duration(seconds: 3));
+      ..mirror(duration: const Duration(seconds: 3));
     colorController = createController()
-      ..mirror(duration: Duration(milliseconds: 1500));
+      ..mirror(duration: const Duration(milliseconds: 1500));
 
     width = Tween<double>(begin: 100.0, end: 200.0).animate(widthController);
     height = Tween<double>(begin: 100.0, end: 200.0).animate(heightController);
