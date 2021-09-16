@@ -1,6 +1,6 @@
 name: simple_animations
 description: Powerful package to create beautiful custom animations in no time.
-version: 3.1.1
+version: 3.2.0
 homepage: https://github.com/felixblaschke/simple_animations
 
 environment:
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  supercharged: ^2.0.0
+  supercharged: ^2.1.0
   flutter_lints: ^1.0.4
 
 dev_dependencies:
