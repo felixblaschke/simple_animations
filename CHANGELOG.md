@@ -1,3 +1,10 @@
+## next
+
+- **Breaking change:** The liquid feature has been extracted into an own package [sa3_liquid](https://pub.dev/packages/sa3_liquid).
+- **Update:** Removed supercharged dependency
+- **Update:** Removed supercharged usage from documentation
+- **Update:** Restructured documentation
+
 ## 3.2.0
 
 - **Update**: Adapt code and examples to modern Dart style guide.
