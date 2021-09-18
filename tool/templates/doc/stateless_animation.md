@@ -1,4 +1,4 @@
-## Stateless Animation
+## Stateless Animation guide
 
 Stateless Animation enables developers to craft custom animations with simple widgets.
 

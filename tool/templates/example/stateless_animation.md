@@ -1,4 +1,4 @@
-## 🚀 Stateless Animation
+## Stateless Animation
 
 ### Simple PlayAnimation widget
 

@@ -1,4 +1,4 @@
-## Anicoto
+## Anicoto guide
 
 Anicoto (**Ani**mation**Con**troller **to**olkit) enriches your developing expierience with Flutter's AnimationController.
 

@@ -1,4 +1,4 @@
-## Animation Developer Tools
+## Animation Developer Tools guide
 
 The Animation Developer Tools allow you to create or review your animation step by step.
 

@@ -4,7 +4,7 @@ This page contains several animation examples for each feature.
 
 ## Table of contents
 
-[**🚀 Stateless Animation**](#🚀-stateless-animation)
+[**Stateless Animation**](#stateless-animation)
   - [Simple PlayAnimation widget](#simple-playanimation-widget)
   - [PlayAnimation widget with a child](#playanimation-widget-with-a-child)
   - [PlayAnimation with non-linear animation](#playanimation-with-non-linear-animation)
@@ -14,12 +14,12 @@ This page contains several animation examples for each feature.
   - [CustomAnimation in stateless environment](#customanimation-in-stateless-environment)
   - [CustomAnimation in a stateful environment](#customanimation-in-a-stateful-environment)
 
-[**🎭 Timeline Tween**](#🎭-timeline-tween)
+[**Timeline Tween**](#timeline-tween)
   - [Animate multiple properties](#animate-multiple-properties)
   - [Chained tweens in single animation](#chained-tweens-in-single-animation)
   - [Complex example](#complex-example)
 
-[**🚀 Stateless Animation**](#🚀-stateless-animation)
+[**Stateless Animation**](#stateless-animation)
   - [Simple PlayAnimation widget](#simple-playanimation-widget)
   - [PlayAnimation widget with a child](#playanimation-widget-with-a-child)
   - [PlayAnimation with non-linear animation](#playanimation-with-non-linear-animation)
@@ -29,7 +29,7 @@ This page contains several animation examples for each feature.
   - [CustomAnimation in stateless environment](#customanimation-in-stateless-environment)
   - [CustomAnimation in a stateful environment](#customanimation-in-a-stateful-environment)
 
-## 🚀 Stateless Animation
+## Stateless Animation
 
 ### Simple PlayAnimation widget
 
@@ -343,7 +343,7 @@ class _PageState extends State<Page> {
   }
 }
 ```
-## 🎭 Timeline Tween
+## Timeline Tween
 
 ### Animate multiple properties
 
@@ -561,7 +561,7 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
-## 🚀 Stateless Animation
+## Stateless Animation
 
 ### Simple PlayAnimation widget
 

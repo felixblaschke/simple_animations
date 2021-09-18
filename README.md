@@ -19,18 +19,18 @@
 
 ## Table of contents
 
-[**🎉 Overview**](#🎉-overview)
-  - [🚀 Stateless Animation](#🚀-stateless-animation)
-  - [🎭 Timeline Tween](#🎭-timeline-tween)
-  - [🎥 Anicoto](#🎥-anicoto)
-  - [⏯ Animation Developer Tools](#⏯-animation-developer-tools)
+[**Overview**](#overview)
+  - [Stateless Animation](#stateless-animation)
+  - [Timeline Tween](#timeline-tween)
+  - [Anicoto](#anicoto)
+  - [Animation Developer Tools](#animation-developer-tools)
 
-[**Stateless Animation**](#stateless-animation)
+[**Stateless Animation guide**](#stateless-animation-guide)
   - [PlayAnimation widget](#playanimation-widget)
   - [LoopAnimation and MirrorAnimation](#loopanimation-and-mirroranimation)
   - [CustomAnimation](#customanimation)
 
-[**Timeline Tween**](#timeline-tween)
+[**Timeline Tween guide**](#timeline-tween-guide)
   - [Basic usage pattern](#basic-usage-pattern)
   - [Scenes](#scenes)
   - [Animate properties](#animate-properties)
@@ -40,18 +40,20 @@
   - [Using the predefined enum for animation properties](#using-the-predefined-enum-for-animation-properties)
   - [Animation duration](#animation-duration)
 
-[**Anicoto**](#anicoto)
+[**Anicoto guide**](#anicoto-guide)
   - [Basic usage pattern](#basic-usage-pattern)
   - [Shortcuts for AnimationController](#shortcuts-for-animationcontroller)
   - [Create multiple AnimationController](#create-multiple-animationcontroller)
 
-[**Animation Developer Tools**](#animation-developer-tools)
+[**Animation Developer Tools guide**](#animation-developer-tools-guide)
   - [Basic usage pattern](#basic-usage-pattern)
   - [Features and tricks](#features-and-tricks)
 
-## 🎉 Overview
+## Overview
 
-### 🚀 Stateless Animation
+Simple Animation consists of severals feature, that work alone or in synergy.
+
+### Stateless Animation
 
 Stateless Animation provides a powerful set of Flutter widgets that hide the most complex part of creating animations.
 
@@ -81,11 +83,11 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-[**Read guide**](#-stateless-animation) or [**watch examples**](example/example.md#-stateless-animation).
+[**Read guide**](#stateless-animation-guide) or [**watch examples**](example/example.md#stateless-animation).
 
 ---
 
-### 🎭 Timeline Tween
+### Timeline Tween
 
 Timeline Tween is a mighty tool that enables you to tween multiple
 properties _or_ designing staggered animations in a single `Animatable`.
@@ -114,11 +116,11 @@ final tween = TimelineTween<AniProps>()
       .animate(AniProps.width, tween: Tween<double>(begin: 400.0, end: 500.0));
 ```
 
-[**Read guide**](#timeline_tween) or [**watch examples**](example/example.md#timeline-tween).
+[**Read guide**](#timeline-tween-guide) or [**watch examples**](example/example.md#timeline-tween).
 
 ---
 
-### 🎥 Anicoto
+### Anicoto
 
 Anicoto fully manages your AnimationController instances and handles initialization, configuration and disposing. No
 more boilerplate code.
@@ -162,11 +164,11 @@ class _MyWidgetState extends State<MyWidget> with AnimationMixin {
 }
 ```
 
-[**Read guide**](#-anicoto) or [**watch examples**](example/example.md#-anicoto).
+[**Read guide**](#anicoto-guide) or [**watch examples**](example/example.md#anicoto).
 
 ---
 
-### ⏯ Animation Developer Tools
+### Animation Developer Tools
 
 Tired of watching the same animation over and over again, in order to fine tune it?
 
@@ -179,7 +181,7 @@ interval of the animation.
 
 ---
 
-## Stateless Animation
+## Stateless Animation guide
 
 Stateless Animation enables developers to craft custom animations with simple widgets.
 
@@ -551,7 +553,7 @@ var widget = CustomAnimation<Color?>(
   },
 );
 ```
-## Timeline Tween
+## Timeline Tween guide
 
 Timeline Tween is a **powerful** `Animateable` that animates multiple properties at once.
 
@@ -1055,7 +1057,7 @@ TimelineTween<Prop> createTween() => TimelineTween<Prop>()
       .animate(Prop.width, tween: Tween<double>(begin: 0.0, end: 100.0))
       .animate(Prop.height, tween: Tween<double>(begin: 300.0, end: 200.0));
 ```
-## Anicoto
+## Anicoto guide
 
 Anicoto (**Ani**mation**Con**troller **to**olkit) enriches your developing expierience with Flutter's AnimationController.
 
@@ -1214,7 +1216,7 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
   }
 }
 ```
-## Animation Developer Tools
+## Animation Developer Tools guide
 
 The Animation Developer Tools allow you to create or review your animation step by step.
 
