@@ -43,7 +43,6 @@ Stateless Animation provides a powerful set of Flutter widgets that hide the mos
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -52,8 +51,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // create animation widget with type of animated variable
     return PlayAnimation<Color?>(
-        tween: Colors.red.tweenTo(Colors.blue), // define tween
-        duration: 2.seconds, // define duration
+        tween: ColorTween(begin: Colors.red, end: Colors.blue), // define tween
+        duration: const Duration(seconds: 2), // define duration
         builder: (context, child, value) {
           return Container(
             color: value, // use animated value
@@ -64,7 +63,6 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
-> *Note: We use [supercharged extensions](https://pub.dev/packages/supercharged) here. If you don't like it, refer to this [dependency-less example](doc/no_supercharged/readme/stateless_animation_ns.dart.md).*
 
 [**Read more about it**](doc/stateless_animation.md) or [**watch examples**](example/stateless_animation.md).
 
@@ -80,21 +78,24 @@ properties *or* designing staggered animations in a single `Animatable`.
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 // define animated properties
 enum AniProps { width, height, color }
 
 // design tween by composing scenes
 final tween = TimelineTween<AniProps>()
-  ..addScene(begin: 0.milliseconds, duration: 500.milliseconds)
-      .animate(AniProps.width, tween: 0.0.tweenTo(400.0))
-      .animate(AniProps.height, tween: 500.0.tweenTo(200.0))
-      .animate(AniProps.color, tween: Colors.red.tweenTo(Colors.yellow))
-  ..addScene(begin: 700.milliseconds, end: 1200.milliseconds)
-      .animate(AniProps.width, tween: 400.0.tweenTo(500.0));
+  ..addScene(
+          begin: const Duration(milliseconds: 0),
+          duration: const Duration(milliseconds: 500))
+      .animate(AniProps.width, tween: Tween<double>(begin: 0.0, end: 400.0))
+      .animate(AniProps.height, tween: Tween<double>(begin: 500.0, end: 200.0))
+      .animate(AniProps.color,
+          tween: ColorTween(begin: Colors.red, end: Colors.yellow))
+  ..addScene(
+          begin: const Duration(milliseconds: 700),
+          end: const Duration(milliseconds: 1200))
+      .animate(AniProps.width, tween: Tween<double>(begin: 400.0, end: 500.0));
 ```
-> *Note: We use [supercharged extensions](https://pub.dev/packages/supercharged) here. If you don't like it, refer to this [dependency-less example](doc/no_supercharged/readme/timeline_tween_ns.dart.md).*
 
 [**Read more about it**](doc/timeline_tween.md) or [**watch examples**](example/timeline_tween.md).
 
@@ -110,7 +111,6 @@ more boilerplate code.
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 class MyWidget extends StatefulWidget {
   const MyWidget({Key? key}) : super(key: key);
@@ -127,7 +127,7 @@ class _MyWidgetState extends State<MyWidget> with AnimationMixin {
   @override
   void initState() {
     // connect tween and controller and apply to animation variable
-    size = 0.0.tweenTo(200.0).animatedBy(controller);
+    size = Tween<double>(begin: 0.0, end: 200.0).animate(controller);
 
     controller.play(); // start the animation playback
 
@@ -144,7 +144,6 @@ class _MyWidgetState extends State<MyWidget> with AnimationMixin {
   }
 }
 ```
-> *Note: We use [supercharged extensions](https://pub.dev/packages/supercharged) here. If you don't like it, refer to this [dependency-less example](doc/no_supercharged/readme/anicoto_ns.dart.md).*
 
 [**Read more about it**](doc/anicoto.md) or [**watch examples**](example/anicoto.md).
 

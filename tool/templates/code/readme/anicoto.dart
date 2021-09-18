@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 class MyWidget extends StatefulWidget {
   const MyWidget({Key? key}) : super(key: key);
@@ -17,7 +16,7 @@ class _MyWidgetState extends State<MyWidget> with AnimationMixin {
   @override
   void initState() {
     // connect tween and controller and apply to animation variable
-    size = 0.0.tweenTo(200.0).animatedBy(controller);
+    size = Tween<double>(begin: 0.0, end: 200.0).animate(controller);
 
     controller.play(); // start the animation playback
 

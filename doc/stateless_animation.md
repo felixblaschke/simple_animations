@@ -166,10 +166,8 @@ All widgets mentioned here support keys to avoid such strange behavior. If you a
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
-void main() =>
-    runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
   const Page({Key? key}) : super(key: key);
@@ -178,10 +176,10 @@ class Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlayAnimation<double>(
       // specify tween (from 50.0 to 200.0)
-      tween: (50.0).tweenTo(200.0),
+      tween: Tween<double>(begin: 50.0, end: 200.0),
 
       // set a duration
-      duration: 5.seconds,
+      duration: const Duration(seconds: 5),
 
       // set a curve
       curve: Curves.easeInOut,
@@ -201,7 +199,6 @@ class Page extends StatelessWidget {
   }
 }
 ```
-> *Note: We use [supercharged extensions](https://pub.dev/packages/supercharged) here. If you don't like it, refer to this [dependency-less example](../doc/no_supercharged/stateless_animation/example_play_animation_ns.dart.md).*
 
 
 

@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 TimelineTween<Prop> createTween() => TimelineTween<Prop>()
-  ..addScene(begin: 1.seconds, duration: 1.seconds)
-      .animate(Prop.width, tween: 100.0.tweenTo(200.0))
-  ..addScene(begin: 3.seconds, end: 4.seconds)
-      .animate(Prop.height, tween: 400.0.tweenTo(500.0));
+  ..addScene(
+    begin: const Duration(seconds: 1),
+    duration: const Duration(seconds: 1),
+  ).animate(Prop.width, tween: Tween<double>(begin: 100.0, end: 200.0))
+  ..addScene(begin: const Duration(seconds: 3), end: const Duration(seconds: 4))
+      .animate(Prop.height, tween: Tween<double>(begin: 400.0, end: 500.0));

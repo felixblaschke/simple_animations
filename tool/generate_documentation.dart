@@ -21,9 +21,83 @@ void process(File file, File to) {
   print('Processing $file...');
   var lines = file.readAsLinesSync();
 
+  lines = includeMacro(file, lines);
+  lines = gapMacro(file, lines);
   lines = codeMacro(file, lines);
+  lines = indexMacro(file, lines);
 
   to.writeAsStringSync(lines.join('\n'));
+}
+
+List<String> gapMacro(File docFile, List<String> lines) {
+  final result = <String>[];
+
+  for (var line in lines) {
+    if (line.trim().startsWith('@gap')) {
+      var size = int.parse(
+          line.substring(line.indexOf('@gap') + '@gap'.length).trim());
+
+      for (var i = 0; i < size; i++) {
+        result.add('');
+        result.add('&nbsp;');
+        result.add('');
+      }
+    } else {
+      result.add(line);
+    }
+  }
+
+  return result;
+}
+
+List<String> indexMacro(File docFile, List<String> lines) {
+  final result = <String>[];
+
+  for (var line in lines) {
+    if (line.trim().startsWith('@index')) {
+      result.add('## Table of contents');
+
+      lines
+          .map((line) => line.trim())
+          .where((line) => line.startsWith('##'))
+          .forEach((line) {
+        var depth = line.indexOf(' ');
+        var title = line.substring(depth + 1);
+        var link = '#' + title.toLowerCase().replaceAll(' ', '-');
+
+        print('$depth $title');
+
+        if (depth == 2) {
+          result.add('');
+          result.add('[**$title**]($link)');
+        } else if (depth == 3) {
+          result.add('  - [$title]($link)');
+        }
+      });
+    } else {
+      result.add(line);
+    }
+  }
+
+  return result;
+}
+
+List<String> includeMacro(File docFile, List<String> lines) {
+  final result = <String>[];
+
+  for (var line in lines) {
+    if (line.trim().startsWith('@include')) {
+      var path =
+          line.substring(line.indexOf('@include') + '@include'.length).trim();
+      var file = File(path);
+      var code = file.readAsStringSync().trim().split('\n');
+      result.addAll(code);
+    } else {
+      result.add(line);
+    }
+  }
+
+  return result;
 }
 
 List<String> codeMacro(File docFile, List<String> lines) {
@@ -40,11 +114,11 @@ List<String> codeMacro(File docFile, List<String> lines) {
       code =
           code.where((line) => !line.trim().startsWith('// ignore:')).toList();
 
+      code = manualTrim(code);
+
       result.add('```$extension');
       result.addAll(code);
       result.add('```');
-
-      result.addAll(checkNoSupercharged(docFile, file));
     } else {
       result.add(line);
     }
@@ -53,75 +127,24 @@ List<String> codeMacro(File docFile, List<String> lines) {
   return result;
 }
 
-List<String> checkNoSupercharged(File docFile, File baseCodeFile) {
-  final result = <String>[];
+List<String> manualTrim(List<String> code) {
+  if (code.any((line) => line.contains('//@start'))) {
+    var startLine = code.firstWhere((line) => line.contains('//@start'));
+    var endLine = code.firstWhere((line) => line.contains('//@end'));
+    var indent = startLine.indexOf('//');
 
-  var codeFile = File(baseCodeFile.path.replaceAll('.dart', '_ns.dart'));
-  if (codeFile.existsSync()) {
-    var file = File(
-        'doc/no_supercharged/${codeFile.path.substring('tool/templates/code/'.length)}.md');
-    file.createSync(recursive: true);
-    file.writeAsStringSync('''
-# ${baseCodeFile.path.split('/').last}
+    // Cut out lines
+    var result = code
+        .getRange(code.indexOf(startLine) + 1, code.indexOf(endLine))
+        .toList();
 
-Here is the example **without** using Supercharged: 
+    // Intend based on comment
+    result = result
+        .map((line) => line.length > indent ? line.substring(indent) : line)
+        .toList();
 
-```dart
-${codeFile.readAsStringSync()}
-```
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-## What is Supercharged?
-
-It provides **extension methods** to simplify certain scenarios even further. Have a look:
-
-```dart
-// Tweens
-0.0.tweenTo(100.0); // Tween<double>(begin: 0.0, end: 100.0);
-Colors.red.tweenTo(Colors.blue); // ColorTween(begin: Colors.red, end: Colors.blue);
-
-// Durations
-100.milliseconds; // Duration(milliseconds: 100);
-2.seconds; // Duration(seconds: 2);
-
-// Colors
-'#ff0000'.toColor(); // Color(0xFFFF0000);
-'red'.toColor(); // Color(0xFFFF0000);
-```
-
-But it also helps you with data processing:
-
-```dart
-var persons = [
-    Person(name: "John", age: 21),
-    Person(name: "Carl", age: 18),
-    Person(name: "Peter", age: 56),
-    Person(name: "Sarah", age: 61)
-];
-
-var randomPerson = persons.pickOne();
-
-persons.groupBy(
-    (p) => p.age < 40 ? "young" : "old",
-    valueTransform: (p) => p.name
-); // {"young": ["John", "Carl"], "old": ["Peter", "Sarah"]}
-```
-
-So if you are curious take a look at [**more Supercharged examples**](https://pub.dev/packages/supercharged).
-
-''');
-    var ref =
-        (docFile.parent.path != Directory('tool/templates').path ? '../' : '') +
-            file.path;
-
-    result.add(
-        '> *Note: We use [supercharged extensions](https://pub.dev/packages/supercharged) here. If you don\'t like it, refer to this [dependency-less example]($ref).*');
+    return result;
+  } else {
+    return code;
   }
-
-  return result;
 }
