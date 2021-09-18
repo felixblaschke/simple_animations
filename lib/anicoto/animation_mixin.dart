@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:simple_animations/developer_tools/animation_developer_tools.dart';
 import 'package:supercharged/supercharged.dart';
+import '../developer_tools/animation_developer_tools.dart';
 
 /// Extends your state class with the ability to manage an arbitrary number
 /// of [AnimationController] instances. It takes care of initialization

@@ -1,12 +1,8 @@
+library simple_animations;
+
 export 'anicoto/animation_controller_extension.dart';
 export 'anicoto/animation_mixin.dart';
 export 'developer_tools/animation_developer_tools.dart';
-export 'liquid/plasma/factory.dart';
-export 'liquid/plasma/legacy_plasma.dart';
-export 'liquid/plasma/plasma.dart';
-export 'liquid/plasma/types/bubbles.dart';
-export 'liquid/plasma/types/circle.dart';
-export 'liquid/plasma/types/infinity.dart';
 export 'multi_tween/default_animation_properties.dart';
 export 'multi_tween/multi_tween.dart';
 export 'stateless_animation/animated_widget_builder.dart';
