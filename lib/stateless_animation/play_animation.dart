@@ -1,4 +1,7 @@
-part of simple_animations;
+import 'package:flutter/material.dart';
+import '../developer_tools/animation_developer_tools.dart';
+import 'animated_widget_builder.dart';
+import 'custom_animation.dart';
 
 /// Widget that creates and plays an animation until the end.
 ///

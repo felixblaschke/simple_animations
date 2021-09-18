@@ -1,4 +1,5 @@
-part of simple_animations;
+import 'package:flutter/material.dart';
+import 'package:supercharged/supercharged.dart';
 
 /// Animatable that animates multiple properties at once.
 /// It can also chain multiples [Tween]s for a property.

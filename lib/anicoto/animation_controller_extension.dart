@@ -1,4 +1,4 @@
-part of simple_animations;
+import 'package:flutter/material.dart';
 
 /// Method extensions on [AnimationController]
 extension AnimationControllerExtension on AnimationController {

@@ -1,4 +1,7 @@
-part of simple_animations;
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import '../plasma.dart';
 
 class LiInfinityPlasmaCompute extends LiPlasmaCompute {
   final Size canvasSize;

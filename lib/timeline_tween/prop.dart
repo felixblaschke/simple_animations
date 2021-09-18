@@ -1,5 +1,3 @@
-part of simple_animations;
-
 /// Enum for use as type of [TimelineTween]. It contains common used property
 /// names.
 ///

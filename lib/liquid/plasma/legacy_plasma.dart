@@ -1,4 +1,8 @@
-part of simple_animations;
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:supercharged/supercharged.dart';
+import '../../stateless_animation/custom_animation.dart';
 
 /// Plasma creates an animation with moving particles that generates a
 /// smooth liquid effect. It can be configured in many styles.
@@ -8,6 +12,7 @@ part of simple_animations;
 ///
 /// Example:
 /// ```dart
+/// import 'dart:math';
 /// import 'package:flutter/material.dart';
 /// import 'package:simple_animations/simple_animations.dart';
 ///

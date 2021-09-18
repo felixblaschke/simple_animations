@@ -1,4 +1,5 @@
-part of simple_animations;
+import 'package:flutter/material.dart';
+import 'package:supercharged/supercharged.dart';
 
 /// Wrapper widget for displaying developer tooling that will
 /// assist your while creating custom animation.
@@ -49,7 +50,7 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
       return Stack(
         children: [
           Positioned.fill(
-              child: _AnimationControllerTransfer(
+              child: AnimationControllerTransfer(
             controllerProvider: _obtainController,
             child: widget.child,
           )),
@@ -317,17 +318,17 @@ class _GestureDetectorWithClickHover extends StatelessWidget {
   }
 }
 
-class _AnimationControllerTransfer extends InheritedWidget {
+class AnimationControllerTransfer extends InheritedWidget {
   final void Function(AnimationController) controllerProvider;
 
-  const _AnimationControllerTransfer({
+  const AnimationControllerTransfer({
     Key? key,
     required this.controllerProvider,
     required Widget child,
   }) : super(key: key, child: child);
 
   @override
-  bool updateShouldNotify(covariant _AnimationControllerTransfer oldWidget) {
+  bool updateShouldNotify(covariant AnimationControllerTransfer oldWidget) {
     return oldWidget.controllerProvider != controllerProvider;
   }
 }
