@@ -1,6 +1,6 @@
 ## next
 
-- **Breaking change:** The liquid feature has been extracted into an own package [sa3_liquid](https://pub.dev/packages/sa3_liquid).
+- **Breaking change:** The liquid feature has been separated into an own package [sa3_liquid](https://pub.dev/packages/sa3_liquid).
 - **Breaking change:** Removed deprecated uppercase variants of `CustomAnimationControl` enum. Use the lower case ones.
 - **Update:** Removed supercharged dependency
 - **Update:** Removed supercharged usage from documentation
