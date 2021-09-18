@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 void main() => runApp(const MyApp());
 
@@ -14,14 +13,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Specify your tween
     final TimelineTween<AniProps> _tween = TimelineTween<AniProps>()
-      ..addScene(begin: 0.milliseconds, end: 1000.milliseconds)
-          .animate(AniProps.width, tween: 0.0.tweenTo(100.0))
-      ..addScene(begin: 1000.milliseconds, end: 1500.milliseconds)
-          .animate(AniProps.width, tween: 100.0.tweenTo(200.0))
-      ..addScene(begin: 0.milliseconds, duration: 2500.milliseconds)
-          .animate(AniProps.height, tween: 0.0.tweenTo(200.0))
-      ..addScene(begin: 0.milliseconds, duration: 3.seconds)
-          .animate(AniProps.color, tween: Colors.red.tweenTo(Colors.blue));
+      ..addScene(
+              begin: const Duration(milliseconds: 0),
+              end: const Duration(milliseconds: 1000))
+          .animate(AniProps.width, tween: Tween(begin: 0.0, end: 100.0))
+      ..addScene(
+              begin: const Duration(milliseconds: 1000),
+              end: const Duration(milliseconds: 1500))
+          .animate(AniProps.width, tween: Tween(begin: 100.0, end: 200.0))
+      ..addScene(
+              begin: Duration.zero,
+              duration: const Duration(milliseconds: 2500))
+          .animate(AniProps.height, tween: Tween(begin: 0.0, end: 200.0))
+      ..addScene(
+              begin: Duration.zero,
+              duration: const Duration(milliseconds: 3000))
+          .animate(AniProps.color,
+              tween: ColorTween(begin: Colors.red, end: Colors.blue));
 
     return MaterialApp(
       home: Scaffold(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 void main() => runApp(const MyApp());
 
@@ -14,14 +13,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Specify your tween
     final _tween = TimelineTween<AniProps>()
-      ..addScene(begin: 0.seconds, duration: 1.seconds)
-          .animate(AniProps.x, tween: (-100.0).tweenTo(100.0))
-      ..addScene(begin: 1.seconds, duration: 1.seconds)
-          .animate(AniProps.y, tween: (-100.0).tweenTo(100.0))
-      ..addScene(begin: 2.seconds, duration: 1.seconds)
-          .animate(AniProps.x, tween: (100.0).tweenTo(-100.0))
-      ..addScene(begin: 3.seconds, duration: 1.seconds)
-          .animate(AniProps.y, tween: (100.0).tweenTo(-100.0));
+      ..addScene(begin: Duration.zero, duration: const Duration(seconds: 1))
+          .animate(AniProps.x, tween: Tween(begin: -100.0, end: 100.0))
+      ..addScene(
+              begin: const Duration(seconds: 1),
+              duration: const Duration(seconds: 1))
+          .animate(AniProps.y, tween: Tween(begin: -100.0, end: 100.0))
+      ..addScene(
+              begin: const Duration(seconds: 2),
+              duration: const Duration(seconds: 1))
+          .animate(AniProps.x, tween: Tween(begin: 100.0, end: -100.0))
+      ..addScene(
+              begin: const Duration(seconds: 3),
+              duration: const Duration(seconds: 1))
+          .animate(AniProps.y, tween: Tween(begin: 100.0, end: -100.0));
 
     return MaterialApp(
       home: Scaffold(
