@@ -1,18 +1,18 @@
-# 🚀 Stateless Animation documentation
+## Stateless Animation
 
 Stateless Animation enables developers to craft custom animations with simple widgets.
 
-## PlayAnimation widget
+### PlayAnimation widget
 
 The `PlayAnimation()` widget plays an animation described by the properties `tween` and `builder`.
 
-### Tween
+#### Tween
 
 The `tween` is the description of your animation. Mostly it will change a value from A to B. Tweens describe **what** will happen but **not how fast it will happen**.
 
 @code tool/templates/code/stateless_animation/pa_tween.dart
 
-### Builder
+#### Builder
 
 The `builder` is a function that is called for **each new rendered frame** of your animation. It takes three parameters: `context`, `child` and `value`.
 
@@ -24,7 +24,7 @@ The `builder` is a function that is called for **each new rendered frame** of yo
 
 How often your `builder` function is called, depends on the animation duration, and the framerate of the device used.
 
-### A simple PlayAnimation
+#### A simple PlayAnimation
 
 The `PlayAnimation<?>` widget can be typed with the type of the animated variable. This enables us the code type-safe.
 
@@ -32,7 +32,7 @@ The `PlayAnimation<?>` widget can be typed with the type of the animated variabl
 
 This snippet creates animation of a red square. It's color will fade to blue within one second.
 
-### Animation duration
+#### Animation duration
 
 By default, the duration of the animation is one second. You set the optional parameter `duration` to refine that.
 
@@ -40,7 +40,7 @@ By default, the duration of the animation is one second. You set the optional pa
 
 Now the red square will fade it's color for 5 seconds.
 
-### Delay
+#### Delay
 
 By default, animations will play automatically. You can set the `delay` parameter to make `PlayAnimation` wait for a given amount of time.
 
@@ -48,7 +48,7 @@ By default, animations will play automatically. You can set the `delay` paramete
 
 The red square will wait for 2 seconds before it starts fading its color.
 
-### Non-linear animation
+#### Non-linear animation
 
 You can make your animation more interesting by applying a non-linear timing curve to it. By default, the tween is animated constantly or **linear**.
 
@@ -58,8 +58,7 @@ You can enrich your animation with non-linear behavior by supplying a `Curve` to
 
 @code tool/templates/code/stateless_animation/pa_curve.dart
 
-
-### Working with child widgets
+#### Working with child widgets
 
 Animations are highly demanding because parts of your apps are recomputed many times per second. It's important to keep these computations as low as possible.
 
@@ -69,71 +68,67 @@ In that scenario we have static `Text` widget. Only the `Container` need to be u
 
 @code tool/templates/code/stateless_animation/pa_child.dart
 
-### Using keys
+#### Using keys
 
 Flutter tends to recycle used widgets. If your app swaps out a `PlayAnimation` with another different `PlayAnimation` in the same second, it may recycle the first one. This may lead to a strange behavior.
 
 All widgets mentioned here support keys to avoid such strange behavior. If you are not familiar with keys then [watch this video](https://www.youtube.com/watch?v=kn0EOS-ZiIc).
 
-### App example
+#### App example
 
 @code tool/templates/code/stateless_animation/example_play_animation.dart
 
-
-
-## LoopAnimation and MirrorAnimation
+### LoopAnimation and MirrorAnimation
 
 Beside `PlayAnimation` there are two similar widgets `LoopAnimation` and `MirrorAnimation`.
 
 Its configuration is pretty the same as the `PlayAnimation`.
 
-### LoopAnimation
+#### LoopAnimation
 
 A `LoopAnimation` repeatedly plays the specified `tween` from the start to the end.
 
 @code tool/templates/code/stateless_animation/loop_animation.dart
 
-### MirrorAnimation
+#### MirrorAnimation
 
 A `MirrorAnimation` repeatedly plays the specified `tween` from the start to the end, then reverse to the start, then again forward and so on.
 
 @code tool/templates/code/stateless_animation/mirror_animation.dart
 
-
-## CustomAnimation
+### CustomAnimation
 
 Use `CustomAnimation` if the animation widgets discussed above aren't sufficient for you use case. Beside all parameters mentioned for `PlayAnimation` it allows you actively control the animation.
 
-### Take over control
+#### Take over control
 
 The `control` parameter can be set to the following values:
 
-CustomAnimationControl.*VALUE* | Description
--------------- | ------------
-stop | Stops the animation at the current position.
-play | Plays the animation from the current position reverse to the start.
-playReverse | Plays the animation from the current position reverse to the start.
-playFromStart | Reset the position of the animation to `0.0` and starts playing to the end.
-playReverseFromEnd | Reset the position of the animation to `1.0` and starts playing reverse to the start.
-loop | Endlessly plays the animation from the start to the end.
-mirror | Endlessly plays the animation from the start to the end, then it plays reverse to the start, then forward again and so on.
+| CustomAnimationControl._VALUE_ | Description                                                                                                                |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| stop                           | Stops the animation at the current position.                                                                               |
+| play                           | Plays the animation from the current position reverse to the start.                                                        |
+| playReverse                    | Plays the animation from the current position reverse to the start.                                                        |
+| playFromStart                  | Reset the position of the animation to `0.0` and starts playing to the end.                                                |
+| playReverseFromEnd             | Reset the position of the animation to `1.0` and starts playing reverse to the start.                                      |
+| loop                           | Endlessly plays the animation from the start to the end.                                                                   |
+| mirror                         | Endlessly plays the animation from the start to the end, then it plays reverse to the start, then forward again and so on. |
 
 You can bind the `control` value to state variable and change it during the animation. The `CustomAnimation` will adapt to that.
 
 @code tool/templates/code/stateless_animation/example_control.dart
 
-### Start position
+#### Start position
 
-Each animation has an internal abstract position. This is a value ranging form `0.0` *(start)* to `1.0` *(end)*.
+Each animation has an internal abstract position. This is a value ranging form `0.0` _(start)_ to `1.0` _(end)_.
 
 You can modify the initial position by setting the `startPosition` parameter.
 
 @code tool/templates/code/stateless_animation/start_position.dart
 
-
 This animation will start playing right in the middle of the specified animation and only will animate for 5 seconds.
 
-### Listen to AnimationStatus
+#### Listen to AnimationStatus
 
 Behind the scenes there is an `AnimationController` processing the animation. `CustomAnimation` exposes it's `AnimationStatusListener` to enable you to react to finished animations.
 
