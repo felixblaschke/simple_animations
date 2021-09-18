@@ -1,5 +1,3 @@
-part of simple_animations;
-
 /// Enum for use as type of [MultiTween]. It contains common used property
 /// names.
 /// Example: (using [supercharged](https://pub.dev/packages/supercharged))

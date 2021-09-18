@@ -1,4 +1,8 @@
-part of simple_animations;
+import 'package:flutter/widgets.dart';
+import 'plasma.dart';
+import 'types/bubbles.dart';
+import 'types/circle.dart';
+import 'types/infinity.dart';
 
 class LiPlasmaComputeFactory {
   static LiPlasmaCompute create({

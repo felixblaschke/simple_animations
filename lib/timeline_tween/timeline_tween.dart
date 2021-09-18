@@ -1,4 +1,8 @@
-part of simple_animations;
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:supercharged/supercharged.dart';
 
 /// Animatable that handles complex animations which handles
 /// multiple properties or scenes.

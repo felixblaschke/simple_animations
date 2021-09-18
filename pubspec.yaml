@@ -9,13 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  supercharged: ^2.1.0
   flutter_lints: ^1.0.4
+  collection: ^1.15.0
+  supercharged: ^2.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  collection: ^1.15.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

@@ -1,4 +1,8 @@
-part of simple_animations;
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:simple_animations/developer_tools/animation_developer_tools.dart';
+import 'package:supercharged/supercharged.dart';
 
 /// Extends your state class with the ability to manage an arbitrary number
 /// of [AnimationController] instances. It takes care of initialization
@@ -52,7 +56,7 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   /// widget to enable developer mode.
   void enableDeveloperMode(AnimationController controller) {
     var transfer =
-        context.findAncestorWidgetOfExactType<_AnimationControllerTransfer>();
+        context.findAncestorWidgetOfExactType<AnimationControllerTransfer>();
     assert(transfer != null,
         'Please place an AnimationDeveloperTools widget inside the widget tree');
     transfer?.controllerProvider(controller);

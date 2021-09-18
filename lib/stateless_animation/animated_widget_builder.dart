@@ -1,4 +1,5 @@
-part of simple_animations;
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 /// Builder function used by widgets to update your
 /// scene when animating.

@@ -1,6 +1,14 @@
 // ignore_for_file: constant_identifier_names
 
-part of simple_animations;
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:supercharged/supercharged.dart';
+
+import 'animated_widget_builder.dart';
+import '../developer_tools/animation_developer_tools.dart';
+import '../anicoto/animation_controller_extension.dart';
+import '../anicoto/animation_mixin.dart';
 
 /// Set of instruction you can pass into a [CustomAnimation.control].
 enum CustomAnimationControl {
@@ -155,7 +163,7 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
 
     if (widget.developerMode) {
       var transfer =
-          context.findAncestorWidgetOfExactType<_AnimationControllerTransfer>();
+          context.findAncestorWidgetOfExactType<AnimationControllerTransfer>();
       assert(transfer != null,
           'Please place an AnimationDeveloperTools widget inside the widget tree');
       transfer?.controllerProvider(aniController);
