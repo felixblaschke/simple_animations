@@ -35,7 +35,7 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 
   @override
   void initState() {
-    // create controller instance and let it mirror animate
+    // create controller instances and use mirror animation behavior
     widthController = createController()
       ..mirror(duration: const Duration(seconds: 5));
     heightController = createController()
@@ -43,7 +43,7 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
     colorController = createController()
       ..mirror(duration: const Duration(milliseconds: 1500));
 
-    // connect tween with individual controller
+    // connect tween with individual controllers
     width = Tween(begin: 100.0, end: 200.0).animate(widthController);
     height = Tween(begin: 100.0, end: 200.0).animate(heightController);
     color = ColorTween(begin: Colors.red, end: Colors.blue)
