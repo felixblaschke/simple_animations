@@ -1,8 +1,6 @@
-# 🎭 Timeline Tween documentation
+## 🎭 Timeline Tween
 
-💡 _Note: These examples uses **[supercharged](https://pub.dev/packages/supercharged)** for syntactic sugar._
-
-## Animate multiple properties
+### Animate multiple properties
 
 This example animates width, height and color of a box.
 
@@ -10,7 +8,7 @@ This example animates width, height and color of a box.
 
 @code tool/templates/code/examples/timelinetween1.dart
 
-## Chained tweens in single animation
+### Chained tweens in single animation
 
 This example moves a box clockwise in a rectangular pattern.
 
@@ -18,7 +16,7 @@ This example moves a box clockwise in a rectangular pattern.
 
 @code tool/templates/code/examples/timelinetween2.dart
 
-## Complex example
+### Complex example
 
 This example combines aspects of the examples above, including chaining and multiple properties.
 

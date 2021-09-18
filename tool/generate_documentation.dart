@@ -4,17 +4,8 @@ import 'dart:io';
 
 void main() {
   process(File('tool/templates/README.md'), File('README.md'));
-  processRootDir('doc');
-  processRootDir('example');
-}
-
-void processRootDir(String dirName) {
-  Directory('tool/templates/$dirName').listSync().forEach((file) {
-    if (file.path.endsWith('.md')) {
-      var name = file.path.split('/').last;
-      process(file as File, File('$dirName/$name'));
-    }
-  });
+  process(
+      File('tool/templates/example/example.md'), File('example/example.md'));
 }
 
 void process(File file, File to) {

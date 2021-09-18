@@ -1,8 +1,6 @@
-# 🎥 Anicoto
+## 🎥 Anicoto
 
-💡 _Note: These examples uses **[supercharged](https://pub.dev/packages/supercharged)** for syntactic sugar._
-
-## Basic usage pattern
+### Basic usage pattern
 
 This example shows a complete app that uses `AnimationMixin` in a simple way.
 
@@ -10,7 +8,7 @@ This example shows a complete app that uses `AnimationMixin` in a simple way.
 
 @code tool/templates/code/examples/anicoto1.dart
 
-## Multiple AnimationController instances
+### Multiple AnimationController instances
 
 This example uses 3 unique `AnimationController` instances to animate width, height and color independently.
 

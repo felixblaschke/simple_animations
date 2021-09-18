@@ -1,19 +1,16 @@
-# ⏯ Animation Developer Tools documentation
+## Animation Developer Tools
 
 The Animation Developer Tools allow you to create or review your animation step by step.
 
-💡 *Note: These code examples uses **[supercharged](https://pub.dev/packages/supercharged)** for syntactic sugar.*
-
-## Basic usage pattern
+### Basic usage pattern
 
 Wrap your UI with the `AnimationDeveloperTools` widget.
 
 @code tool/templates/code/animation_developer_tools/intro.dart
 
-
 Enable developer mode on the animation you want to debug.
 
-### Using stateless animation widgets
+#### Using stateless animation widgets
 
 Stateless animation widgets like
 
@@ -29,14 +26,14 @@ have a constructor parameter `developerMode` that can be set to `true`. It will 
 
 ![devtools](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/v2/devtools.gif)
 
-### Using Anicoto AnimationMixin
+#### Using Anicoto AnimationMixin
 
 If your stateful widget uses `AnimationMixin` to manage your instances of `AnimationController` you can call `enableDeveloperMode()` to connect to the clostest `AnimationDeveloperMode` widget.
 
 **Example**
 @code tool/templates/code/animation_developer_tools/anicoto.dart
 
-## Features and tricks
+### Features and tricks
 
 The Animation Developer Tools come with several features that simplify your developer life:
 
