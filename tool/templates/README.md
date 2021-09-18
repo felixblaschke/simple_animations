@@ -70,7 +70,7 @@ Tired of watching the same animation over and over again, in order to fine tune 
 The Animation Developer Tools allows you pause anywhere, scroll around, speed up, slow down or focus on a certain
 interval of the animation.
 
-[**Read guide**](#animation-developer-tools).
+[**Read guide**](#animation-developer-tools-guide)
 
 ---
 

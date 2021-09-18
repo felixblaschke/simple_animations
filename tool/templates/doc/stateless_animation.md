@@ -106,13 +106,13 @@ The `control` parameter can be set to the following values:
 
 | CustomAnimationControl._VALUE_ | Description                                                                                                                |
 | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| stop                           | Stops the animation at the current position.                                                                               |
-| play                           | Plays the animation from the current position reverse to the start.                                                        |
-| playReverse                    | Plays the animation from the current position reverse to the start.                                                        |
-| playFromStart                  | Reset the position of the animation to `0.0` and starts playing to the end.                                                |
-| playReverseFromEnd             | Reset the position of the animation to `1.0` and starts playing reverse to the start.                                      |
-| loop                           | Endlessly plays the animation from the start to the end.                                                                   |
-| mirror                         | Endlessly plays the animation from the start to the end, then it plays reverse to the start, then forward again and so on. |
+| `stop`                         | Stops the animation at the current position.                                                                               |
+| `play`                         | Plays the animation from the current position reverse to the start.                                                        |
+| `playReverse`                  | Plays the animation from the current position reverse to the start.                                                        |
+| `playFromStart`                | Reset the position of the animation to `0.0` and starts playing to the end.                                                |
+| `playReverseFromEnd`           | Reset the position of the animation to `1.0` and starts playing reverse to the start.                                      |
+| `loop`                         | Endlessly plays the animation from the start to the end.                                                                   |
+| `mirror`                       | Endlessly plays the animation from the start to the end, then it plays reverse to the start, then forward again and so on. |
 
 You can bind the `control` value to state variable and change it during the animation. The `CustomAnimation` will adapt to that.
 
