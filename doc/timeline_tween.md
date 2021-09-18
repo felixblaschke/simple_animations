@@ -88,17 +88,16 @@ TimelineTween<AniProps> createTween() {
 The `animate()` method returns its parent `scene` object. You can use this to specify a scene in a builder style. Here is the same scene:
 
 ```dart
+import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 enum AniProps { width, height, color }
 
 TimelineTween<AniProps> createTween() => TimelineTween<AniProps>()
-  ..addScene(begin: 0.milliseconds, end: 700.milliseconds)
-      .animate(AniProps.width, tween: 0.0.tweenTo(100.0))
-      .animate(AniProps.height, tween: 300.0.tweenTo(200.0));
+  ..addScene(begin: Duration.zero, end: const Duration(milliseconds: 700))
+      .animate(AniProps.width, tween: Tween<double>(begin: 0.0, end: 100.0))
+      .animate(AniProps.height, tween: Tween<double>(begin: 300.0, end: 200.0));
 ```
-> *Note: We use [supercharged extensions](https://pub.dev/packages/supercharged) here. If you don't like it, refer to this [dependency-less example](../doc/no_supercharged/timeline_tween/basic_builder_ns.dart.md).*
 
 
 Use the created tween with your favorite animation technique. Here we use the `PlayAnimation`:
@@ -228,28 +227,33 @@ More complex animations will quickly blow up your code and get confusing. I reco
 Here is my best practise:
 
 ```dart
+import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 TimelineTween<Prop> _createComplexTween() {
   var tween = TimelineTween<Prop>();
 
-  var fadeIn = tween.addScene(begin: 0.seconds, duration: 300.milliseconds)
-      .animate(Prop.x, tween: 0.0.tweenTo(100.0))
-      .animate(Prop.y, tween: 0.0.tweenTo(100.0));
+  var fadeIn = tween
+      .addScene(
+        begin: const Duration(seconds: 0),
+        duration: const Duration(milliseconds: 300),
+      )
+      .animate(Prop.x, tween: Tween<double>(begin: 0.0, end: 100.0))
+      .animate(Prop.y, tween: Tween<double>(begin: 0.0, end: 100.0));
 
-  var grow = fadeIn.addSubsequentScene(duration: 700.milliseconds)
-      .animate(Prop.x, tween: 100.0.tweenTo(200.0))
-      .animate(Prop.y, tween: 100.0.tweenTo(200.0));
+  var grow = fadeIn
+      .addSubsequentScene(duration: const Duration(milliseconds: 700))
+      .animate(Prop.x, tween: Tween<double>(begin: 100.0, end: 200.0))
+      .animate(Prop.y, tween: Tween<double>(begin: 100.0, end: 200.0));
 
-  var fadeOut = grow.addSubsequentScene(duration: 300.milliseconds)
-      .animate(Prop.x, tween: 200.0.tweenTo(0.0))
-      .animate(Prop.y, tween: 200.0.tweenTo(0.0));
+  var fadeOut = grow
+      .addSubsequentScene(duration: const Duration(milliseconds: 300))
+      .animate(Prop.x, tween: Tween<double>(begin: 200.0, end: 0.0))
+      .animate(Prop.y, tween: Tween<double>(begin: 200.0, end: 0.0));
 
   return tween;
 }
 ```
-> *Note: We use [supercharged extensions](https://pub.dev/packages/supercharged) here. If you don't like it, refer to this [dependency-less example](../doc/no_supercharged/timeline_tween/naming_ns.dart.md).*
 
 
 ## Animate properties
@@ -387,16 +391,17 @@ Timeline Tween extrapolates all values that are defined in scenes but get used o
 Look at this example:
 
 ```dart
+import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 TimelineTween<Prop> createTween() => TimelineTween<Prop>()
-  ..addScene(begin: 1.seconds, duration: 1.seconds)
-      .animate(Prop.width, tween: 100.0.tweenTo(200.0))
-  ..addScene(begin: 3.seconds, end: 4.seconds)
-      .animate(Prop.height, tween: 400.0.tweenTo(500.0));
+  ..addScene(
+    begin: const Duration(seconds: 1),
+    duration: const Duration(seconds: 1),
+  ).animate(Prop.width, tween: Tween<double>(begin: 100.0, end: 200.0))
+  ..addScene(begin: const Duration(seconds: 3), end: const Duration(seconds: 4))
+      .animate(Prop.height, tween: Tween<double>(begin: 400.0, end: 500.0));
 ```
-> *Note: We use [supercharged extensions](https://pub.dev/packages/supercharged) here. If you don't like it, refer to this [dependency-less example](../doc/no_supercharged/timeline_tween/extrapolation_ns.dart.md).*
 
 This tween specifies two scenes tweening `width` from 1 - 2 seconds and `height` from 3 - 4 seconds. The tween ends after 4 seconds.
 

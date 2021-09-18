@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
-void main() =>
-    runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
   const Page({Key? key}) : super(key: key);
@@ -12,10 +10,10 @@ class Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlayAnimation<double>(
       // specify tween (from 50.0 to 200.0)
-      tween: (50.0).tweenTo(200.0),
+      tween: Tween<double>(begin: 50.0, end: 200.0),
 
       // set a duration
-      duration: 5.seconds,
+      duration: const Duration(seconds: 5),
 
       // set a curve
       curve: Curves.easeInOut,
