@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:supercharged/supercharged.dart';
 
 /// Wrapper widget for displaying developer tooling that will
 /// assist your while creating custom animation.
@@ -185,9 +184,10 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
   void _obtainController(AnimationController animationController) {
     controller = animationController;
     controller!.addListener(() => setState(() {}));
-    baseDuration = controller!.duration ?? 1.seconds;
+    baseDuration = controller!.duration ?? const Duration(seconds: 1);
     currentDuration = baseDuration;
-    Future<void>.delayed(100.milliseconds).then((_) => _updateController());
+    Future<void>.delayed(const Duration(milliseconds: 100))
+        .then((_) => _updateController());
   }
 
   void _play() {
@@ -199,10 +199,10 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
     if (!play) {
       controller!.stop();
     } else {
-      controller!.duration =
-          (currentDuration!.inMicroseconds * (upperBounds - lowerBounds))
-              .round()
-              .microseconds;
+      controller!.duration = Duration(
+          microseconds:
+              (currentDuration!.inMicroseconds * (upperBounds - lowerBounds))
+                  .round());
       controller!.repeat(min: lowerBounds, max: upperBounds, reverse: false);
     }
   }
@@ -216,7 +216,7 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
   void _speed(double factor) {
     setState(() {});
     currentDuration =
-        (currentDuration!.inMicroseconds * factor).round().microseconds;
+        Duration(microseconds: (currentDuration!.inMicroseconds * factor).round());
     controller!.stop();
     _updateController();
   }

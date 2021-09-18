@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:supercharged/supercharged.dart';
 
 import 'animated_widget_builder.dart';
 import '../developer_tools/animation_developer_tools.dart';
@@ -143,7 +142,9 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
   }
 
   void _buildAnimation() {
-    _animation = widget.tween.curved(widget.curve).animatedBy(aniController);
+    _animation = widget.tween
+        .chain(CurveTween(curve: widget.curve))
+        .animate(aniController);
 
     if (widget.developerMode) {
       var transfer =
