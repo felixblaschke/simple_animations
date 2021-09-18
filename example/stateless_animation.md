@@ -11,7 +11,6 @@ Animates the size of a square within a stateless widget.
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 void main() =>
     runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
@@ -22,8 +21,8 @@ class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlayAnimation<double>(
-      tween: (50.0).tweenTo(200.0), // specify tween (from 50.0 to 200.0)
-      duration: 5.seconds, // set a duration
+      tween: Tween(begin: 50.0, end: 200.0), // specify tween
+      duration: const Duration(seconds: 5), // set a duration
       builder: (context, child, value) {
         // <-- use builder function
         return Container(
@@ -46,9 +45,9 @@ This example demonstrates the usage of a child widget along with `PlayAnimation`
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() =>
+    runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
   const Page({Key? key}) : super(key: key);
@@ -56,16 +55,17 @@ class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlayAnimation<double>(
-      tween: (50.0).tweenTo(200.0),
-      duration: 5.seconds,
-      child: const Center(child: Text('Hello!')), // specify widget called "child"
+      tween: Tween(begin: 50.0, end: 200.0),
+      duration: const Duration(seconds: 5),
+      child: // specify child widget
+          const Center(child: Text('Hello!')),
       builder: (context, child, value) {
         // obtain child via function parameter
         return Container(
           width: value,
           height: value,
           color: Colors.green,
-          child: child, // place child inside your animation
+          child: child, // place child inside the animation
         );
       },
     );
@@ -82,9 +82,9 @@ This example demonstrates a non-linear animation. A pink square increases it's s
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() =>
+    runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
   const Page({Key? key}) : super(key: key);
@@ -92,8 +92,8 @@ class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlayAnimation<double>(
-      tween: 0.0.tweenTo(200.0),
-      duration: 2.seconds,
+      tween: Tween(begin: 0.0, end: 200.0),
+      duration: const Duration(seconds: 2),
       curve: Curves.easeOut,
       builder: (context, child, value) {
         return Container(
@@ -116,9 +116,9 @@ This example demonstrates an animation that waits for two seconds before it star
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() =>
+    runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
   const Page({Key? key}) : super(key: key);
@@ -126,9 +126,9 @@ class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlayAnimation<double>(
-      tween: 100.0.tweenTo(200.0),
-      duration: 2.seconds,
-      delay: 1.seconds,
+      tween: Tween(begin: 100.0, end: 200.0),
+      duration: const Duration(seconds: 2),
+      delay: const Duration(seconds: 1),
       curve: Curves.easeOut,
       builder: (context, child, value) {
         return Container(
@@ -151,9 +151,9 @@ Animation that repeatly pops up a text.
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() =>
+    runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
   const Page({Key? key}) : super(key: key);
@@ -161,16 +161,17 @@ class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoopAnimation<double>(
-        tween: 0.0.tweenTo(10.0),
-        duration: 2.seconds,
-        curve: Curves.easeOut,
-        builder: (context, child, value) {
-          return Transform.scale(
-            scale: value,
-            child: child,
-          );
-        },
-        child: const Text('Hello!'));
+      tween: Tween(begin: 0.0, end: 10.0),
+      duration: const Duration(seconds: 2),
+      curve: Curves.easeOut,
+      builder: (context, child, value) {
+        return Transform.scale(
+          scale: value,
+          child: child,
+        );
+      },
+      child: const Text('Hello!'),
+    );
   }
 }
 ```
@@ -184,9 +185,9 @@ This examples endlessly moves a green box from left to right.
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
-void main() => runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() =>
+    runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
   const Page({Key? key}) : super(key: key);
@@ -194,8 +195,8 @@ class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MirrorAnimation<double>(
-      tween: (-100.0).tweenTo(100.0), // value for offset x-coordinate
-      duration: 2.seconds,
+      tween: Tween(begin: -100.0, end: 100.0), // value for offset x-coordinate
+      duration: const Duration(seconds: 2),
       curve: Curves.easeInOutSine, // non-linear animation
       builder: (context, child, value) {
         return Transform.translate(
@@ -224,7 +225,6 @@ Example of a pulsing square created with a fully configured `CustomAnimation` wi
 
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 void main() =>
     runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
@@ -236,9 +236,9 @@ class Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomAnimation<double>(
       control: CustomAnimationControl.mirror,
-      tween: 100.0.tweenTo(200.0),
-      duration: 2.seconds,
-      delay: 1.seconds,
+      tween: Tween(begin: 100.0, end: 200.0),
+      duration: const Duration(seconds: 2),
+      delay: const Duration(seconds: 1),
       curve: Curves.easeInOut,
       startPosition: 0.5,
       animationStatusListener: (status) {
@@ -267,7 +267,6 @@ This example demonstrates the usage of `CustomAnimation` in a stateful widget.
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 void main() =>
     runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
@@ -287,7 +286,7 @@ class _PageState extends State<Page> {
   Widget build(BuildContext context) {
     return CustomAnimation<double>(
       control: control, // bind state variable to parameter
-      tween: (-100.0).tweenTo(100.0),
+      tween: Tween(begin: -100.0, end: 100.0),
       builder: (context, child, value) {
         return Transform.translate(
           // animation that moves childs from left to right

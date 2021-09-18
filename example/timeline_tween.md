@@ -11,7 +11,6 @@ This example animates width, height and color of a box.
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 void main() => runApp(const MyApp());
 
@@ -25,14 +24,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Specify your tween
     final TimelineTween<AniProps> _tween = TimelineTween<AniProps>()
-      ..addScene(begin: 0.milliseconds, end: 1000.milliseconds)
-          .animate(AniProps.width, tween: 0.0.tweenTo(100.0))
-      ..addScene(begin: 1000.milliseconds, end: 1500.milliseconds)
-          .animate(AniProps.width, tween: 100.0.tweenTo(200.0))
-      ..addScene(begin: 0.milliseconds, duration: 2500.milliseconds)
-          .animate(AniProps.height, tween: 0.0.tweenTo(200.0))
-      ..addScene(begin: 0.milliseconds, duration: 3.seconds)
-          .animate(AniProps.color, tween: Colors.red.tweenTo(Colors.blue));
+      ..addScene(
+              begin: const Duration(milliseconds: 0),
+              end: const Duration(milliseconds: 1000))
+          .animate(AniProps.width, tween: Tween(begin: 0.0, end: 100.0))
+      ..addScene(
+              begin: const Duration(milliseconds: 1000),
+              end: const Duration(milliseconds: 1500))
+          .animate(AniProps.width, tween: Tween(begin: 100.0, end: 200.0))
+      ..addScene(
+              begin: Duration.zero,
+              duration: const Duration(milliseconds: 2500))
+          .animate(AniProps.height, tween: Tween(begin: 0.0, end: 200.0))
+      ..addScene(
+              begin: Duration.zero,
+              duration: const Duration(milliseconds: 3000))
+          .animate(AniProps.color,
+              tween: ColorTween(begin: Colors.red, end: Colors.blue));
 
     return MaterialApp(
       home: Scaffold(
@@ -65,7 +73,6 @@ This example moves a box clockwise in a rectangular pattern.
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 void main() => runApp(const MyApp());
 
@@ -79,14 +86,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Specify your tween
     final _tween = TimelineTween<AniProps>()
-      ..addScene(begin: 0.seconds, duration: 1.seconds)
-          .animate(AniProps.x, tween: (-100.0).tweenTo(100.0))
-      ..addScene(begin: 1.seconds, duration: 1.seconds)
-          .animate(AniProps.y, tween: (-100.0).tweenTo(100.0))
-      ..addScene(begin: 2.seconds, duration: 1.seconds)
-          .animate(AniProps.x, tween: (100.0).tweenTo(-100.0))
-      ..addScene(begin: 3.seconds, duration: 1.seconds)
-          .animate(AniProps.y, tween: (100.0).tweenTo(-100.0));
+      ..addScene(begin: Duration.zero, duration: const Duration(seconds: 1))
+          .animate(AniProps.x, tween: Tween(begin: -100.0, end: 100.0))
+      ..addScene(
+              begin: const Duration(seconds: 1),
+              duration: const Duration(seconds: 1))
+          .animate(AniProps.y, tween: Tween(begin: -100.0, end: 100.0))
+      ..addScene(
+              begin: const Duration(seconds: 2),
+              duration: const Duration(seconds: 1))
+          .animate(AniProps.x, tween: Tween(begin: 100.0, end: -100.0))
+      ..addScene(
+              begin: const Duration(seconds: 3),
+              duration: const Duration(seconds: 1))
+          .animate(AniProps.y, tween: Tween(begin: 100.0, end: -100.0));
 
     return MaterialApp(
       home: Scaffold(
@@ -123,7 +136,6 @@ This example combines aspects of the examples above, including chaining and mult
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 void main() => runApp(const MyApp());
 
@@ -137,32 +149,49 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Specify your tween
     final _tween = TimelineTween<AniProps>()
-      ..addScene(begin: 0.seconds, duration: 1.seconds)
+      ..addScene(
+              begin: const Duration(seconds: 0),
+              duration: const Duration(seconds: 1))
           .animate(
             AniProps.x,
-            tween: (-100.0).tweenTo(100.0),
+            tween: Tween(begin: -100.0, end: 100.0),
             curve: Curves.easeInOutSine,
           )
-          .animate(AniProps.color, tween: Colors.red.tweenTo(Colors.yellow))
-      ..addScene(begin: 1.seconds, duration: 1.seconds).animate(
+          .animate(
+            AniProps.color,
+            tween: ColorTween(begin: Colors.red, end: Colors.yellow),
+          )
+      ..addScene(
+              begin: const Duration(seconds: 1),
+              duration: const Duration(seconds: 1))
+          .animate(
         AniProps.y,
-        tween: (-100.0).tweenTo(100.0),
+        tween: Tween(begin: -100.0, end: 100.0),
         curve: Curves.easeInOutSine,
       )
-      ..addScene(begin: 2.seconds, duration: 1.seconds).animate(
+      ..addScene(
+              begin: const Duration(seconds: 2),
+              duration: const Duration(seconds: 1))
+          .animate(
         AniProps.x,
-        tween: (100.0).tweenTo(-100.0),
+        tween: Tween(begin: 100.0, end: -100.0),
         curve: Curves.easeInOutSine,
       )
-      ..addScene(begin: 1.seconds, end: 3.seconds)
-          .animate(AniProps.color, tween: Colors.yellow.tweenTo(Colors.blue))
-      ..addScene(begin: 3.seconds, duration: 1.seconds)
+      ..addScene(
+              begin: const Duration(seconds: 1),
+              end: const Duration(seconds: 3))
+          .animate(AniProps.color,
+              tween: ColorTween(begin: Colors.yellow, end: Colors.blue))
+      ..addScene(
+              begin: const Duration(seconds: 3),
+              duration: const Duration(seconds: 1))
           .animate(
             AniProps.y,
-            tween: (100.0).tweenTo(-100.0),
+            tween: Tween(begin: 100.0, end: -100.0),
             curve: Curves.easeInOutSine,
           )
-          .animate(AniProps.color, tween: Colors.blue.tweenTo(Colors.red));
+          .animate(AniProps.color,
+              tween: ColorTween(begin: Colors.blue, end: Colors.red));
 
     return MaterialApp(
       home: Scaffold(
