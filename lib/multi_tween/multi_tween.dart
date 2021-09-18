@@ -1,5 +1,5 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:supercharged/supercharged.dart';
 
 /// Animatable that animates multiple properties at once.
 /// It can also chain multiples [Tween]s for a property.
@@ -37,8 +37,9 @@ class MultiTween<P> extends Animatable<MultiTweenValues<P>> {
   Duration get duration =>
       _tracks.values
           .map((track) => track.duration)
-          .maxBy((a, b) => a.compareTo(b)) ??
-      0.seconds;
+          .sorted((a, b) => a.compareTo(b))
+          .lastOrNull ??
+      Duration.zero;
 
   /// Adds a new tweening task for a specified [property].
   ///
@@ -166,7 +167,8 @@ class MultiTweenValues<P> {
 
     for (var tweenWithDuration in track.tweensWithDuration) {
       final tweenDurationInTimeDecimals =
-          tweenWithDuration.duration / _maxDuration;
+          tweenWithDuration.duration.inMicroseconds.toDouble() /
+              _maxDuration.inMicroseconds.toDouble();
 
       // We need to figure out which tween-slice of track applied to the requested time (t)
       if (time < timeWhenTweenStarts + tweenDurationInTimeDecimals) {
@@ -191,7 +193,7 @@ class _TweenTrack {
 
   Duration get duration {
     if (tweensWithDuration.isEmpty) {
-      return 0.seconds;
+      return Duration.zero;
     }
 
     return tweensWithDuration

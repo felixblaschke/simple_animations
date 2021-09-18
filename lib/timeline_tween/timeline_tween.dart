@@ -1,8 +1,8 @@
 import 'dart:math';
 
+import 'package:collection/src/iterable_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:supercharged/supercharged.dart';
 
 /// Animatable that handles complex animations which handles
 /// multiple properties or scenes.
@@ -35,15 +35,15 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
   Duration get duration {
     var items = _generateAbsoluteItems().map((item) => item.end);
 
-    var itemsDuration = items.isNotEmpty ? items.max()! : 0;
-    var scenesDuration = _scenes.isNotEmpty
-        ? _scenes
+    int itemsDuration = items.sorted((a, b) => a.compareTo(b)).lastOrNull ?? 0;
+    int scenesDuration = _scenes
             .map((scene) =>
                 scene.begin.inMicroseconds + scene.duration.inMicroseconds)
-            .max()!
-        : 0;
+            .sorted((a, b) => a.compareTo(b))
+            .lastOrNull ??
+        0;
 
-    return max(itemsDuration, scenesDuration).microseconds;
+    return Duration(microseconds: max(itemsDuration, scenesDuration));
   }
 
   /// Adds a new scene to the timeline. A scene is specified with a time span.
@@ -74,9 +74,9 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
       begin = end - duration;
     }
 
-    assert(duration! >= 0.seconds,
+    assert(duration! >= Duration.zero,
         'Scene duration must be or result in a positive value');
-    assert(begin! >= 0.seconds,
+    assert(begin! >= Duration.zero,
         'Scene begin must be or result in a positive value');
 
     var scene = TimelineScene<T>(
@@ -163,23 +163,27 @@ class TimelineTween<T> extends Animatable<TimelineValue<T>> {
       // inside a scene
       var localT = (now - matchInScene.begin).toDouble() /
           (matchInScene.end - matchInScene.begin).toDouble();
-      valueMap[property] =
-          matchInScene.tween.curved(matchInScene.curve).transform(localT);
+      valueMap[property] = matchInScene.tween
+          .chain(CurveTween(curve: matchInScene.curve))
+          .transform(localT);
     } else if (now < earliestItem!.begin) {
       // before first scene
-      valueMap[property] =
-          earliestItem.tween.curved(earliestItem.curve).transform(0.0);
+      valueMap[property] = earliestItem.tween
+          .chain(CurveTween(curve: earliestItem.curve))
+          .transform(0.0);
     } else if (latestItem!.end < now) {
       // after last scene
-      valueMap[property] =
-          latestItem.tween.curved(latestItem.curve).transform(1.0);
+      valueMap[property] = latestItem.tween
+          .chain(CurveTween(curve: latestItem.curve))
+          .transform(1.0);
     } else {
       // between two scenes
       for (var i = 1; i < items.length; i++) {
         var left = items[i - 1];
         var right = items[i];
         if (left.end < now && now < right.begin) {
-          valueMap[property] = left.tween.curved(left.curve).transform(1.0);
+          valueMap[property] =
+              left.tween.chain(CurveTween(curve: left.curve)).transform(1.0);
         }
       }
     }

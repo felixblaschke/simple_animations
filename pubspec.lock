@@ -129,19 +129,19 @@ packages:
     source: hosted
     version: "1.1.0"
   supercharged:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: supercharged
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0+1"
+    version: "2.1.1"
   supercharged_dart:
     dependency: transitive
     description:
       name: supercharged_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   term_glyph:
     dependency: transitive
     description:

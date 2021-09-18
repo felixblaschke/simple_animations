@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:supercharged/supercharged.dart';
 import '../developer_tools/animation_developer_tools.dart';
 
 /// Extends your state class with the ability to manage an arbitrary number
@@ -123,7 +122,8 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
 
     controller.addListener(() {
       final now = DateTime.now();
-      if (lastUpdateEmitted.isBefore(now.subtract(frameTimeMs.milliseconds))) {
+      if (lastUpdateEmitted
+          .isBefore(now.subtract(Duration(milliseconds: frameTimeMs)))) {
         lastUpdateEmitted = DateTime.now();
         setState(() {});
       }
@@ -132,9 +132,11 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
 
   AnimationController _instanceController({required bool unbounded}) {
     if (!unbounded) {
-      return AnimationController(vsync: this, duration: 1.seconds);
+      return AnimationController(
+          vsync: this, duration: const Duration(seconds: 1));
     } else {
-      return AnimationController.unbounded(vsync: this, duration: 1.seconds);
+      return AnimationController.unbounded(
+          vsync: this, duration: const Duration(seconds: 1));
     }
   }
 
