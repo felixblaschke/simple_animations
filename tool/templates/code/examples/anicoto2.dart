@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 void main() => runApp(const MaterialApp(home: Page()));
 
@@ -37,14 +36,18 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
   @override
   void initState() {
     // create controller instance and let it mirror animate
-    widthController = createController()..mirror(duration: 5.seconds);
-    heightController = createController()..mirror(duration: 3.seconds);
-    colorController = createController()..mirror(duration: 1500.milliseconds);
+    widthController = createController()
+      ..mirror(duration: const Duration(seconds: 5));
+    heightController = createController()
+      ..mirror(duration: const Duration(seconds: 3));
+    colorController = createController()
+      ..mirror(duration: const Duration(milliseconds: 1500));
 
     // connect tween with individual controller
-    width = 100.0.tweenTo(200.0).animatedBy(widthController);
-    height = 100.0.tweenTo(200.0).animatedBy(heightController);
-    color = Colors.red.tweenTo(Colors.blue).animatedBy(colorController);
+    width = Tween(begin: 100.0, end: 200.0).animate(widthController);
+    height = Tween(begin: 100.0, end: 200.0).animate(heightController);
+    color = ColorTween(begin: Colors.red, end: Colors.blue)
+        .animate(colorController);
 
     super.initState();
   }

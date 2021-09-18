@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 void main() =>
     runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
@@ -20,7 +19,7 @@ class _PageState extends State<Page> {
   Widget build(BuildContext context) {
     return CustomAnimation<double>(
       control: control, // bind state variable to parameter
-      tween: (-100.0).tweenTo(100.0),
+      tween: Tween(begin: -100.0, end: 100.0),
       builder: (context, child, value) {
         return Transform.translate(
           // animation that moves childs from left to right
