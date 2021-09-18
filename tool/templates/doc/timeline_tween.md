@@ -1,4 +1,4 @@
-## Timeline Tween
+## Timeline Tween guide
 
 Timeline Tween is a **powerful** `Animateable` that animates multiple properties at once.
 

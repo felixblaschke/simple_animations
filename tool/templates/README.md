@@ -19,9 +19,11 @@
 
 @index
 
-## 🎉 Overview
+## Overview
 
-### 🚀 Stateless Animation
+Simple Animation consists of severals feature, that work alone or in synergy.
+
+### Stateless Animation
 
 Stateless Animation provides a powerful set of Flutter widgets that hide the most complex part of creating animations.
 
@@ -29,11 +31,11 @@ Stateless Animation provides a powerful set of Flutter widgets that hide the mos
 
 @code tool/templates/code/readme/stateless_animation.dart
 
-[**Read guide**](#-stateless-animation) or [**watch examples**](example/example.md#-stateless-animation).
+[**Read guide**](#stateless-animation-guide) or [**watch examples**](example/example.md#stateless-animation).
 
 ---
 
-### 🎭 Timeline Tween
+### Timeline Tween
 
 Timeline Tween is a mighty tool that enables you to tween multiple
 properties _or_ designing staggered animations in a single `Animatable`.
@@ -42,11 +44,11 @@ properties _or_ designing staggered animations in a single `Animatable`.
 
 @code tool/templates/code/readme/timeline_tween.dart
 
-[**Read guide**](#timeline_tween) or [**watch examples**](example/example.md#timeline-tween).
+[**Read guide**](#timeline-tween-guide) or [**watch examples**](example/example.md#timeline-tween).
 
 ---
 
-### 🎥 Anicoto
+### Anicoto
 
 Anicoto fully manages your AnimationController instances and handles initialization, configuration and disposing. No
 more boilerplate code.
@@ -55,11 +57,11 @@ more boilerplate code.
 
 @code tool/templates/code/readme/anicoto.dart
 
-[**Read guide**](#-anicoto) or [**watch examples**](example/example.md#-anicoto).
+[**Read guide**](#anicoto-guide) or [**watch examples**](example/example.md#anicoto).
 
 ---
 
-### ⏯ Animation Developer Tools
+### Animation Developer Tools
 
 Tired of watching the same animation over and over again, in order to fine tune it?
 

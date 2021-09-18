@@ -1,4 +1,4 @@
-## 🎭 Timeline Tween
+## Timeline Tween
 
 ### Animate multiple properties
 

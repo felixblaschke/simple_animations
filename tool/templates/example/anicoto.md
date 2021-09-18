@@ -1,4 +1,4 @@
-## 🎥 Anicoto
+## Anicoto
 
 ### Basic usage pattern
 
