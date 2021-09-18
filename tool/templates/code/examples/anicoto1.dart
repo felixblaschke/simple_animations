@@ -28,7 +28,8 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 
   @override
   void initState() {
-    // Connect tween and controller and apply to animation variable
+    // The controller is automatically provided by the mixin.
+    // Connect tween and controller and store into animation variable.
     size = Tween(begin: 0.0, end: 200.0).animate(controller);
 
     // Start the animation playback
@@ -39,8 +40,8 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: size.value, // Use animation variable's value here
-      height: size.value, // Use animation variable's value here
+      width: size.value, // Use the value of the animation variable
+      height: size.value,
       color: Colors.red,
     );
   }
