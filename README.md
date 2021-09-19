@@ -310,6 +310,24 @@ var widget = PlayAnimation<Color?>(
 );
 ```
 
+#### Track animation status
+
+You can track the status of the animation by setting the `onStart` and `onComplete` callbacks.
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
+
+var widget = PlayAnimation<Color?>(
+  // Track animation status
+  onStart: () => print('Animation started'),
+  onComplete: () => print('Animation complete'),
+  tween: ColorTween(begin: Colors.red, end: Colors.blue),
+  builder: (context, child, value) =>
+      Container(color: value, width: 100, height: 100),
+);
+```
+
 #### Working with child widgets
 
 Animations are highly demanding because parts of your apps are recomputed many times per second. It's important to keep these computations as low as possible.
@@ -434,7 +452,7 @@ var widget = MirrorAnimation<Color?>(
 
 Use `CustomAnimation` if the animation widgets discussed above aren't sufficient for you use case. Beside all parameters mentioned for `PlayAnimation` it allows you actively control the animation.
 
-#### Take over control
+#### Control the animation
 
 The `control` parameter can be set to the following values:
 
@@ -517,7 +535,7 @@ var widget = CustomAnimation<Color?>(
   // set start position at 50%
   startPosition: 0.5,
 
-  // full duration is 10 seconds
+  // full duration is 5 seconds
   duration: const Duration(seconds: 5),
 
   tween: ColorTween(begin: Colors.red, end: Colors.blue),
@@ -527,17 +545,29 @@ var widget = CustomAnimation<Color?>(
 );
 ```
 
-This animation will start playing right in the middle of the specified animation and only will animate for 5 seconds.
+This animation will start playing right in the middle of the specified animation and only will animate for 2.5 seconds.
 
-#### Listen to AnimationStatus
+#### Track animation status
 
-Behind the scenes there is an `AnimationController` processing the animation. `CustomAnimation` exposes it's `AnimationStatusListener` to enable you to react to finished animations.
-
-You can specify your own listener at the `animationStatusListener` parameter.
+You can track the status of the animation by setting the `onStart` and `onComplete` callbacks.
 
 ```dart
-// ignore_for_file: avoid_print
+import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
 
+var widget = CustomAnimation<Color?>(
+  onStart: () => print('Animation started'),
+  onComplete: () => print('Animation complete'),
+  tween: ColorTween(begin: Colors.red, end: Colors.blue),
+  builder: (context, child, value) {
+    return Container(color: value, width: 100, height: 100);
+  },
+);
+```
+
+Or you can access the [`AnimationStatusListener`](https://api.flutter.dev/flutter/animation/AnimationStatusListener.html) within the internal [`AnimationController`](https://api.flutter.dev/flutter/animation/AnimationController-class.html).
+
+```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
