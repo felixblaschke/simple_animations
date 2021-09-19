@@ -1,18 +1,21 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 void main() {
   test('shift', () {
     var timeline = TimelineTween<Prop>();
-    timeline.addScene(begin: 2.seconds, end: 4.seconds).animate(
+    timeline
+        .addScene(
+            begin: const Duration(seconds: 2), end: const Duration(seconds: 4))
+        .animate(
           Prop.width,
-          tween: 100.0.tweenTo(200.0),
-          shiftBegin: -1.seconds,
-          shiftEnd: 2.seconds,
+          tween: Tween(begin: 100.0, end: 200.0),
+          shiftBegin: -const Duration(seconds: 1),
+          shiftEnd: const Duration(seconds: 2),
         );
 
-    expect(timeline.duration, 6.seconds);
+    expect(timeline.duration, const Duration(seconds: 6));
     expect(timeline.transform(0.0 / 6.0).get<double>(Prop.width), 100.0);
     expect(timeline.transform(1.0 / 6.0).get<double>(Prop.width), 100.0);
     expect(timeline.transform(2.0 / 6.0).get<double>(Prop.width), 120.0);

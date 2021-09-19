@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 import './widget_tester_extension.dart';
 
@@ -15,7 +14,7 @@ void main() {
     await tester.addAnimationWidget(animation);
 
     for (var i = 0; i < 200; i++) {
-      await tester.wait(1.days);
+      await tester.wait(const Duration(days: 1));
     }
 
     expect(values, expectedValues);
@@ -36,20 +35,20 @@ class _TestWidgetState extends State<TestWidget> with AnimationMixin {
 
   @override
   void initState() {
-    a = 0.tweenTo(10).animatedBy(controller);
+    a = IntTween(begin: 0, end: 10).animate(controller);
     play();
     super.initState();
   }
 
   void play() async {
-    await controller.play(duration: 10.days);
-    await controller.playReverse(duration: 10.days);
+    await controller.play(duration: const Duration(days: 10));
+    await controller.playReverse(duration: const Duration(days: 10));
 
-    unawaited(controller.loop(duration: 10.days));
-    await Future<void>.delayed(20.days);
+    unawaited(controller.loop(duration: const Duration(days: 10)));
+    await Future<void>.delayed(const Duration(days: 20));
 
-    unawaited(controller.mirror(duration: 10.days));
-    await Future<void>.delayed(20.days);
+    unawaited(controller.mirror(duration: const Duration(days: 10)));
+    await Future<void>.delayed(const Duration(days: 20));
 
     controller.stop();
   }

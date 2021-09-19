@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 import './widget_tester_extension.dart';
 
@@ -10,8 +9,8 @@ void main() {
     var values = <int>[];
     final animation = MaterialApp(
         home: MirrorAnimation<int>(
-      duration: 100.days,
-      tween: 0.tweenTo(100),
+      duration: const Duration(days: 100),
+      tween: IntTween(begin: 0, end: 100),
       curve: Curves.easeInOut,
       builder: (context, child, value) {
         values.add(value);
@@ -22,7 +21,7 @@ void main() {
     await tester.addAnimationWidget(animation);
 
     for (var i = 0; i < 1000; i++) {
-      await tester.wait(1.days);
+      await tester.wait(const Duration(days: 1));
     }
 
     expect(values, expectedValues1);

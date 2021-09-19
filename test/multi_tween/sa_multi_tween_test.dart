@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 void main() {
   test('single track / one tween', () {
@@ -10,7 +9,7 @@ void main() {
       ..add(_Props.width, Tween<double>(begin: 0.0, end: 1.0),
           const Duration(seconds: 1));
 
-    expect(mt.duration, 1.seconds);
+    expect(mt.duration, const Duration(seconds: 1));
 
     expect(mt.transform(0.0).get<double>(_Props.width), 0.0);
     expect(mt.transform(0.5).get<double>(_Props.width), 0.5);
@@ -24,7 +23,7 @@ void main() {
       ..add(_Props.width, Tween<double>(begin: 100.0, end: 200.0),
           const Duration(seconds: 1));
 
-    expect(mt.duration, 2.seconds);
+    expect(mt.duration, const Duration(seconds: 2));
 
     expect(mt.transform(0.0).get<double>(_Props.width), 0.0);
     expect(mt.transform(0.25).get<double>(_Props.width), 0.5);
@@ -40,7 +39,7 @@ void main() {
       ..add(_Props.width, Tween<double>(begin: 100.0, end: 400.0),
           const Duration(seconds: 3));
 
-    expect(mt.duration, 4.seconds);
+    expect(mt.duration, const Duration(seconds: 4));
 
     expect(mt.transform(0.0).get<double>(_Props.width), 0.0);
     expect(mt.transform(0.125).get<double>(_Props.width), 0.5);
@@ -59,7 +58,7 @@ void main() {
       ..add(_Props.height, Tween<double>(begin: 0.0, end: 1000.0),
           const Duration(seconds: 1));
 
-    expect(mt.duration, 2.seconds);
+    expect(mt.duration, const Duration(seconds: 2));
 
     expect(mt.transform(0.0).get<double>(_Props.width), 0.0);
     expect(mt.transform(0.25).get<double>(_Props.width), 0.5);
@@ -85,7 +84,7 @@ void main() {
     final mt = MultiTween<_Props>()
       ..add(_Props.width, Tween<double>(begin: 0.0, end: 1.0));
 
-    expect(mt.duration, 1.seconds);
+    expect(mt.duration, const Duration(seconds: 1));
 
     expect(mt.transform(0.0).get<double>(_Props.width), 0.0);
     expect(mt.transform(0.5).get<double>(_Props.width), 0.5);
@@ -95,15 +94,15 @@ void main() {
   test('single track / no item', () {
     final mt = MultiTween<_Props>();
 
-    expect(mt.duration, 0.seconds);
+    expect(mt.duration, const Duration(seconds: 0));
   });
 
   test('single track / with curve', () {
     final mt = MultiTween<_Props>()
-      ..add(_Props.width, Tween<double>(begin: 0.0, end: 1.0), 1.seconds,
-          Curves.easeIn);
+      ..add(_Props.width, Tween<double>(begin: 0.0, end: 1.0),
+          const Duration(seconds: 1), Curves.easeIn);
 
-    expect(mt.duration, 1.seconds);
+    expect(mt.duration, const Duration(seconds: 1));
 
     expect(mt.transform(0.0).get<double>(_Props.width), 0.0);
     expect(mt.transform(0.25).get<double>(_Props.width), 0.09407757222652435);
