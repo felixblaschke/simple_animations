@@ -22,6 +22,9 @@ import 'custom_animation.dart';
 /// The [curve] parameter can be used to apply a non-linear animation
 /// to your tween.
 ///
+/// The callbacks [onStart] and [onComplete] can be used to track the
+/// start and end of an animation.
+///
 /// You can optionally limit the framerate (fps) of the animation by
 /// setting the [fps] value.
 ///
@@ -40,6 +43,8 @@ class PlayAnimation<T> extends StatelessWidget {
   final Curve curve;
   final int? fps;
   final bool developerMode;
+  final VoidCallback? onStart;
+  final VoidCallback? onComplete;
 
   /// Creates a new PlayAnimation widget.
   /// See class documentation for more information.
@@ -52,6 +57,8 @@ class PlayAnimation<T> extends StatelessWidget {
     this.child,
     this.fps,
     this.developerMode = false,
+    this.onStart,
+    this.onComplete,
     Key? key,
   }) : super(key: key);
 
@@ -66,6 +73,8 @@ class PlayAnimation<T> extends StatelessWidget {
       fps: fps,
       developerMode: developerMode,
       child: child,
+      onStart: onStart,
+      onComplete: onComplete,
     );
   }
 }

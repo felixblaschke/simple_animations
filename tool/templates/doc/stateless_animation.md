@@ -58,6 +58,12 @@ You can enrich your animation with non-linear behavior by supplying a `Curve` to
 
 @code tool/templates/code/stateless_animation/pa_curve.dart
 
+#### Track animation status
+
+You can track the status of the animation by setting the `onStart` and `onComplete` callbacks.
+
+@code tool/templates/code/stateless_animation/pa_lifecycle.dart
+
 #### Working with child widgets
 
 Animations are highly demanding because parts of your apps are recomputed many times per second. It's important to keep these computations as low as possible.
@@ -100,7 +106,7 @@ A `MirrorAnimation` repeatedly plays the specified `tween` from the start to the
 
 Use `CustomAnimation` if the animation widgets discussed above aren't sufficient for you use case. Beside all parameters mentioned for `PlayAnimation` it allows you actively control the animation.
 
-#### Take over control
+#### Control the animation
 
 The `control` parameter can be set to the following values:
 
@@ -126,12 +132,14 @@ You can modify the initial position by setting the `startPosition` parameter.
 
 @code tool/templates/code/stateless_animation/start_position.dart
 
-This animation will start playing right in the middle of the specified animation and only will animate for 5 seconds.
+This animation will start playing right in the middle of the specified animation and only will animate for 2.5 seconds.
 
-#### Listen to AnimationStatus
+#### Track animation status
 
-Behind the scenes there is an `AnimationController` processing the animation. `CustomAnimation` exposes it's `AnimationStatusListener` to enable you to react to finished animations.
+You can track the status of the animation by setting the `onStart` and `onComplete` callbacks.
 
-You can specify your own listener at the `animationStatusListener` parameter.
+@code tool/templates/code/stateless_animation/ca_lifecycle.dart
+
+Or you can access the [`AnimationStatusListener`](https://api.flutter.dev/flutter/animation/AnimationStatusListener.html) within the internal [`AnimationController`](https://api.flutter.dev/flutter/animation/AnimationController-class.html).
 
 @code tool/templates/code/stateless_animation/animation_status.dart

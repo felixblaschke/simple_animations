@@ -8,7 +8,7 @@ var widget = CustomAnimation<Color?>(
   // set start position at 50%
   startPosition: 0.5,
 
-  // full duration is 10 seconds
+  // full duration is 5 seconds
   duration: const Duration(seconds: 5),
 
   tween: ColorTween(begin: Colors.red, end: Colors.blue),

@@ -64,6 +64,9 @@ enum CustomAnimationControl {
 /// The [curve] parameter can be used to apply a non-linear animation
 /// to your tween.
 ///
+/// The callbacks [onStart] and [onComplete] can be used to track the
+/// start and end of an animation.
+///
 /// If you want to start your animation at alternative position, you
 /// can set a [startPosition] that takes values between `0.0` (start)
 /// and `1.0` (end).
@@ -93,6 +96,8 @@ class CustomAnimation<T> extends StatefulWidget {
   final double startPosition;
   final int? fps;
   final bool developerMode;
+  final VoidCallback? onStart;
+  final VoidCallback? onComplete;
 
   /// Creates a new CustomAnimation widget.
   /// See class documentation for more information.
@@ -108,6 +113,8 @@ class CustomAnimation<T> extends StatefulWidget {
     this.animationStatusListener,
     this.fps,
     this.developerMode = false,
+    this.onStart,
+    this.onComplete,
     Key? key,
   })  : assert(startPosition >= 0 && startPosition <= 1,
             'The property startPosition must have a value between 0.0 and 1.0.'),
@@ -121,9 +128,10 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
     with AnimationMixin {
   late AnimationController aniController;
   late Animation<T> _animation;
-  bool _isDisposed = false;
-  bool _waitForDelay = true;
-  bool _isControlSetToMirror = false;
+  var _isDisposed = false;
+  var _waitForDelay = true;
+  var _isControlSetToMirror = false;
+  var _isPlaying = false;
 
   @override
   void initState() {
@@ -133,9 +141,7 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
 
     _buildAnimation();
 
-    if (widget.animationStatusListener != null) {
-      aniController.addStatusListener(widget.animationStatusListener!);
-    }
+    aniController.addStatusListener(_onAnimationStatus);
 
     asyncInitState();
     super.initState();
@@ -177,6 +183,7 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
     }
 
     if (widget.control == CustomAnimationControl.stop) {
+      _trackPlaybackComplete();
       aniController.stop();
     }
     if (widget.control == CustomAnimationControl.play) {
@@ -202,6 +209,32 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
 
     if (widget.control != CustomAnimationControl.mirror) {
       _isControlSetToMirror = false;
+    }
+  }
+
+  void _onAnimationStatus(AnimationStatus status) {
+    widget.animationStatusListener?.call(status);
+
+    if (status == AnimationStatus.forward ||
+        status == AnimationStatus.reverse) {
+      _trackPlaybackStart();
+    } else if (status == AnimationStatus.dismissed ||
+        status == AnimationStatus.completed) {
+      _trackPlaybackComplete();
+    }
+  }
+
+  void _trackPlaybackStart() {
+    if (!_isPlaying) {
+      _isPlaying = true;
+      widget.onStart?.call();
+    }
+  }
+
+  void _trackPlaybackComplete() {
+    if (_isPlaying) {
+      _isPlaying = false;
+      widget.onComplete?.call();
     }
   }
 
