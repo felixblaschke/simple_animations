@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 import './widget_tester_extension.dart';
 
@@ -17,11 +16,11 @@ void main() {
     await tester.addAnimationWidget(animation);
 
     for (var i = 0; i < 200; i++) {
-      await tester.wait(1.days);
+      await tester.wait(const Duration(days: 1));
     }
     changeValue();
     for (var i = 0; i < 200; i++) {
-      await tester.wait(1.days);
+      await tester.wait(const Duration(days: 1));
     }
 
     expect(values, expectedValues);
@@ -42,7 +41,7 @@ class TestWidget extends StatefulWidget {
 class _TestWidgetState extends State<TestWidget> {
   var control = CustomAnimationControl.play;
   var curve = Curves.linear;
-  var duration = 100.days;
+  var duration = const Duration(days: 100);
 
   @override
   void initState() {
@@ -55,7 +54,7 @@ class _TestWidgetState extends State<TestWidget> {
     return CustomAnimation<int>(
       control: control,
       duration: duration,
-      tween: 0.tweenTo(100),
+      tween: IntTween(begin: 0, end: 100),
       curve: curve,
       builder: (context, child, value) {
         widget.valueProvider(value);
@@ -68,7 +67,7 @@ class _TestWidgetState extends State<TestWidget> {
     setState(() {
       control = CustomAnimationControl.playReverse;
       curve = Curves.easeInOut;
-      duration = 150.days;
+      duration = const Duration(days: 150);
     });
   }
 }

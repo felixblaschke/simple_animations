@@ -1,15 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:supercharged/supercharged.dart';
 
 extension WidgetTesterExtension on WidgetTester {
   Future<void> addAnimationWidget(Widget widget) async {
     await pumpWidget(widget);
-    await pump(100.milliseconds);
+    await pump(const Duration(milliseconds: 100));
   }
 
   Future<void> wait(Duration duration) async {
     await pump(duration);
-    await pump(100.milliseconds);
+    await pump(const Duration(milliseconds: 100));
   }
 }

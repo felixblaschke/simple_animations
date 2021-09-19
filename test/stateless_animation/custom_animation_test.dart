@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 import './widget_tester_extension.dart';
 
@@ -10,8 +9,8 @@ void main() {
     var values = <int>[];
     final animation = MaterialApp(
         home: CustomAnimation<int>(
-      duration: 100.days,
-      tween: 0.tweenTo(100),
+      duration: const Duration(days: 100),
+      tween: IntTween(begin: 0, end: 100),
       builder: (context, child, value) {
         values.add(value);
         return Container();
@@ -21,7 +20,7 @@ void main() {
     await tester.addAnimationWidget(animation);
 
     for (var i = 0; i < 200; i++) {
-      await tester.wait(1.days);
+      await tester.wait(const Duration(days: 1));
     }
 
     expect(values, expectedValues1);
@@ -32,8 +31,8 @@ void main() {
     final animation = MaterialApp(
         home: CustomAnimation<int>(
       control: CustomAnimationControl.playFromStart,
-      duration: 100.days,
-      tween: 0.tweenTo(100),
+      duration: const Duration(days: 100),
+      tween: IntTween(begin: 0, end: 100),
       startPosition: 0.5,
       builder: (context, child, value) {
         values.add(value);
@@ -44,7 +43,7 @@ void main() {
     await tester.addAnimationWidget(animation);
 
     for (var i = 0; i < 200; i++) {
-      await tester.wait(1.days);
+      await tester.wait(const Duration(days: 1));
     }
 
     expect(values, expectedValues2);
@@ -56,8 +55,8 @@ void main() {
     final animation = MaterialApp(
         home: CustomAnimation<int>(
       control: CustomAnimationControl.playReverseFromEnd,
-      duration: 100.days,
-      tween: 0.tweenTo(100),
+      duration: const Duration(days: 100),
+      tween: IntTween(begin: 0, end: 100),
       startPosition: 0.5,
       builder: (context, child, value) {
         values.add(value);
@@ -68,7 +67,7 @@ void main() {
     await tester.addAnimationWidget(animation);
 
     for (var i = 0; i < 200; i++) {
-      await tester.wait(1.days);
+      await tester.wait(const Duration(days: 1));
     }
 
     expect(values, expectedValues3);
@@ -77,7 +76,7 @@ void main() {
   testWidgets('CustomAnimation child test', (WidgetTester tester) async {
     var animation = MaterialApp(
         home: CustomAnimation<int>(
-      duration: 100.days,
+      duration: const Duration(days: 100),
       tween: IntTween(begin: 0, end: 100),
       builder: (context, child, value) =>
           Row(children: [Text('$value'), child!]),
@@ -92,17 +91,17 @@ void main() {
     expect(find.text('0'), findsOneWidget);
 
     // half time
-    await tester.wait(50.days);
+    await tester.wait(const Duration(days: 50));
     expect(find.text('static child'), findsOneWidget);
     expect(find.text('50'), findsOneWidget);
 
     // end of animation
-    await tester.wait(50.days);
+    await tester.wait(const Duration(days: 50));
     expect(find.text('static child'), findsOneWidget);
     expect(find.text('100'), findsOneWidget);
 
     // after animation
-    await tester.wait(10.days);
+    await tester.wait(const Duration(days: 10));
     expect(find.text('static child'), findsOneWidget);
     expect(find.text('100'), findsOneWidget);
   });
@@ -110,8 +109,8 @@ void main() {
   testWidgets('CustomAnimation delay', (WidgetTester tester) async {
     var animation = MaterialApp(
         home: CustomAnimation<int>(
-      delay: 10.days,
-      duration: 100.days,
+      delay: const Duration(days: 10),
+      duration: const Duration(days: 100),
       tween: IntTween(begin: 0, end: 100),
       builder: (context, child, value) => Text('$value'),
     ));
@@ -122,15 +121,15 @@ void main() {
     expect(find.text('0'), findsOneWidget);
 
     // start of animation / after delay
-    await tester.wait(10.days);
+    await tester.wait(const Duration(days: 10));
     expect(find.text('0'), findsOneWidget);
 
     // half time
-    await tester.wait(50.days);
+    await tester.wait(const Duration(days: 50));
     expect(find.text('50'), findsOneWidget);
 
     // end of animation
-    await tester.wait(50.days);
+    await tester.wait(const Duration(days: 50));
     expect(find.text('100'), findsOneWidget);
   });
 
@@ -138,7 +137,7 @@ void main() {
     var animation = MaterialApp(
         home: CustomAnimation<int>(
       control: CustomAnimationControl.playReverse,
-      duration: 100.days,
+      duration: const Duration(days: 100),
       tween: IntTween(begin: 0, end: 100),
       builder: (context, child, value) => Text('$value'),
     ));
@@ -149,7 +148,7 @@ void main() {
     expect(find.text('0'), findsOneWidget); // animation is already at start
 
     // more time
-    await tester.wait(10.days);
+    await tester.wait(const Duration(days: 10));
     expect(find.text('0'), findsOneWidget); // same result
   });
 
@@ -158,7 +157,7 @@ void main() {
     var animation = MaterialApp(
         home: CustomAnimation<int>(
       control: CustomAnimationControl.playReverse,
-      duration: 100.days,
+      duration: const Duration(days: 100),
       tween: IntTween(begin: 0, end: 100),
       startPosition: 1.0,
       builder: (context, child, value) => Text('$value'),
@@ -170,15 +169,15 @@ void main() {
     expect(find.text('100'), findsOneWidget);
 
     // half time
-    await tester.wait(50.days);
+    await tester.wait(const Duration(days: 50));
     expect(find.text('50'), findsOneWidget);
 
     // end of animation
-    await tester.wait(50.days);
+    await tester.wait(const Duration(days: 50));
     expect(find.text('0'), findsOneWidget);
 
     // after animation
-    await tester.wait(10.days);
+    await tester.wait(const Duration(days: 10));
     expect(find.text('0'), findsOneWidget);
   });
 
@@ -187,7 +186,7 @@ void main() {
     var animation = MaterialApp(
         home: CustomAnimation<int>(
       control: CustomAnimationControl.stop,
-      duration: 100.days,
+      duration: const Duration(days: 100),
       tween: IntTween(begin: 0, end: 100),
       startPosition: 0.5,
       builder: (context, child, value) => Text('$value'),
@@ -198,7 +197,7 @@ void main() {
     // start of animation
     expect(find.text('50'), findsOneWidget);
 
-    await tester.wait(50.days);
+    await tester.wait(const Duration(days: 50));
     expect(find.text('50'), findsOneWidget);
   });
 
@@ -207,14 +206,14 @@ void main() {
     var animation = MaterialApp(
         home: CustomAnimation<int>(
       control: CustomAnimationControl.play,
-      duration: 100.days,
+      duration: const Duration(days: 100),
       tween: IntTween(begin: 0, end: 100),
       animationStatusListener: (status) => values.add(status.toString()),
       builder: (context, child, value) => Text('$value'),
     ));
 
     await tester.addAnimationWidget(animation);
-    await tester.wait(200.days);
+    await tester.wait(const Duration(days: 200));
 
     expect(values, [
       AnimationStatus.forward.toString(),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 
 import './widget_tester_extension.dart';
 
@@ -14,7 +13,7 @@ void main() {
     await tester.addAnimationWidget(animation);
 
     for (var i = 0; i < 200; i++) {
-      await tester.wait(1.days);
+      await tester.wait(const Duration(days: 1));
     }
 
     expect(values, expectedValues);
@@ -35,7 +34,8 @@ class _TestWidgetState extends State<TestWidget> with AnimationMixin {
 
   @override
   void initState() {
-    a = 0.tweenTo(100).animatedBy(controller..play(duration: 100.days));
+    a = IntTween(begin: 0, end: 100)
+        .animate(controller..play(duration: const Duration(days: 100)));
     super.initState();
   }
 
