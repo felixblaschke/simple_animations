@@ -215,8 +215,8 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
 
   void _speed(double factor) {
     setState(() {});
-    currentDuration =
-        Duration(microseconds: (currentDuration!.inMicroseconds * factor).round());
+    currentDuration = Duration(
+        microseconds: (currentDuration!.inMicroseconds * factor).round());
     controller!.stop();
     _updateController();
   }
