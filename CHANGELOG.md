@@ -1,3 +1,6 @@
+## 4.0.1
+- **Fix:** Increase Dart minimum SDK version to `2.14.0` because of used `unawaited` method.
+
 ## 4.0.0
 
 - **New:** Added lifecycle callbacks `onStart` and `onComplete` for `PlayAnimation` and `CustomAnimation` widgets.
