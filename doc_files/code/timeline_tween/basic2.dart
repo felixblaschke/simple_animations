@@ -1,4 +1,5 @@
-// ignore: unused_import
+// ignore_for_file: unused_import
+// #begin
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
@@ -10,3 +11,4 @@ TimelineTween<AniProps> createTween() {
 
   return tween;
 }
+// #end

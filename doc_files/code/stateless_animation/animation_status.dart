@@ -1,5 +1,5 @@
 // ignore_for_file: avoid_print
-//@start
+// #begin
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
@@ -14,4 +14,4 @@ var widget = CustomAnimation<Color?>(
     }
   },
 );
-//@end
+// #end

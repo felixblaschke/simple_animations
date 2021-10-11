@@ -1,7 +1,8 @@
+// ignore_for_file: unused_element, unused_local_variable
+// #begin
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-// ignore: unused_element
 TimelineTween<Prop> _createComplexTween() {
   var tween = TimelineTween<Prop>();
 
@@ -18,7 +19,6 @@ TimelineTween<Prop> _createComplexTween() {
       .animate(Prop.x, tween: Tween<double>(begin: 100.0, end: 200.0))
       .animate(Prop.y, tween: Tween<double>(begin: 100.0, end: 200.0));
 
-  // ignore: unused_local_variable
   var fadeOut = grow
       .addSubsequentScene(duration: const Duration(milliseconds: 300))
       .animate(Prop.x, tween: Tween<double>(begin: 200.0, end: 0.0))
@@ -26,3 +26,4 @@ TimelineTween<Prop> _createComplexTween() {
 
   return tween;
 }
+// #end

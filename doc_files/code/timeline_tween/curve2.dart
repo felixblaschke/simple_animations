@@ -1,10 +1,11 @@
+// ignore_for_file: unused_local_variable
+// #begin
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 TimelineTween<Prop> createTween() {
   var tween = TimelineTween<Prop>();
 
-  // ignore: unused_local_variable
   var scene = tween.addScene(
     begin: Duration.zero,
     end: const Duration(seconds: 1),
@@ -13,3 +14,4 @@ TimelineTween<Prop> createTween() {
 
   return tween;
 }
+// #end

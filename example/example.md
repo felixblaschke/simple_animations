@@ -1,8 +1,10 @@
+<!-- This file uses generated code. Visit https://pub.dev/packages/readme_helper for usage information. -->
 # Examples
 
 This page contains several animation examples for each feature.
 
-## Table of contents
+<!-- #toc -->
+## Table of Contents
 
 [**Stateless Animation**](#stateless-animation)
   - [Simple PlayAnimation widget](#simple-playanimation-widget)
@@ -22,7 +24,9 @@ This page contains several animation examples for each feature.
 [**Anicoto**](#anicoto)
   - [Basic usage pattern](#basic-usage-pattern)
   - [Multiple AnimationController instances](#multiple-animationcontroller-instances)
+<!-- // end of #toc -->
 
+<!-- #include doc_files/stateless_animation.md -->
 ## Stateless Animation
 
 ### Simple PlayAnimation widget
@@ -337,6 +341,9 @@ class _PageState extends State<Page> {
   }
 }
 ```
+
+<!-- // end of #include -->
+<!-- #include doc_files/timeline_tween.md -->
 ## Timeline Tween
 
 ### Animate multiple properties
@@ -555,6 +562,9 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+
+<!-- // end of #include -->
+<!-- #include doc_files/anicoto.md -->
 ## Anicoto
 
 ### Basic usage pattern
@@ -685,3 +695,5 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
   }
 }
 ```
+
+<!-- // end of #include -->

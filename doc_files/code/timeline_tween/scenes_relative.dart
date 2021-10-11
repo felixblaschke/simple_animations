@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+// #begin
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
@@ -12,7 +14,6 @@ TimelineTween<Prop> createTween() {
       .animate(Prop.x, tween: ConstantTween<int>(0));
 
   // secondScene references the firstScene
-  // ignore: unused_local_variable
   var secondScene = firstScene
       .addSubsequentScene(
         delay: const Duration(milliseconds: 200),
@@ -22,3 +23,4 @@ TimelineTween<Prop> createTween() {
 
   return tween;
 }
+// #end

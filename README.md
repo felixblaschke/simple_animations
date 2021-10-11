@@ -1,3 +1,4 @@
+<!-- This file uses generated code. Visit https://pub.dev/packages/readme_helper for usage information. -->
 # 🎬 Simple Animations
 
 [![Awesome Flutter](https://img.shields.io/badge/Awesome-Flutter-blue.svg?longCache=true&style=flat-square)](https://github.com/Solido/awesome-flutter)
@@ -17,7 +18,8 @@
 - Simplified working with **AnimationController** instances
 - Debug animations
 
-## Table of contents
+<!-- #toc -->
+## Table of Contents
 
 [**Overview**](#overview)
   - [Stateless Animation](#stateless-animation)
@@ -48,6 +50,7 @@
 [**Animation Developer Tools guide**](#animation-developer-tools-guide)
   - [Basic usage pattern](#basic-usage-pattern)
   - [Features and tricks](#features-and-tricks)
+<!-- // end of #toc -->
 
 ## Overview
 
@@ -59,6 +62,7 @@ Stateless Animation provides a powerful set of Flutter widgets that hide the mos
 
 **Example**: Square with an animated background color.
 
+<!-- #code doc_files/code/readme/stateless_animation.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -82,6 +86,7 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+<!-- // end of #code -->
 
 [**Read guide**](#stateless-animation-guide) or [**watch examples**](example/example.md#stateless-animation).
 
@@ -94,6 +99,7 @@ properties _or_ designing staggered animations in a single `Animatable`.
 
 **Example**: Custom tween with multiple properties.
 
+<!-- #code doc_files/code/readme/timeline_tween.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -115,6 +121,7 @@ final tween = TimelineTween<AniProps>()
           end: const Duration(milliseconds: 1200))
       .animate(AniProps.width, tween: Tween<double>(begin: 400.0, end: 500.0));
 ```
+<!-- // end of #code -->
 
 [**Read guide**](#timeline-tween-guide) or [**watch examples**](example/example.md#timeline-tween).
 
@@ -127,6 +134,7 @@ more boilerplate code.
 
 **Example**: Animated stateful widget with full-fledged AnimationController instance.
 
+<!-- #code doc_files/code/readme/anicoto.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -163,6 +171,7 @@ class _MyWidgetState extends State<MyWidget> with AnimationMixin {
   }
 }
 ```
+<!-- // end of #code -->
 
 [**Read guide**](#anicoto-guide) or [**watch examples**](example/example.md#anicoto).
 
@@ -181,6 +190,7 @@ interval of the animation.
 
 ---
 
+<!-- #include doc_files/chapters/stateless_animation.md -->
 ## Stateless Animation guide
 
 Stateless Animation enables developers to craft custom animations with simple widgets.
@@ -583,6 +593,9 @@ var widget = CustomAnimation<Color?>(
   },
 );
 ```
+
+<!-- // end of #include -->
+<!-- #include doc_files/chapters/timeline_tween.md -->
 ## Timeline Tween guide
 
 Timeline Tween is a **powerful** `Animateable` that animates multiple properties at once.
@@ -1087,6 +1100,9 @@ TimelineTween<Prop> createTween() => TimelineTween<Prop>()
       .animate(Prop.width, tween: Tween<double>(begin: 0.0, end: 100.0))
       .animate(Prop.height, tween: Tween<double>(begin: 300.0, end: 200.0));
 ```
+
+<!-- // end of #include -->
+<!-- #include doc_files/chapters/anicoto.md -->
 ## Anicoto guide
 
 Anicoto (**Ani**mation**Con**troller **to**olkit) enriches your developing expierience with Flutter's AnimationController.
@@ -1246,6 +1262,9 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
   }
 }
 ```
+
+<!-- // end of #include -->
+<!-- #include doc_files/chapters/animation_developer_tools.md -->
 ## Animation Developer Tools guide
 
 The Animation Developer Tools allow you to create or review your animation step by step.
@@ -1388,3 +1407,5 @@ The Animation Developer Tools come with several features that simplify your deve
 - Use the slider to edit the animated scene while pausing.
 - You can slow down the animation to look out for certain details.
 - Use the interval buttons to focus on a time span of the animation.
+
+<!-- // end of #include -->
