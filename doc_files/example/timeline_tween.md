@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Specify your tween
-    final TimelineTween<AniProps> _tween = TimelineTween<AniProps>()
+    final TimelineTween<AniProps> tween = TimelineTween<AniProps>()
       ..addScene(
               begin: const Duration(milliseconds: 0),
               end: const Duration(milliseconds: 1000))
@@ -47,8 +47,8 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Center(
           child: PlayAnimation<TimelineValue<AniProps>>(
-            tween: _tween, // Pass in tween
-            duration: _tween.duration, // Obtain duration
+            tween: tween, // Pass in tween
+            duration: tween.duration, // Obtain duration
             builder: (context, child, value) {
               return Container(
                 width: value.get(AniProps.width), // Get animated value
@@ -87,7 +87,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Specify your tween
-    final _tween = TimelineTween<AniProps>()
+    final tween = TimelineTween<AniProps>()
       ..addScene(begin: Duration.zero, duration: const Duration(seconds: 1))
           .animate(AniProps.x, tween: Tween(begin: -100.0, end: 100.0))
       ..addScene(
@@ -108,8 +108,8 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Center(
           child: LoopAnimation<TimelineValue<AniProps>>(
-            tween: _tween, // Pass in tween
-            duration: _tween.duration, // Obtain duration
+            tween: tween, // Pass in tween
+            duration: tween.duration, // Obtain duration
             builder: (context, child, value) {
               return Transform.translate(
                 // Get animated offset
@@ -152,7 +152,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Specify your tween
-    final _tween = TimelineTween<AniProps>()
+    final tween = TimelineTween<AniProps>()
       ..addScene(
               begin: const Duration(seconds: 0),
               duration: const Duration(seconds: 1))
@@ -202,8 +202,8 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Center(
           child: LoopAnimation<TimelineValue<AniProps>>(
-            tween: _tween, // Pass in tween
-            duration: _tween.duration, // Obtain duration
+            tween: tween, // Pass in tween
+            duration: tween.duration, // Obtain duration
             builder: (context, child, value) {
               return Transform.translate(
                 // Get animated offset

@@ -1,20 +1,20 @@
 name: simple_animations
 description: Powerful package to create beautiful custom animations in no time.
-version: 4.0.2
+version: 4.1.0
 homepage: https://github.com/felixblaschke/simple_animations
 
 environment:
-  sdk: ">=2.14.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  collection: ^1.15.0
+  collection: ^1.16.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.4
+  flutter_lints: ^2.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

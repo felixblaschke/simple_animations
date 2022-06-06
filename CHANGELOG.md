@@ -1,7 +1,14 @@
+## 4.1.0
+
+- **Update:** Code base is now compliant to Flutter `3.0.0`
+- **Update:** Dependencies
+
 ## 4.0.2
+
 - **Update:** `flutter_lints` is now listed as `dev_dependencies` within `pubspec.yaml`.
 
 ## 4.0.1
+
 - **Fix:** Increase Dart minimum SDK version to `2.14.0` because of used `unawaited` method.
 
 ## 4.0.0
