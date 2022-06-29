@@ -1,14 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
-import '../developer_tools/animation_developer_tools.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 /// Extends your state class with the ability to manage an arbitrary number
 /// of [AnimationController] instances. It takes care of initialization
 /// and disposing of these instances.
 ///
-/// Most use cases can be realized by start using [controller] as your main
-/// [AnimationController] instance.
+/// Simply start using [controller] as your [AnimationController] instance.
 ///
 /// You can create additional instances of [AnimationController] by calling
 /// [createController].
@@ -21,31 +20,6 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   final _controllerInstances = <AnimationController>[];
 
   /// Returns the main [AnimationController] instance for this state class.
-  ///
-  /// Example: (using [supercharged](https://pub.dev/packages/supercharged))
-  /// ```dart
-  /// class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
-  ///     with AnimationMixin {  // Add AnimationMixin to state class
-  ///
-  ///   Animation<double> size; // Declare animation variable
-  ///
-  ///   @override
-  ///   void initState() {
-  ///     size = 0.0.tweenTo(200.0).animatedBy(controller); // Connect tween and controller and apply to animation variable
-  ///     controller.play(); // Start the animation playback
-  ///     super.initState();
-  ///   }
-  ///
-  ///   @override
-  ///   Widget build(BuildContext context) {
-  ///     return Container(
-  ///         width: size.value, // Use animation variable's value here
-  ///         height: size.value, // Use animation variable's value here
-  ///         color: Colors.red
-  ///     );
-  ///   }
-  /// }
-  /// ```
   AnimationController get controller {
     _mainControllerInstance ??= _newAnimationController();
     return _mainControllerInstance!;
@@ -69,29 +43,6 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   ///
   /// You can create an unbound [AnimationController] by setting the [unbounded]
   /// parameter.
-  ///
-  /// Example: (using [supercharged](https://pub.dev/packages/supercharged))
-  /// ```dart
-  /// class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
-  ///     with AnimationMixin { // <-- use AnimationMixin
-  ///
-  ///   AnimationController sizeController; // <-- declare custom AnimationController
-  ///   Animation<double> size;
-  ///
-  ///   @override
-  ///   void initState() {
-  ///     sizeController = createController(); // <-- create custom AnimationController
-  ///     size = 0.0.tweenTo(100.0).animatedBy(sizeController); // <-- animate "size" with custom AnimationController
-  ///     sizeController.play(duration: 5.seconds); // <-- start playback on custom AnimationController
-  ///     super.initState();
-  ///   }
-  ///
-  ///   @override
-  ///   Widget build(BuildContext context) {
-  ///     return Container(width: size.value, height: size.value, color: Colors.red);
-  ///   }
-  /// }
-  /// ```
   AnimationController createController({
     bool unbounded = false,
     int? fps,
@@ -140,14 +91,21 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
     }
   }
 
-  // below code from TickerProviderStateMixin (dispose method is modified) ----------------------------------------
+  // below code from [TickerProviderStateMixin] (dispose method is modified) ----------------------------------------
 
   Set<Ticker>? _tickers;
 
   @override
   Ticker createTicker(TickerCallback onTick) {
+    if (_tickerModeNotifier == null) {
+      // Setup TickerMode notifier before we vend the first ticker.
+      _updateTickerModeNotifier();
+    }
+    assert(_tickerModeNotifier != null);
     _tickers ??= <_WidgetTicker>{};
-    final result = _WidgetTicker(onTick, this, debugLabel: 'created by $this');
+    final _WidgetTicker result = _WidgetTicker(onTick, this,
+        debugLabel: kDebugMode ? 'created by ${describeIdentity(this)}' : null)
+      ..muted = !_tickerModeNotifier!.value;
     _tickers!.add(result);
     return result;
   }
@@ -156,6 +114,35 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
     assert(_tickers != null);
     assert(_tickers!.contains(ticker));
     _tickers!.remove(ticker);
+  }
+
+  ValueNotifier<bool>? _tickerModeNotifier;
+
+  @override
+  void activate() {
+    super.activate();
+    // We may have a new TickerMode ancestor, get its Notifier.
+    _updateTickerModeNotifier();
+    _updateTickers();
+  }
+
+  void _updateTickers() {
+    if (_tickers != null) {
+      final bool muted = !_tickerModeNotifier!.value;
+      for (final Ticker ticker in _tickers!) {
+        ticker.muted = muted;
+      }
+    }
+  }
+
+  void _updateTickerModeNotifier() {
+    final ValueNotifier<bool> newNotifier = TickerMode.getNotifier(context);
+    if (newNotifier == _tickerModeNotifier) {
+      return;
+    }
+    _tickerModeNotifier?.removeListener(_updateTickers);
+    newNotifier.addListener(_updateTickers);
+    _tickerModeNotifier = newNotifier;
   }
 
   @override
@@ -168,17 +155,20 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
     // Original dispose code
     assert(() {
       if (_tickers != null) {
-        for (final ticker in _tickers!) {
+        for (final Ticker ticker in _tickers!) {
           if (ticker.isActive) {
             throw FlutterError.fromParts(<DiagnosticsNode>[
               ErrorSummary('$this was disposed with an active Ticker.'),
               ErrorDescription(
-                  '$runtimeType created a Ticker via its TickerProviderStateMixin, but at the time '
-                  'dispose() was called on the mixin, that Ticker was still active. All Tickers must '
-                  'be disposed before calling super.dispose().'),
-              ErrorHint('Tickers used by AnimationControllers '
-                  'should be disposed by calling dispose() on the AnimationController itself. '
-                  'Otherwise, the ticker will leak.'),
+                '$runtimeType created a Ticker via its TickerProviderStateMixin, but at the time '
+                'dispose() was called on the mixin, that Ticker was still active. All Tickers must '
+                'be disposed before calling super.dispose().',
+              ),
+              ErrorHint(
+                'Tickers used by AnimationControllers '
+                'should be disposed by calling dispose() on the AnimationController itself. '
+                'Otherwise, the ticker will leak.',
+              ),
               ticker.describeForError('The offending ticker was'),
             ]);
           }
@@ -186,18 +176,9 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
       }
       return true;
     }());
+    _tickerModeNotifier?.removeListener(_updateTickers);
+    _tickerModeNotifier = null;
     super.dispose();
-  }
-
-  @override
-  void didChangeDependencies() {
-    final muted = !TickerMode.of(context);
-    if (_tickers != null) {
-      for (final ticker in _tickers!) {
-        ticker.muted = muted;
-      }
-    }
-    super.didChangeDependencies();
   }
 
   @override

@@ -1,3 +1,7 @@
+## 4.2.0
+
+- **Update:** Synced `AnimationMixin` with Flutter code base.
+
 ## 4.1.0
 
 - **Update:** Code base is now compliant to Flutter `3.0.0`
