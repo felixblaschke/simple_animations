@@ -10,7 +10,7 @@ If you come from 4.x, please look at [migration kit package for 4.x to 5.x upgra
 - **Update:** Reworked the documentation
 - **Breaking changes:** Builder classes got API changes to be closer to Flutter conventions. Old classes and behavior are still available via [migration kit package](https://pub.dev/packages/sa4_migration_kit).
 - **Breaking changes:** Dropped TimelineTween. TimelineTween is still available via [migration kit package](https://pub.dev/packages/sa4_migration_kit).
-- **Breaking changes:** Dropped MuliTween. MuliTween is still available via [migration kit package](https://pub.dev/packages/sa4_migration_kit).
+- **Breaking changes:** Dropped MultiTween. MultiTween is still available via [migration kit package](https://pub.dev/packages/sa4_migration_kit).
 
 ---
 
