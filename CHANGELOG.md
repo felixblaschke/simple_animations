@@ -1,6 +1,14 @@
-## 4.2.0
+## 5.0.0
 
-- **Update:** Synced `AnimationMixin` with Flutter code base.
+If you come from 4.x, please look at [migration kit package for 4.x to 5.x upgrade](https://pub.dev/pub/sa4_migration_kit) for detailed description of breaking changes. That package also contain all original classes from 4.x to simplify the upgrade.
+
+- **New:** MovieTween (replaces MultiTween and TimelineTween)
+- **Update:** Reworked the documentation
+- **Breaking changes:** Builder classes got API changes to be closer to Flutter conventions. Old classes and behavior are still available via [migration kit package](https://pub.dev/pub/sa4_migration_kit).
+- **Breaking changes:** Dropped TimelineTween. TimelineTween is still available via [migration kit package](https://pub.dev/pub/sa4_migration_kit).
+- **Breaking changes:** Dropped MuliTween. MuliTween is still available via [migration kit package](https://pub.dev/pub/sa4_migration_kit).
+
+---
 
 ## 4.1.0
 
@@ -23,6 +31,8 @@
 - **Update:** Removed supercharged dependency
 - **Update:** Removed supercharged usage from documentation
 - **Update:** Restructured documentation
+
+---
 
 ## 3.2.0
 
@@ -56,6 +66,8 @@
 - **New:** Atlas-based particle rendering mode for `PlasmaRenderer`
 - **Update:** Optimization of `TimelineTween` computations
 - **Breaking:** Remove widgets that got deprecated with version `2.x.x`
+
+---
 
 ## 2.5.1
 
@@ -131,10 +143,12 @@
 
 - **New:** Simple Animation has been reworked with version `2.0.0`.
 
-- **New:** Added module [Stateless Animation](https://pub.dev/packages/sa_stateless_animation)
+- **New:** Added module [Stateless Animation](https://pub.dev/packages/sa_animation_builder)
 - **New:** Added module [Multi Tween](https://pub.dev/packages/sa_multi_tween)
 - **New:** Added module [Anicoto](https://pub.dev/packages/sa_anicoto)
 - **Breaking changes:** See [migration guide](https://pub.dev/packages/sa_v1_migration)
+
+---
 
 ## 1.3.12
 

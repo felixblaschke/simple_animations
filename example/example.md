@@ -1,4 +1,6 @@
 <!-- This file uses generated code. Visit https://pub.dev/packages/readme_helper for usage information. -->
+<!-- This file uses generated code. Visit https://pub.dev/packages/readme_helper for usage information. -->
+
 # Examples
 
 This page contains several animation examples for each feature.
@@ -6,35 +8,35 @@ This page contains several animation examples for each feature.
 <!-- #toc -->
 ## Table of Contents
 
-[**Stateless Animation**](#stateless-animation)
-  - [Simple PlayAnimation widget](#simple-playanimation-widget)
-  - [PlayAnimation widget with a child](#playanimation-widget-with-a-child)
-  - [PlayAnimation with non-linear animation](#playanimation-with-non-linear-animation)
-  - [PlayAnimation with delay](#playanimation-with-delay)
+[**Animation Builder**](#animation-builder)
+  - [Simple PlayAnimationBuilder widget](#simple-playanimationbuilder-widget)
+  - [PlayAnimationBuilder widget with a child](#playanimationbuilder-widget-with-a-child)
+  - [PlayAnimationBuilder with non-linear animation](#playanimationbuilder-with-non-linear-animation)
+  - [PlayAnimationBuilder with delay](#playanimationbuilder-with-delay)
   - [LoopAnimation](#loopanimation)
   - [MirrorAnimation](#mirroranimation)
-  - [CustomAnimation in stateless environment](#customanimation-in-stateless-environment)
-  - [CustomAnimation in a stateful environment](#customanimation-in-a-stateful-environment)
+  - [CustomAnimationBuilder in stateless environment](#customanimationbuilder-in-stateless-environment)
+  - [CustomAnimationBuilder in a stateful environment](#customanimationbuilder-in-a-stateful-environment)
 
-[**Timeline Tween**](#timeline-tween)
+[**Movie Tween**](#movie-tween)
   - [Animate multiple properties](#animate-multiple-properties)
   - [Chained tweens in single animation](#chained-tweens-in-single-animation)
   - [Complex example](#complex-example)
 
-[**Anicoto**](#anicoto)
+[**Animation Mixin**](#animation-mixin)
   - [Basic usage pattern](#basic-usage-pattern)
   - [Multiple AnimationController instances](#multiple-animationcontroller-instances)
 <!-- // end of #toc -->
 
-<!-- #include ../doc_files/example/stateless_animation.md -->
-## Stateless Animation
+## Animation Builder
 
-### Simple PlayAnimation widget
+### Simple PlayAnimationBuilder widget
 
 Animates the size of a square within a stateless widget.
 
-![example1](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_stateless_animation/v1/stateless-animation-1.gif)
+![example1](img/s1.gif)
 
+<!-- #code sa_flutter_app/lib/example/sa1.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -47,11 +49,11 @@ class Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PlayAnimation<double>(
-      tween: Tween(begin: 50.0, end: 200.0), // specify tween
-      duration: const Duration(seconds: 5), // set a duration
-      builder: (context, child, value) {
-        // <-- use builder function
+    // plays an animation once
+    return PlayAnimationBuilder<double>(
+      tween: Tween(begin: 50.0, end: 200.0), // set tween
+      duration: const Duration(seconds: 5), // set duration
+      builder: (context, value, _) {
         return Container(
           width: value, // apply animated value from builder function parameter
           height: value,
@@ -62,13 +64,15 @@ class Page extends StatelessWidget {
   }
 }
 ```
+<!-- // end of #code -->
 
-### PlayAnimation widget with a child
+### PlayAnimationBuilder widget with a child
 
-This example demonstrates the usage of a child widget along with `PlayAnimation`.
+This example demonstrates the usage of a child widget along with `PlayAnimationBuilder`.
 
-![example2](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_stateless_animation/v1/stateless-animation-2.gif)
+![example2](img/s2.gif)
 
+<!-- #code sa_flutter_app/lib/example/sa2.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -81,31 +85,31 @@ class Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PlayAnimation<double>(
+    return PlayAnimationBuilder<double>(
       tween: Tween(begin: 50.0, end: 200.0),
       duration: const Duration(seconds: 5),
-      child: // specify child widget
-          const Center(child: Text('Hello!')),
-      builder: (context, child, value) {
-        // obtain child via function parameter
+      child: const Center(child: Text('Hello!')), // pass in static child
+      builder: (context, value, child) {
         return Container(
           width: value,
           height: value,
           color: Colors.green,
-          child: child, // place child inside the animation
+          child: child, // use child inside the animation
         );
       },
     );
   }
 }
 ```
+<!-- // end of #code -->
 
-### PlayAnimation with non-linear animation
+### PlayAnimationBuilder with non-linear animation
 
 This example demonstrates a non-linear animation. A pink square increases it's size. The `easeOut` curve applied to the animation makes it slow down at the end.
 
-![example3](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_stateless_animation/v1/stateless-animation-3.gif)
+![example3](img/s3.gif)
 
+<!-- #code sa_flutter_app/lib/example/sa3.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -118,11 +122,11 @@ class Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PlayAnimation<double>(
+    return PlayAnimationBuilder<double>(
       tween: Tween(begin: 0.0, end: 200.0),
       duration: const Duration(seconds: 2),
       curve: Curves.easeOut,
-      builder: (context, child, value) {
+      builder: (context, value, child) {
         return Container(
           width: value,
           height: value,
@@ -133,13 +137,15 @@ class Page extends StatelessWidget {
   }
 }
 ```
+<!-- // end of #code -->
 
-### PlayAnimation with delay
+### PlayAnimationBuilder with delay
 
 This example demonstrates an animation that waits for two seconds before it starts it's animation.
 
-![example4](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_stateless_animation/v1/stateless-animation-4.gif)
+![example4](img/s4.gif)
 
+<!-- #code sa_flutter_app/lib/example/sa4.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -152,12 +158,12 @@ class Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PlayAnimation<double>(
+    return PlayAnimationBuilder<double>(
       tween: Tween(begin: 100.0, end: 200.0),
       duration: const Duration(seconds: 2),
       delay: const Duration(seconds: 1),
       curve: Curves.easeOut,
-      builder: (context, child, value) {
+      builder: (context, value, child) {
         return Container(
           width: value,
           height: 50.0,
@@ -168,13 +174,15 @@ class Page extends StatelessWidget {
   }
 }
 ```
+<!-- // end of #code -->
 
 ### LoopAnimation
 
 Animation that repeatly pops up a text.
 
-![example5](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_stateless_animation/v1/stateless-animation-5.gif)
+![example5](img/s5.gif)
 
+<!-- #code sa_flutter_app/lib/example/sa5.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -187,11 +195,11 @@ class Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoopAnimation<double>(
+    return LoopAnimationBuilder<double>(
       tween: Tween(begin: 0.0, end: 10.0),
       duration: const Duration(seconds: 2),
       curve: Curves.easeOut,
-      builder: (context, child, value) {
+      builder: (context, value, child) {
         return Transform.scale(
           scale: value,
           child: child,
@@ -202,13 +210,15 @@ class Page extends StatelessWidget {
   }
 }
 ```
+<!-- // end of #code -->
 
 ### MirrorAnimation
 
 This examples endlessly moves a green box from left to right.
 
-![example6](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_stateless_animation/v1/stateless-animation-6.gif)
+![example6](img/s6.gif)
 
+<!-- #code sa_flutter_app/lib/example/sa6.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -221,11 +231,11 @@ class Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MirrorAnimation<double>(
+    return MirrorAnimationBuilder<double>(
       tween: Tween(begin: -100.0, end: 100.0), // value for offset x-coordinate
       duration: const Duration(seconds: 2),
       curve: Curves.easeInOutSine, // non-linear animation
-      builder: (context, child, value) {
+      builder: (context, value, child) {
         return Transform.translate(
           offset: Offset(value, 0), // use animated value for x-coordinate
           child: child,
@@ -240,16 +250,16 @@ class Page extends StatelessWidget {
   }
 }
 ```
+<!-- // end of #code -->
 
-### CustomAnimation in stateless environment
+### CustomAnimationBuilder in stateless environment
 
-Example of a pulsing square created with a fully configured `CustomAnimation` widget.
+Example of a pulsing square created with a fully configured `CustomAnimationBuilder` widget.
 
-![example7](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_stateless_animation/v1/stateless-animation-7.gif)
+![example7](img/s7.gif)
 
+<!-- #code sa_flutter_app/lib/example/sa7.dart -->
 ```dart
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
@@ -261,36 +271,40 @@ class Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomAnimation<double>(
-      control: CustomAnimationControl.mirror,
+    return CustomAnimationBuilder<double>(
+      control: Control.mirror,
       tween: Tween(begin: 100.0, end: 200.0),
       duration: const Duration(seconds: 2),
       delay: const Duration(seconds: 1),
       curve: Curves.easeInOut,
       startPosition: 0.5,
       animationStatusListener: (status) {
-        print('status updated: $status');
+        debugPrint('status updated: $status');
       },
-      builder: (context, child, value) {
+      builder: (context, value, child) {
         return Container(
-            width: value, height: value, color: Colors.blue, child: child);
+          width: value,
+          height: value,
+          color: Colors.blue,
+          child: child,
+        );
       },
       child: const Center(
-          child: Text(
-        'Hello!',
-        style: TextStyle(color: Colors.white, fontSize: 24),
-      )),
+          child: Text('Hello!',
+              style: TextStyle(color: Colors.white, fontSize: 24))),
     );
   }
 }
 ```
+<!-- // end of #code -->
 
-### CustomAnimation in a stateful environment
+### CustomAnimationBuilder in a stateful environment
 
-This example demonstrates the usage of `CustomAnimation` in a stateful widget.
+This example demonstrates the usage of `CustomAnimationBuilder` in a stateful widget.
 
-![example8](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_stateless_animation/v1/stateless-animation-8.gif)
+![example8](img/s8.gif)
 
+<!-- #code sa_flutter_app/lib/example/sa8.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -306,15 +320,15 @@ class Page extends StatefulWidget {
 }
 
 class _PageState extends State<Page> {
-  CustomAnimationControl control =
-      CustomAnimationControl.play; // state variable
+  Control control = Control.play; // state variable
 
   @override
   Widget build(BuildContext context) {
-    return CustomAnimation<double>(
+    return CustomAnimationBuilder<double>(
+      duration: const Duration(seconds: 1),
       control: control, // bind state variable to parameter
       tween: Tween(begin: -100.0, end: 100.0),
-      builder: (context, child, value) {
+      builder: (context, value, child) {
         return Transform.translate(
           // animation that moves childs from left to right
           offset: Offset(value, 0),
@@ -334,32 +348,27 @@ class _PageState extends State<Page> {
   void toggleDirection() {
     // toggle between control instructions
     setState(() {
-      control = (control == CustomAnimationControl.play)
-          ? CustomAnimationControl.playReverse
-          : CustomAnimationControl.play;
+      control = (control == Control.play) ? Control.playReverse : Control.play;
     });
   }
 }
 ```
+<!-- // end of #code -->
 
-<!-- // end of #include -->
-<!-- #include ../doc_files/example/timeline_tween.md -->
-## Timeline Tween
+## Movie Tween
 
 ### Animate multiple properties
 
 This example animates width, height and color of a box.
 
-![example1](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_multi_tween/v1/multitween-example-1.gif)
+![example1](img/t1.gif)
 
+<!-- #code sa_flutter_app/lib/example/movietween1.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 void main() => runApp(const MyApp());
-
-// Create enum that defines the animated properties
-enum AniProps { width, height, color }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -367,37 +376,36 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Specify your tween
-    final TimelineTween<AniProps> tween = TimelineTween<AniProps>()
-      ..addScene(
+    final MovieTween tween = MovieTween()
+      ..scene(
               begin: const Duration(milliseconds: 0),
               end: const Duration(milliseconds: 1000))
-          .animate(AniProps.width, tween: Tween(begin: 0.0, end: 100.0))
-      ..addScene(
+          .tween('width', Tween(begin: 0.0, end: 100.0))
+      ..scene(
               begin: const Duration(milliseconds: 1000),
               end: const Duration(milliseconds: 1500))
-          .animate(AniProps.width, tween: Tween(begin: 100.0, end: 200.0))
-      ..addScene(
-              begin: Duration.zero,
+          .tween('width', Tween(begin: 100.0, end: 200.0))
+      ..scene(
+              begin: const Duration(milliseconds: 0),
               duration: const Duration(milliseconds: 2500))
-          .animate(AniProps.height, tween: Tween(begin: 0.0, end: 200.0))
-      ..addScene(
-              begin: Duration.zero,
+          .tween('height', Tween(begin: 0.0, end: 200.0))
+      ..scene(
+              begin: const Duration(milliseconds: 0),
               duration: const Duration(milliseconds: 3000))
-          .animate(AniProps.color,
-              tween: ColorTween(begin: Colors.red, end: Colors.blue));
+          .tween('color', ColorTween(begin: Colors.red, end: Colors.blue));
 
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.white,
         body: Center(
-          child: PlayAnimation<TimelineValue<AniProps>>(
+          child: PlayAnimationBuilder<Movie>(
             tween: tween, // Pass in tween
             duration: tween.duration, // Obtain duration
-            builder: (context, child, value) {
+            builder: (context, value, child) {
               return Container(
-                width: value.get(AniProps.width), // Get animated value
-                height: value.get(AniProps.height),
-                color: value.get(AniProps.color),
+                width: value.get('width'), // Get animated values
+                height: value.get('height'),
+                color: value.get('color'),
               );
             },
           ),
@@ -407,21 +415,20 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+<!-- // end of #code -->
 
 ### Chained tweens in single animation
 
 This example moves a box clockwise in a rectangular pattern.
 
-![example2](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_multi_tween/v1/multitween-example-2.gif)
+![example2](img/t2.gif)
 
+<!-- #code sa_flutter_app/lib/example/movietween2.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 void main() => runApp(const MyApp());
-
-// Create enum that defines the animated properties
-enum AniProps { x, y }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -429,33 +436,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Specify your tween
-    final tween = TimelineTween<AniProps>()
-      ..addScene(begin: Duration.zero, duration: const Duration(seconds: 1))
-          .animate(AniProps.x, tween: Tween(begin: -100.0, end: 100.0))
-      ..addScene(
-              begin: const Duration(seconds: 1),
+    final tween = MovieTween()
+      ..tween('x', Tween(begin: -100.0, end: 100.0),
               duration: const Duration(seconds: 1))
-          .animate(AniProps.y, tween: Tween(begin: -100.0, end: 100.0))
-      ..addScene(
-              begin: const Duration(seconds: 2),
+          .thenTween('y', Tween(begin: -100.0, end: 100.0),
               duration: const Duration(seconds: 1))
-          .animate(AniProps.x, tween: Tween(begin: 100.0, end: -100.0))
-      ..addScene(
-              begin: const Duration(seconds: 3),
+          .thenTween('x', Tween(begin: 100.0, end: -100.0),
               duration: const Duration(seconds: 1))
-          .animate(AniProps.y, tween: Tween(begin: 100.0, end: -100.0));
+          .thenTween('y', Tween(begin: 100.0, end: -100.0),
+              duration: const Duration(seconds: 1));
 
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.white,
         body: Center(
-          child: LoopAnimation<TimelineValue<AniProps>>(
+          child: LoopAnimationBuilder<Movie>(
             tween: tween, // Pass in tween
             duration: tween.duration, // Obtain duration
-            builder: (context, child, value) {
+            builder: (context, value, child) {
               return Transform.translate(
                 // Get animated offset
-                offset: Offset(value.get(AniProps.x), value.get(AniProps.y)),
+                offset: Offset(value.get('x'), value.get('y')),
                 child: Container(
                   width: 100,
                   height: 100,
@@ -470,88 +471,75 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+<!-- // end of #code -->
 
 ### Complex example
 
 This example combines aspects of the examples above, including chaining and multiple properties.
 
-![example3](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_multi_tween/v1/multitween-example-3.gif)
+![example3](img/t3.gif)
 
+<!-- #code sa_flutter_app/lib/example/movietween3.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 void main() => runApp(const MyApp());
 
-// Create enum that defines the animated properties
-enum AniProps { x, y, color }
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Variant with typed properties
+    final x = MovieTweenProperty<double>();
+    final y = MovieTweenProperty<double>();
+    final color = MovieTweenProperty<Color?>();
+
     // Specify your tween
-    final tween = TimelineTween<AniProps>()
-      ..addScene(
+    final tween = MovieTween()
+      ..scene(
               begin: const Duration(seconds: 0),
               duration: const Duration(seconds: 1))
-          .animate(
-            AniProps.x,
-            tween: Tween(begin: -100.0, end: 100.0),
-            curve: Curves.easeInOutSine,
-          )
-          .animate(
-            AniProps.color,
-            tween: ColorTween(begin: Colors.red, end: Colors.yellow),
-          )
-      ..addScene(
+          .tween(x, Tween(begin: -100.0, end: 100.0),
+              curve: Curves.easeInOutSine)
+          .tween(color, ColorTween(begin: Colors.red, end: Colors.yellow))
+      ..scene(
               begin: const Duration(seconds: 1),
               duration: const Duration(seconds: 1))
-          .animate(
-        AniProps.y,
-        tween: Tween(begin: -100.0, end: 100.0),
-        curve: Curves.easeInOutSine,
-      )
-      ..addScene(
+          .tween(y, Tween(begin: -100.0, end: 100.0),
+              curve: Curves.easeInOutSine)
+      ..scene(
               begin: const Duration(seconds: 2),
               duration: const Duration(seconds: 1))
-          .animate(
-        AniProps.x,
-        tween: Tween(begin: 100.0, end: -100.0),
-        curve: Curves.easeInOutSine,
-      )
-      ..addScene(
+          .tween(x, Tween(begin: 100.0, end: -100.0),
+              curve: Curves.easeInOutSine)
+      ..scene(
               begin: const Duration(seconds: 1),
               end: const Duration(seconds: 3))
-          .animate(AniProps.color,
-              tween: ColorTween(begin: Colors.yellow, end: Colors.blue))
-      ..addScene(
+          .tween(color, ColorTween(begin: Colors.yellow, end: Colors.blue))
+      ..scene(
               begin: const Duration(seconds: 3),
               duration: const Duration(seconds: 1))
-          .animate(
-            AniProps.y,
-            tween: Tween(begin: 100.0, end: -100.0),
-            curve: Curves.easeInOutSine,
-          )
-          .animate(AniProps.color,
-              tween: ColorTween(begin: Colors.blue, end: Colors.red));
+          .tween(y, Tween(begin: 100.0, end: -100.0),
+              curve: Curves.easeInOutSine)
+          .tween(color, ColorTween(begin: Colors.blue, end: Colors.red));
 
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.white,
         body: Center(
-          child: LoopAnimation<TimelineValue<AniProps>>(
+          child: LoopAnimationBuilder<Movie>(
             tween: tween, // Pass in tween
             duration: tween.duration, // Obtain duration
-            builder: (context, child, value) {
+            builder: (context, value, child) {
               return Transform.translate(
                 // Get animated offset
-                offset: Offset(value.get(AniProps.x), value.get(AniProps.y)),
+                offset: Offset(x.from(value), y.from(value)),
                 child: Container(
                   width: 100,
                   height: 100,
-                  color: value.get(AniProps.color), // Get animated color
+                  color: color.from(value), // Get animated color
                 ),
               );
             },
@@ -562,17 +550,17 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+<!-- // end of #code -->
 
-<!-- // end of #include -->
-<!-- #include ../doc_files/example/anicoto.md -->
-## Anicoto
+## Animation Mixin
 
 ### Basic usage pattern
 
 This example shows a complete app that uses `AnimationMixin` in a simple way.
 
-![example1](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_anicoto/v1/anicoto-1.gif)
+![example1](img/a1.gif)
 
+<!-- #code sa_flutter_app/lib/example/am1.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -623,13 +611,15 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
   }
 }
 ```
+<!-- // end of #code -->
 
 ### Multiple AnimationController instances
 
 This example uses 3 unique `AnimationController` instances to animate width, height and color independently.
 
-![example1](https://raw.githubusercontent.com/felixblaschke/simple_animations_documentation_assets/master/sa_anicoto/v1/anicoto-2.gif)
+![example1](img/a2.gif)
 
+<!-- #code sa_flutter_app/lib/example/am2.dart -->
 ```dart
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -695,5 +685,4 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
   }
 }
 ```
-
-<!-- // end of #include -->
+<!-- // end of #code -->
