@@ -228,7 +228,7 @@ class _MyWidgetState extends State<MyWidget> with AnimationMixin {
 
 Helps you fine tuning the animation. It allows you to pause anywhere, scroll around, speed up, slow down or focus on a certain part of the animation.
 
-![devtools](example/img/d1.gif)
+![devtools](https://github.com/felixblaschke/simple_animations/raw/main/example/img/d1.gif)
 
 [**Read guide**](#animation-developer-tools-guide)
 
@@ -928,7 +928,7 @@ final tween = MovieTween()
 
 Creating complex tweens with multiple or staggered properties can be time consuming to create and maintain. I recommend using the [**Animation Developer Tools**](#animation-developer-tools) to streamline this process.
 
-![devtools](example/img/d1.gif)
+![devtools](https://github.com/felixblaschke/simple_animations/raw/main/example/img/d1.gif)
 
 ### Animation duration
 
@@ -1217,7 +1217,7 @@ class MyPage extends StatelessWidget {
 ```
 <!-- // end of #code -->
 
-![devtools](example/img/d1.gif)
+![devtools](https://github.com/felixblaschke/simple_animations/raw/main/example/img/d1.gif)
 
 #### Using Animation Mixin
 

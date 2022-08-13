@@ -34,7 +34,7 @@ This page contains several animation examples for each feature.
 
 Animates the size of a square within a stateless widget.
 
-![example1](img/s1.gif)
+![example1](https://github.com/felixblaschke/simple_animations/raw/main/example/img/s1.gif)
 
 <!-- #code sa_flutter_app/lib/example/sa1.dart -->
 ```dart
@@ -70,7 +70,7 @@ class Page extends StatelessWidget {
 
 This example demonstrates the usage of a child widget along with `PlayAnimationBuilder`.
 
-![example2](img/s2.gif)
+![example2](https://github.com/felixblaschke/simple_animations/raw/main/example/img/s2.gif)
 
 <!-- #code sa_flutter_app/lib/example/sa2.dart -->
 ```dart
@@ -107,7 +107,7 @@ class Page extends StatelessWidget {
 
 This example demonstrates a non-linear animation. A pink square increases it's size. The `easeOut` curve applied to the animation makes it slow down at the end.
 
-![example3](img/s3.gif)
+![example3](https://github.com/felixblaschke/simple_animations/raw/main/example/img/s3.gif)
 
 <!-- #code sa_flutter_app/lib/example/sa3.dart -->
 ```dart
@@ -143,7 +143,7 @@ class Page extends StatelessWidget {
 
 This example demonstrates an animation that waits for two seconds before it starts it's animation.
 
-![example4](img/s4.gif)
+![example4](https://github.com/felixblaschke/simple_animations/raw/main/example/img/s4.gif)
 
 <!-- #code sa_flutter_app/lib/example/sa4.dart -->
 ```dart
@@ -180,7 +180,7 @@ class Page extends StatelessWidget {
 
 Animation that repeatly pops up a text.
 
-![example5](img/s5.gif)
+![example5](https://github.com/felixblaschke/simple_animations/raw/main/example/img/s5.gif)
 
 <!-- #code sa_flutter_app/lib/example/sa5.dart -->
 ```dart
@@ -216,7 +216,7 @@ class Page extends StatelessWidget {
 
 This examples endlessly moves a green box from left to right.
 
-![example6](img/s6.gif)
+![example6](https://github.com/felixblaschke/simple_animations/raw/main/example/img/s6.gif)
 
 <!-- #code sa_flutter_app/lib/example/sa6.dart -->
 ```dart
@@ -256,7 +256,7 @@ class Page extends StatelessWidget {
 
 Example of a pulsing square created with a fully configured `CustomAnimationBuilder` widget.
 
-![example7](img/s7.gif)
+![example7](https://github.com/felixblaschke/simple_animations/raw/main/example/img/s7.gif)
 
 <!-- #code sa_flutter_app/lib/example/sa7.dart -->
 ```dart
@@ -302,7 +302,7 @@ class Page extends StatelessWidget {
 
 This example demonstrates the usage of `CustomAnimationBuilder` in a stateful widget.
 
-![example8](img/s8.gif)
+![example8](https://github.com/felixblaschke/simple_animations/raw/main/example/img/s8.gif)
 
 <!-- #code sa_flutter_app/lib/example/sa8.dart -->
 ```dart
@@ -361,7 +361,7 @@ class _PageState extends State<Page> {
 
 This example animates width, height and color of a box.
 
-![example1](img/t1.gif)
+![example1](https://github.com/felixblaschke/simple_animations/raw/main/example/img/t1.gif)
 
 <!-- #code sa_flutter_app/lib/example/movietween1.dart -->
 ```dart
@@ -421,7 +421,7 @@ class MyApp extends StatelessWidget {
 
 This example moves a box clockwise in a rectangular pattern.
 
-![example2](img/t2.gif)
+![example2](https://github.com/felixblaschke/simple_animations/raw/main/example/img/t2.gif)
 
 <!-- #code sa_flutter_app/lib/example/movietween2.dart -->
 ```dart
@@ -477,7 +477,7 @@ class MyApp extends StatelessWidget {
 
 This example combines aspects of the examples above, including chaining and multiple properties.
 
-![example3](img/t3.gif)
+![example3](https://github.com/felixblaschke/simple_animations/raw/main/example/img/t3.gif)
 
 <!-- #code sa_flutter_app/lib/example/movietween3.dart -->
 ```dart
@@ -558,7 +558,7 @@ class MyApp extends StatelessWidget {
 
 This example shows a complete app that uses `AnimationMixin` in a simple way.
 
-![example1](img/a1.gif)
+![example1](https://github.com/felixblaschke/simple_animations/raw/main/example/img/a1.gif)
 
 <!-- #code sa_flutter_app/lib/example/am1.dart -->
 ```dart
@@ -617,7 +617,7 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 
 This example uses 3 unique `AnimationController` instances to animate width, height and color independently.
 
-![example1](img/a2.gif)
+![example1](https://github.com/felixblaschke/simple_animations/raw/main/example/img/a2.gif)
 
 <!-- #code sa_flutter_app/lib/example/am2.dart -->
 ```dart

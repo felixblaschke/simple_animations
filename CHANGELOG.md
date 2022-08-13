@@ -1,12 +1,16 @@
+## 5.0.0+2
+
+- Readme path fixes
+
 ## 5.0.0
 
-If you come from 4.x, please look at [migration kit package for 4.x to 5.x upgrade](https://pub.dev/pub/sa4_migration_kit) for detailed description of breaking changes. That package also contain all original classes from 4.x to simplify the upgrade.
+If you come from 4.x, please look at [migration kit package for 4.x to 5.x upgrade](https://pub.dev/packages/sa4_migration_kit) for detailed description of breaking changes. That package also contain all original classes from 4.x to simplify the upgrade.
 
 - **New:** MovieTween (replaces MultiTween and TimelineTween)
 - **Update:** Reworked the documentation
-- **Breaking changes:** Builder classes got API changes to be closer to Flutter conventions. Old classes and behavior are still available via [migration kit package](https://pub.dev/pub/sa4_migration_kit).
-- **Breaking changes:** Dropped TimelineTween. TimelineTween is still available via [migration kit package](https://pub.dev/pub/sa4_migration_kit).
-- **Breaking changes:** Dropped MuliTween. MuliTween is still available via [migration kit package](https://pub.dev/pub/sa4_migration_kit).
+- **Breaking changes:** Builder classes got API changes to be closer to Flutter conventions. Old classes and behavior are still available via [migration kit package](https://pub.dev/packages/sa4_migration_kit).
+- **Breaking changes:** Dropped TimelineTween. TimelineTween is still available via [migration kit package](https://pub.dev/packages/sa4_migration_kit).
+- **Breaking changes:** Dropped MuliTween. MuliTween is still available via [migration kit package](https://pub.dev/packages/sa4_migration_kit).
 
 ---
 
