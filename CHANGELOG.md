@@ -1,3 +1,7 @@
+## 5.0.0+3
+
+- Added funding section
+
 ## 5.0.0+2
 
 - Readme path fixes
