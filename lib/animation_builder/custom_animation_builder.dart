@@ -106,11 +106,8 @@ class _CustomAnimationBuilderState<T> extends State<CustomAnimationBuilder<T>>
   /// The [Animation] that is driven by the [AnimationController].
   late Animation<T> _animation;
 
-  /// Tracks the disposal state of the widget
-  var _isDisposed = false;
-
-  /// Tracks if there is currently any delay happening.
-  var _waitForDelay = true;
+  /// Delay timer that is used to delay the execution of the control instruction.
+  Timer? _delayTimer;
 
   /// Tracks if the mirror command is sent to the controller. This is used to
   /// prevent the animation from being mirror again, if the widget is rebuilt.
@@ -133,15 +130,24 @@ class _CustomAnimationBuilderState<T> extends State<CustomAnimationBuilder<T>>
     /// Register the [AnimationStatusListener]
     _controller.addStatusListener(_onAnimationStatus);
 
-    /// Apply delay if set and start the animation execution.
-    _awaitDelayAndApplyControlInstruction();
+    /// Apply control instruction (e.g. play, stop, loop, mirror)
+    var hasDelayDefined =
+        widget.delay != Duration.zero && !widget.developerMode;
+    if (hasDelayDefined) {
+      /// If there is a delay defined, wait for the delay to finish and then
+      /// apply the control instruction.
+      _delayTimer = Timer(widget.delay, _applyControlInstruction);
+    } else {
+      /// If there is no delay defined, apply the control instruction directly.
+      _applyControlInstruction();
+    }
+
     super.initState();
   }
 
   @override
   void dispose() {
-    /// Track the disposal state of the widget
-    _isDisposed = true;
+    _delayTimer?.cancel();
 
     super.dispose();
   }
@@ -163,17 +169,6 @@ class _CustomAnimationBuilderState<T> extends State<CustomAnimationBuilder<T>>
     }
   }
 
-  void _awaitDelayAndApplyControlInstruction() async {
-    /// Await the delay
-    if (widget.delay != Duration.zero && !widget.developerMode) {
-      await Future<void>.delayed(widget.delay);
-    }
-    _waitForDelay = false;
-
-    /// Execute the control instruction
-    _applyControlInstruction();
-  }
-
   @override
   void didUpdateWidget(CustomAnimationBuilder<T> oldWidget) {
     /// Duration might have changed, so update the [AnimationController]
@@ -191,7 +186,7 @@ class _CustomAnimationBuilderState<T> extends State<CustomAnimationBuilder<T>>
 
   void _applyControlInstruction() async {
     /// States where no instruction is required.
-    if (_isDisposed || _waitForDelay || widget.developerMode) {
+    if (widget.developerMode) {
       return;
     }
 

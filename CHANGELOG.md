@@ -1,3 +1,7 @@
+## 5.0.1
+
+- More robust implementation for `CustomAnimationBuilder` with `delay`.
+
 ## 5.0.0+3
 
 - Added funding section
