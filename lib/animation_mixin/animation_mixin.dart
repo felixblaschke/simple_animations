@@ -116,7 +116,7 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
     _tickers!.remove(ticker);
   }
 
-  ValueNotifier<bool>? _tickerModeNotifier;
+  ValueListenable<bool>? _tickerModeNotifier;
 
   @override
   void activate() {
@@ -136,7 +136,7 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   }
 
   void _updateTickerModeNotifier() {
-    final ValueNotifier<bool> newNotifier = TickerMode.getNotifier(context);
+    final ValueListenable<bool> newNotifier = TickerMode.getNotifier(context);
     if (newNotifier == _tickerModeNotifier) {
       return;
     }
@@ -200,8 +200,7 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
 // confusing. Instead we use the less precise but more anodyne "_WidgetTicker",
 // which attracts less attention.
 class _WidgetTicker extends Ticker {
-  _WidgetTicker(TickerCallback onTick, this._creator, {String? debugLabel})
-      : super(onTick, debugLabel: debugLabel);
+  _WidgetTicker(super.onTick, this._creator, {super.debugLabel});
 
   final AnimationMixin _creator;
 

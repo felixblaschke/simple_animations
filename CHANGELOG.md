@@ -1,3 +1,7 @@
+## 5.0.2
+
+- Added compatibility with Flutter `3.12.0`
+
 ## 5.0.1
 
 - More robust implementation for `CustomAnimationBuilder` with `delay`.
