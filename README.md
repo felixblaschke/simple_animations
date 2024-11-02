@@ -230,7 +230,7 @@ Helps you fine tuning the animation. It allows you to pause anywhere, scroll aro
 
 ![devtools](https://github.com/felixblaschke/simple_animations/raw/main/example/img/d1.gif)
 
-[**Read guide**](#animation-developer-tools-guide)
+[**Read guide**](#animation-developer-tools)
 
 &nbsp;
 
