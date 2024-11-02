@@ -45,7 +45,7 @@ void main() =>
     runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
-  const Page({Key? key}) : super(key: key);
+  const Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +81,7 @@ void main() =>
     runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
-  const Page({Key? key}) : super(key: key);
+  const Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +118,7 @@ void main() =>
     runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
-  const Page({Key? key}) : super(key: key);
+  const Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +154,7 @@ void main() =>
     runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
-  const Page({Key? key}) : super(key: key);
+  const Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -191,7 +191,7 @@ void main() =>
     runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
-  const Page({Key? key}) : super(key: key);
+  const Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -227,7 +227,7 @@ void main() =>
     runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
-  const Page({Key? key}) : super(key: key);
+  const Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -267,7 +267,7 @@ void main() =>
     runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
-  const Page({Key? key}) : super(key: key);
+  const Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -313,7 +313,7 @@ void main() =>
     runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatefulWidget {
-  const Page({Key? key}) : super(key: key);
+  const Page({super.key});
 
   @override
   _PageState createState() => _PageState();
@@ -371,7 +371,7 @@ import 'package:simple_animations/simple_animations.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -431,7 +431,7 @@ import 'package:simple_animations/simple_animations.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -487,7 +487,7 @@ import 'package:simple_animations/simple_animations.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -568,7 +568,7 @@ import 'package:simple_animations/simple_animations.dart';
 void main() => runApp(const MaterialApp(home: Page()));
 
 class Page extends StatelessWidget {
-  const Page({Key? key}) : super(key: key);
+  const Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -579,7 +579,7 @@ class Page extends StatelessWidget {
 }
 
 class MyAnimatedWidget extends StatefulWidget {
-  const MyAnimatedWidget({Key? key}) : super(key: key);
+  const MyAnimatedWidget({super.key});
 
   @override
   _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
@@ -627,7 +627,7 @@ import 'package:simple_animations/simple_animations.dart';
 void main() => runApp(const MaterialApp(home: Page()));
 
 class Page extends StatelessWidget {
-  const Page({Key? key}) : super(key: key);
+  const Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -638,7 +638,7 @@ class Page extends StatelessWidget {
 }
 
 class MyAnimatedWidget extends StatefulWidget {
-  const MyAnimatedWidget({Key? key}) : super(key: key);
+  const MyAnimatedWidget({super.key});
 
   @override
   _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();

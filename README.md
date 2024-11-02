@@ -66,7 +66,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class ResizeCubeAnimation extends StatelessWidget {
-  const ResizeCubeAnimation({Key? key}) : super(key: key);
+  const ResizeCubeAnimation({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class ResizeCubeAnimation extends StatelessWidget {
 }
 
 class RotatingBox extends StatelessWidget {
-  const RotatingBox({Key? key}) : super(key: key);
+  const RotatingBox({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +108,7 @@ class RotatingBox extends StatelessWidget {
 }
 
 class ColorFadeLoop extends StatelessWidget {
-  const ColorFadeLoop({Key? key}) : super(key: key);
+  const ColorFadeLoop({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -187,7 +187,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class MyWidget extends StatefulWidget {
-  const MyWidget({Key? key}) : super(key: key);
+  const MyWidget({super.key});
 
   @override
   _MyWidgetState createState() => _MyWidgetState();
@@ -423,7 +423,7 @@ void main() => runApp(
     const MaterialApp(home: Scaffold(body: Center(child: AnimatedGreenBox()))));
 
 class AnimatedGreenBox extends StatelessWidget {
-  const AnimatedGreenBox({Key? key}) : super(key: key);
+  const AnimatedGreenBox({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -529,7 +529,7 @@ void main() => runApp(
     const MaterialApp(home: Scaffold(body: Center(child: SwappingButton()))));
 
 class SwappingButton extends StatefulWidget {
-  const SwappingButton({Key? key}) : super(key: key);
+  const SwappingButton({super.key});
 
   @override
   _SwappingButtonState createState() => _SwappingButtonState();
@@ -979,7 +979,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class MyAnimatedWidget extends StatefulWidget {
-  const MyAnimatedWidget({Key? key}) : super(key: key);
+  const MyAnimatedWidget({super.key});
 
   @override
   _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
@@ -1023,7 +1023,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class MyAnimatedWidget extends StatefulWidget {
-  const MyAnimatedWidget({Key? key}) : super(key: key);
+  const MyAnimatedWidget({super.key});
 
   @override
   _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
@@ -1061,7 +1061,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class MyAnimatedWidget extends StatefulWidget {
-  const MyAnimatedWidget({Key? key}) : super(key: key);
+  const MyAnimatedWidget({super.key});
 
   @override
   _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
@@ -1151,7 +1151,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class MyPage extends StatelessWidget {
-  const MyPage({Key? key}) : super(key: key);
+  const MyPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -1189,7 +1189,7 @@ import 'package:simple_animations/simple_animations.dart';
 void main() => runApp(const MaterialApp(home: Scaffold(body: MyPage())));
 
 class MyPage extends StatelessWidget {
-  const MyPage({Key? key}) : super(key: key);
+  const MyPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -1233,7 +1233,7 @@ import 'package:simple_animations/simple_animations.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -1253,7 +1253,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAnimation extends StatefulWidget {
-  const MyAnimation({Key? key}) : super(key: key);
+  const MyAnimation({super.key});
 
   @override
   _MyAnimationState createState() => _MyAnimationState();
