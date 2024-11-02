@@ -5,7 +5,7 @@ void main() =>
     runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatefulWidget {
-  const Page({Key? key}) : super(key: key);
+  const Page({super.key});
 
   @override
   _PageState createState() => _PageState();

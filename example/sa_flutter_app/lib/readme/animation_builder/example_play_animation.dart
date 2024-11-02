@@ -5,7 +5,7 @@ void main() => runApp(
     const MaterialApp(home: Scaffold(body: Center(child: AnimatedGreenBox()))));
 
 class AnimatedGreenBox extends StatelessWidget {
-  const AnimatedGreenBox({Key? key}) : super(key: key);
+  const AnimatedGreenBox({super.key});
 
   @override
   Widget build(BuildContext context) {

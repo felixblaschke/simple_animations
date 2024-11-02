@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class ResizeCubeAnimation extends StatelessWidget {
-  const ResizeCubeAnimation({Key? key}) : super(key: key);
+  const ResizeCubeAnimation({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ResizeCubeAnimation extends StatelessWidget {
 }
 
 class RotatingBox extends StatelessWidget {
-  const RotatingBox({Key? key}) : super(key: key);
+  const RotatingBox({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class RotatingBox extends StatelessWidget {
 }
 
 class ColorFadeLoop extends StatelessWidget {
-  const ColorFadeLoop({Key? key}) : super(key: key);
+  const ColorFadeLoop({super.key});
 
   @override
   Widget build(BuildContext context) {
