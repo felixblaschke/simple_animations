@@ -5,7 +5,7 @@ void main() =>
     runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
 
 class Page extends StatelessWidget {
-  const Page({Key? key}) : super(key: key);
+  const Page({super.key});
 
   @override
   Widget build(BuildContext context) {

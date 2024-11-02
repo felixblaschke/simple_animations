@@ -4,7 +4,7 @@ import 'package:simple_animations/simple_animations.dart';
 void main() => runApp(const MaterialApp(home: Page()));
 
 class Page extends StatelessWidget {
-  const Page({Key? key}) : super(key: key);
+  const Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class Page extends StatelessWidget {
 }
 
 class MyAnimatedWidget extends StatefulWidget {
-  const MyAnimatedWidget({Key? key}) : super(key: key);
+  const MyAnimatedWidget({super.key});
 
   @override
   _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();

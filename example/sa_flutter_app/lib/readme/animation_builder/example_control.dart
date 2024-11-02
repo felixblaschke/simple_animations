@@ -5,7 +5,7 @@ void main() => runApp(
     const MaterialApp(home: Scaffold(body: Center(child: SwappingButton()))));
 
 class SwappingButton extends StatefulWidget {
-  const SwappingButton({Key? key}) : super(key: key);
+  const SwappingButton({super.key});
 
   @override
   _SwappingButtonState createState() => _SwappingButtonState();
