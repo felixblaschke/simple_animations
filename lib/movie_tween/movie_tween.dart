@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -392,4 +391,11 @@ class MovieTweenProperty<T> {
 
   /// Returns the current value of this property.
   T from(Movie movie) => movie.get(this);
+}
+
+extension _SortedExtension<T> on Iterable<T> {
+  /// Creates a sorted list of the elements of the iterable.
+  ///
+  /// The elements are ordered by the [compare] [Comparator].
+  List<T> sorted(Comparator<T> compare) => [...this]..sort(compare);
 }
