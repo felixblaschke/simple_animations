@@ -11,10 +11,10 @@ class AnimationDeveloperTools extends StatefulWidget {
   final AnimationDeveloperToolsPosition position;
 
   const AnimationDeveloperTools({
-    Key? key,
+    super.key,
     required this.child,
     this.position = AnimationDeveloperToolsPosition.top,
-  }) : super(key: key);
+  });
 
   @override
   _AnimationDeveloperToolsState createState() =>
@@ -270,11 +270,10 @@ class _ToolbarButton extends StatelessWidget {
   final bool active;
 
   const _ToolbarButton({
-    Key? key,
     required this.onTap,
     required this.icon,
     required this.active,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -322,10 +321,10 @@ class AnimationControllerTransfer extends InheritedWidget {
   final void Function(AnimationController) controllerProvider;
 
   const AnimationControllerTransfer({
-    Key? key,
+    super.key,
     required this.controllerProvider,
-    required Widget child,
-  }) : super(key: key, child: child);
+    required super.child,
+  });
 
   @override
   bool updateShouldNotify(covariant AnimationControllerTransfer oldWidget) {

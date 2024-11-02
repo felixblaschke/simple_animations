@@ -47,10 +47,9 @@ class CustomAnimationBuilder<T> extends StatefulWidget {
     this.developerMode = false,
     this.onStarted,
     this.onCompleted,
-    Key? key,
+    super.key,
   })  : assert(startPosition >= 0 && startPosition <= 1,
-            'The property startPosition must have a value between 0.0 and 1.0.'),
-        super(key: key);
+            'The property startPosition must have a value between 0.0 and 1.0.');
 
   /// The [tween] to animate.
   final Animatable<T> tween;

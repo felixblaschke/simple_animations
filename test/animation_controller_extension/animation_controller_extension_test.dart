@@ -24,7 +24,7 @@ void main() {
 class TestWidget extends StatefulWidget {
   final Function(int value) exposeValue;
 
-  const TestWidget(this.exposeValue, {Key? key}) : super(key: key);
+  const TestWidget(this.exposeValue, {super.key});
 
   @override
   _TestWidgetState createState() => _TestWidgetState();

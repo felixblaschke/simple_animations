@@ -14,8 +14,8 @@ class PlayAnimationBuilder<T> extends StatelessWidget {
     this.developerMode = false,
     this.onStarted,
     this.onCompleted,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   /// The [tween] to animate.
   final Animatable<T> tween;
