@@ -99,7 +99,6 @@ class MovieTween extends Animatable<Movie> {
 
     //// Tween that describes the property animation
     Animatable<T> tween, {
-
     /// Time in duration at which the scene starts.
     Duration? begin,
 
@@ -273,7 +272,6 @@ class MovieScene {
 
     //// Tween that describes the property animation
     Animatable<T> tween, {
-
     /// Custom curve for this property.
     Curve? curve,
 
@@ -304,7 +302,6 @@ class MovieScene {
 
     //// Tween that describes the property animation.
     Animatable<T> tween, {
-
     /// Duration of the scene
     required Duration duration,
 
