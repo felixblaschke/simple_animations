@@ -1,3 +1,7 @@
+## 5.1.0
+
+- Realigned code base with Flutter `3.24.0`
+
 ## 5.0.2
 
 - Added compatibility with Flutter `3.12.0`
