@@ -60,7 +60,7 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
                   ? Alignment.topCenter
                   : Alignment.bottomCenter,
               child: Container(
-                color: Colors.black.withOpacity(0.8),
+                color: Colors.black.withValues(alpha: 0.8),
                 child: controller == null
                     ? Container(
                         padding: const EdgeInsets.all(8.0),
@@ -100,7 +100,7 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
                                     child: Text('${_currentSpeedFactor()}x',
                                         style: TextStyle(
                                             color: Colors.white
-                                                .withOpacity(0.7)))),
+                                                .withValues(alpha: 0.7)))),
                                 _ToolbarButton(
                                     onTap: () => _speed(0.5),
                                     icon: Icons.fast_forward,
