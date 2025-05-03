@@ -1,3 +1,9 @@
+## 5.2.0
+
+- Realigned code base with Flutter `3.29.2`
+- Fix deprecations reported by linter: `library` keybword, `withOpacity()` usages
+- Fix test cases due to changed test timings (is more accurate now)
+
 ## 5.1.0
 
 - Realigned code base with Flutter `3.24.0`
