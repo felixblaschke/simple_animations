@@ -1,5 +1,3 @@
-library simple_animations;
-
 export 'animation_controller_extension/animation_controller_extension.dart';
 export 'animation_developer_tools/animation_developer_tools.dart';
 
