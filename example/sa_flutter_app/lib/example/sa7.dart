@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-void main() =>
-    runApp(const MaterialApp(home: Scaffold(body: Center(child: Page()))));
+void main() => runApp(
+  const MaterialApp(
+    home: Scaffold(body: Center(child: Page())),
+  ),
+);
 
 class Page extends StatelessWidget {
   const Page({super.key});
@@ -28,8 +31,11 @@ class Page extends StatelessWidget {
         );
       },
       child: const Center(
-          child: Text('Hello!',
-              style: TextStyle(color: Colors.white, fontSize: 24))),
+        child: Text(
+          'Hello!',
+          style: TextStyle(color: Colors.white, fontSize: 24),
+        ),
+      ),
     );
   }
 }

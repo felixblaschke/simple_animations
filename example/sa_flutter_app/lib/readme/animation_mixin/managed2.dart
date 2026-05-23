@@ -29,8 +29,10 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 
     width = Tween<double>(begin: 100.0, end: 200.0).animate(widthController);
     height = Tween<double>(begin: 100.0, end: 200.0).animate(heightController);
-    color = ColorTween(begin: Colors.red, end: Colors.blue)
-        .animate(colorController);
+    color = ColorTween(
+      begin: Colors.red,
+      end: Colors.blue,
+    ).animate(colorController);
 
     super.initState();
   }
@@ -38,6 +40,9 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: width.value, height: height.value, color: color.value);
+      width: width.value,
+      height: height.value,
+      color: color.value,
+    );
   }
 }

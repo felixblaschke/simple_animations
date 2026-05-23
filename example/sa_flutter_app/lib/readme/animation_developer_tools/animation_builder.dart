@@ -9,7 +9,7 @@ class MyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      // put DevTools very high in the widget hierarchy
+      // place DevTools high in the widget hierarchy
       child: AnimationDeveloperTools(
         child: Center(
           child: PlayAnimationBuilder<double>(
@@ -17,11 +17,7 @@ class MyPage extends StatelessWidget {
             duration: const Duration(seconds: 1),
             developerMode: true, // enable developer mode
             builder: (context, value, child) {
-              return Container(
-                width: value,
-                height: value,
-                color: Colors.blue,
-              );
+              return Container(width: value, height: value, color: Colors.blue);
             },
           ),
         ),

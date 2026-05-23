@@ -43,137 +43,160 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      var smallScreen = constraints.maxWidth < 700;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        var smallScreen = constraints.maxWidth < 700;
 
-      return Stack(
-        children: [
-          Positioned.fill(
-              child: AnimationControllerTransfer(
-            controllerProvider: _obtainController,
-            child: widget.child,
-          )),
-          if (widget.position != AnimationDeveloperToolsPosition.hidden)
+        return Stack(
+          children: [
             Positioned.fill(
-                child: Align(
-              alignment: widget.position == AnimationDeveloperToolsPosition.top
-                  ? Alignment.topCenter
-                  : Alignment.bottomCenter,
-              child: Container(
-                color: Colors.black.withValues(alpha: 0.8),
-                child: controller == null
-                    ? Container(
-                        padding: const EdgeInsets.all(8.0),
-                        alignment: Alignment.center,
-                        height: 50,
-                        child: const Text(
-                            'Waiting for widget to enable Developer Mode...',
-                            style: TextStyle(color: Colors.white)),
-                      )
-                    : Flex(
-                        direction:
-                            smallScreen ? Axis.vertical : Axis.horizontal,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          smallScreen
-                              ? _buildSlider()
-                              : Expanded(
-                                  flex: 1,
-                                  child: _buildSlider(),
-                                ),
-                          SizedBox(
-                            height: 50,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                _ToolbarButton(
-                                    onTap: _play,
-                                    icon: Icons.play_arrow,
-                                    active: play),
-                                _ToolbarButton(
-                                    onTap: () => _speed(2),
-                                    icon: Icons.fast_rewind,
-                                    active: currentDuration! > baseDuration!),
-                                Container(
-                                    alignment: Alignment.center,
-                                    width: 50,
-                                    child: Text('${_currentSpeedFactor()}x',
-                                        style: TextStyle(
-                                            color: Colors.white
-                                                .withValues(alpha: 0.7)))),
-                                _ToolbarButton(
-                                    onTap: () => _speed(0.5),
-                                    icon: Icons.fast_forward,
-                                    active: currentDuration! < baseDuration!),
-                                Container(width: 32),
-                                Transform.scale(
-                                  scale: -1,
-                                  child: _ToolbarButton(
-                                      onTap: () => _lowerBounds(),
-                                      icon: Icons.keyboard_tab,
-                                      active: lowerBounds != 0.0),
-                                ),
-                                _ToolbarButton(
-                                    onTap: () => _upperBounds(),
-                                    icon: Icons.keyboard_tab,
-                                    active: upperBounds != 1.0),
-                                Container(width: 16),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+              child: AnimationControllerTransfer(
+                controllerProvider: _obtainController,
+                child: widget.child,
               ),
-            ))
-        ],
-      );
-    });
+            ),
+            if (widget.position != AnimationDeveloperToolsPosition.hidden)
+              Positioned.fill(
+                child: Align(
+                  alignment:
+                      widget.position == AnimationDeveloperToolsPosition.top
+                      ? Alignment.topCenter
+                      : Alignment.bottomCenter,
+                  child: Container(
+                    color: Colors.black.withValues(alpha: 0.8),
+                    child: controller == null
+                        ? Container(
+                            padding: const EdgeInsets.all(8.0),
+                            alignment: Alignment.center,
+                            height: 50,
+                            child: const Text(
+                              'Waiting for widget to enable Developer Mode...',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          )
+                        : Flex(
+                            direction: smallScreen
+                                ? Axis.vertical
+                                : Axis.horizontal,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              smallScreen
+                                  ? _buildSlider()
+                                  : Expanded(flex: 1, child: _buildSlider()),
+                              SizedBox(
+                                height: 50,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    _ToolbarButton(
+                                      onTap: _play,
+                                      icon: Icons.play_arrow,
+                                      active: play,
+                                    ),
+                                    _ToolbarButton(
+                                      onTap: () => _speed(2),
+                                      icon: Icons.fast_rewind,
+                                      active: currentDuration! > baseDuration!,
+                                    ),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      width: 50,
+                                      child: Text(
+                                        '${_currentSpeedFactor()}x',
+                                        style: TextStyle(
+                                          color: Colors.white.withValues(
+                                            alpha: 0.7,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    _ToolbarButton(
+                                      onTap: () => _speed(0.5),
+                                      icon: Icons.fast_forward,
+                                      active: currentDuration! < baseDuration!,
+                                    ),
+                                    Container(width: 32),
+                                    Transform.scale(
+                                      scale: -1,
+                                      child: _ToolbarButton(
+                                        onTap: () => _lowerBounds(),
+                                        icon: Icons.keyboard_tab,
+                                        active: lowerBounds != 0.0,
+                                      ),
+                                    ),
+                                    _ToolbarButton(
+                                      onTap: () => _upperBounds(),
+                                      icon: Icons.keyboard_tab,
+                                      active: upperBounds != 1.0,
+                                    ),
+                                    Container(width: 16),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                  ),
+                ),
+              ),
+          ],
+        );
+      },
+    );
   }
 
   Widget _buildSlider() {
-    return LayoutBuilder(builder: (context, constraints) {
-      return SizedBox(
-        height: 50,
-        child: Stack(
-          children: [
-            if (lowerBounds > 0 || upperBounds < 1)
-              Positioned.fill(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SizedBox(
+          height: 50,
+          child: Stack(
+            children: [
+              if (lowerBounds > 0 || upperBounds < 1)
+                Positioned.fill(
                   child: Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: 24 + lowerBounds * (constraints.maxWidth - 48)),
-                  child: Container(
-                    width: (constraints.maxWidth - 48) *
-                        (upperBounds - lowerBounds),
-                    height: 30,
-                    decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(4)),
-                        border: Border.all(color: Colors.white, width: 2)),
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        left: 24 + lowerBounds * (constraints.maxWidth - 48),
+                      ),
+                      child: Container(
+                        width:
+                            (constraints.maxWidth - 48) *
+                            (upperBounds - lowerBounds),
+                        height: 30,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(4),
+                          ),
+                          border: Border.all(color: Colors.white, width: 2),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              )),
-            Positioned.fill(
-              child: Slider(
-                min: 0.0,
-                max: 1.0,
-                value: controller!.value,
-                onChanged: _scroll,
-                activeColor: Colors.white,
-                inactiveColor: Colors.grey,
+              Positioned.fill(
+                child: Slider(
+                  min: 0.0,
+                  max: 1.0,
+                  value: controller!.value,
+                  onChanged: _scroll,
+                  activeColor: Colors.white,
+                  inactiveColor: Colors.grey,
+                ),
               ),
-            ),
-            Positioned(
-              bottom: 2,
-              right: 24,
-              child: Text(_currentTime(),
-                  style: const TextStyle(color: Colors.grey)),
-            )
-          ],
-        ),
-      );
-    });
+              Positioned(
+                bottom: 2,
+                right: 24,
+                child: Text(
+                  _currentTime(),
+                  style: const TextStyle(color: Colors.grey),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   String _currentTime() {
@@ -186,8 +209,9 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
     controller!.addListener(() => setState(() {}));
     baseDuration = controller!.duration ?? const Duration(seconds: 1);
     currentDuration = baseDuration;
-    Future<void>.delayed(const Duration(milliseconds: 100))
-        .then((_) => _updateController());
+    Future<void>.delayed(
+      const Duration(milliseconds: 100),
+    ).then((_) => _updateController());
   }
 
   void _play() {
@@ -200,9 +224,10 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
       controller!.stop();
     } else {
       controller!.duration = Duration(
-          microseconds:
-              (currentDuration!.inMicroseconds * (upperBounds - lowerBounds))
-                  .round());
+        microseconds:
+            (currentDuration!.inMicroseconds * (upperBounds - lowerBounds))
+                .round(),
+      );
       controller!.repeat(min: lowerBounds, max: upperBounds, reverse: false);
     }
   }
@@ -216,13 +241,15 @@ class _AnimationDeveloperToolsState extends State<AnimationDeveloperTools> {
   void _speed(double factor) {
     setState(() {});
     currentDuration = Duration(
-        microseconds: (currentDuration!.inMicroseconds * factor).round());
+      microseconds: (currentDuration!.inMicroseconds * factor).round(),
+    );
     controller!.stop();
     _updateController();
   }
 
   String _currentSpeedFactor() {
-    var factor = baseDuration!.inMicroseconds.toDouble() /
+    var factor =
+        baseDuration!.inMicroseconds.toDouble() /
         currentDuration!.inMicroseconds.toDouble();
 
     if (factor >= 1) {
@@ -284,10 +311,13 @@ class _ToolbarButton extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(4)),
-              border: Border.all(
-                  color: active ? Colors.white : Colors.transparent, width: 2),
-              color: Colors.grey.shade800),
+            borderRadius: const BorderRadius.all(Radius.circular(4)),
+            border: Border.all(
+              color: active ? Colors.white : Colors.transparent,
+              width: 2,
+            ),
+            color: Colors.grey.shade800,
+          ),
           child: Icon(icon, color: active ? Colors.white : Colors.grey),
         ),
       ),

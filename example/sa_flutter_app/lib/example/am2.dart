@@ -46,8 +46,10 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
     // connect tween with individual controllers
     width = Tween(begin: 100.0, end: 200.0).animate(widthController);
     height = Tween(begin: 100.0, end: 200.0).animate(heightController);
-    color = ColorTween(begin: Colors.red, end: Colors.blue)
-        .animate(colorController);
+    color = ColorTween(
+      begin: Colors.red,
+      end: Colors.blue,
+    ).animate(colorController);
 
     super.initState();
   }

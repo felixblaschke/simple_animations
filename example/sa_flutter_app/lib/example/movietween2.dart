@@ -10,14 +10,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Specify your tween
     final tween = MovieTween()
-      ..tween('x', Tween(begin: -100.0, end: 100.0),
-              duration: const Duration(seconds: 1))
-          .thenTween('y', Tween(begin: -100.0, end: 100.0),
-              duration: const Duration(seconds: 1))
-          .thenTween('x', Tween(begin: 100.0, end: -100.0),
-              duration: const Duration(seconds: 1))
-          .thenTween('y', Tween(begin: 100.0, end: -100.0),
-              duration: const Duration(seconds: 1));
+      ..tween(
+            'x',
+            Tween(begin: -100.0, end: 100.0),
+            duration: const Duration(seconds: 1),
+          )
+          .thenTween(
+            'y',
+            Tween(begin: -100.0, end: 100.0),
+            duration: const Duration(seconds: 1),
+          )
+          .thenTween(
+            'x',
+            Tween(begin: 100.0, end: -100.0),
+            duration: const Duration(seconds: 1),
+          )
+          .thenTween(
+            'y',
+            Tween(begin: 100.0, end: -100.0),
+            duration: const Duration(seconds: 1),
+          );
 
     return MaterialApp(
       home: Scaffold(
@@ -30,11 +42,7 @@ class MyApp extends StatelessWidget {
               return Transform.translate(
                 // Get animated offset
                 offset: Offset(value.get('x'), value.get('y')),
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  color: Colors.green,
-                ),
+                child: Container(width: 100, height: 100, color: Colors.green),
               );
             },
           ),

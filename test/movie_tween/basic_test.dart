@@ -3,6 +3,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 void main() {
+  test('Movie keeps public map constructor parameter', () {
+    final property = MovieTweenProperty<double>();
+    final movie = Movie(map: {property: 42.0});
+
+    expect(property.from(movie), 42.0);
+  });
+
   test('basic timeline', () {
     var movie = MovieTween();
     movie

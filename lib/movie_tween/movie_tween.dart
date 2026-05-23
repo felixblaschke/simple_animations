@@ -19,9 +19,12 @@ class MovieTween extends Animatable<Movie> {
     var items = _generateAbsoluteItems().map((item) => item.end);
 
     int itemsDuration = items.sorted((a, b) => a.compareTo(b)).lastOrNull ?? 0;
-    int scenesDuration = _scenes
-            .map((scene) =>
-                scene.begin.inMicroseconds + scene.duration.inMicroseconds)
+    int scenesDuration =
+        _scenes
+            .map(
+              (scene) =>
+                  scene.begin.inMicroseconds + scene.duration.inMicroseconds,
+            )
             .sorted((a, b) => a.compareTo(b))
             .lastOrNull ??
         0;
@@ -49,11 +52,12 @@ class MovieTween extends Animatable<Movie> {
     Curve? curve,
   }) {
     assert(
-        (begin != null && duration != null && end == null) ||
-            (begin != null && duration == null && end != null) ||
-            (begin == null && duration != null && end != null) ||
-            (begin == null && duration != null && end == null),
-        'Please specify two of these properties: begin, duration, end');
+      (begin != null && duration != null && end == null) ||
+          (begin != null && duration == null && end != null) ||
+          (begin == null && duration != null && end != null) ||
+          (begin == null && duration != null && end == null),
+      'Please specify two of these properties: begin, duration, end',
+    );
 
     /// Only duration is specified.
     if (duration != null && begin == null && end == null) {
@@ -73,10 +77,14 @@ class MovieTween extends Animatable<Movie> {
       begin = end - duration;
     }
 
-    assert(duration! >= Duration.zero,
-        'Scene duration must be or result in a positive value');
-    assert(begin! >= Duration.zero,
-        'Scene begin must be or result in a positive value');
+    assert(
+      duration! >= Duration.zero,
+      'Scene duration must be or result in a positive value',
+    );
+    assert(
+      begin! >= Duration.zero,
+      'Scene begin must be or result in a positive value',
+    );
 
     /// Create scene object.
     var scene = MovieScene(
@@ -98,6 +106,7 @@ class MovieTween extends Animatable<Movie> {
 
     //// Tween that describes the property animation
     Animatable<T> tween, {
+
     /// Time in duration at which the scene starts.
     Duration? begin,
 
@@ -109,9 +118,11 @@ class MovieTween extends Animatable<Movie> {
 
     /// Custom curve for this property animation.
     Curve? curve,
-  }) =>
-      scene(begin: begin, duration: duration, end: end)
-          .tween(property, tween, curve: curve);
+  }) => scene(
+    begin: begin,
+    duration: duration,
+    end: end,
+  ).tween(property, tween, curve: curve);
 
   /// Computes the tween
   @override
@@ -136,7 +147,7 @@ class MovieTween extends Animatable<Movie> {
       _transformProperty(propertyItems[property]!, property, now, valueMap);
     }
 
-    return Movie(map: valueMap);
+    return Movie._(valueMap);
   }
 
   /// Computes the animated value for the given property and time [t].
@@ -146,8 +157,10 @@ class MovieTween extends Animatable<Movie> {
     double t,
     Map valueMap,
   ) {
-    assert(items.every((item) => item.property == property),
-        'Items must already be filtered for $property');
+    assert(
+      items.every((item) => item.property == property),
+      'Items must already be filtered for $property',
+    );
     assert(() {
       // Pre-sorting items makes the look-up of first, last, and matching items
       // all doable in a single O(n) pass of the list.
@@ -188,7 +201,8 @@ class MovieTween extends Animatable<Movie> {
     if (matchInScene != null) {
       /// The current time [t] matches directly a scene object.
       /// The tween can be queried for the value.
-      final localT = (t - matchInScene.begin).toDouble() /
+      final localT =
+          (t - matchInScene.begin).toDouble() /
           (matchInScene.end - matchInScene.begin).toDouble();
       valueMap[property] = matchInScene.tween
           .chain(CurveTween(curve: matchInScene.curve))
@@ -212,8 +226,9 @@ class MovieTween extends Animatable<Movie> {
         final left = items[i - 1];
         final right = items[i];
         if (left.end < t && t < right.begin) {
-          valueMap[property] =
-              left.tween.chain(CurveTween(curve: left.curve)).transform(1.0);
+          valueMap[property] = left.tween
+              .chain(CurveTween(curve: left.curve))
+              .transform(1.0);
           break;
         }
       }
@@ -228,15 +243,18 @@ class MovieTween extends Animatable<Movie> {
 
     for (final scene in _scenes) {
       for (final item in scene.items) {
-        absoluteItems.add(_AbsoluteSceneItem(
-          begin: scene.begin.inMicroseconds + item.shiftBegin.inMicroseconds,
-          end: scene.begin.inMicroseconds +
-              scene.duration.inMicroseconds +
-              item.shiftEnd.inMicroseconds,
-          curve: item.curve ?? scene.curve ?? curve,
-          property: item.property,
-          tween: item.tween,
-        ));
+        absoluteItems.add(
+          _AbsoluteSceneItem(
+            begin: scene.begin.inMicroseconds + item.shiftBegin.inMicroseconds,
+            end:
+                scene.begin.inMicroseconds +
+                scene.duration.inMicroseconds +
+                item.shiftEnd.inMicroseconds,
+            curve: item.curve ?? scene.curve ?? curve,
+            property: item.property,
+            tween: item.tween,
+          ),
+        );
       }
     }
 
@@ -271,6 +289,7 @@ class MovieScene {
 
     //// Tween that describes the property animation
     Animatable<T> tween, {
+
     /// Custom curve for this property.
     Curve? curve,
 
@@ -282,13 +301,15 @@ class MovieScene {
   }) {
     assert(begin + shiftBegin >= Duration.zero, 'Effective begin must be > 0');
 
-    items.add(_SceneItem(
-      property: property,
-      tween: tween,
-      curve: curve,
-      shiftBegin: shiftBegin,
-      shiftEnd: shiftEnd,
-    ));
+    items.add(
+      _SceneItem(
+        property: property,
+        tween: tween,
+        curve: curve,
+        shiftBegin: shiftBegin,
+        shiftEnd: shiftEnd,
+      ),
+    );
     return this;
   }
 
@@ -301,6 +322,7 @@ class MovieScene {
 
     //// Tween that describes the property animation.
     Animatable<T> tween, {
+
     /// Duration of the scene
     required Duration duration,
 
@@ -312,8 +334,11 @@ class MovieScene {
     Curve? curve,
     Curve? sceneCurve,
   }) {
-    return thenFor(duration: duration, delay: delay, curve: sceneCurve)
-        .tween(property, tween, curve: curve);
+    return thenFor(
+      duration: duration,
+      delay: delay,
+      curve: sceneCurve,
+    ).tween(property, tween, curve: curve);
   }
 
   /// Adds an additional scene that begins immediately after this scene.
@@ -357,7 +382,9 @@ class _SceneItem {
 class Movie {
   final Map<MovieTweenPropertyType, dynamic> _map;
 
-  Movie({required Map<MovieTweenPropertyType, dynamic> map}) : _map = map;
+  Movie({required Map<MovieTweenPropertyType, dynamic> map}) : this._(map);
+
+  Movie._(this._map);
 
   /// Returns the value for a given [property].
   V get<V>(MovieTweenPropertyType property) {

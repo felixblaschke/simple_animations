@@ -7,7 +7,7 @@ class MyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // put DevTools very high in the widget hierarchy
+      // place DevTools high in the widget hierarchy
       body: AnimationDeveloperTools(
         child: Container(), // your UI
       ),

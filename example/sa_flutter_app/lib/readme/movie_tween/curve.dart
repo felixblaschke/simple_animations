@@ -9,8 +9,10 @@ MovieTween createTween() {
   final scene1 = tween.scene(duration: const Duration(seconds: 1));
 
   // scene2 will use Curves.easeOut
-  final scene2 =
-      tween.scene(duration: const Duration(seconds: 1), curve: Curves.easeOut);
+  final scene2 = tween.scene(
+    duration: const Duration(seconds: 1),
+    curve: Curves.easeOut,
+  );
 
   // will use Curves.easeIn defined by the MovieTween
   scene1.tween('value1', Tween(begin: 0.0, end: 100.0));
@@ -19,8 +21,11 @@ MovieTween createTween() {
   scene2.tween('value2', Tween(begin: 0.0, end: 100.0));
 
   // will use Curves.easeInOut defined by property tween
-  scene2.tween('value3', Tween(begin: 0.0, end: 100.0),
-      curve: Curves.easeInOut);
+  scene2.tween(
+    'value3',
+    Tween(begin: 0.0, end: 100.0),
+    curve: Curves.easeInOut,
+  );
   // #end
   return tween;
 }
