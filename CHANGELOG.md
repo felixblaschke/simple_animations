@@ -1,3 +1,8 @@
+## next minor
+
+- Fix `AnimationMixin` compatibility with Flutter's updated `TickerMode` API.
+- Add regression coverage for `AnimationMixin` reacting to `TickerMode` changes.
+
 ## 5.2.0
 
 - Realigned code base with Flutter `3.29.2`

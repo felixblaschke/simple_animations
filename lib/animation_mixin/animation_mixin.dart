@@ -103,9 +103,11 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
     }
     assert(_tickerModeNotifier != null);
     _tickers ??= <_WidgetTicker>{};
+    final TickerModeData tickerModeValues = _tickerModeNotifier!.value;
     final _WidgetTicker result = _WidgetTicker(onTick, this,
         debugLabel: kDebugMode ? 'created by ${describeIdentity(this)}' : null)
-      ..muted = !_tickerModeNotifier!.value;
+      ..muted = !tickerModeValues.enabled
+      ..forceFrames = tickerModeValues.forceFrames;
     _tickers!.add(result);
     return result;
   }
@@ -116,7 +118,7 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
     _tickers!.remove(ticker);
   }
 
-  ValueListenable<bool>? _tickerModeNotifier;
+  ValueListenable<TickerModeData>? _tickerModeNotifier;
 
   @override
   void activate() {
@@ -128,15 +130,18 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
 
   void _updateTickers() {
     if (_tickers != null) {
-      final bool muted = !_tickerModeNotifier!.value;
+      final TickerModeData values = _tickerModeNotifier!.value;
+      final bool muted = !values.enabled;
       for (final Ticker ticker in _tickers!) {
         ticker.muted = muted;
+        ticker.forceFrames = values.forceFrames;
       }
     }
   }
 
   void _updateTickerModeNotifier() {
-    final ValueListenable<bool> newNotifier = TickerMode.getNotifier(context);
+    final ValueListenable<TickerModeData> newNotifier =
+        TickerMode.getValuesNotifier(context);
     if (newNotifier == _tickerModeNotifier) {
       return;
     }
