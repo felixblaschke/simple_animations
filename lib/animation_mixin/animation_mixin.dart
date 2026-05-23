@@ -28,10 +28,12 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   /// Connects given [controller] to the closest [AnimationDeveloperTools]
   /// widget to enable developer mode.
   void enableDeveloperMode(AnimationController controller) {
-    var transfer =
-        context.findAncestorWidgetOfExactType<AnimationControllerTransfer>();
-    assert(transfer != null,
-        'Please place an AnimationDeveloperTools widget inside the widget tree');
+    var transfer = context
+        .findAncestorWidgetOfExactType<AnimationControllerTransfer>();
+    assert(
+      transfer != null,
+      'Please place an AnimationDeveloperTools widget inside the widget tree',
+    );
     transfer?.controllerProvider(controller);
   }
 
@@ -43,10 +45,7 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   ///
   /// You can create an unbound [AnimationController] by setting the [unbounded]
   /// parameter.
-  AnimationController createController({
-    bool unbounded = false,
-    int? fps,
-  }) {
+  AnimationController createController({bool unbounded = false, int? fps}) {
     final instance = _newAnimationController(unbounded: unbounded, fps: fps);
     _controllerInstances.add(instance);
     return instance;
@@ -73,8 +72,9 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
 
     controller.addListener(() {
       final now = DateTime.now();
-      if (lastUpdateEmitted
-          .isBefore(now.subtract(Duration(milliseconds: frameTimeMs)))) {
+      if (lastUpdateEmitted.isBefore(
+        now.subtract(Duration(milliseconds: frameTimeMs)),
+      )) {
         lastUpdateEmitted = DateTime.now();
         setState(() {});
       }
@@ -84,10 +84,14 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   AnimationController _instanceController({required bool unbounded}) {
     if (!unbounded) {
       return AnimationController(
-          vsync: this, duration: const Duration(seconds: 1));
+        vsync: this,
+        duration: const Duration(seconds: 1),
+      );
     } else {
       return AnimationController.unbounded(
-          vsync: this, duration: const Duration(seconds: 1));
+        vsync: this,
+        duration: const Duration(seconds: 1),
+      );
     }
   }
 
@@ -104,10 +108,16 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
     assert(_tickerModeNotifier != null);
     _tickers ??= <_WidgetTicker>{};
     final TickerModeData tickerModeValues = _tickerModeNotifier!.value;
-    final _WidgetTicker result = _WidgetTicker(onTick, this,
-        debugLabel: kDebugMode ? 'created by ${describeIdentity(this)}' : null)
-      ..muted = !tickerModeValues.enabled
-      ..forceFrames = tickerModeValues.forceFrames;
+    final _WidgetTicker result =
+        _WidgetTicker(
+            onTick,
+            this,
+            debugLabel: kDebugMode
+                ? 'created by ${describeIdentity(this)}'
+                : null,
+          )
+          ..muted = !tickerModeValues.enabled
+          ..forceFrames = tickerModeValues.forceFrames;
     _tickers!.add(result);
     return result;
   }
@@ -189,14 +199,16 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<Set<Ticker>>(
-      'tickers',
-      _tickers,
-      description: _tickers != null
-          ? 'tracking ${_tickers!.length} ticker${_tickers!.length == 1 ? "" : "s"}'
-          : null,
-      defaultValue: null,
-    ));
+    properties.add(
+      DiagnosticsProperty<Set<Ticker>>(
+        'tickers',
+        _tickers,
+        description: _tickers != null
+            ? 'tracking ${_tickers!.length} ticker${_tickers!.length == 1 ? "" : "s"}'
+            : null,
+        defaultValue: null,
+      ),
+    );
   }
 }
 

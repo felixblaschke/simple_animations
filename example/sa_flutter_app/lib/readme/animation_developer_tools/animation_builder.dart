@@ -17,11 +17,7 @@ class MyPage extends StatelessWidget {
             duration: const Duration(seconds: 1),
             developerMode: true, // enable developer mode
             builder: (context, value, child) {
-              return Container(
-                width: value,
-                height: value,
-                color: Colors.blue,
-              );
+              return Container(width: value, height: value, color: Colors.blue);
             },
           ),
         ),

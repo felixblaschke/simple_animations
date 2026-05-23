@@ -48,8 +48,10 @@ class CustomAnimationBuilder<T> extends StatefulWidget {
     this.onStarted,
     this.onCompleted,
     super.key,
-  }) : assert(startPosition >= 0 && startPosition <= 1,
-            'The property startPosition must have a value between 0.0 and 1.0.');
+  }) : assert(
+         startPosition >= 0 && startPosition <= 1,
+         'The property startPosition must have a value between 0.0 and 1.0.',
+       );
 
   /// The [tween] to animate.
   final Animatable<T> tween;
@@ -160,10 +162,12 @@ class _CustomAnimationBuilderState<T> extends State<CustomAnimationBuilder<T>>
     /// If the developer mode is enabled, connect the [AnimationController]
     /// to the [AnimationDeveloperTools].
     if (widget.developerMode) {
-      var transfer =
-          context.findAncestorWidgetOfExactType<AnimationControllerTransfer>();
-      assert(transfer != null,
-          'Please place an AnimationDeveloperTools widget inside the widget tree');
+      var transfer = context
+          .findAncestorWidgetOfExactType<AnimationControllerTransfer>();
+      assert(
+        transfer != null,
+        'Please place an AnimationDeveloperTools widget inside the widget tree',
+      );
       transfer?.controllerProvider(_controller);
     }
   }

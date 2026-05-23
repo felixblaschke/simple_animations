@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 void main() => runApp(
-    const MaterialApp(home: Scaffold(body: Center(child: SwappingButton()))));
+  const MaterialApp(
+    home: Scaffold(body: Center(child: SwappingButton())),
+  ),
+);
 
 class SwappingButton extends StatefulWidget {
   const SwappingButton({super.key});
@@ -29,10 +32,7 @@ class _SwappingButtonState extends State<SwappingButton> {
       duration: const Duration(seconds: 1),
       builder: (context, value, child) {
         // moves child from left to right
-        return Transform.translate(
-          offset: Offset(value, 0),
-          child: child,
-        );
+        return Transform.translate(offset: Offset(value, 0), child: child);
       },
       child: OutlinedButton(
         // clicking button changes animation direction

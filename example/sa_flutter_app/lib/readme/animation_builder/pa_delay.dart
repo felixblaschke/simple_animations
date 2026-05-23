@@ -6,10 +6,6 @@ var widget = PlayAnimationBuilder<Color?>(
   duration: const Duration(seconds: 5),
   delay: const Duration(seconds: 2), // add delay
   builder: (context, value, _) {
-    return Container(
-      color: value,
-      width: 100,
-      height: 100,
-    );
+    return Container(color: value, width: 100, height: 100);
   },
 );

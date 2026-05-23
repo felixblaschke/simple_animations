@@ -6,9 +6,7 @@ MovieTween createTween() {
   final tween = MovieTween();
 
   // start at 0ms and end at 1500ms
-  final scene1 = tween.scene(
-    duration: const Duration(milliseconds: 1500),
-  );
+  final scene1 = tween.scene(duration: const Duration(milliseconds: 1500));
 
   // start at 200ms and end at 900ms
   final scene2 = tween.scene(

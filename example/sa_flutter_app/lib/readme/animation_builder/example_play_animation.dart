@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 void main() => runApp(
-    const MaterialApp(home: Scaffold(body: Center(child: AnimatedGreenBox()))));
+  const MaterialApp(
+    home: Scaffold(body: Center(child: AnimatedGreenBox())),
+  ),
+);
 
 class AnimatedGreenBox extends StatelessWidget {
   const AnimatedGreenBox({super.key});

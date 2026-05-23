@@ -7,10 +7,16 @@ class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tween = MovieTween()
-      ..tween('width', Tween<double>(begin: 0.0, end: 100.0),
-          duration: const Duration(milliseconds: 700))
-      ..tween('height', Tween<double>(begin: 300.0, end: 200.0),
-          duration: const Duration(milliseconds: 700));
+      ..tween(
+        'width',
+        Tween<double>(begin: 0.0, end: 100.0),
+        duration: const Duration(milliseconds: 700),
+      )
+      ..tween(
+        'height',
+        Tween<double>(begin: 300.0, end: 200.0),
+        duration: const Duration(milliseconds: 700),
+      );
 
     return PlayAnimationBuilder<Movie>(
       tween: tween,
@@ -24,5 +30,6 @@ class MyWidget extends StatelessWidget {
       },
     );
   }
+
   // #end
 }

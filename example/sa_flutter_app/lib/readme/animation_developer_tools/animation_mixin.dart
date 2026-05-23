@@ -12,11 +12,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: SafeArea(
           // place DevTools high in the widget hierarchy
-          child: AnimationDeveloperTools(
-            child: Center(
-              child: MyAnimation(),
-            ),
-          ),
+          child: AnimationDeveloperTools(child: Center(child: MyAnimation())),
         ),
       ),
     );

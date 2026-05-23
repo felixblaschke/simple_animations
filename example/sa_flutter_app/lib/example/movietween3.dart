@@ -16,30 +16,36 @@ class MyApp extends StatelessWidget {
     // Specify your tween
     final tween = MovieTween()
       ..scene(
-              begin: const Duration(seconds: 0),
-              duration: const Duration(seconds: 1))
-          .tween(x, Tween(begin: -100.0, end: 100.0),
-              curve: Curves.easeInOutSine)
+            begin: const Duration(seconds: 0),
+            duration: const Duration(seconds: 1),
+          )
+          .tween(
+            x,
+            Tween(begin: -100.0, end: 100.0),
+            curve: Curves.easeInOutSine,
+          )
           .tween(color, ColorTween(begin: Colors.red, end: Colors.yellow))
       ..scene(
-              begin: const Duration(seconds: 1),
-              duration: const Duration(seconds: 1))
-          .tween(y, Tween(begin: -100.0, end: 100.0),
-              curve: Curves.easeInOutSine)
+        begin: const Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
+      ).tween(y, Tween(begin: -100.0, end: 100.0), curve: Curves.easeInOutSine)
       ..scene(
-              begin: const Duration(seconds: 2),
-              duration: const Duration(seconds: 1))
-          .tween(x, Tween(begin: 100.0, end: -100.0),
-              curve: Curves.easeInOutSine)
+        begin: const Duration(seconds: 2),
+        duration: const Duration(seconds: 1),
+      ).tween(x, Tween(begin: 100.0, end: -100.0), curve: Curves.easeInOutSine)
       ..scene(
-              begin: const Duration(seconds: 1),
-              end: const Duration(seconds: 3))
-          .tween(color, ColorTween(begin: Colors.yellow, end: Colors.blue))
+        begin: const Duration(seconds: 1),
+        end: const Duration(seconds: 3),
+      ).tween(color, ColorTween(begin: Colors.yellow, end: Colors.blue))
       ..scene(
-              begin: const Duration(seconds: 3),
-              duration: const Duration(seconds: 1))
-          .tween(y, Tween(begin: 100.0, end: -100.0),
-              curve: Curves.easeInOutSine)
+            begin: const Duration(seconds: 3),
+            duration: const Duration(seconds: 1),
+          )
+          .tween(
+            y,
+            Tween(begin: 100.0, end: -100.0),
+            curve: Curves.easeInOutSine,
+          )
           .tween(color, ColorTween(begin: Colors.blue, end: Colors.red));
 
     return MaterialApp(
