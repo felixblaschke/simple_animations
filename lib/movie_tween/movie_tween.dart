@@ -136,7 +136,7 @@ class MovieTween extends Animatable<Movie> {
       _transformProperty(propertyItems[property]!, property, now, valueMap);
     }
 
-    return Movie(map: valueMap);
+    return Movie._(valueMap);
   }
 
   /// Computes the animated value for the given property and time [t].
@@ -357,7 +357,9 @@ class _SceneItem {
 class Movie {
   final Map<MovieTweenPropertyType, dynamic> _map;
 
-  Movie({required Map<MovieTweenPropertyType, dynamic> map}) : _map = map;
+  Movie({required Map<MovieTweenPropertyType, dynamic> map}) : this._(map);
+
+  Movie._(this._map);
 
   /// Returns the value for a given [property].
   V get<V>(MovieTweenPropertyType property) {
