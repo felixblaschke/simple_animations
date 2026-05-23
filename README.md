@@ -4,7 +4,7 @@
 
 [![Pub](https://img.shields.io/pub/v/simple_animations.svg)](https://pub.dartlang.org/packages/simple_animations)
 [![Awesome Flutter](https://img.shields.io/badge/Awesome-Flutter-blue)](https://github.com/Solido/awesome-flutter)
-[![Flutter gems - Top 5 Animation packages](https://img.shields.io/badge/Flutter%20gems-TOP%205%20Animation%20packages-blue)](https://fluttergems.dev/animation-transition/)
+[![Flutter gems - Top Animation packages](https://img.shields.io/badge/Flutter%20gems-TOP%205%20Animation%20packages-blue)](https://fluttergems.dev/animation-transition/)
 
 **Simple Animations** simplifies the process of creating beautiful custom animations:
 
