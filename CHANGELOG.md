@@ -1,5 +1,7 @@
 ## 5.3.0
 
+- Align project constraints with the latest Flutter release baseline. (`sdk: ^3.12.0`, `flutter: >=3.44.0` and `flutter_lints` `^6.0.0`).
+- Update the example app dependencies to match current Flutter project defaults.
 - Fix `AnimationMixin` compatibility with Flutter's updated `TickerMode` API.
 - Add regression coverage for `AnimationMixin` reacting to `TickerMode` changes.
 - Add widget test coverage for `AnimationDeveloperTools`.

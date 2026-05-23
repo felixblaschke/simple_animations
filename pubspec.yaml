@@ -7,8 +7,8 @@ funding:
   - https://www.paypal.com/donate/?hosted_button_id=9H2FEXT6VCWJ4
 
 environment:
-  sdk: ^3.7.2
-  flutter: ">=1.17.0"
+  sdk: ^3.12.0
+  flutter: ">=3.44.0"
 
 dependencies:
   flutter:
@@ -17,7 +17,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
