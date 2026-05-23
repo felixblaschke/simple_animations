@@ -41,7 +41,7 @@
 
 [**Animation Mixin**](#animation-mixin)
   - [Basic usage pattern](#basic-usage-pattern)
-  - [Create multiple AnimationController](#create-multiple-animationcontroller)
+  - [Create multiple AnimationController instances](#create-multiple-animationcontroller-instances)
 
 [**Shortcuts for AnimationController**](#shortcuts-for-animationcontroller)
 
@@ -52,11 +52,11 @@
 
 ## Quickstart
 
-Directly dive in and let the code speak for itself.
+Dive right in and let the code speak for itself.
 
 ### Animation Builder - Quickstart
 
-Animation Builder are powerful widgets to easily create custom animations.
+Animation Builder widgets are a powerful way to create custom animations.
 
 <!-- #code example/sa_flutter_app/lib/readme/animation_builder.dart -->
 ```dart
@@ -135,7 +135,7 @@ class ColorFadeLoop extends StatelessWidget {
 
 ### Movie Tween - Quickstart
 
-Movie Tween combines multiple tween into one, including timeline control and value extrapolation.
+Movie Tween combines multiple tweens into one, including timeline control and value extrapolation.
 
 <!-- #code example/sa_flutter_app/lib/readme/movie_tween.dart -->
 ```dart
@@ -200,7 +200,7 @@ class _MyWidgetState extends State<MyWidget> with AnimationMixin {
   @override
   void initState() {
     // The AnimationController instance `controller` is already wired up.
-    // Just connect with it with the tweens.
+    // Just connect it to the tweens.
     size = Tween<double>(begin: 0.0, end: 200.0).animate(controller);
 
     controller.play(); // start the animation playback
@@ -226,7 +226,7 @@ class _MyWidgetState extends State<MyWidget> with AnimationMixin {
 
 ### Animation Developer Tools - Quickstart
 
-Helps you fine tuning the animation. It allows you to pause anywhere, scroll around, speed up, slow down or focus on a certain part of the animation.
+The Animation Developer Tools widget helps you fine-tune animations. It allows you to pause anywhere, scrub through the timeline, speed up, slow down, or focus on a specific part of an animation.
 
 ![devtools](https://github.com/felixblaschke/simple_animations/raw/main/example/img/d1.gif)
 
@@ -244,11 +244,11 @@ You need three things to create an animation:
 
 - **tween**: What _value_ is changing within the animation?
 - **duration**: How long does the animation take?
-- **builder**: How does the UI look like regarding the changing _value_?
+- **builder**: How does the UI respond to the changing _value_?
 
 #### Tween
 
-The `tween` is the description of your animation. Mostly it will change a value from A to B. Tweens describe **what** will happen but **not how fast it will happen**.
+The `tween` describes your animation. It usually changes a value from A to B. Tweens describe **what** will happen, but **not how fast it will happen**.
 
 <!-- #code example/sa_flutter_app/lib/readme/animation_builder/pa_tween.dart -->
 ```dart
@@ -270,15 +270,15 @@ The `duration` is the time the animation takes.
 
 #### Builder
 
-The `builder` is a function that is called for **each new rendered frame** of your animation. It takes three parameters: `context`, `value` and `child`.
+The `builder` is a function that is called for **each newly rendered frame** of your animation. It takes three parameters: `context`, `value` and `child`.
 
 - `context` is your Flutter `BuildContext`
 
-- `value` is **current value** of any animated variable, produced by the tween. If your tween is `Tween<double>(begin: 0.0, end: 100.0)`, the `value` is a `double` somewhere between `0.0` and `100.0`.
+- `value` is the **current value** produced by the tween. If your tween is `Tween<double>(begin: 0.0, end: 100.0)`, the `value` is a `double` somewhere between `0.0` and `100.0`.
 
-- `child` can be a widget that you might pass in a Animation Builder widget. This widget stays constant and is not affected by the animation.
+- `child` can be a widget that you pass into an Animation Builder widget. This widget stays constant and is not affected by the animation.
 
-How often the `builder` function is called, depends on the animation duration, and the framerate of the device used.
+How often the `builder` function is called depends on the animation duration and the frame rate of the device.
 
 ### PlayAnimationBuilder
 
@@ -379,8 +379,8 @@ var widget = PlayAnimationBuilder<Color?>(
 
 #### Using child widgets
 
-Parts of the UI that are not effected by the animated value can be passed as a `Widget` into the `child` property. That `Widget` is available within the `builder` function.
-They will not rebuild when animated value changes and therefore has a positive performance impact.
+Parts of the UI that are not affected by the animated value can be passed as a `Widget` into the `child` property. That `Widget` is available within the `builder` function.
+It will not rebuild when the animated value changes, which improves performance.
 
 <!-- #code example/sa_flutter_app/lib/readme/animation_builder/pa_child.dart -->
 ```dart
@@ -406,11 +406,11 @@ var widget = PlayAnimationBuilder<Color?>(
 
 #### Using keys
 
-If Flutter swaps out a `PlayAnimationBuilder` with another different `PlayAnimationBuilder` in a rebuild, it may recycle the first one.
-This may lead to a undesired behavior.
-In such a case use the `key` property.
+If Flutter swaps out a `PlayAnimationBuilder` with a different `PlayAnimationBuilder` in a rebuild, it may recycle the first one.
+This may lead to undesired behavior.
+In such a case, use the `key` property.
 
-You may [watch this introduction](https://www.youtube.com/watch?v=kn0EOS-ZiIc) to `Key`.
+You can [watch this introduction](https://www.youtube.com/watch?v=kn0EOS-ZiIc) to `Key`.
 
 #### App example
 
@@ -479,7 +479,7 @@ var widget = LoopAnimationBuilder<Color?>(
 
 ### MirrorAnimationBuilder
 
-A `MirrorAnimationBuilder` repeatedly plays the animation from the start to the end, then reverse to the start, then again forward and so on.
+A `MirrorAnimationBuilder` repeatedly plays the animation from the start to the end, then reverses to the start, then plays forward again, and so on.
 
 <!-- #code example/sa_flutter_app/lib/readme/animation_builder/mirror_animation.dart -->
 ```dart
@@ -502,7 +502,7 @@ var widget = MirrorAnimationBuilder<Color?>(
 
 ### CustomAnimationBuilder
 
-Use `CustomAnimationBuilder` if the animation widgets discussed above aren't sufficient for you use case. Beside all parameters mentioned for `PlayAnimationBuilder` it allows you actively control the animation.
+Use `CustomAnimationBuilder` if the animation widgets discussed above aren't sufficient for your use case. In addition to all parameters mentioned for `PlayAnimationBuilder`, it lets you actively control the animation.
 
 #### Control the animation
 
@@ -512,13 +512,13 @@ The `control` parameter can be set to the following values:
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `stop`               | Stops the animation at the current position.                                                                               |
 | `play`               | Plays the animation from the current position to the end.                                                                  |
-| `playReverse`        | Plays the animation from the current position reverse to the start.                                                        |
+| `playReverse`        | Plays the animation from the current position in reverse to the start.                                                     |
 | `playFromStart`      | Resets the animation position to the beginning (`0.0`) and starts playing to the end.                                      |
-| `playReverseFromEnd` | Resets the position of the animation to end (`1.0`) and starts playing backwards to the start.                             |
+| `playReverseFromEnd` | Resets the position of the animation to the end (`1.0`) and starts playing backwards to the start.                         |
 | `loop`               | Endlessly plays the animation from the start to the end.                                                                   |
-| `mirror`             | Endlessly plays the animation from the start to the end, then it plays reverse to the start, then forward again and so on. |
+| `mirror`             | Endlessly plays the animation from the start to the end, then reverses to the start, then plays forward again, and so on.  |
 
-You can bind the `control` value to state variable and change it during the animation. The `CustomAnimationBuilder` will adapt to that.
+You can bind the `control` value to a state variable and change it during the animation. The `CustomAnimationBuilder` will adapt to that.
 
 <!-- #code example/sa_flutter_app/lib/readme/animation_builder/example_control.dart -->
 ```dart
@@ -540,7 +540,7 @@ class _SwappingButtonState extends State<SwappingButton> {
 
   void _toggleDirection() {
     setState(() {
-      // let the animation play to the opposite direction
+      // let the animation play in the opposite direction
       control = control == Control.play ? Control.playReverse : Control.play;
     });
   }
@@ -548,7 +548,7 @@ class _SwappingButtonState extends State<SwappingButton> {
   @override
   Widget build(BuildContext context) {
     return CustomAnimationBuilder<double>(
-      control: control, // bind variable with control instruction
+      control: control, // bind variable to control instruction
       tween: Tween<double>(begin: -100.0, end: 100.0),
       duration: const Duration(seconds: 1),
       builder: (context, value, child) {
@@ -571,7 +571,7 @@ class _SwappingButtonState extends State<SwappingButton> {
 
 #### Start position
 
-By default the animation starts from the beginning (`0.0`). You can change this by setting the `startPosition` parameter. It can be set to a value between `0.0` (beginning) and `1.0` (end).
+By default, the animation starts from the beginning (`0.0`). You can change this by setting the `startPosition` parameter. It can be set to a value between `0.0` (beginning) and `1.0` (end).
 
 <!-- #code example/sa_flutter_app/lib/readme/animation_builder/start_position.dart -->
 ```dart
@@ -640,11 +640,11 @@ var widget = CustomAnimationBuilder<Color?>(
 
 ## Movie Tween
 
-Movie Tween combines multiple tween into one, including timeline control and value extrapolation.
+Movie Tween combines multiple tweens into one, including timeline control and value extrapolation.
 
 ### Basic usage pattern
 
-Create a new `MovieTween` and use the `tween()` to tween multiples values:
+Create a new `MovieTween` and use `tween()` to tween multiple values:
 
 <!-- #code example/sa_flutter_app/lib/readme/movie_tween/basic1.dart -->
 ```dart
@@ -658,7 +658,7 @@ tween.tween('height', Tween(begin: 100.0, end: 200.0),
 ```
 <!-- // end of #code -->
 
-You can use `..` to get a nice builder style syntax:
+You can use `..` to get a nice builder-style syntax:
 
 <!-- #code example/sa_flutter_app/lib/readme/movie_tween/basic1_builder.dart -->
 ```dart
@@ -670,7 +670,7 @@ final tween = MovieTween()
 ```
 <!-- // end of #code -->
 
-In order to not repeat yourself, you can use `scene()` to create an explicit scene and apply both tween to it:
+To avoid repeating yourself, you can use `scene()` to create an explicit scene and apply both tweens to it:
 
 <!-- #code example/sa_flutter_app/lib/readme/movie_tween/basic2.dart -->
 ```dart
@@ -696,7 +696,7 @@ tween
 ```
 <!-- // end of #code -->
 
-You can use e.g. a `PlayAnimationBuilder` to bring the `MovieTween` alive:
+You can use a `PlayAnimationBuilder`, for example, to bring the `MovieTween` to life:
 
 <!-- #code example/sa_flutter_app/lib/readme/movie_tween/play_animation_example.dart -->
 ```dart
@@ -723,7 +723,7 @@ Widget build(BuildContext context) {
 ```
 <!-- // end of #code -->
 
-`MovieTween` animates to `Movie` that offers you a `get()` method to obtain a single animated value.
+`MovieTween` animates to a `Movie` that offers a `get()` method to obtain a single animated value.
 
 ### Scenes
 
@@ -756,7 +756,7 @@ final sceneB2 = sceneA1
 
 #### Absolute scenes
 
-You can add scenes anywhere in the timeline of your tween by using `tween.scene()`. You just need to provide two of these parameters:
+You can add scenes anywhere in your tween's timeline by using `tween.scene()`. You just need to provide two of these parameters:
 
 - `begin` (start time of the scene)
 - `duration` (duration of the scene)
@@ -816,11 +816,11 @@ final secondScene = firstScene
 ```
 <!-- // end of #code -->
 
-It also possible to add an optional `delay` to add further time between the scenes.
+It is also possible to add an optional `delay` to add more time between scenes.
 
 #### Hint on code style
 
-By using builder style Dart syntax and comments you can easily create a well-readable animation.
+By using builder-style Dart syntax and comments, you can easily create a readable animation.
 
 <!-- #code example/sa_flutter_app/lib/readme/movie_tween/tween.dart -->
 ```dart
@@ -848,7 +848,7 @@ MovieTween()
 
 ### Animate properties
 
-You can use `tween()` to specify a tween for single property.
+You can use `tween()` to specify a tween for a single property.
 
 <!-- #code example/sa_flutter_app/lib/readme/movie_tween/animate1.dart -->
 ```dart
@@ -860,7 +860,7 @@ scene.tween('color', ColorTween(begin: Colors.red, end: Colors.blue));
 ```
 <!-- // end of #code -->
 
-You can fine tune the timing with `shiftBegin` or `shiftEnd` for each property.
+You can fine-tune the timing with `shiftBegin` or `shiftEnd` for each property.
 
 <!-- #code example/sa_flutter_app/lib/readme/movie_tween/animate2.dart -->
 ```dart
@@ -873,7 +873,7 @@ scene.tween('width', Tween(begin: 0.0, end: 100.0),
 
 ### Curves
 
-You can customize the default easing curve at MovieTween, scene or property tween level.
+You can customize the default easing curve on the MovieTween, scene, or property tween level.
 
 <!-- #code example/sa_flutter_app/lib/readme/movie_tween/curve.dart -->
 ```dart
@@ -926,13 +926,13 @@ final tween = MovieTween()
 
 ### Use developer tools
 
-Creating complex tweens with multiple or staggered properties can be time consuming to create and maintain. I recommend using the [**Animation Developer Tools**](#animation-developer-tools) to streamline this process.
+Creating complex tweens with multiple or staggered properties can be time-consuming to create and maintain. Use the [**Animation Developer Tools**](#animation-developer-tools) to streamline this process.
 
 ![devtools](https://github.com/felixblaschke/simple_animations/raw/main/example/img/d1.gif)
 
 ### Animation duration
 
-Normally an `Animatable` or `Tween` doesn't contain a duration information. But `MovieTween` class contains a `duration` property that contains the total duration of the animation.
+Normally, an `Animatable` or `Tween` doesn't contain duration information. The `MovieTween` class has a `duration` property that stores the total duration of the animation.
 
 <!-- #code example/sa_flutter_app/lib/readme/movie_tween/duration.dart -->
 ```dart
@@ -961,17 +961,17 @@ Widget build(BuildContext context) {
 
 _Hint: You can also multiply the `duration` value with a numeric factor in order to speed up or slow down an animation._
 
-Of cause you can also use an own `Duration` for the animation.
+Of course, you can also use your own `Duration` for the animation.
 
 &nbsp;
 
 ## Animation Mixin
 
-It reduces boilerplate code when using `AnimationController` instances.
+`AnimationMixin` reduces boilerplate code when using `AnimationController` instances.
 
 ### Basic usage pattern
 
-Create an `AnimationController` just by adding `AnimationMixin` to your stateful widget:
+Create an `AnimationController` by adding `AnimationMixin` to your stateful widget:
 
 <!-- #code example/sa_flutter_app/lib/readme/animation_mixin/basic.dart -->
 ```dart
@@ -1005,17 +1005,17 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 ```
 <!-- // end of #code -->
 
-💪 The `AnimationMixin` generates a preconfigured AnimationController as `controller`. You can just use it. No need to worry about initialization or disposing.
+💪 The `AnimationMixin` generates a preconfigured AnimationController as `controller`. You can use it directly. No need to worry about initialization or disposal.
 
-### Create multiple AnimationController
+### Create multiple AnimationController instances
 
-With multiple AnimationController you can have many parallel animations at the same time.
+With multiple AnimationController instances, you can have many parallel animations at the same time.
 
-Anicoto's `AnimationMixin` enhances your **state class** with a method `createController()` to create multiple **managed\*** AnimationController. _("Managed" means that you don't need to care about initialization and disposing.)_
+`AnimationMixin` adds `createController()` to your **state class**, allowing you to create multiple **managed** AnimationController instances. _("Managed" means that you don't need to handle initialization or disposal.)_
 
 #### Create a managed AnimationController
 
-First create a class variable of type `AnimationController`. Then inside the `initState() {...}` method call `createController()`. That's all.
+First, create a class variable of type `AnimationController`. Then call `createController()` inside the `initState() {...}` method. That's all.
 
 <!-- #code example/sa_flutter_app/lib/readme/animation_mixin/managed1.dart -->
 ```dart
@@ -1051,9 +1051,9 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 ```
 <!-- // end of #code -->
 
-#### Create many managed AnimationController
+#### Create many managed AnimationController instances
 
-Anicoto allows you to have as many AnimationController you want. Behind the scenes it keeps track of them.
+Create as many managed AnimationController instances as needed. `AnimationMixin` tracks and disposes them for you.
 
 <!-- #code example/sa_flutter_app/lib/readme/animation_mixin/managed2.dart -->
 ```dart
@@ -1107,17 +1107,17 @@ class _MyAnimatedWidgetState extends State<MyAnimatedWidget>
 
 ## Shortcuts for AnimationController
 
-The extension for `AnimationController` adds four convenience functions:
+The extension for `AnimationController` adds four convenience methods:
 
-- `controller.play()` plays animation and stops at the end.
+- `controller.play()` plays the animation and stops at the end.
 
-- `controller.playReverse()` plays animation reversed and stops at the start.
+- `controller.playReverse()` plays the animation in reverse and stops at the start.
 
-- `controller.loop()` repetitively plays the animation from start to the end.
+- `controller.loop()` repeatedly plays the animation from the start to the end.
 
-- `controller.mirror()` repetitively plays the animation forward, then backwards, then forward and so on.
+- `controller.mirror()` repeatedly plays the animation forward, then backwards, then forward again, and so on.
 
-Each of these methods take an optional `duration` named parameter to configure your animation action within one line of code.
+Each of these methods takes an optional `duration` named parameter to configure your animation action in one line of code.
 
 <!-- #code example/sa_flutter_app/lib/readme/animation_controller_extension/shortcuts.dart -->
 ```dart
@@ -1133,7 +1133,7 @@ void someFunction(AnimationController controller) {
 ```
 <!-- // end of #code -->
 
-You can use these methods nicely along the already existing `controller.stop()` and `controller.reset()` methods.
+You can use these methods alongside the existing `controller.stop()` and `controller.reset()` methods.
 
 &nbsp;
 
@@ -1156,7 +1156,7 @@ class MyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // put DevTools very high in the widget hierarchy
+      // place DevTools high in the widget hierarchy
       body: AnimationDeveloperTools(
         child: Container(), // your UI
       ),
@@ -1194,7 +1194,7 @@ class MyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      // put DevTools very high in the widget hierarchy
+      // place DevTools high in the widget hierarchy
       child: AnimationDeveloperTools(
         child: Center(
           child: PlayAnimationBuilder<double>(
@@ -1221,7 +1221,7 @@ class MyPage extends StatelessWidget {
 
 #### Using Animation Mixin
 
-If your stateful widget uses `AnimationMixin` to manage your instances of `AnimationController` you can call `enableDeveloperMode()` to connect to the clostest `AnimationDeveloperMode` widget.
+If your stateful widget uses `AnimationMixin` to manage your `AnimationController` instances, you can call `enableDeveloperMode()` to connect to the closest `AnimationDeveloperTools` widget.
 
 **Example**
 
@@ -1240,7 +1240,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
         body: SafeArea(
-          // put DevTools very high in the widget hierarchy
+          // place DevTools high in the widget hierarchy
           child: AnimationDeveloperTools(
             child: Center(
               child: MyAnimation(),
@@ -1280,10 +1280,10 @@ class _MyAnimationState extends State<MyAnimation> with AnimationMixin {
 
 ### Features and tricks
 
-The Animation Developer Tools come with several features that simplify your developer life:
+The Animation Developer Tools come with several features that simplify your development workflow:
 
-- Regardless of the real animation, with developer mode activated the animation will always loop.
+- Regardless of the real animation, with developer mode activated, the animation will always loop.
 - You can use Flutter hot reloading for editing and debugging if your tween is created stateless.
-- Use the slider to edit the animated scene while pausing.
-- You can slow down the animation to look out for certain details.
+- Use the slider to edit the animated scene while paused.
+- You can slow down the animation to inspect specific details.
 - Use the interval buttons to focus on a time span of the animation.

@@ -9,7 +9,7 @@ class MyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      // put DevTools very high in the widget hierarchy
+      // place DevTools high in the widget hierarchy
       child: AnimationDeveloperTools(
         child: Center(
           child: PlayAnimationBuilder<double>(

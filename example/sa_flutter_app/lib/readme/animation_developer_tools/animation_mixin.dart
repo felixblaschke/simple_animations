@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
         body: SafeArea(
-          // put DevTools very high in the widget hierarchy
+          // place DevTools high in the widget hierarchy
           child: AnimationDeveloperTools(
             child: Center(
               child: MyAnimation(),

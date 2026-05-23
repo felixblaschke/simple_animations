@@ -5,6 +5,7 @@
 - Fix `AnimationMixin` compatibility with Flutter's updated `TickerMode` API.
 - Add regression coverage for `AnimationMixin` reacting to `TickerMode` changes.
 - Add widget test coverage for `AnimationDeveloperTools`.
+- Improve README quality.
 
 ## 5.2.0
 

@@ -16,7 +16,7 @@ class _SwappingButtonState extends State<SwappingButton> {
 
   void _toggleDirection() {
     setState(() {
-      // let the animation play to the opposite direction
+      // let the animation play in the opposite direction
       control = control == Control.play ? Control.playReverse : Control.play;
     });
   }
@@ -24,7 +24,7 @@ class _SwappingButtonState extends State<SwappingButton> {
   @override
   Widget build(BuildContext context) {
     return CustomAnimationBuilder<double>(
-      control: control, // bind variable with control instruction
+      control: control, // bind variable to control instruction
       tween: Tween<double>(begin: -100.0, end: 100.0),
       duration: const Duration(seconds: 1),
       builder: (context, value, child) {
