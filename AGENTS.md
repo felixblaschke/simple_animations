@@ -1,0 +1,1 @@
+- Warning: `README.md` is written with [`readme_helper`](https://pub.dev/packages/readme_helper). Before editing `README.md`, look up how `readme_helper` works.
